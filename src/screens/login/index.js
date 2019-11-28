@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CheckBox } from 'react-native'
 
 import Button from '../../components/buttom/index.js'
@@ -12,48 +12,37 @@ import {
   Text
 } from './style.js'
 
-import Api from '../../services/requests/index.js'
-import Urls from '../../services/urls/index.js'
-
-import PersistData from '../../utils/persistData/index.js'
-
-const App = () => {
-
+export default App = ( { authenticated, navigation, sendLoginRequest, data } ) => {
 
   const [email, setEmail] = useState(null)
 
   const [password, setPassword] = useState(null)
 
+  useEffect(() => {
+
+   if(authenticated) navigation.navigate('Oportunities')
+
+   else if(authenticated != null) alert(data)
+
+  }, [authenticated])
+
 
   const login = async () => {
 
-    let data = new FormData()
+    if(email == null || password == null) return alert("Informações inválidas!")
 
-    data.append('email', (email).trim())
-    data.append('password', password)
+    const formdata = new FormData()
 
-    const  {status, data:resp } = await (new Api).POST({
-        url: Urls.login,
-        data,
-        header: 'bearer'
-    })
-    
+    formdata.append('email', email.trim())
 
-    console.log(resp)
+    formdata.append('password', password)
 
-    if(status == 200 ) {
-
-      (new PersistData).store('token', resp.Authorization)
-    }
-
-    else alert(resp.Msg)
-
+    sendLoginRequest(formdata)
 
   }
 
   
- 
-  return (
+  return ( 
     <KeyboardAvoidingView behavior="padding" enabled>
 
       <Welcome> Boa tarde :) </Welcome>
@@ -83,5 +72,4 @@ const App = () => {
   )
 }
 
-export default App
 

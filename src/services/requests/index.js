@@ -6,7 +6,9 @@ class Api {
 
     getHeader = async (type) => {
 
-        let token = await (new PersistData).retrieve('token')
+        let token = await PersistData.retrieve(AUTHORIZATION_KEY)
+
+        console.log('token -> ', token)
 
         token = (type == 'bearer') ? `Bearer ${token}` : `${token}`
 
@@ -20,14 +22,13 @@ class Api {
         
     }
 
-    request = ( method, url, data, type ) => {
+    request = async ( method, url, data, type ) => {
         
-        const axios = Axios.create( { timeout: 30000, headers: this.getHeader(type) } )
+        const axios = Axios.create( { timeout: 30000, headers: await this.getHeader(type) } )
 
         return axios( { method, url, data } )
-        .then( resp => resp )
-        .catch( err => err.response )
-    
+            .then( resp => resp )
+            .catch( err => err.response )
     
     }
 
@@ -41,4 +42,8 @@ class Api {
 
 }
 
-export default Api
+export const Request = new Api
+
+export const STATUS_OK = 200
+
+export const AUTHORIZATION_KEY = 'Authorization'

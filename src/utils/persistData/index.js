@@ -11,7 +11,7 @@ class PersistData {
         } 
         catch (error) {
             
-            console.log(err)
+            console.error(err)
 
         }
     }
@@ -27,11 +27,11 @@ class PersistData {
         } 
         catch (err) {
             
-            console.log(err)
+            console.error(err)
         }
     }
 
 
 }
 
-export default PersistData
+export default new PersistData

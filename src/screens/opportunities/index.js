@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { 
-    List,
-} from './style.js'
-
-import CardItem from './components/cardItem/index.js';
+import Card from './components/card/index.js'
 
 import { Request, STATUS_OK } from '../../services/requests/index.js'
 
 import { ListaOportunidades } from '../../services/urls/index.js'
+
+import { FlatList } from 'react-native-gesture-handler'
+
+import { SafeAreaView, View, ActivityIndicator } from 'react-native'
 
 const mapStateToProps = state => ({
     authenticated: state.auth.authenticated,
@@ -19,15 +19,24 @@ const mapStateToProps = state => ({
 
 const App = (props) => {
 
+
     const [ opportunities, setOpportunities ] = useState([])
+
+    const [ page, setPage ] = useState(1)
+
+    const [ loading, setLoading ] = useState(false)
 
     useEffect(() => {
 
-        getOpportunities(1, 'A-B-C-D-E-HR')
+        loadOpportunities()
 
     }, [])
 
-    const getOpportunities = async (page, score) => {
+    const loadOpportunities = async (score = 'A-B-C-D-E-HR') => {
+
+        if(loading) return
+
+        setLoading(true)
 
         const config = { url: ListaOportunidades(page, score), header: 'bearer' }
 
@@ -39,22 +48,44 @@ const App = (props) => {
 
     }
 
-    const orderByOpportunities = ( { ItemListagemSolicitacoes, Paginas } ) => {
-        setOpportunities(ItemListagemSolicitacoes)
+    const orderByOpportunities = ( { ItemListagemSolicitacoes } ) => {
+
+        setOpportunities([...opportunities, ...ItemListagemSolicitacoes ])
+
+        setLoading(false)
+
+        setPage( page + 1 )
+        
+    }
+
+    renderItem = item => (<Card data={item}/>)
+
+    renderFooter = () => {
+
+        if (!loading) return null
+
+        return (
+            <View>
+                <ActivityIndicator />
+            </View>
+        )
     }
 
     return (
-        <List>
+        <SafeAreaView>
 
-            { opportunities.map( (data, i) => 
-                <CardItem 
-                    key={i}
-                    data={data}
-                />
-            )}
+            <FlatList style={ { padding: 10 } }
+                data={opportunities}
+                renderItem={renderItem}
+                ListFooterComponent={ renderFooter }
+                keyExtractor={ item => item.index }
+                onEndReached={ loadOpportunities } 
+                onEndReachedThreshold={ 0.1 }
+            />
 
-        </List>
+        </SafeAreaView>
     )
+
 }
 
 export default connect(mapStateToProps)(App);

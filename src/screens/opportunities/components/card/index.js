@@ -15,16 +15,15 @@ import {
     Button,
     ButtonText,
     Content,
-    Center,
     Subtitle,
 } from './style.js'
 
-const App = ( { data } ) => {
+export default App = ( props ) => {
 
-
+    const data = props.data.item
 
     return (
-        <ViewCard elevation={1} style={ { backgroundColor: '#ddd' } }>
+        <ViewCard style={ { backgroundColor: '#ddd' } }>
             
             <Header >
 
@@ -65,5 +64,3 @@ const App = ( { data } ) => {
         
     )
 }
-
-export default App;

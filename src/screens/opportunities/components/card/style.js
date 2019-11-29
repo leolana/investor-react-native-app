@@ -5,7 +5,8 @@ import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 
 export const ViewCard = styled.View`
     border-radius: 5px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
 `
 
 export const Header = styled.View`

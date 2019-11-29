@@ -20,7 +20,7 @@ export default createAppContainer(
           Oportunities: {
             screen: Oportunities,
             navigationOptions: {
-              title: 'Oportunidades'
+              title: 'Oportunidades',
             }
           },
 
@@ -28,7 +28,7 @@ export default createAppContainer(
         {
           initialRouteName: 'Login',
           defaultNavigationOptions: {
-            
+            headerBackTitle: 'Voltar'
           },
         }
     )

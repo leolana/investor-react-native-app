@@ -10,7 +10,7 @@ export default ( props ) => {
 
             <Text> { props.title } </Text>
 
-            <TextInput { ...props } />
+            <TextInput autoCapitalize='none' { ...props } />
             
 
         </>

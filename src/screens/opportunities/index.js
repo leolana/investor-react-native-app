@@ -11,6 +11,8 @@ import { FlatList } from 'react-native-gesture-handler'
 
 import { SafeAreaView, View, ActivityIndicator } from 'react-native'
 
+import { LoadingContainer } from './styles.js'
+
 const mapStateToProps = state => ({
     authenticated: state.auth.authenticated,
     data: state.auth.data
@@ -26,11 +28,7 @@ const App = (props) => {
 
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => {
-
-        loadOpportunities()
-
-    }, [])
+    useEffect(() => loadOpportunities(), [])
 
     const loadOpportunities = async (score = 'A-B-C-D-E-HR') => {
 
@@ -65,9 +63,9 @@ const App = (props) => {
         if (!loading) return null
 
         return (
-            <View>
+            <LoadingContainer>
                 <ActivityIndicator />
-            </View>
+            </LoadingContainer>
         )
     }
 

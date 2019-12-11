@@ -3,7 +3,8 @@ import styled from 'styled-components/native'
 import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 
 
-export const ViewCard = styled.View`
+export const Card = styled.View`
+    background: ${props => props.background || greyEE } ;
     border-radius: 5px;
     margin-bottom: 10px;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
@@ -18,6 +19,7 @@ export const Header = styled.View`
 export const Text= styled.Text`
     font-size: 14px;
     color: ${white};
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Flex5 = styled.Text`
@@ -34,8 +36,9 @@ export const Body = styled.View`
 `
 
 export const Circle = styled.View`
-    width: 60px;
-    height: 60px;
+    background: ${props => props.background || greyEE } ;
+    width: 50px;
+    height: 50px;
     border-radius: 100px;
     justify-content: center;
 `
@@ -46,22 +49,26 @@ export const Score = styled.Text`
     font-weight: bold;
     font-size: 14px;
     color: ${white};
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Title = styled.Text`
     font-size: 13px;
     font-weight: bold;
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Content = styled.Text`
     font-size: 12px;
     color: ${grey99}
     margin-top: 5px;
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Bold = styled.Text`
     font-weight: bold;
     color: ${black};
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Container = styled.View`
@@ -79,6 +86,7 @@ export const Box = styled.View`
 export const Center = styled.Text`
     text-align: center;
     padding: 5px;
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Subtitle = styled.Text`
@@ -87,6 +95,7 @@ export const Subtitle = styled.Text`
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    font-family: HelveticaNeue-Medium;
 `
 
 export const ButtonText = styled.Text`
@@ -94,6 +103,7 @@ export const ButtonText = styled.Text`
     text-align: center;
     padding: 5px;
     color: ${white};
+    font-family: HelveticaNeue-Medium;
 `
 
 export const Button = styled.TouchableOpacity`

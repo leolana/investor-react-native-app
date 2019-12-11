@@ -1,4 +1,4 @@
-package com.appiouu;
+package br.com.iouu;
 
 import com.facebook.react.ReactActivity;
 

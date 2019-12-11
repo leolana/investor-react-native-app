@@ -2,42 +2,49 @@ import styled from 'styled-components/native'
 
 import { grey99, grey33, tealish } from '../../assets/colors.js';
 
+import ButtonComponent from '../../components/buttom/index.js'
+
+import { Dimensions, Animated } from 'react-native'
+
+const deviceWidth = Dimensions.get('window').width
+
+const deviceHeight = Dimensions.get('window').height
+
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
-    padding: 16px;
+    padding: 0 16px;
     align-self: stretch;
     justify-content: center;
     align-items: center;
     top: 80px;
 
 ` 
+export const Button = styled(ButtonComponent)`
+
+`
 
 export const Welcome = styled.Text`
-    font-size: 30px;
+    font-size: 24px;
     text-align: center;
     font-weight: bold;
     color: ${grey99};
-    margin: 24px;
+    margin-bottom: 30px;
 `
 export const Description = styled.Text`
     text-align: center;
     color: ${grey33};
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bold;
+    margin-bottom: 40px;
     color: ${tealish};
 `
 
 export const ViewLogin = styled.View`
-    align-self: stretch;
-    color: ${grey33};
-    font-size: 36px;
-    font-weight: bold;
-    color: ${tealish};
-    margin-top: 30px;
-
-
+    padding: 16px;
+    width: ${deviceWidth};
 `
 
 export const ViewCheckbox = styled.View`
+    align-self: stretch;
     flex-direction: row;
     align-items: center;
     margin-top: 10px;
@@ -47,4 +54,10 @@ export const ViewCheckbox = styled.View`
 export const Text = styled.Text`
     color: ${grey99};
     font-size: 14px;
+`
+
+export const Switch = styled.Switch`
+    transform: scale(0.8);
+
+
 `

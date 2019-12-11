@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CheckBox } from 'react-native'
 
-import Button from '../../components/buttom/index.js'
 import TextInput from '../../components/textInput/index.js'
 import { 
   KeyboardAvoidingView, 
@@ -9,7 +7,9 @@ import {
   Description,
   ViewLogin,
   ViewCheckbox,
-  Text
+  Text,
+  Switch,
+  Button
 } from './style.js'
 
 export default App = ( { authenticated, navigation, sendLoginRequest, data } ) => {
@@ -17,6 +17,8 @@ export default App = ( { authenticated, navigation, sendLoginRequest, data } ) =
   const [email, setEmail] = useState(null)
 
   const [password, setPassword] = useState(null)
+
+  const [autoLogin, setAutoLogin] = useState(false)
 
   useEffect(() => {
 
@@ -55,18 +57,20 @@ export default App = ( { authenticated, navigation, sendLoginRequest, data } ) =
         
         <TextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
         
-
         <ViewCheckbox>
 
-          <CheckBox/>
+          <Switch value={ autoLogin } onChange={ () => setAutoLogin(!autoLogin) } />
 
           <Text> Permanecer conectado </Text>
 
         </ViewCheckbox>
 
-      </ViewLogin>
+        <Button title="Entrar" onPress={ () => login() } />
 
-      <Button title="Entrar" onPress={ () => login() } />
+      </ViewLogin>
+      
+
+      
 
     </KeyboardAvoidingView>
   )

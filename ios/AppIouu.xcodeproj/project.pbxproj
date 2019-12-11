@@ -8,16 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* AppIouuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AppIouuTests.m */; };
+		0DF008CC04CB49C9BB714557 /* HelveticaNeueLight.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5E508EF871BE42589A3496AC /* HelveticaNeueLight.woff */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		17A9AFF8AB9B497A955E1B8D /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 088D1F58597D4606A3AE4FB7 /* Montserrat-Bold.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* AppIouuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AppIouuTests.m */; };
 		4301FED56414C58877533355 /* libPods-AppIouu-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09288D6735688FC06DB0B0A6 /* libPods-AppIouu-tvOS.a */; };
+		4D0B3B1F2396DC04006DD106 /* Images-3.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D0B3B1E2396DC04006DD106 /* Images-3.xcassets */; };
+		4D33E02523954B9700FDCB09 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D33E02423954B9700FDCB09 /* Images-2.xcassets */; };
+		77A9B3C8E95E42FAA26844F3 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */; };
+		84036AAAA09A4739812BAD4F /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */; };
+		98CAE5BF25824E5380AECC5E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */; };
+		A4C2EC2CDF694816A16A25DB /* HelveticaNeueExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F38FFCFFBFA74946BFAE71CE /* HelveticaNeueExtraBold.ttf */; };
 		A4E7505DA7E634664BEE4FCE /* libPods-AppIouu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33975596F893617F53D9EED9 /* libPods-AppIouu.a */; };
+		BE8577E28BBA45E5BF683266 /* HelveticaNeueMedium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7DF3532F236249CEA570DBBB /* HelveticaNeueMedium.woff */; };
+		C37AAC438BF9415EBF8CE392 /* HelveticaNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 957ABD814585445CA42F8298 /* HelveticaNeueBold.ttf */; };
 		D96E646A46EB8392516DE96F /* libPods-AppIouu-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDF584B68289689FBB8D2E4 /* libPods-AppIouu-tvOSTests.a */; };
 		E10B4A4FAD1AF8CC0660A58A /* libPods-AppIouuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15E7263ACE458AAADCE86C5 /* libPods-AppIouuTests.a */; };
 /* End PBXBuildFile section */
@@ -44,6 +54,7 @@
 		00E356EE1AD99517003FC87E /* AppIouuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppIouuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AppIouuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIouuTests.m; sourceTree = "<group>"; };
+		088D1F58597D4606A3AE4FB7 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		09288D6735688FC06DB0B0A6 /* libPods-AppIouu-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* AppIouu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppIouu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = AppIouu/AppDelegate.h; sourceTree = "<group>"; };
@@ -58,15 +69,24 @@
 		2D02E4901E0B4A5D006451C7 /* AppIouu-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppIouu-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33975596F893617F53D9EED9 /* libPods-AppIouu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F820503209E2CDBC7B68448 /* Pods-AppIouu-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOSTests/Pods-AppIouu-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		4D0B3B1E2396DC04006DD106 /* Images-3.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-3.xcassets"; path = "AppIouu/Images-3.xcassets"; sourceTree = "<group>"; };
+		4D33E02423954B9700FDCB09 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "AppIouu/Images-2.xcassets"; sourceTree = "<group>"; };
+		5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		5E508EF871BE42589A3496AC /* HelveticaNeueLight.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueLight.woff; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueLight.woff; sourceTree = "<group>"; };
+		7DF3532F236249CEA570DBBB /* HelveticaNeueMedium.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueMedium.woff; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueMedium.woff; sourceTree = "<group>"; };
 		8BDF584B68289689FBB8D2E4 /* libPods-AppIouu-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		957ABD814585445CA42F8298 /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueBold.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueBold.ttf; sourceTree = "<group>"; };
 		9A7D79802BC2C19DD9C58B97 /* Pods-AppIouuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouuTests.release.xcconfig"; path = "Target Support Files/Pods-AppIouuTests/Pods-AppIouuTests.release.xcconfig"; sourceTree = "<group>"; };
 		9AA6416162B128BD3BACB909 /* Pods-AppIouu-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOS/Pods-AppIouu-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9F8D52186D2D80DA1492998E /* Pods-AppIouu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu.release.xcconfig"; path = "Target Support Files/Pods-AppIouu/Pods-AppIouu.release.xcconfig"; sourceTree = "<group>"; };
 		DDD35C74E63CFDA5336D71A8 /* Pods-AppIouu-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOSTests/Pods-AppIouu-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		E15E7263ACE458AAADCE86C5 /* libPods-AppIouuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EDD59F7F45F881D2A4A0E404 /* Pods-AppIouuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouuTests.debug.xcconfig"; path = "Target Support Files/Pods-AppIouuTests/Pods-AppIouuTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F38FFCFFBFA74946BFAE71CE /* HelveticaNeueExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueExtraBold.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueExtraBold.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +152,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				4D33E02423954B9700FDCB09 /* Images-2.xcassets */,
+				4D0B3B1E2396DC04006DD106 /* Images-3.xcassets */,
 			);
 			name = AppIouu;
 			sourceTree = "<group>";
@@ -165,6 +187,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				8FF9B57813D9666A8617D156 /* Pods */,
+				D2E5C09CF122424888F7E5DC /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -195,6 +218,21 @@
 				9A7D79802BC2C19DD9C58B97 /* Pods-AppIouuTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D2E5C09CF122424888F7E5DC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				957ABD814585445CA42F8298 /* HelveticaNeueBold.ttf */,
+				F38FFCFFBFA74946BFAE71CE /* HelveticaNeueExtraBold.ttf */,
+				5E508EF871BE42589A3496AC /* HelveticaNeueLight.woff */,
+				7DF3532F236249CEA570DBBB /* HelveticaNeueMedium.woff */,
+				088D1F58597D4606A3AE4FB7 /* Montserrat-Bold.ttf */,
+				E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */,
+				5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */,
+				47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +322,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -338,8 +376,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D33E02523954B9700FDCB09 /* Images-2.xcassets in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				4D0B3B1F2396DC04006DD106 /* Images-3.xcassets in Resources */,
+				C37AAC438BF9415EBF8CE392 /* HelveticaNeueBold.ttf in Resources */,
+				A4C2EC2CDF694816A16A25DB /* HelveticaNeueExtraBold.ttf in Resources */,
+				0DF008CC04CB49C9BB714557 /* HelveticaNeueLight.woff in Resources */,
+				BE8577E28BBA45E5BF683266 /* HelveticaNeueMedium.woff in Resources */,
+				17A9AFF8AB9B497A955E1B8D /* Montserrat-Bold.ttf in Resources */,
+				77A9B3C8E95E42FAA26844F3 /* Montserrat-ExtraBold.ttf in Resources */,
+				84036AAAA09A4739812BAD4F /* Montserrat-Light.ttf in Resources */,
+				98CAE5BF25824E5380AECC5E /* Montserrat-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,14 +680,16 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 736QCZ6RVS;
 				INFOPLIST_FILE = AppIouu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.iouu.app;
 				PRODUCT_NAME = AppIouu;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -652,14 +702,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 736QCZ6RVS;
 				INFOPLIST_FILE = AppIouu/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.iouu.app;
 				PRODUCT_NAME = AppIouu;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

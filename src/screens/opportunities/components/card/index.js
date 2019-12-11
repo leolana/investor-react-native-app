@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { 
-    ViewCard,
+    Card,
     Header,
     Body,
     Circle,
@@ -18,24 +18,33 @@ import {
     Subtitle,
 } from './style.js'
 
+import { 
+    formatCode, 
+    formatLoanType, 
+    getColorByScoreType,
+    formatMoney
+} from '../../../../utils'
+
 export default App = ( props ) => {
 
     const data = props.data.item
 
+    const scoreColor = getColorByScoreType(data.Score)
+
     return (
-        <ViewCard style={ { backgroundColor: '#ddd' } }>
+        <Card background={scoreColor}>
             
             <Header >
 
-                <Text> ID: # { data.IdOportunidade } </Text>
-                <Flex5> <Text> { data.TipoEmprestimo } </Text> </Flex5>
-                <Text> { data.Prazo } </Text>
+                <Text> ID: #{ formatCode(data.IdOportunidade) } </Text>
+                <Flex5> <Text> { formatLoanType(data.TipoEmprestimo) } </Text> </Flex5>
+                <Text> { data.Prazo } Meses </Text>
 
             </Header>
 
             <Body>
 
-                <Circle style={ { backgroundColor: '#ddd' } } >
+                <Circle background={scoreColor} >
 
                     <Score> { data.Score } </Score>
 
@@ -44,7 +53,7 @@ export default App = ( props ) => {
                 <Container>
 
                     <Title> { data.Empresa.NomeFantasia } </Title>
-                    <Content> valor solicitado: <Bold> { data.Valor } </Bold> </Content>
+                    <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
                     <Content> Término: <Bold> { data.FimCaptacao } </Bold> </Content>
                     <Content> Rendimento: <Bold> { data.Rendimento } </Bold> </Content>
 
@@ -60,7 +69,7 @@ export default App = ( props ) => {
                 </Box>
 
             </Body>
-        </ViewCard>
+        </Card>
         
     )
 }

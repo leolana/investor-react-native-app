@@ -1,0 +1,31 @@
+<svg id="Group_1427" data-name="Group 1427" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112.211 74.207">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-1 {
+        stroke: #999;
+      }
+
+      .cls-2 {
+        stroke: #41d3bd;
+      }
+    </style>
+  </defs>
+  <g id="Group_1426" data-name="Group 1426" transform="translate(1 1)">
+    <g id="Group_1425" data-name="Group 1425">
+      <path id="Path_211" data-name="Path 211" class="cls-1" d="M111.21,73.207H1V1" transform="translate(-1 -1)"/>
+      <line id="Line_290" data-name="Line 290" class="cls-2" y1="19.952" x2="21.138" transform="translate(67.338 17.694)"/>
+      <path id="Path_212" data-name="Path 212" class="cls-2" d="M48.941,26.826,36.352,14,14.5,34.309" transform="translate(11.152 10.702)"/>
+    </g>
+  </g>
+  <circle id="Ellipse_75" data-name="Ellipse 75" class="cls-2" cx="4.75" cy="4.75" r="4.75" transform="translate(18.102 44.704)"/>
+  <circle id="Ellipse_76" data-name="Ellipse 76" class="cls-2" cx="4.75" cy="4.75" r="4.75" transform="translate(59.905 37.103)"/>
+  <circle id="Ellipse_77" data-name="Ellipse 77" class="cls-2" cx="4.75" cy="4.75" r="4.75" transform="translate(88.408 10.501)"/>
+</svg>

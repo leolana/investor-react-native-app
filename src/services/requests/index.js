@@ -1,12 +1,12 @@
 import Axios from 'axios'
 
-import PersistData from '../../utils/persistData/index.js'
+import { retrieveData } from '../../utils/persist'
 
 class Api {
 
     getHeader = async (type) => {
 
-        let token = await PersistData.retrieve(AUTHORIZATION_KEY)
+        let token = await retrieveData(AUTHORIZATION_KEY)
 
         console.log('token -> ', token)
 

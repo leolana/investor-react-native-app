@@ -42,3 +42,22 @@ export const formatLoanType = type => {
     return types[type]
 
 }
+
+export const formatDate = date => {
+
+    const config = { 
+        timeZone: 'UTC' 
+    }
+
+    date = new Date(date)
+        .toLocaleString('pt-BR', config)
+            .split(" ")[0]
+
+
+    return date
+}
+
+
+export const formatPercent = value => `${String(value).replace('.', ',')}%`
+ 
+

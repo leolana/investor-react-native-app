@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { 
     Square, 
@@ -137,7 +137,7 @@ export default App = ( { navigation }) => {
       <Buttons>
         
         <Buttom title={'entrar'} onPress={ () => navigation.navigate('Login') } />
-        <Buttom title={'criar uma conta'} backgroundColor={'transparent'} />
+        <Buttom title={'criar uma conta'} background={'transparent'} />
 
       </Buttons>
 

@@ -7,15 +7,14 @@ export const TouchableOpacity = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    height: 40px;
-    background-color: ${props => props.backgroundColor || tealish};
+    height: ${props => props.height || 40}px;
+    background: ${props => props.background || tealish};
 
 `
 
 export const Text = styled.Text`
-    font-size: 18px;
-    color: ${props => props.color || white};;
+    font-size: ${props => props.fontSize || '18px'};
+    color: ${props => props.color || white};
     font-weight: bold;
-    letter-spacing: .5;
 
 `

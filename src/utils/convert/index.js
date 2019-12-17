@@ -1,5 +1,5 @@
 
-export const convertColorByScoreType = score => {
+export const convertScoreByColor = score => {
 
     score = score.replace(/\d/g,'')
 
@@ -15,4 +15,17 @@ export const convertColorByScoreType = score => {
 
     return scores[score]
 
+}
+
+export const diffDays = (date) => {
+
+    const miliSecs = (new Date(date)) - (new Date())
+
+    const diffDays = ( Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1 )
+
+    if (diffDays <= 0) return "encerrado";
+    
+    if (diffDays == 0) return "hoje";
+
+    return `${diffDays} dias`;
 }

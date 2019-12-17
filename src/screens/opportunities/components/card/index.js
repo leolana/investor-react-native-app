@@ -12,27 +12,81 @@ import {
     Bold,
     Text,
     Box,
-    Button,
-    ButtonText,
+    Buttom,
     Content,
     Subtitle,
+    Center,
 } from './style.js'
 
 import { 
     formatCode, 
     formatLoanType, 
-    getColorByScoreType,
-    formatMoney
+    convertScoreByColor,
+    formatMoney,
+    formatPercent,
+    diffDays
 } from '../../../../utils'
+
+import {
+    tealish,
+    grey99
+} from '../../../../assets/colors'
 
 export default App = ( props ) => {
 
     const data = props.data.item
 
-    const scoreColor = getColorByScoreType(data.Score)
+    const scoreColor = convertScoreByColor(data.Score)
+
+
+    const getCaptationPercent = () => {
+
+        const {
+            ChamadaListaEspera,
+            ValorCaptado,
+            Valor
+        } = data
+
+        if(ChamadaListaEspera) return 100
+
+        let value = (ValorCaptado / Valor) * 100;
+
+        value = value < 100.00 ? value : 100.00;
+
+        return value.toFixed(2)
+    }
+
+    const getOpportunityStatus = () => {
+
+        const {
+            FimCaptacao,
+            StatusAnalise
+        } = data
+
+        const status = diffDays(FimCaptacao)
+
+        if(status === "encerrado" || StatusAnalise === "ENCERRADO") return "encerrado"
+
+        return "visualizar"
+
+    }
+
+    const getColorByStatus = () => {
+
+        const status = getOpportunityStatus()
+
+        const obj = {
+            'encerrado': grey99,
+            'visualizar': tealish
+        }
+
+        return obj[status]
+    }
+
+
 
     return (
-        <Card background={scoreColor}>
+        <Card background={ scoreColor }>
             
             <Header >
 
@@ -44,7 +98,7 @@ export default App = ( props ) => {
 
             <Body>
 
-                <Circle background={scoreColor} >
+                <Circle background={ scoreColor } >
 
                     <Score> { data.Score } </Score>
 
@@ -54,17 +108,23 @@ export default App = ( props ) => {
 
                     <Title> { data.Empresa.NomeFantasia } </Title>
                     <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
-                    <Content> Término: <Bold> { data.FimCaptacao } </Bold> </Content>
-                    <Content> Rendimento: <Bold> { data.Rendimento } </Bold> </Content>
+                    <Content> Término: <Bold> { diffDays(data.FimCaptacao) } </Bold> </Content>
+                    <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
 
                 </Container>
 
                 <Box>
 
-                    <Subtitle>Captação em 100.00%</Subtitle>
-                    <Button style={ { backgroundColor: 'red' } } >
-                        <ButtonText> VISUALIZAR </ButtonText>
-                    </Button>
+                    <Center>
+                        <Subtitle>Captação em { formatPercent(getCaptationPercent()) } </Subtitle>
+                    </Center>
+                    
+                    <Buttom 
+                        background={ getColorByStatus() } 
+                        title={ getOpportunityStatus() } 
+                        fontSize={ 11 } 
+                        height={ 25 }
+                    />
                     
                 </Box>
 

@@ -8,7 +8,9 @@ const App = (props) => {
         <TouchableOpacity
             { ...props }
         >
-            <Text>
+            <Text 
+                { ...props }
+            >
                 { props.title.toUpperCase() }
             </Text>
 

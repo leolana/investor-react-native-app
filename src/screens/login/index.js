@@ -1,18 +1,35 @@
 import React, { useState, useEffect } from 'react'
 
 import TextInput from '../../components/textInput/index.js'
+
+import {
+  Request,
+  UrlLogin,
+  STATUS_OK,
+} from '../../services'
+
+import {
+  storeData
+} from '../../utils'
+
 import { 
   KeyboardAvoidingView, 
   Welcome,
   Description,
-  ViewLogin,
+  Container,
   ViewCheckbox,
   Text,
   Switch,
-  Button
+  Buttom
 } from './style.js'
 
-export default App = ( { authenticated, navigation, sendLoginRequest, data } ) => {
+export default App = props => {
+
+  const {
+
+    navigation
+    
+  } = props
 
   const [email, setEmail] = useState(null)
 
@@ -20,26 +37,38 @@ export default App = ( { authenticated, navigation, sendLoginRequest, data } ) =
 
   const [autoLogin, setAutoLogin] = useState(false)
 
-  useEffect(() => {
 
-   if(authenticated) navigation.navigate('Oportunities')
+  const loginSuccessful = data => {
 
-   else if(authenticated != null) alert(data)
+    storeData('Authorization', data.Authorization)
 
-  }, [authenticated])
+    navigation.navigate('Oportunities')
+
+  }
 
 
-  const login = async () => {
+
+  const loginRequest = async data => {
+
+    const resp = await Request.POST( {url: UrlLogin, data, header: 'bearer'} )
+
+    if (resp.status === 200) loginSuccessful(resp.data)
+
+    else alert(resp.data.Msg)
+  }
+
+
+  const prepareToLoginRequest = async () => {
 
     if(email == null || password == null) return alert("Informações inválidas!")
 
-    const formdata = new FormData()
+    const form = new FormData()
 
-    formdata.append('email', email.trim())
+    form.append('email', email.trim())
 
-    formdata.append('password', password)
+    form.append('password', password)
 
-    sendLoginRequest(formdata)
+    loginRequest(form)
 
   }
 
@@ -51,7 +80,7 @@ export default App = ( { authenticated, navigation, sendLoginRequest, data } ) =
 
       <Description> Acesso sua conta </Description>
       
-      <ViewLogin>
+      <Container>
 
         <TextInput title={ 'E-mail' } onChangeText={ value => setEmail(value) } />
         
@@ -65,13 +94,10 @@ export default App = ( { authenticated, navigation, sendLoginRequest, data } ) =
 
         </ViewCheckbox>
 
-        <Button title="Entrar" onPress={ () => login() } />
+        <Buttom title="Entrar" onPress={ () => prepareToLoginRequest() } />
 
-      </ViewLogin>
+      </Container>
       
-
-      
-
     </KeyboardAvoidingView>
   )
 }

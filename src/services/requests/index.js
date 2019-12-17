@@ -6,18 +6,10 @@ class Api {
 
     getHeader = async (type) => {
 
-        let token = await retrieveData(AUTHORIZATION_KEY)
-
-        console.log('token -> ', token)
+        let token = await retrieveData('Authorization')
 
         token = (type == 'bearer') ? `Bearer ${token}` : `${token}`
-
-
-        if (type == 'provider') return {
-            provider: "iouu",
-            token: "e3eb9b7ab88facd2a7ec805a3bbcee2aff81733b"
-        }
-
+        
         return { "authorization": token }
         
     }
@@ -44,6 +36,3 @@ class Api {
 
 export const Request = new Api
 
-export const STATUS_OK = 200
-
-export const AUTHORIZATION_KEY = 'Authorization'

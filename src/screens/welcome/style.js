@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import IconIOUU from '../../assets/imgs/icons/ico-iouu.svg'
+import { IconIouu } from '../../assets/icons'
 
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -13,7 +13,7 @@ const deviceWidth = Dimensions.get('window').width
 const deviceHeight = Dimensions.get('window').height
 
 
-export const Logo = styled(IconIOUU)`
+export const Logo = styled(IconIouu)`
   position: absolute;
   top: 64px;
   left: ${(deviceWidth / 2) - 60}

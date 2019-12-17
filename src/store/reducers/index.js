@@ -1,6 +1,17 @@
-import { auth } from './auth.js';
-import { combineReducers } from 'redux';
+import { USER_DATA } from '../types.js'
 
-export const Reducers = combineReducers({
-  auth,
-});
+export default (state = {}, action) => {
+
+    switch (action.type) {
+
+        case USER_DATA: return { 
+            ...state, 
+            userData: action.data
+        
+        };
+
+
+        default: return state;
+    }
+};
+

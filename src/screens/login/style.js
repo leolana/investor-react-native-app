@@ -2,13 +2,11 @@ import styled from 'styled-components/native'
 
 import { grey99, grey33, tealish } from '../../assets/colors.js';
 
-import ButtonComponent from '../../components/buttom/index.js'
+import ButtonComponent from '../../components/buttom'
 
-import { Dimensions, Animated } from 'react-native'
+import { Dimensions } from 'react-native'
 
 const deviceWidth = Dimensions.get('window').width
-
-const deviceHeight = Dimensions.get('window').height
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
     padding: 0 16px;
@@ -18,9 +16,7 @@ export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
     top: 80px;
 
 ` 
-export const Button = styled(ButtonComponent)`
-
-`
+export const Buttom = styled(ButtonComponent)``
 
 export const Welcome = styled.Text`
     font-size: 24px;
@@ -38,7 +34,7 @@ export const Description = styled.Text`
     color: ${tealish};
 `
 
-export const ViewLogin = styled.View`
+export const Container = styled.View`
     padding: 16px;
     width: ${deviceWidth};
 `

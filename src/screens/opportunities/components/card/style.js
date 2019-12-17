@@ -1,5 +1,7 @@
 import styled from 'styled-components/native'
 
+import ButtomComponent from '../../../../components/buttom'
+
 import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 
 
@@ -78,38 +80,25 @@ export const Container = styled.View`
 
 export const Box = styled.View`
     border-radius: 5px;
-    width: 100px;
-    height: 70px;
+    width: 80px;
+    height: 60px;
     background-color: ${greyEE};
 `
 
-export const Center = styled.Text`
-    text-align: center;
-    padding: 5px;
-    font-family: HelveticaNeue-Medium;
+export const Center = styled.View`
+    height: 35px;
+    padding: 0 5px;
+    align-items: center;
+    justify-content: center;
 `
 
 export const Subtitle = styled.Text`
-    flex: 1;
-    text-align-vertical: center;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     font-family: HelveticaNeue-Medium;
 `
 
-export const ButtonText = styled.Text`
-    font-size: 14px;
-    text-align: center;
-    padding: 5px;
-    color: ${white};
-    font-family: HelveticaNeue-Medium;
-`
 
-export const Button = styled.TouchableOpacity`
-    text-align: center;
-    justify-content: center;
-    border-radius: 5px;
-    width: 100px;
-    height: 25px;
+export const Buttom = styled(ButtomComponent)`
 `

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
     View,
@@ -16,6 +16,10 @@ import {
 } from './styles'
 
 import {
+    useSelector
+} from 'react-redux'
+
+import {
     dusk,
     darkDusk,
     tealish,
@@ -30,17 +34,21 @@ import {
 
 
 
-export const ToggleMenu = () => {
+export const ToggleMenu = props => {
+
+    
 
 
     return (
-        <MenuHorizontalArea>
+        <MenuHorizontalArea onPress={ ()=> props.scene.descriptor.navigation.openDrawer() } >
             <IconMenu width={ 20 } height={ 20 } />
         </MenuHorizontalArea>
     )
 }
 
 export default App = props => {
+
+    const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
 
     const {
         navigation
@@ -56,7 +64,6 @@ export default App = props => {
     }
 
 
-
     const renderNavigationItem = (icon, title, route) => (
         <NavigationItem onPress={ () => navigation.navigate(route) }>
             { icon }
@@ -69,7 +76,7 @@ export default App = props => {
         <>
             <Circle colors={[greenishBlue, darkDusk]} >
 
-                <Letter> F </Letter>
+                <Letter> { userName[0] } </Letter>
 
             </Circle>
 
@@ -77,7 +84,7 @@ export default App = props => {
                 fontWeight="bold"
                 fontFamily="Montserrat-Regular"
             > 
-                Fabiano Coelho Silva 
+                { userName }
             </Text>
 
             <Text
@@ -102,9 +109,14 @@ export default App = props => {
             </Header>
             <View colors={[dusk, twilight]} > 
                 <ViewList>
-                    {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
-                    {renderNavigationItem(getIcon('Notification'), 'Carteira', 'Wallet')}
+                    {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Opportunities')}
                     {renderNavigationItem(getIcon('Notification'), 'Oportunidades', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Carteira virtual', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Meu histórico', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Estatísticas', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Calculadora', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Meu perfil', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Notification'), 'Atendimento', null)}
                 </ViewList>
             </View>
         </>

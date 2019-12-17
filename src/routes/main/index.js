@@ -2,7 +2,7 @@ import { createDrawerNavigator } from 'react-navigation-drawer'
 import { createStackNavigator } from 'react-navigation-stack'
 
 
-import Oportunities from '../../screens/opportunities/index.js'
+import Opportunities from '../../screens/opportunities/index.js'
 import DrawerNavigationMenu, { ToggleMenu } from  '../../components/drawerNavigationMenu'
 
 import { tealish, white } from '../../assets/colors'
@@ -23,8 +23,8 @@ const mainConfig = {
 
 export const MainRoutes = createStackNavigator(
     {
-        Oportunities: {
-        screen: Oportunities,
+        Opportunities: {
+        screen: Opportunities,
             navigationOptions: {
                 headerTitle: "OPORTUNIDADES",
                 headerLeft: ToggleMenu

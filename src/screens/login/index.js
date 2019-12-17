@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 
+import {
+  useDispatch,
+} from 'react-redux'
+
+import {
+  setUserData
+} from '../../store/actions'
+
 import TextInput from '../../components/textInput/index.js'
 
 import {
   Request,
-  UrlLogin,
-  STATUS_OK,
+  UrlLogin
 } from '../../services'
 
 import {
@@ -25,6 +32,8 @@ import {
 
 export default App = props => {
 
+  const dispatch = useDispatch()
+
   const {
 
     navigation
@@ -37,16 +46,17 @@ export default App = props => {
 
   const [autoLogin, setAutoLogin] = useState(false)
 
-
   const loginSuccessful = data => {
 
     storeData('Authorization', data.Authorization)
 
-    navigation.navigate('Oportunities')
+    storeData('Email', data.usuario.Email)
+
+    navigation.navigate('Opportunities')
+
+    dispatch(setUserData(data.usuario))
 
   }
-
-
 
   const loginRequest = async data => {
 

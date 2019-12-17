@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-
 import Card from './components/card/index.js'
 
-import { Request, STATUS_OK } from '../../services/requests/index.js'
+import { 
+    Request,
+    UrlListaOportunidades
 
-import { ListaOportunidades } from '../../services/urls/index.js'
+} from '../../services'
+
 
 import { FlatList } from 'react-native-gesture-handler'
 
-import { SafeAreaView, View, ActivityIndicator } from 'react-native'
+import { SafeAreaView, ActivityIndicator } from 'react-native'
 
 import { LoadingContainer } from './styles.js'
 
-const mapStateToProps = state => ({
-    authenticated: state.auth.authenticated,
-    data: state.auth.data
-});
-
-
-const App = (props) => {
-
+export default App = props => {
 
     const [ opportunities, setOpportunities ] = useState([])
 
@@ -28,25 +22,14 @@ const App = (props) => {
 
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => loadOpportunities(), [])
+    useEffect(() => 
+        
+    
+        loadOpportunities()
+        
+    , [])
 
-    const loadOpportunities = async (score = 'A-B-C-D-E-HR') => {
-
-        if(loading) return
-
-        setLoading(true)
-
-        const config = { url: ListaOportunidades(page, score), header: 'bearer' }
-
-        const { status, data } = await Request.GET(config);
-
-        if (status === STATUS_OK) orderByOpportunities(data)
-
-        console.log('Opportunities response -> ', status, data)
-
-    }
-
-    const orderByOpportunities = ( { ItemListagemSolicitacoes } ) => {
+    const requestSuccessful = ( { ItemListagemSolicitacoes } ) => {
 
         setOpportunities([...opportunities, ...ItemListagemSolicitacoes ])
 
@@ -56,9 +39,23 @@ const App = (props) => {
         
     }
 
-    renderItem = item => (<Card data={item}/>)
+    const loadOpportunities = async (score = 'A-B-C-D-E-HR') => {
 
-    renderFooter = () => {
+        if(loading) return
+
+        setLoading(true)
+
+        const config = { url: UrlListaOportunidades(page, score), header: 'bearer' }
+
+        const resp = await Request.GET(config)
+
+        if (resp.status === 200) requestSuccessful(resp.data)
+
+    }
+
+    const renderItem = item => (<Card data={item}/>)
+
+    const renderFooter = () => {
 
         if (!loading) return null
 
@@ -85,5 +82,3 @@ const App = (props) => {
     )
 
 }
-
-export default connect(mapStateToProps)(App);

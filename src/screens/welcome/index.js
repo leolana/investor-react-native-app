@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, usetState } from 'react'
 
 import { 
     Square, 
@@ -13,6 +13,26 @@ import {
     PageIndicator
 } from './style.js'
 
+import {
+  retrieveData,
+} from '../../utils'
+
+import {
+  Request,
+  UrlUsuarioPegar,
+  UrlValidarToken
+
+} from '../../services'
+
+import {
+  useDispatch
+} from 'react-redux'
+
+import {
+  setUserData
+} from '../../store/actions'
+
+
 import { Dimensions, Animated } from 'react-native'
 
 import { dusk, twilight, white, darkDusk } from '../../assets/colors.js'
@@ -21,7 +41,10 @@ import Buttom from '../../components/buttom/index'
 
 export default App = ( { navigation }) => {
 
-  let scrollX = new Animated.Value(0)
+
+  const dispatch = useDispatch()
+
+  const [scrollX] = usetState(new Animated.Value(0))
 
   const deviceWidth = Dimensions.get('window').width
 
@@ -31,6 +54,41 @@ export default App = ( { navigation }) => {
       outputRange: [0, 20]
     }
   )
+
+  useEffect(() => {
+
+    validateAutoConnected()
+
+  }, [])
+
+
+
+  const validateAutoConnected = async () => {
+
+    const { status } = await Request.GET( { url: UrlValidarToken } )
+
+    if(status === 200) login()
+    
+  }
+
+  const login = async () => {
+
+    const email = await retrieveData('Email')
+
+    if(email) {
+
+      const resp = await Request.GET({url: UrlUsuarioPegar(email), header: 'bearer'})
+
+      if(resp.status !== 200) return
+
+      dispatch(setUserData(resp.data))
+
+      navigation.navigate('Opportunities')
+
+    }
+
+
+  }
 
   const createSquare = (...params) => (<Square
     color={params[0]}

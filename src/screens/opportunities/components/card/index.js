@@ -4,7 +4,6 @@ import {
     Card,
     Header,
     Body,
-    Circle,
     Score,
     Container,
     Title,
@@ -17,6 +16,10 @@ import {
     Subtitle,
     Center,
 } from './style.js'
+
+import {
+    CircleWithChild
+} from '../../../../components'
 
 import { 
     formatCode, 
@@ -71,6 +74,8 @@ export default App = ( props ) => {
 
     }
 
+    const renderScore = () => (<Score> { data.Score } </Score>)
+
     const getColorByStatus = () => {
 
         const status = getOpportunityStatus()
@@ -98,11 +103,10 @@ export default App = ( props ) => {
 
             <Body>
 
-                <Circle background={ scoreColor } >
-
-                    <Score> { data.Score } </Score>
-
-                </Circle>
+                <CircleWithChild 
+                    background={ scoreColor } 
+                    child={ renderScore() }
+                />
 
                 <Container>
 

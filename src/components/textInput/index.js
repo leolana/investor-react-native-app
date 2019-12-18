@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-import { Text, TextInput } from './style.js'
+import { Text, TextInput } from './styles'
 
-export default ( props ) => {
+export const ITextInput = props => {
 
     const [focused, setFocused] = useState(false)
 

@@ -12,7 +12,7 @@ import { FlatList } from 'react-native-gesture-handler'
 
 import { SafeAreaView, ActivityIndicator } from 'react-native'
 
-import { LoadingContainer } from './styles.js'
+import { LoadingContainer } from './styles'
 
 export default App = props => {
 

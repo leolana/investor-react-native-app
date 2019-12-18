@@ -22,7 +22,9 @@ const mainConfig = {
       },
     },
 }
-export default createStackNavigator(
+
+
+export const PublicRoutes = createStackNavigator(
     {
       Welcome: {
         screen: Welcome,

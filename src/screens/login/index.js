@@ -8,7 +8,9 @@ import {
   setUserData
 } from '../../store/actions'
 
-import TextInput from '../../components/textInput/index.js'
+import {
+  ITextInput
+} from '../../components'
 
 import {
   Request,
@@ -92,9 +94,9 @@ export default App = props => {
       
       <Container>
 
-        <TextInput title={ 'E-mail' } onChangeText={ value => setEmail(value) } />
+        <ITextInput title={ 'E-mail' } onChangeText={ value => setEmail(value) } />
         
-        <TextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
+        <ITextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
         
         <ViewCheckbox>
 

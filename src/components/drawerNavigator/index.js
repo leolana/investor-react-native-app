@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import {
     View,
-    Circle,
     Letter,
     Text,
     ViewList,
@@ -10,6 +9,7 @@ import {
     HeaderContent,
     HeaderContainer,
     Header,
+    Circle,
     IconGo,
     MenuHorizontalArea,
 
@@ -24,7 +24,8 @@ import {
     darkDusk,
     tealish,
     twilight,
-    greenishBlue
+    greenishBlue,
+    white
 }   from '../../assets/colors'
 
 import {
@@ -52,7 +53,7 @@ export const ToggleMenu = props => {
     )
 }
 
-export default props => {
+export const DrawerNavigator = props => {
 
     const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
 
@@ -101,13 +102,18 @@ export default props => {
         </NavigationItem>
     )
 
+
+    const renderLetter = () => (<Letter>{userName[0]}</Letter>)
+
     const renderHeaderContent = () => (
         <>
-            <Circle colors={[greenishBlue, darkDusk]} >
-
-                <Letter>{userName[0]}</Letter>
-
-            </Circle>
+            <Circle
+                size={ 90 }
+                borderSize={ 4 }
+                borderColor={ white }
+                background={[greenishBlue, darkDusk]} 
+                child={renderLetter()}
+            />
 
             <Text
                 fontWeight="bold"

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-import ButtomComponent from '../../../../components/buttom'
+import { IButtom } from '../../../../components/buttom'
 
 import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 
@@ -102,5 +102,5 @@ export const Subtitle = styled.Text`
 `
 
 
-export const Buttom = styled(ButtomComponent)`
+export const Buttom = styled(IButtom)`
 `

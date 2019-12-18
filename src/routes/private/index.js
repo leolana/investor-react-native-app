@@ -1,9 +1,10 @@
-import { createDrawerNavigator } from 'react-navigation-drawer'
+
 import { createStackNavigator } from 'react-navigation-stack'
+
+import { ToggleMenu } from  '../../components'
 
 
 import Opportunities from '../../screens/opportunities/index.js'
-import DrawerNavigationMenu, { ToggleMenu } from  '../../components/drawerNavigationMenu'
 
 import { tealish, white } from '../../assets/colors'
 
@@ -21,7 +22,7 @@ const mainConfig = {
     },
 }
 
-export const MainRoutes = createStackNavigator(
+export const PrivateRoutes = createStackNavigator(
     {
         Opportunities: {
         screen: Opportunities,
@@ -34,15 +35,4 @@ export const MainRoutes = createStackNavigator(
     mainConfig
 )
 
-
-export default createDrawerNavigator(
-    {
-        MainRoutes,
-    },
-    {
-        initialRouteName: 'MainRoutes',
-        contentComponent:  DrawerNavigationMenu,
-        drawerPosition: 'left',
-    }
-)
   

@@ -11,7 +11,7 @@ import {
     Logo,
     Dots,
     PageIndicator
-} from './style.js'
+} from './styles'
 
 import {
   retrieveData,
@@ -37,7 +37,7 @@ import { Dimensions, Animated } from 'react-native'
 
 import { dusk, twilight, white, darkDusk } from '../../assets/colors.js'
 
-import Buttom from '../../components/buttom/index'
+import { IButtom } from '../../components'
 
 export default App = ( { navigation }) => {
 
@@ -194,8 +194,8 @@ export default App = ( { navigation }) => {
 
       <Buttons>
         
-        <Buttom title={'entrar'} onPress={ () => navigation.navigate('Login') } />
-        <Buttom title={'criar uma conta'} background={'transparent'} />
+        <IButtom title={'entrar'} onPress={ () => navigation.navigate('Login') } />
+        <IButtom title={'criar uma conta'} background={'transparent'} />
 
       </Buttons>
 

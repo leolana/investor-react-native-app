@@ -3,7 +3,14 @@ import styled from 'styled-components/native'
 import LinearGradient from 'react-native-linear-gradient'
 
 
-import { Dimensions } from 'react-native'
+import { 
+    Dimensions 
+} from 'react-native'
+
+
+import {
+    CircleWithChild
+} from '../circle'
 
 
 const screenWidth = Dimensions.get('window').width
@@ -58,13 +65,7 @@ export const View = styled(LinearGradient)`
 
 `
 
-export const Circle = styled(LinearGradient)`
-    width: 90px;
-    height: 90px;
-    border: 4px solid ${white};
-    border-radius: 100px;
-    justify-content: center;
-    align-items: center;
+export const Circle = styled(CircleWithChild)`
     margin-bottom: 25px;
 `
 

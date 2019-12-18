@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 import { grey99, grey33, tealish } from '../../assets/colors.js';
 
-import ButtonComponent from '../../components/buttom'
+import { IButtom } from '../../components'
 
 import { Dimensions } from 'react-native'
 
@@ -16,7 +16,7 @@ export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
     top: 80px;
 
 ` 
-export const Buttom = styled(ButtonComponent)``
+export const Buttom = styled(IButtom)``
 
 export const Welcome = styled.Text`
     font-size: 24px;

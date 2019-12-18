@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text } from './style.js';
+import { TouchableOpacity, Text } from './styles';
 
-const App = (props) => {
+export const IButtom = props => {
 
 
     return (
@@ -18,7 +18,5 @@ const App = (props) => {
     )
 }
 
-
-export default App
 
 

@@ -58,6 +58,19 @@ export const formatDate = date => {
 }
 
 
+export const trunc = value => {
+
+    if(value === undefined) return 0
+
+    value = value.toString().match(/^-?\d+(?:\.\d{0,2})?/)
+    
+    if(value === null) return 0
+    
+    
+    return parseFloat(value[0])
+}
+
+
 export const formatPercent = value => `${String(value).replace('.', ',')}%`
  
 

@@ -69,7 +69,7 @@ export default App = props => {
     return (
         <SafeAreaView>
 
-            <FlatList style={ { padding: 10 } }
+            <FlatList
                 data={opportunities}
                 renderItem={renderItem}
                 ListFooterComponent={ renderFooter }

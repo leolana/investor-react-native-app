@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
     View,
@@ -32,13 +32,19 @@ import {
     IconMenu
 } from '../../assets/icons'
 
+import {
+    formatMoney,
+    trunc
+} from '../../utils'
+
+import {
+    Request,
+    UrlCarteiraPegar
+} from '../../services'
+
 
 
 export const ToggleMenu = props => {
-
-    
-
-
     return (
         <MenuHorizontalArea onPress={ ()=> props.scene.descriptor.navigation.openDrawer() } >
             <IconMenu width={ 20 } height={ 20 } />
@@ -46,13 +52,36 @@ export const ToggleMenu = props => {
     )
 }
 
-export default App = props => {
+export default props => {
 
     const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
 
-    const {
-        navigation
-    } = props
+    const [ walletFunds, setWalletFunds ] = useState(null)
+
+    const { navigation } = props
+
+    useEffect(() => getWallet(), [navigation.state.isDrawerOpen] )
+
+    const formatWalletFunds = ({ debito, credito }) => {
+
+        const availableFunds = 
+            ( parseFloat ( trunc(credito) ) -  parseFloat( trunc(debito) ) )
+
+        const funds = 
+            (parseFloat(availableFunds) > -0.1 && availableFunds < 0.01) ? 0 : availableFunds
+
+
+        setWalletFunds(funds)
+    }
+
+    const getWallet = () => {
+        
+        const promise = Request.GET( { url: UrlCarteiraPegar } )
+
+        promise.then( resp => formatWalletFunds(resp.data) )
+
+    }
+
 
 
     const getIcon = key => {
@@ -76,7 +105,7 @@ export default App = props => {
         <>
             <Circle colors={[greenishBlue, darkDusk]} >
 
-                <Letter> { userName[0] } </Letter>
+                <Letter>{userName[0]}</Letter>
 
             </Circle>
 
@@ -90,7 +119,7 @@ export default App = props => {
             <Text
                 fontSize={ 14 }
             > 
-                Saldo: R$ 10.000,00
+                Saldo: { formatMoney(walletFunds) }
             </Text>
         </>
     )

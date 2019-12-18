@@ -8,8 +8,10 @@ import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 export const Card = styled.View`
     background: ${props => props.background || greyEE } ;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 16px;
+    margin-bottom: 0;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
+    elevation: 4
 `
 
 export const Header = styled.View`

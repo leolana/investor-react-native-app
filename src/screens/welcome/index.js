@@ -1,4 +1,4 @@
-import React, { useEffect, usetState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { 
     Square, 
@@ -44,7 +44,7 @@ export default App = ( { navigation }) => {
 
   const dispatch = useDispatch()
 
-  const [scrollX] = usetState(new Animated.Value(0))
+  const [scrollX] = useState(new Animated.Value(0))
 
   const deviceWidth = Dimensions.get('window').width
 

@@ -38,7 +38,7 @@ export const Header = styled.View`
 `
 
 export const HeaderContainer= styled.View`
-    background: rgba(0,0,0, 0.6)
+    background: rgba(0,0,0, 0.6);
     height: 150px;
     justify-content: center;
     align-items: center;
@@ -69,11 +69,9 @@ export const Circle = styled(LinearGradient)`
 `
 
 export const Letter = styled.Text`
-    align-self: stretch;
     text-align: center;
     font-weight: bold;
     font-size: 38px;
-    width: 75px;
     color: ${white};
     font-family: HelveticaNeue-Medium;
 `

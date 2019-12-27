@@ -17,15 +17,24 @@ export const convertScoreByColor = score => {
 
 }
 
+export const diffDaysForOpportunitie = (date) => {
+
+    const miliSecs = (new Date(date)) - (new Date())
+
+    const diffDays = ( Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1 )
+
+    if (diffDays <= 0) return "encerrado"
+    
+    if (diffDays == 0) return "hoje"
+
+    return `${diffDays} dias`
+}
+
 export const diffDays = (date) => {
 
     const miliSecs = (new Date(date)) - (new Date())
 
     const diffDays = ( Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1 )
 
-    if (diffDays <= 0) return "encerrado";
-    
-    if (diffDays == 0) return "hoje";
-
-    return `${diffDays} dias`;
+    return (diffDays <= 0) ? 0 : diffDays
 }

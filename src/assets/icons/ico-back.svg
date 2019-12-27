@@ -6,9 +6,15 @@
     viewBox="0 0 13.5 22.587">
         <defs>
             <style>
-                .a,.c{fill:none;}
+                .a,.c{
+                    
+                    fill:none;
+                    stroke-width:2px;
+                    
+                }
                 .b{
                     clip-path:url(#a);
+                    stroke-width:2px;
                 }
                 .c{
                 
@@ -16,7 +22,7 @@
                     stroke-linejoin:round;
                     stroke-miterlimit:10;
                     stroke-width:2px;
-            }
+                }
             </style>
             <clipPath id="a">
                 <rect class="a" width="13.5" height="22.587"/>

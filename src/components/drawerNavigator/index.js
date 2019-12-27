@@ -12,6 +12,8 @@ import {
     Circle,
     IconGo,
     MenuHorizontalArea,
+    IconSafeArea,
+    NotificationDot,
 
 } from './styles'
 
@@ -25,12 +27,20 @@ import {
     tealish,
     twilight,
     greenishBlue,
-    white
+    white,
+    redTwo
 }   from '../../assets/colors'
 
 import {
-    IconNotification,
-    IconMenu
+    IconBell,
+    IconMenu,
+    IconOfficeArchive,
+    IconBriefcase,
+    IconCalculator,
+    IconPieChart,
+    IconProfile,
+    IconBubbleDialog,
+    IconWallet,
 } from '../../assets/icons'
 
 import {
@@ -84,10 +94,34 @@ export const DrawerNavigator = props => {
     }
 
 
+    const renderIconBell = () => (
+        <IconSafeArea> 
+                 
+            <IconBell fill={ white } width={ 24 } height={ 24 } /> 
+
+            <NotificationDot 
+                background={ redTwo }
+                borderSize={ 2 }
+                borderColor={ white }
+                size={ 10 }
+            />
+
+        </IconSafeArea>
+    )
+
+
 
     const getIcon = key => {
         const obj = {
-            'Notification': (<IconNotification width={ 20 } height={ 20 } />),
+            'Notification': renderIconBell(),
+            'Opportunitie': (<IconBriefcase fill={ white } width={ 24 } height={ 24 } />),
+            'Wallet': (<IconWallet fill={ white } width={ 24 } height={ 24 } />),
+            'History': (<IconOfficeArchive fill={ white } width={ 24 } height={ 24 } />),
+            'Calculator': (<IconCalculator fill={ white } width={ 24 } height={ 24 } />),
+            'Statistics': (<IconPieChart fill={ white } width={ 24 } height={ 24 } />),
+            'Profile': (<IconProfile fill={ white } width={ 24 } height={ 24 } />),
+            'Contact': (<IconBubbleDialog fill={ white } width={ 24 } height={ 24 } />),
+
         }
 
         return obj[key]
@@ -144,14 +178,14 @@ export const DrawerNavigator = props => {
             </Header>
             <View colors={[dusk, twilight]} > 
                 <ViewList>
-                    {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Oportunidades', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Carteira virtual', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Meu histórico', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Estatísticas', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Calculadora', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Meu perfil', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Notification'), 'Atendimento', null)}
+                    {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
+                    {renderNavigationItem(getIcon('Opportunitie'), 'Oportunidades', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Wallet'), 'Carteira virtual', 'Opportunities')}
+                    {renderNavigationItem(getIcon('History'), 'Meu histórico', 'History')}
+                    {renderNavigationItem(getIcon('Statistics'), 'Estatísticas', 'Statistics')}
+                    {renderNavigationItem(getIcon('Calculator'), 'Calculadora', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Profile'), 'Meu perfil', 'Profile')}
+                    {renderNavigationItem(getIcon('Contact'), 'Atendimento', null)}
                 </ViewList>
             </View>
         </>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Card from './components/card/index.js'
+import { OpportunitiesCard } from './components'
 
 import { 
     Request,
@@ -14,7 +14,9 @@ import { SafeAreaView, ActivityIndicator } from 'react-native'
 
 import { LoadingContainer } from './styles'
 
-export default App = props => {
+import { ToggleMenu } from  '../../components'
+
+export const PageOpportunities = props => {
 
     const [ opportunities, setOpportunities ] = useState([])
 
@@ -22,12 +24,7 @@ export default App = props => {
 
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => 
-        
-    
-        loadOpportunities()
-        
-    , [])
+    useEffect(() => loadOpportunities(), [])
 
     const requestSuccessful = ( { ItemListagemSolicitacoes } ) => {
 
@@ -39,7 +36,7 @@ export default App = props => {
         
     }
 
-    const loadOpportunities = async (score = 'A-B-C-D-E-HR') => {
+    const loadOpportunities = (score = 'A-B-C-D-E-HR') => {
 
         if(loading) return
 
@@ -47,13 +44,11 @@ export default App = props => {
 
         const config = { url: UrlListaOportunidades(page, score), header: 'bearer' }
 
-        const resp = await Request.GET(config)
-
-        if (resp.status === 200) requestSuccessful(resp.data)
+        Request.GET(config).then( resp => requestSuccessful(resp.data) )
 
     }
 
-    const renderItem = item => (<Card data={item}/>)
+    const renderItem = item => (<OpportunitiesCard data={item}/>)
 
     const renderFooter = () => {
 
@@ -73,7 +68,7 @@ export default App = props => {
                 data={opportunities}
                 renderItem={renderItem}
                 ListFooterComponent={ renderFooter }
-                keyExtractor={ item => item.index }
+                keyExtractor={ item => item._id }
                 onEndReached={ loadOpportunities } 
                 onEndReachedThreshold={ 0.1 }
             />
@@ -81,4 +76,12 @@ export default App = props => {
         </SafeAreaView>
     )
 
+}
+
+export const Opportunities = {
+    screen: PageOpportunities,
+    navigationOptions: {
+        headerTitle: "OPORTUNIDADES",
+        headerLeft: ToggleMenu
+    }
 }

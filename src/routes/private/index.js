@@ -1,10 +1,15 @@
 
 import { createStackNavigator } from 'react-navigation-stack'
 
-import { ToggleMenu } from  '../../components'
+import { Opportunities } from '../../screens/opportunities'
 
+import { Notifications } from '../../screens/notifications'
 
-import Opportunities from '../../screens/opportunities/index.js'
+import { History } from '../../screens/history'
+
+import { Statistics } from '../../screens/statistics'
+
+import { Profile } from '../../screens/profile'
 
 import { tealish, white } from '../../assets/colors'
 
@@ -12,6 +17,7 @@ const mainConfig = {
     defaultNavigationOptions: {
     
     headerBackTitle: 'Voltar',
+    headerTintColor: white,
     headerStyle: {
             backgroundColor: tealish,
         },
@@ -24,13 +30,11 @@ const mainConfig = {
 
 export const PrivateRoutes = createStackNavigator(
     {
-        Opportunities: {
-        screen: Opportunities,
-            navigationOptions: {
-                headerTitle: "OPORTUNIDADES",
-                headerLeft: ToggleMenu
-            }
-        },
+        Opportunities,
+        Notifications,
+        History,
+        Statistics,
+        Profile,
     },
     mainConfig
 )

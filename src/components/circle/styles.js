@@ -14,4 +14,5 @@ export const Circle = styled(LinearGradient)`
     border: ${props => props.borderSize || 0 }px solid ${props => props.borderColor || greyEE };
     border-radius: 100px;
     justify-content: center;
+    align-items: center;
 `

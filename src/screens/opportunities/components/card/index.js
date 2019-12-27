@@ -15,11 +15,8 @@ import {
     Content,
     Subtitle,
     Center,
-} from './style.js'
+} from './style'
 
-import {
-    CircleWithChild
-} from '../../../../components'
 
 import { 
     formatCode, 
@@ -27,7 +24,7 @@ import {
     convertScoreByColor,
     formatMoney,
     formatPercent,
-    diffDays
+    diffDaysForOpportunitie
 } from '../../../../utils'
 
 import {
@@ -35,7 +32,12 @@ import {
     grey99
 } from '../../../../assets/colors'
 
-export default App = ( props ) => {
+import {
+    CircleWithChild
+
+} from '../../../../components'
+
+export const OpportunitiesCard = props => {
 
     const data = props.data.item
 
@@ -66,7 +68,7 @@ export default App = ( props ) => {
             StatusAnalise
         } = data
 
-        const status = diffDays(FimCaptacao)
+        const status = diffDaysForOpportunitie(FimCaptacao)
 
         if(status === "encerrado" || StatusAnalise === "ENCERRADO") return "encerrado"
 
@@ -112,7 +114,7 @@ export default App = ( props ) => {
 
                     <Title> { data.Empresa.NomeFantasia } </Title>
                     <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
-                    <Content> Término: <Bold> { diffDays(data.FimCaptacao) } </Bold> </Content>
+                    <Content> Término: <Bold> { diffDaysForOpportunitie(data.FimCaptacao) } </Bold> </Content>
                     <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
 
                 </Container>

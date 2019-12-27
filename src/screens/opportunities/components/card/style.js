@@ -10,8 +10,8 @@ export const Card = styled.View`
     border-radius: 5px;
     margin: 16px;
     margin-bottom: 0;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
-    elevation: 4
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    elevation: 2;
 `
 
 export const Header = styled.View`
@@ -39,27 +39,15 @@ export const Body = styled.View`
     min-height: 91px;
 `
 
-export const Circle = styled.View`
-    background: ${props => props.background || greyEE } ;
-    width: 50px;
-    height: 50px;
-    border-radius: 100px;
-    justify-content: center;
-`
-
 export const Score = styled.Text`
-    align-self: stretch;
-    text-align: center;
-    font-weight: bold;
     font-size: 14px;
     color: ${white};
-    font-family: HelveticaNeue-Medium;
+    font-family: HelveticaNeue-Bold;
 `
 
 export const Title = styled.Text`
     font-size: 13px;
-    font-weight: bold;
-    font-family: HelveticaNeue-Medium;
+    font-family: HelveticaNeue-Bold;
 `
 
 export const Content = styled.Text`
@@ -97,8 +85,7 @@ export const Center = styled.View`
 export const Subtitle = styled.Text`
     text-align: center;
     font-size: 12px;
-    font-weight: bold;
-    font-family: HelveticaNeue-Medium;
+    font-family: HelveticaNeue-Bold;
 `
 
 

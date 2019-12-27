@@ -81,6 +81,9 @@ export default App = ( { navigation }) => {
 
       if(resp.status !== 200) return
 
+
+      console.log(resp.data)
+
       dispatch(setUserData(resp.data))
 
       navigation.navigate('Opportunities')
@@ -152,7 +155,7 @@ export default App = ( { navigation }) => {
         horizontal
         data={informations}
         renderItem={({ item }) => createInformationsView(item)}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.title}
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         onMomentumScrollEnd={ 

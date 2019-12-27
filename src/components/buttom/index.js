@@ -1,5 +1,9 @@
-import React from 'react';
-import { TouchableOpacity, Text } from './styles';
+import React from 'react'
+
+import { 
+    TouchableOpacity, 
+    Text 
+} from './styles'
 
 export const IButtom = props => {
 

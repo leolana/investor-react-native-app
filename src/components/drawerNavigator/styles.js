@@ -2,7 +2,6 @@ import styled from 'styled-components/native'
 
 import LinearGradient from 'react-native-linear-gradient'
 
-
 import { 
     Dimensions 
 } from 'react-native'
@@ -31,6 +30,17 @@ import {
 
 export const IconGo = styled(IconBack)`
     transform: rotate(180deg);
+`
+
+export const IconSafeArea = styled.View`
+    position: relative;
+
+`
+
+export const NotificationDot = styled(CircleWithChild)`
+    position: absolute;
+    top: -3px;
+    right: 1px;
 `
 
 export const MenuHorizontalArea = styled.TouchableOpacity`
@@ -71,10 +81,9 @@ export const Circle = styled(CircleWithChild)`
 
 export const Letter = styled.Text`
     text-align: center;
-    font-weight: bold;
     font-size: 38px;
     color: ${white};
-    font-family: HelveticaNeue-Medium;
+    font-family: HelveticaNeue-Bold;
 `
 
 export const Text = styled.Text`

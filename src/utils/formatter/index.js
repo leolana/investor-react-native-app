@@ -26,8 +26,10 @@ export const formatMoney = value => {
         style: 'currency', 
         currency: 'BRL'
     }
+
+    const nf = new Intl.NumberFormat('pt-BR', config);
     
-    return value.toLocaleString('pt-BR', config)
+    return nf.format(value)
       
 }
 

@@ -11,6 +11,8 @@ import { Statistics } from '../../screens/statistics'
 
 import { Profile } from '../../screens/profile'
 
+import { Wallet } from '../../screens/wallet'
+
 import { tealish, white } from '../../assets/colors'
 
 const mainConfig = {
@@ -35,6 +37,7 @@ export const PrivateRoutes = createStackNavigator(
         History,
         Statistics,
         Profile,
+        Wallet,
     },
     mainConfig
 )

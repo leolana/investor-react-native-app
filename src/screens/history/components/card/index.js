@@ -8,7 +8,9 @@ import {
     Title,
     Text,
     Body,
-    Circle
+    Circle,
+    HelperArea,
+    ScoreArea,
 
 } from './styles'
 
@@ -103,20 +105,34 @@ export const CardHistory = props => {
             <Header>
                 <IconArrowRight stroke={ tealish } width={ 10 }  height={ 18 } />
                 <Title > ID #{ data.SolicitacaoId.IdOportunidade }   </Title>
-                <Text 
-                    fontFamily={ 'HelveticaNeue' }
-                    width="178px"
-                    color={ greenTwo } > 
-                        { getStatus() } 
-                </Text>
-                <Circle 
-                    background={ scoreColor }
-                    size={ 16 }
-                />
-                <Text 
-                    color={ greyTwo } > 
-                        { data.SolicitacaoId.Score }
-                </Text>
+
+                <HelperArea>
+
+                    <Text 
+                        fontFamily={ 'HelveticaNeue' }
+                        width="178px"
+                        color={ greenTwo } > 
+                            { getStatus() } 
+                    </Text>
+
+
+                    <ScoreArea>
+
+                        <Circle 
+                            background={ scoreColor }
+                            size={ 16 }
+                        />
+                        <Text 
+                            color={ greyTwo } > 
+                                { data.SolicitacaoId.Score }
+                        </Text>
+
+
+                    </ScoreArea>
+                
+
+                </HelperArea>
+
             </Header>
 
             <Body>

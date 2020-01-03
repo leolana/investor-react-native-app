@@ -180,7 +180,7 @@ export const DrawerNavigator = props => {
                 <ViewList>
                     {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
                     {renderNavigationItem(getIcon('Opportunitie'), 'Oportunidades', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Wallet'), 'Carteira virtual', 'Opportunities')}
+                    {renderNavigationItem(getIcon('Wallet'), 'Carteira virtual', 'Wallet')}
                     {renderNavigationItem(getIcon('History'), 'Meu histórico', 'History')}
                     {renderNavigationItem(getIcon('Statistics'), 'Estatísticas', 'Statistics')}
                     {renderNavigationItem(getIcon('Calculator'), 'Calculadora', 'Opportunities')}

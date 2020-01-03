@@ -13,6 +13,8 @@ import PieChart from './ico-pie-chart-3.svg'
 import Profile from './ico-user-male-circle.svg'
 import BubbleDialog from './ico-bubble-dialog.svg'
 import Wallet from './ico-wallet.svg'
+import Cash from './ico-cash.svg'
+import WalletCash from './ico-wallet-cash.svg'
 
 
 export const IconIouu = Iouu
@@ -30,3 +32,5 @@ export const IconPieChart = PieChart
 export const IconProfile = Profile
 export const IconBubbleDialog = BubbleDialog
 export const IconWallet = Wallet
+export const IconCash = Cash
+export const IconWalletCash = WalletCash

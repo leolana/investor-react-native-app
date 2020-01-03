@@ -44,11 +44,25 @@ export const Title = styled.Text`
     font-family: HelveticaNeue-Bold;
 `
 
+
+export const HelperArea = styled.View`
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+
+
+`
+
+export const ScoreArea = styled.View`
+    flex-direction: row;
+
+
+`
+
 export const Text = styled.Text`
     color: ${ props => props.color || black };
     font-size: 14px;
     font-family: ${ props => props.fontFamily || 'HelveticaNeue-Bold' };
-    width: ${ props => props.width || 'auto' };
 `
 
 export const Body = styled.View`

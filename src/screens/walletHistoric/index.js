@@ -21,11 +21,6 @@ import {
     LoadingContainer
 } from './styles'
 
-import {
-    View
-} from 'react-native'
-
-
 export const WalletHistoricPopup = props => {
 
     // States 

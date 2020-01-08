@@ -1,3 +1,6 @@
+import { format } from 'date-fns'
+
+
 export const formatCode = code => {
 
     if (typeof code !== "string" && typeof code !== "number") return
@@ -18,18 +21,9 @@ export const formatMoney = value => {
 
     if(value === null || value === undefined) return 
 
-    if(typeof value  == "string") value = parseFloat(value)
-
-    const config = {
-        minimumFractionDigits: 2, 
-        maximumFractionDigits: 2, 
-        style: 'currency', 
-        currency: 'BRL'
-    }
-
-    const nf = new Intl.NumberFormat('pt-BR', config);
+    value = parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     
-    return nf.format(value)
+    return `R$ ${value}`
       
 }
 
@@ -45,13 +39,11 @@ export const formatLoanType = type => {
 
 }
 
-export const formatDate = date => {
+export const formatDate = (date, mask = 'dd/MM/yyyy') => {
 
-    const config = { 
-        timeZone: 'UTC' 
-    }
+    date = new Date(date)
 
-    return new Date(date).toLocaleDateString('pt-BR', config).split(" ")[0]
+    return format(date, mask)
 }
 
 

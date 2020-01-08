@@ -39,7 +39,7 @@ const SheetModalComponent = props => {
 
     const { height } = Dimensions.get('window')
 
-    const translateYSheetClosed = ( height / 2 )
+    const translateYSheetClosed = ( height )
 
     // Methods
 

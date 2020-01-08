@@ -11,9 +11,7 @@ import { Statistics } from '../../screens/statistics'
 
 import { Profile } from '../../screens/profile'
 
-import { Wallet } from '../../screens/wallet'
-
-import { WalletSheetModal } from '../../screens/walletSheetModal'
+import { Wallet, WalletSheetModal } from '../../screens/wallet'
 
 import { tealish, white } from '../../assets/colors'
 

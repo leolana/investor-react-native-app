@@ -49,7 +49,7 @@ export const WalletFooter = props => {
 
             {
 
-                operacoes.map( data => <WalletCard data={ data } /> )
+                operacoes.map( (data, i) => <WalletCard data={ data } key={i} /> )
 
             }
 

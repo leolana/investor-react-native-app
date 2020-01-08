@@ -18,6 +18,7 @@ import {
     WalletHeader,
     WalletBody,
     WalletFooter,
+    WalletSheetModal,
 } from './components'
 
 import {
@@ -29,6 +30,7 @@ import {
 import {
     ScrollView
 } from 'react-native-gesture-handler'
+
 
 
 
@@ -55,7 +57,13 @@ export const PageWallet = props => {
 
     // Effect
 
-    useEffect(() => getWallet(), [] )
+    useEffect(() => {
+        async function fetchData() {
+            await getWallet()
+        }
+
+        fetchData()
+    }, [] )
 
 
 
@@ -97,3 +105,5 @@ export const Wallet = {
         headerTitle: "CARTEIRA"
     }
 }
+
+export * from './components/walletSheetModal'

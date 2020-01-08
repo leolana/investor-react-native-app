@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 
 export const TitleDivisor = styled.Text`
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeueBold;
     font-size: 14px;
     align-self: stretch;
 
@@ -29,10 +29,7 @@ export const ListContainer = styled.View`
     margin-bottom: 16px;
 `
 
-export const Button = styled(Platform.select({
-    ios: TouchableOpacity,
-    android: TouchableNativeFeedback
-}))`
+export const Button = styled.TouchableOpacity`
     flex-direction: row;
     background: ${grey99};
     align-self: stretch;
@@ -54,7 +51,7 @@ export const Divisor = styled.View`
 
 export const Text = styled.Text`
     font-size: 14px;
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeueBold;
     color: ${white}
 
 `

@@ -12,15 +12,23 @@ export const WalletBody = props => (
     <ButtonsArea>
         <Button onPress={ () => {} } >
 
-            <IconCashStyled width={ 24 } height={ 24 }  />
-            <Text> ADICIONAR FUNDOS </Text>
+            <> 
+            
+                <IconCashStyled width={ 24 } height={ 24 }  />
+                <Text> ADICIONAR FUNDOS </Text>
+
+            </>
 
         </Button>
 
         <Button onPress={ () => {} } >
 
-            <IconCoinStyled width={ 24 } height={ 24 }  />
-            <Text> REINVESTIR </Text>
+            <>
+
+                <IconCoinStyled width={ 24 } height={ 24 }  />
+                <Text> REINVESTIR </Text>
+
+            </>
 
         </Button>
 

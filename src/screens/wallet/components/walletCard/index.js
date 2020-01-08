@@ -12,7 +12,7 @@ import {
     grey99
 } from '../../../../assets/colors'
 
-import { withNavigation } from 'react-navigation';
+import { withNavigation } from 'react-navigation'
 
 import {
     Card,
@@ -153,7 +153,9 @@ const CardComponent = props => {
 
         setTitle( formatTitle( data ) )
 
-        setDate( formatSpecialData( formatDate(data.item.Data) ) )
+        const date = formatDate(data.item.Data)
+
+        setDate( formatSpecialData( date ) )
 
         setValue( ( verifyIRFonte(data) ) ? data.item.ValorLiquido : data.item.Valor )
 

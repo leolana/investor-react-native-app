@@ -6,7 +6,7 @@ import {
 } from '../../../../assets/icons'
 
 import { 
-    TouchableNativeFeedback,
+    TouchableHighlight,
     TouchableOpacity,
     Platform
 } from 'react-native'
@@ -35,10 +35,7 @@ export const ButtonsArea = styled.View`
     background: ${white};
 `
 
-export const Button = styled(Platform.select({
-    ios: TouchableOpacity,
-    android: TouchableNativeFeedback
-}))`
+export const Button = styled.TouchableOpacity`
     flex-direction: row;
     background: ${greenTwo};
     align-self: stretch;

@@ -12,11 +12,14 @@ import {
     WalletCard
 } from '../index'
 
-export const WalletFooter = props => {
+import { withNavigation } from 'react-navigation'
+
+export const WalletFooterComponent = props => {
 
     // Props
 
     const {
+        navigation,
         walletData
     } = props
 
@@ -53,7 +56,7 @@ export const WalletFooter = props => {
 
             }
 
-            <Button onPress={ () => {} } >
+            <Button onPress={ () => navigation.navigate('WalletHistoric') } >
 
                 <Text> VISUALIZAR TODOS </Text>
 
@@ -62,3 +65,5 @@ export const WalletFooter = props => {
         </View>
     )
 }
+
+export const WalletFooter = withNavigation(WalletFooterComponent)

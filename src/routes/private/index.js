@@ -1,4 +1,5 @@
 
+
 import { createStackNavigator } from 'react-navigation-stack'
 
 import { Opportunities } from '../../screens/opportunities'
@@ -13,7 +14,13 @@ import { Profile } from '../../screens/profile'
 
 import { Wallet, WalletSheetModal } from '../../screens/wallet'
 
+import { WalletHistoric } from '../../screens/walletHistoric'
+
 import { tealish, white } from '../../assets/colors'
+
+import React from 'react'
+import { ToolbarCloseButtom } from '../../components'
+
 
 const mainConfig = {
     defaultNavigationOptions: {
@@ -42,10 +49,35 @@ export const ScreenRoutes = createStackNavigator(
     mainConfig
 )
 
+export const PopupRoutes = createStackNavigator(
+    {
+        WalletHistoric,
+    },
+    {
+        mode: 'modal',  
+        defaultNavigationOptions: ({navigation}) => (
+            {
+                headerRight: (<ToolbarCloseButtom navigation={navigation} />),
+                headerTintColor: white,
+                headerStyle: {
+                    backgroundColor: tealish,
+                },
+                headerTitleStyle: { 
+                    color: white,
+                    fontFamily: 'Montserrat-Regular'
+                }
+                
+            }
+        )
+    }
+)
+
+
 export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
-        WalletSheetModal
+        WalletSheetModal,
+        PopupRoutes,
         
     },
     {
@@ -53,7 +85,8 @@ export const PrivateRoutes = createStackNavigator(
         headerMode: 'none',
         transparentCard: true,
         defaultNavigationOptions: {
-            gesturesEnabled: false
+            gesturesEnabled: true,
+            gestureResponseDistance: { vertical: 1000 }
         },
         cardStyle: {
             opacity: 1.0

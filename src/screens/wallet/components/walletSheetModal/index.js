@@ -17,7 +17,7 @@ import {
     Card,
 } from './styles'
 
-export const WalletSheetModal = props => {
+export const WalletSheetModalComponent = props => {
 
     // Props 
 
@@ -62,4 +62,9 @@ export const WalletSheetModal = props => {
 
         ) } /> 
     )
+}
+
+export const WalletSheetModal = {
+    screen: WalletSheetModalComponent,
+    navigationOptions: { gesturesEnabled: false }
 }

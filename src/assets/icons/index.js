@@ -16,6 +16,7 @@ import Wallet from './ico-wallet.svg'
 import Cash from './ico-cash.svg'
 import WalletCash from './ico-wallet-cash.svg'
 import Printer from './ico-printer.svg'
+import Close from './ico-close.svg'
 
 
 
@@ -37,3 +38,4 @@ export const IconWallet = Wallet
 export const IconCash = Cash
 export const IconWalletCash = WalletCash
 export const IconPrinter = Printer
+export const IconClose = Close

@@ -22,11 +22,13 @@ import {
 
 import {
     Request,
-    UrlCarteiraPegar,
-    UrlInfoInvLista,
-    UrlCarteiraEmprestimoPegar
+    UrlCarteiraExtratoPaginado
 
 } from '../../services'
+
+import {
+    ScrollView
+} from 'react-native-gesture-handler'
 
 
 
@@ -35,64 +37,25 @@ import {
 export const PageWallet = props => {
 
 
-    let investidorId = null
-
-
     // State
 
     const [ walletData, SetWalletData ] = useState(null)
 
-    const [ invData, setInvData ] = useState(null)
-
-    const [ historicData, setHistoricData ] = useState(null)
-
 
     // Methods
 
-    const getWalletHistoric = async () => {
-
-        const resp = await Request.GET( { url: UrlCarteiraEmprestimoPegar(investidorId, 1) } )
-
-        setHistoricData(resp.data)
-
-    }
-
     const getWallet = async () => {
         
-        const resp = await Request.GET( { url: UrlCarteiraPegar } )
+        const resp = await Request.GET( { url: UrlCarteiraExtratoPaginado(1), header: 'bearer' } )
 
         SetWalletData(resp.data)
-
-    }
-
-    const getInvestmentInformations = async () => {
-
-        const resp = await Request.GET( { url: UrlInfoInvLista } )
-
-        investidorId = resp.data[0].InvestidorId
-            
-        setInvData(resp.data)
 
     }
 
 
     // Effect
 
-    useEffect(() => {
-
-        const fetchData = async () => {
-
-            await getWallet()
-
-            await getInvestmentInformations()
-
-            await getWalletHistoric()
-
-        }
-
-        fetchData()
-
-    }, [] )
+    useEffect(() => getWallet(), [] )
 
 
 
@@ -100,30 +63,30 @@ export const PageWallet = props => {
     // Render
 
     return (
-        <View>
+        <ScrollView>
 
-            <SafeAreaHeader>
-                <Header colors={ [ tealish, greenishBlue ] }>
-                    
-                    <WalletHeaderBackground />
+            <View>
 
-                    <WalletHeader 
-                        walletData={ walletData }
-                        invData={ invData } 
-                    />
+                <SafeAreaHeader>
+                    <Header colors={ [ tealish, greenishBlue ] }>
+                        
+                        <WalletHeaderBackground />
 
-                </Header>
+                        <WalletHeader walletData={ walletData } />
 
-                <WalletBody />
+                    </Header>
 
-            </SafeAreaHeader>
+                    <WalletBody />
+
+                </SafeAreaHeader>
 
 
-            <WalletFooter 
-                historicData={ historicData }
-            />
+                <WalletFooter walletData={ walletData } />
 
-        </View>
+            </View>
+            
+        </ScrollView>
+
 
     )
 }

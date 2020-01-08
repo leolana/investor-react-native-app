@@ -21,12 +21,7 @@ export const TitleDivisor = styled.Text`
 `
 
 export const View = styled.View`
-    flex: 1;
-`
-
-export const ListContainer = styled.View`
-    flex: 2;
-    margin-bottom: 16px;
+    height: auto;
 `
 
 export const Button = styled.TouchableOpacity`

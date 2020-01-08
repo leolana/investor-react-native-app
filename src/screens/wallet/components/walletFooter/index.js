@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-
-import {
-    FlatList
-} from 'react-native-gesture-handler'
-
 import {
     Text,
     Button,
     TitleDivisor,
     Divisor,
     View,
-    ListContainer,
 } from './styles'
 
 import {
@@ -23,24 +17,26 @@ export const WalletFooter = props => {
     // Props
 
     const {
-        historicData
+        walletData
     } = props
 
     // States
 
-    const [ historic, setHistoric ] = useState(null)
-
-
-    // Methods
-
+    const [ operacoes, setOperacoes ] = useState([])
 
     // Effect
 
     useEffect( () => {
 
-        if(historicData !== null) setHistoric(historicData)
+        if(walletData == null) return
 
-    }, [historicData])
+
+        const list = walletData.Operacoes
+
+        setOperacoes(list.splice(list.lenght, 4))
+
+
+    }, [walletData])
 
 
     // Render
@@ -51,21 +47,18 @@ export const WalletFooter = props => {
                 <TitleDivisor> Últimas transações </TitleDivisor>
             </Divisor>
 
-            <ListContainer>
+            {
 
-                <FlatList
-                    data={ (historic) ? historic.Carteira : []  }
-                    renderItem={ data => <WalletCard data={ {...data, Investidor: historic } } /> }
-                    keyExtractor={ item => item._id }
-                />
+                operacoes.map( data => <WalletCard data={ data } /> )
 
-            </ListContainer>
+            }
 
             <Button onPress={ () => {} } >
 
                 <Text> VISUALIZAR TODOS </Text>
 
             </Button>
+
         </View>
     )
 }

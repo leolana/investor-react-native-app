@@ -49,6 +49,12 @@ export const UrlCarteiraEnviarTransferencia = `${BASE_URL_NODE}api/v1/wallet/new
 export const UrlCarteiraEmprestimoPegar = ( investidorId, page )=> `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`
 export const UrlCarteiraComprovantePegar = investidorId => `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`
 
+export const UrlCarteiraExtratoPaginado = pagina => `${BASE_URL_GO}api/v1/wallet/extrato/pagina/${pagina}`
+
+
+
+
+
 export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`
 export const UrlInfoInvSolicitacao = solicitacaoId => `${BASE_URL_NODE}api/v1/investimentos/meus/solicitacoes/${solicitacaoId}`
 

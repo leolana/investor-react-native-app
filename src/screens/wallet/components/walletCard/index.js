@@ -9,7 +9,6 @@ import {
 import {
     blue,
     red,
-    grey99
 } from '../../../../assets/colors'
 
 import { withNavigation } from 'react-navigation'
@@ -41,107 +40,38 @@ const CardComponent = props => {
 
     const [value, setValue] = useState(0)
 
-    const [colorValue, setColorValue] = useState('#000')
-
     // Methods 
 
-    const getInvestorDetail = data => {
-        const { NomeCompleto, DadosBancarios } = data;
+    const formatSpecialData = () => {
 
-        const { Agencia, Conta } = DadosBancarios;
+        const { Data } = data
 
-        return `${NomeCompleto}: Agencia: ${Agencia} | Conta: ${Conta}`
-    }
-
-    const getParcelReceipt = (solicitacao, fatura) => {
-
-        fatura = (fatura != null || fatura != undefined ? fatura.IndiceFatura + 1 : 0)
-
-        const parcela = `Recebimento da Parcela: ${fatura} / ${solicitacao.Prazo}`
-
-        return `${formatCompanyName(solicitacao)} | ${parcela}`
-    }
-
-    const formatTitle = data => {
-
-        const { 
-            Tipo, 
-            ReInvestimento, 
-            SolicitacaoID, 
-            FaturaID 
-
-        } = data.item
-
-        if( (Tipo == 'DEBITO' || Tipo == 'AGENDADO') && ReInvestimento) 
-            return formatCompanyName(SolicitacaoID)
-
-        else if ( (Tipo == 'DEBITO' || Tipo == 'AGENDADO') && !ReInvestimento) 
-            return getInvestorDetail(data.Investidor) 
-
-        else if (Tipo == 'CREDITO') 
-            return getParcelReceipt(SolicitacaoID, FaturaID)
-
-        else if (Tipo == 'CASHBACK') 
-            return 'CASHBACK';
-
-        return formatCompanyName(SolicitacaoID);
-
-        
-
-    }
-
-
-    const formatSpecialData = data => {
+        const date = formatDate(Data).split('/')
 
         const shortMonths = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 
-        data = data.split('/')
+        const day = date[0]
 
-        const day = data[0]
+        const month = shortMonths[ Number( date[1] ) - 1 ]
 
-        const month = shortMonths[ Number( data[1] ) - 1 ]
+        const year = (date[2] === '2020') ? '' : `, ${date[2]}`
 
-        const year = (data[2] === '2020') ? '' : `, ${data[2]}`
-
-        return `${ day }  ${ month }${ year }`
+        return `${day}  ${month}${year}`
 
         
     }
 
-    const getValueColor = data => {
-
-        const {
-            Tipo,
-            ReservaInvestimentoID
-
-        } = data.item
-
-        const colorByType = {
-            'CREDITO': blue,
-            'CASHBACK': blue,
-            'DEBITO': red,
-            'AGENDADO': grey99,
-            'RESERVA': (ReservaInvestimentoID != null) ? (ReservaInvestimentoID.StatusBoleto == "paid" ? blue: grey99) : blue
-                
-        }
-
-        return colorByType[Tipo]
-    }
-
-    const verifyIRFonte = data => {
-
-        const { 
-            ValorLiquido, 
-            Data 
-
-        } = data
+    const getValueColor = () => (value >= 0) ? blue : red
 
 
-        let date = new Date(Data)
+    const formatTitle = () => {
 
-        const year = date.getFullYear(), month = date.getMonth()
+        const { Tipo, Detalhes } = data
 
-        return (ValorLiquido && (year > 2019 || ( year == 2019 && month > 1) ) ) ? true : false
+        if( Tipo === 'PAGAMENTO' ) return Detalhes.Pagamento.NomeEmpresa
+
+        return Tipo
+
     }
 
 
@@ -151,15 +81,11 @@ const CardComponent = props => {
 
         if(data === null) return 
 
-        setTitle( formatTitle( data ) )
+        setTitle( `${formatTitle()} | ${data.Descricao}` )
 
-        const date = formatDate(data.item.Data)
+        setDate( formatSpecialData() )
 
-        setDate( formatSpecialData( date ) )
-
-        setValue( ( verifyIRFonte(data) ) ? data.item.ValorLiquido : data.item.Valor )
-
-        setColorValue( getValueColor(data) )
+        setValue( data.Valor )
 
 
     }, [data])
@@ -178,7 +104,7 @@ const CardComponent = props => {
 
                 </HeaderArea>
 
-                <Text color={ colorValue } >{formatMoney(value)}</Text>
+                <Text color={ getValueColor() } >{formatMoney(value)}</Text>
             </Card>
         </Touchable>
 

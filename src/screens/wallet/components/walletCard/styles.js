@@ -1,20 +1,11 @@
 import styled from 'styled-components/native'
 
 import {
-    TouchableOpacity,
-    TouchableNativeFeedback,
-    Platform
-} from  'react-native'
-
-import {
     greyDD,
     grey70,
 } from '../../../../assets/colors'
 
-export const Touchable = styled(Platform.select({
-    ios: TouchableOpacity,
-    android: TouchableNativeFeedback
-}))`
+export const Touchable = styled.TouchableOpacity`
 
 
 `
@@ -29,36 +20,35 @@ export const Card = styled.View`
 `
 
 export const HeaderArea = styled.View`
-    flex: 1;
     flex-direction: row;
     justify-content: space-between;
     border-color: ${greyDD};
     border-bottom-width: 1px;
     padding-bottom: 5px;
 
-
 `
 
 
 export const DateText = styled.Text`
+    width: 75px;
     font-size: 11px;
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeueBold;
     color: ${grey70};
-    flex: ${ props => props.isWithoutYear ? 2 : 4 };
+    text-align: right;
 
 `
 
 export const Title = styled.Text`
     flex: 14;
     font-size: 11px;
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeueBold;
 
 `
 
 export const Text = styled.Text`
     margin-top: 5px;
     font-size: 20px;
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeueBold;
     color: ${ props => props.color }
 
 `

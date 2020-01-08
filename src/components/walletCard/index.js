@@ -4,12 +4,12 @@ import {
     formatDate,
     formatMoney,
     formatCompanyName
-} from '../../../../utils'
+} from '../../utils'
 
 import {
     blue,
     red,
-} from '../../../../assets/colors'
+} from '../../assets/colors'
 
 import { withNavigation } from 'react-navigation'
 
@@ -83,7 +83,7 @@ const CardComponent = props => {
 
         setTitle( `${formatTitle()} | ${data.Descricao}` )
 
-        setDate( formatSpecialData() )
+        setDate( formatSpecialData() ) 
 
         setValue( data.Valor )
 

@@ -1,4 +1,4 @@
-export * from './walletCard'
+
 export * from './walletHeaderBackground'
 export * from './walletBody'
 export * from './walletHeader'

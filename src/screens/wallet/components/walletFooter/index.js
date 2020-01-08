@@ -10,7 +10,7 @@ import {
 
 import {
     WalletCard
-} from '../index'
+} from '../../../../components'
 
 import { withNavigation } from 'react-navigation'
 

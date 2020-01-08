@@ -6,13 +6,6 @@ import {
     greyDD,
 } from '../../../../assets/colors'
 
-
-import { 
-    TouchableNativeFeedback,
-    TouchableOpacity,
-    Platform
-} from 'react-native'
-
 export const TitleDivisor = styled.Text`
     font-family: HelveticaNeueBold;
     font-size: 14px;
@@ -32,8 +25,7 @@ export const Button = styled.TouchableOpacity`
     border-radius: 5px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    margin: 0 16px;
+    margin: 16px;
 `
 
 export const Divisor = styled.View`
@@ -41,7 +33,6 @@ export const Divisor = styled.View`
     border-bottom-width: 1px;
     margin: 0 16px;
     padding-bottom: 5px;
-    margin-bottom: 16px;
 `
 
 export const Text = styled.Text`

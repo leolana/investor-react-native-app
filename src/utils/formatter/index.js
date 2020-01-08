@@ -51,9 +51,7 @@ export const formatDate = date => {
         timeZone: 'UTC' 
     }
 
-    const dt = new Intl.DateTimeFormat('pt-BR', config)
-
-    return dt.format(new Date(date)).split(" ")[0]
+    return new Date(date).toLocaleDateString('pt-BR', config).split(" ")[0]
 }
 
 

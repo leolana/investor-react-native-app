@@ -18,7 +18,6 @@ import {
     WalletHeader,
     WalletBody,
     WalletFooter,
-    WalletSheetModal,
 } from './components'
 
 import {

@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import {
     greyDD,
     grey70,
-} from '../../../../assets/colors'
+} from '../../assets/colors'
 
 export const Touchable = styled.TouchableOpacity`
 
@@ -15,7 +15,7 @@ export const Card = styled.View`
     border-radius: 5px;
     padding: 10px;
     margin: 0 16px;
-    margin-bottom: 16px;
+    margin-top: 16px;
 
 `
 

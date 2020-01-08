@@ -58,7 +58,10 @@ export const WalletSheetModal = props => {
 
     // Render
 
-    const renderCard = () => (
+    return ( 
+    
+    <SheetModal children={ () => (
+
         <Card> 
             <Title>Informações</Title>
             <Text marginBottom={2} >{companyName}</Text>
@@ -73,12 +76,8 @@ export const WalletSheetModal = props => {
                 <Text>R$ 000,00</Text>
             </Area>
 
-
-
-
         </Card>
-    )
 
 
-    return ( <SheetModal children={ () => renderCard() } /> )
+    ) } /> )
 }

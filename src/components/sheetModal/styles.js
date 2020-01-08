@@ -28,6 +28,8 @@ export const Card = styled(Animated.View)`
     align-self: stretch;
     background: ${white};
     border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     align-items: center;
 `
 

@@ -47,19 +47,19 @@ export const ScreenRoutes = createStackNavigator(
 export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
-        WalletSheetModal: {
-            screen: WalletSheetModal,
-            navigationOptions: {
-                gestureResponseDistance: { vertical: 0 }
-            },
-        }
-
+        WalletSheetModal
         
     },
     {
         mode: 'modal',
         headerMode: 'none',
         transparentCard: true,
+        defaultNavigationOptions: {
+            gesturesEnabled: false
+        },
+        cardStyle: {
+            opacity: 1.0
+        },
     }
 )
 

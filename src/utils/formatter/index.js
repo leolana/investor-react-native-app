@@ -75,4 +75,20 @@ export const trunc = value => {
 
 export const formatPercent = value => `${String(value).replace('.', ',')}%`
  
+export const formatCompanyName = data => {
 
+    if(data.Social && data.Social.RazaoSocial) 
+        return data.Social.RazaoSocial
+
+    else if(data.Social && data.Social.NomeCompleto) 
+        return data.Social.NomeCompleto
+
+    else if(data.Impacto && data.Impacto.NomeEmpresa)
+        return data.Impacto.NomeEmpresa
+
+    else if(data.Empresa && data.Empresa.NomeFantasia)
+        return data.Empresa.NomeFantasia
+    
+
+    return 'Empresa não encontrada'
+}

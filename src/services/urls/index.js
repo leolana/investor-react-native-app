@@ -46,7 +46,7 @@ export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`
 export const UrlCarteiraBancoPegar = ( codigoBanco ) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`
 export const UrlCarteiraPegar = `${BASE_URL_NODE}api/v1/investimentos/meus/money`
 export const UrlCarteiraEnviarTransferencia = `${BASE_URL_NODE}api/v1/wallet/new`
-export const UrlCarteiraEmprestimoPegar = investidorId => `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}`
+export const UrlCarteiraEmprestimoPegar = ( investidorId, page )=> `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`
 export const UrlCarteiraComprovantePegar = investidorId => `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`
 
 export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`

@@ -6,7 +6,10 @@ import {
 
 
 import {
-    ModalPaymant
+    ModalPaymant,
+    ModalInvestment,
+    ModalDeposit,
+    ModalTransfer,
 } from './components'
 
 
@@ -36,9 +39,9 @@ export const WalletSheetModal = props => {
 
         const obj = {
             'PAGAMENTO': (<ModalPaymant data={data} />),
-            'TRANSFERENCIA': (<ModalPaymant data={data} />),
-            'DEPOSITO': (<ModalPaymant data={data} />),
-            'INVESTIMENTO': (<ModalPaymant data={data} />),
+            'TRANSFERENCIA': (<ModalTransfer data={data} />),
+            'DEPOSITO': (<ModalDeposit data={data} />),
+            'INVESTIMENTO': (<ModalInvestment data={data} />),
         }
 
         return obj[Tipo]

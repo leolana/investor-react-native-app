@@ -42,27 +42,7 @@ const CardComponent = props => {
 
     // Methods 
 
-    const formatSpecialData = () => {
-
-        const { Data } = data
-
-        const date = formatDate(Data).split('/')
-
-        const shortMonths = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-
-        const day = date[0]
-
-        const month = shortMonths[ Number( date[1] ) - 1 ]
-
-        const year = (date[2] === '2020') ? '' : `, ${date[2]}`
-
-        return `${day}  ${month}${year}`
-
-        
-    }
-
     const getValueColor = () => (value >= 0) ? blue : red
-
 
     const formatTitle = () => {
 
@@ -74,7 +54,6 @@ const CardComponent = props => {
 
     }
 
-
     // Effects
 
     useEffect( () => {
@@ -83,7 +62,7 @@ const CardComponent = props => {
 
         setTitle( `${formatTitle()} | ${data.Descricao}` )
 
-        setDate( formatSpecialData() ) 
+        setDate( formatDate(data.Data, 'dd MMM yyyy').replace('2020', '') )
 
         setValue( data.Valor )
 

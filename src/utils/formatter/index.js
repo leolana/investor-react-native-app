@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 
+import ptBR from 'date-fns/locale/pt-BR'
 
 export const formatCode = code => {
 
@@ -43,7 +44,7 @@ export const formatDate = (date, mask = 'dd/MM/yyyy') => {
 
     date = new Date(date)
 
-    return format(date, mask)
+    return format(date, mask, { locale: ptBR })
 }
 
 

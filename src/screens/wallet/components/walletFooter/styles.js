@@ -7,14 +7,13 @@ import {
 } from '../../../../assets/colors'
 
 export const TitleDivisor = styled.Text`
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     font-size: 14px;
     align-self: stretch;
 
 `
 
 export const View = styled.View`
-    height: auto;
 `
 
 export const Button = styled.TouchableOpacity`
@@ -37,7 +36,7 @@ export const Divisor = styled.View`
 
 export const Text = styled.Text`
     font-size: 14px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     color: ${white}
 
 `

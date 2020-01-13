@@ -5,12 +5,6 @@ import {
     IconCoin,
 } from '../../../../assets/icons'
 
-import { 
-    TouchableHighlight,
-    TouchableOpacity,
-    Platform
-} from 'react-native'
-
 import {
     greenTwo,
     white,

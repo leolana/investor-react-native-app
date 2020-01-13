@@ -31,6 +31,7 @@ export const TextInput = styled.TextInput`
     margin-bottom: 16px;
     border-width: 1px;
     border-radius: 5px;
+    font-family: HelveticaNeue;
     height: 40px;
     font-size: 16px;
     align-self: stretch;

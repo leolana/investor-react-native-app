@@ -28,7 +28,7 @@ import {
 
 import {
     ScrollView
-} from 'react-native-gesture-handler'
+} from 'react-native'
 
 
 
@@ -70,7 +70,7 @@ export const PageWallet = props => {
     // Render
 
     return (
-        <ScrollView>
+        <ScrollView >
 
             <View>
 

@@ -16,6 +16,8 @@ import { Wallet, WalletSheetModal } from '../../screens/wallet'
 
 import { WalletHistoric } from '../../screens/walletHistoric'
 
+import { TransferFunds } from '../../screens/transferFunds'
+
 import { tealish, white } from '../../assets/colors'
 
 import React from 'react'
@@ -45,32 +47,35 @@ export const ScreenRoutes = createStackNavigator(
         Statistics,
         Profile,
         Wallet,
+        WalletHistoric,
+        TransferFunds,
     },
     mainConfig
 )
 
-export const PopupRoutes = createStackNavigator(
-    {
-        WalletHistoric,
-    },
-    {
-        mode: 'modal',  
-        defaultNavigationOptions: ({navigation}) => (
-            {
-                headerRight: (<ToolbarCloseButtom navigation={navigation} />),
-                headerTintColor: white,
-                headerStyle: {
-                    backgroundColor: tealish,
-                },
-                headerTitleStyle: { 
-                    color: white,
-                    fontFamily: 'Montserrat-Regular'
-                }
+// export const PopupRoutes = createStackNavigator(
+//     {
+        
+//     },
+//     {
+//         mode: 'modal',  
+//         defaultNavigationOptions: ({navigation}) => (
+//             {
+//                 headerLeft: null,
+//                 headerRight: (<ToolbarCloseButtom navigation={navigation} />),
+//                 headerTintColor: white,
+//                 headerStyle: {
+//                     backgroundColor: tealish,
+//                 },
+//                 headerTitleStyle: { 
+//                     color: white,
+//                     fontFamily: 'Montserrat-Regular'
+//                 }
                 
-            }
-        )
-    }
-)
+//             }
+//         )
+//     }
+// )
 
 const translateAnim = (props) => {
     const { 
@@ -96,7 +101,6 @@ export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
         WalletSheetModal,
-        PopupRoutes,
         
     },
     {

@@ -109,7 +109,7 @@ export const CardHistory = props => {
                 <HelperArea>
 
                     <Text 
-                        fontFamily={ 'HelveticaNeue' }
+                        fontFamily={ 'HelveticaNeue-Medium' }
                         width="178px"
                         color={ greenTwo } > 
                             { getStatus() } 

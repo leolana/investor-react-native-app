@@ -32,7 +32,7 @@ export const HeaderArea = styled.View`
 export const DateText = styled.Text`
     width: 75px;
     font-size: 11px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     color: ${grey70};
     text-align: right;
 
@@ -41,14 +41,14 @@ export const DateText = styled.Text`
 export const Title = styled.Text`
     flex: 14;
     font-size: 11px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
 
 `
 
 export const Text = styled.Text`
     margin-top: 5px;
     font-size: 20px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     color: ${ props => props.color }
 
 `

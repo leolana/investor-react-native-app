@@ -34,7 +34,7 @@ export const Area = styled.View`
 `
 
 export const Title = styled.Text`
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     font-size: 15px;
     margin-bottom: 10px;
 `
@@ -47,7 +47,7 @@ export const Text = styled.Text`
 
 export const Item = styled.Text`
     margin-bottom: ${props => props.marginBottom || 0}px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     font-size: 12px;
 
 ` 

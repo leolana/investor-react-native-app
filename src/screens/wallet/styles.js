@@ -16,7 +16,7 @@ export const View = styled.SafeAreaView`
 `
 
 export const SafeAreaHeader = styled.View`
-    height: 400px;
+    height: 350px;
 
 `
 

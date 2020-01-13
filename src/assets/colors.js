@@ -26,6 +26,7 @@ export const yellow = '#FFC400'
 export const green = '#129B00'
 export const greenTwo = '#40CD28'
 export const blue = '#007BFF'
+export const blueTwo = '#0031FF'
 
 
 // $white: #fff; // Branco

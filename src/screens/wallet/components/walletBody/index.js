@@ -1,25 +1,16 @@
 import React from 'react'
 
+import { withNavigation } from 'react-navigation'
+
 import {
     Text,
     Button,
-    IconCashStyled,
     IconCoinStyled,
     ButtonsArea,
 } from './styles'
 
-export const WalletBody = props => (
+export const WalletBodyComponent = props => (
     <ButtonsArea>
-        <Button onPress={ () => {} } >
-
-            <> 
-            
-                <IconCashStyled width={ 24 } height={ 24 }  />
-                <Text> ADICIONAR FUNDOS </Text>
-
-            </>
-
-        </Button>
 
         <Button onPress={ () => {} } >
 
@@ -33,10 +24,12 @@ export const WalletBody = props => (
         </Button>
 
 
-        <Button onPress={ () => {} } >
+        <Button onPress={ () => props.navigation.navigate('TransferFunds') } >
 
             <Text> TRANSFERIR PARA MINHA CONTA </Text>
 
         </Button>
     </ButtonsArea>
 )
+
+export const WalletBody = withNavigation(WalletBodyComponent)

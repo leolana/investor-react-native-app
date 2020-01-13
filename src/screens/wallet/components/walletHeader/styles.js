@@ -18,7 +18,7 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
     font-size: 36px;
-    font-family: HelveticaNeueBold;
+    font-family: HelveticaNeue-Bold;
     color: ${white};
     text-align: center;
 `

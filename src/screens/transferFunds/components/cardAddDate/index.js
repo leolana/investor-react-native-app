@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
+import { withNavigation } from 'react-navigation'
+
 import {
-    TextInput,
     Title,
     Text,
     Buttom,
@@ -9,13 +10,23 @@ import {
     InfoTitle,
 } from '../../styles'
 
+import { TextInput } from './styles'
+
 import { 
     Animated, 
-    Easing 
+    Easing,
+    DatePickerAndroid,
+    Platform,
+
 
 } from 'react-native'
 
-export const CardAddDate = props => {
+import { formatDate } from '../../../../utils'
+
+import { TouchableWithoutFeedback } from 'react-native'
+
+
+export const CardAddDateComponent = props => {
 
 
     // Props 
@@ -25,6 +36,10 @@ export const CardAddDate = props => {
     // State
 
     const [ opacity ] = useState( new Animated.Value(0) )
+
+    const [ date, setDate ] = useState( new Date() )
+
+    const [ dateIsValid, setDateisValid ] = useState( false )
 
     const [ translate ] = useState({
         title: new Animated.Value(0),
@@ -75,6 +90,52 @@ export const CardAddDate = props => {
         ]
     })
 
+    const showDialogOnAndroid = async () => {
+
+        const config = { 
+            date: new Date(2020, 4, 25),
+            mode: 'spinner',
+        }
+
+        try {
+            const {action, year, month, day} = await DatePickerAndroid.open(config)
+
+            if (action !== DatePickerAndroid.dismissedAction) {
+
+                const date = new Date(year, month, day)
+
+                setDate(date)
+
+            }
+
+
+        } catch ({code, message}) {
+            console.warn('Cannot open date picker', message);
+        }
+    }
+
+    const onDateChanged = date => setDate(date)
+
+    const showDialog = () => {
+
+        if(Platform.OS === 'ios') props.navigation.navigate('DatePickerModal', { onDateChanged, date })
+
+        else showDialogOnAndroid()
+
+
+    }
+
+    const nextStep = () => {
+
+        if(!dateIsValid) return 
+
+        props.getInsertedValue(date)
+
+
+        startAnimation(1)
+    }
+
+
     // Effects
 
 
@@ -83,6 +144,15 @@ export const CardAddDate = props => {
         startAnimation(0.5) 
 
     }, [index])
+
+
+    useEffect( () => {
+
+        if(new Date(date) > new Date()) setDateisValid(true)
+
+        else setDateisValid(false)
+
+    }, [date])
 
 
 
@@ -96,8 +166,17 @@ export const CardAddDate = props => {
 
             <Animated.View style={ setAnimatedStyle('input') } >
 
-                <TextInput />
-                <Buttom onPress={ () => startAnimation(1) } >
+                <TouchableWithoutFeedback onPress={ () => showDialog() } >
+
+                    <TextInput>{formatDate(String(new Date(date)))}</TextInput>
+
+                </TouchableWithoutFeedback>
+
+                
+                <Buttom 
+                    enabled={ dateIsValid }
+                    onPress={ () => nextStep() } 
+                >
                     <ButtomText>PRÓXIMO</ButtomText>
                 </Buttom>
 
@@ -116,3 +195,5 @@ export const CardAddDate = props => {
     )
 
 }
+
+export const CardAddDate = withNavigation(CardAddDateComponent)

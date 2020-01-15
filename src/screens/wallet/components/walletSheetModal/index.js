@@ -51,16 +51,15 @@ export const WalletSheetModalComponent = props => {
 
     return ( 
     
-        <SheetModal children={ () => (
-
+        <SheetModal >
+            
             <Card> 
 
                 { renderModalByType() }
-                
+
             </Card>
 
-
-        ) } /> 
+        </SheetModal> 
     )
 }
 

@@ -120,7 +120,7 @@ const SheetModalComponent = props => {
                     }
 
                     <SafeAreaView>
-                        { children() }
+                        { children }
                     </SafeAreaView>
                 </Card>
 

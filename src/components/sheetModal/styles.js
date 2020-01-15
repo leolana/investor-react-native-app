@@ -15,7 +15,7 @@ const { width, height } = Dimensions.get('window')
  
 export const Backdrop = styled.View`
     width: ${width};
-    height: ${height};
+    height: ${height + height};
     background: ${black};
     opacity: 0.55;
 `

@@ -23,9 +23,20 @@ export const formatMoney = value => {
     if(value === null || value === undefined) return 
 
     value = parseFloat(value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+
+    value = value.split('.')
+
+    const cents = value[1]
+
+    value = value[0].replace(',', '.')
     
-    return `R$ ${value}`
+    return `R$ ${value},${cents}`
       
+}
+
+export const formatBankAccountType = type => {
+
+    return type == 2 ? "Conta Poupança" : "Conta Corrente"
 }
 
 export const formatLoanType = type => {
@@ -41,6 +52,8 @@ export const formatLoanType = type => {
 }
 
 export const formatDate = (date, mask = 'dd/MM/yyyy') => {
+
+    if(date === undefined || date === null || String(date).length === 0) return 
 
     date = new Date(date)
 

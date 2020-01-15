@@ -36,6 +36,8 @@ export const WalletFooterComponent = props => {
 
         const list = walletData.Operacoes
 
+        if(list === undefined) return 
+
         setOperacoes(list.splice(list.lenght, 4))
 
 

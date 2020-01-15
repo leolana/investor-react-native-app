@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
     TextInput,
@@ -23,15 +23,35 @@ import {
 
 } from 'react-native'
 
+import {
+    formatMoney,
+    formatBankAccountType
+} from '../../../../utils'
+
 export const CardAddValue = props => {
 
     // Props 
 
-    const { index, onPress } = props
+    const { 
+        index, 
+        onPress, 
+        data 
+        
+    } = props
 
     // State
 
     const [ opacity ] = useState( new Animated.Value(1) )
+
+    const [ transferValue, setTransferValue ] = useState(0)
+
+    const [ transferValueIsValid, setTransferValueIsValid ] = useState(false)
+
+    const [ bankName, setBankName ] = useState('')
+
+    const [ accountType, setAccountType ] = useState('')
+
+    const [ accountNumber, setAccountNumber ] = useState('')
 
     const [ translate ] = useState({
         title: new Animated.Value(1),
@@ -42,6 +62,27 @@ export const CardAddValue = props => {
     })
 
     // Methods
+
+    const validateInput = inputValue => {
+
+
+        if(data.walletFunds === null || data.walletFunds === undefined) setTransferValueIsValid(false)
+
+        else if(inputValue === null || inputValue === undefined) setTransferValueIsValid(false)
+
+        else if(inputValue >= 100 && inputValue <= data.walletFunds) setTransferValueIsValid(true)
+
+        else setTransferValueIsValid(false)
+    }
+
+    const nextStep = () => {
+
+        if(!transferValueIsValid) return 
+
+        if(props.getInsertedValue !== undefined) props.getInsertedValue(transferValue)
+
+        startAnimation()
+    }
 
     opacity.addListener( ({value}) => {
 
@@ -75,6 +116,25 @@ export const CardAddValue = props => {
         ]
     })
 
+    // Effects 
+
+    useEffect( () => {
+
+        if(data.bankData === null) return 
+
+        setBankName(data.bankData.formattedCodigoBanco)
+
+
+        const type = formatBankAccountType(data.bankData.TipoConta)
+
+        setAccountType(type)
+
+        const number = data.bankData.Conta
+
+        setAccountNumber(number)
+
+    }, [data.bankData])
+
 
     // Render
 
@@ -88,10 +148,21 @@ export const CardAddValue = props => {
 
                 <TextInput
                     mask={ 'currency' } 
-                    onValueChange={ data => console.log(data) } 
+                    onValueChange={ ({unMasked}) => {
+                
+                            setTransferValue(unMasked)
+
+                            validateInput(unMasked)
+
+
+                        } 
+                    } 
                     keyboardType={'numeric'}
                 />
-                <Buttom onPress={ () => startAnimation() } >
+                <Buttom 
+                    enabled={ transferValueIsValid }
+                    onPress={ () => nextStep() } 
+                >
                     <ButtomText>PRÓXIMO</ButtomText>
                 </Buttom>
 
@@ -99,8 +170,8 @@ export const CardAddValue = props => {
             
             <Animated.View style={ setAnimatedStyle('info') }>
                 <InfoTitle>Valor mínimo para transferência: <InfoText>R$ 100,00</InfoText></InfoTitle>
-                <InfoTitle>Saldo disponível para transferência: <InfoText>R$ 100,00</InfoText></InfoTitle>
-                <InfoTitle>Custo de TED: <InfoText>R$ 100,00</InfoText></InfoTitle>
+                <InfoTitle>Saldo disponível para transferência: <InfoText>{formatMoney(data.walletFunds)}</InfoText></InfoTitle>
+                <InfoTitle>Custo de TED: <InfoText>R$ 0,00</InfoText></InfoTitle>
 
             </Animated.View>
 
@@ -110,17 +181,17 @@ export const CardAddValue = props => {
                 <Divisor />
 
                 <ItemTitle>Nome do banco</ItemTitle>
-                <ItemText>Caixa Economica Federal</ItemText>
+                <ItemText>{bankName}</ItemText>
 
                 <ItemArea>
                     <View>
                         <ItemTitle>Tipo de conta</ItemTitle>
-                        <ItemText>Conta corrente</ItemText>
+                        <ItemText>{accountType}</ItemText>
                     </View>
                     
                     <View>
                         <ItemTitle>Número da conta</ItemTitle>
-                        <ItemText>00000000-00</ItemText>
+                        <ItemText>{accountNumber}</ItemText>
                     </View>
 
                 </ItemArea>

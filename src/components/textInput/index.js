@@ -4,8 +4,6 @@ import { Text, TextInput } from './styles'
 
 import { formatMoney } from '../../utils'
 
-import { Platform } from 'react-native'
-
 export const ITextInput = props => {
 
     // States
@@ -36,7 +34,7 @@ export const ITextInput = props => {
 
     const handleChange = text => {
 
-        
+
         if (props.mask == 'currency') setValue(getCurrencyMask(text))
         
         else setValue({})

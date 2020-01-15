@@ -50,7 +50,7 @@ export const UrlCarteiraEmprestimoPegar = ( investidorId, page )=> `${BASE_URL_N
 export const UrlCarteiraComprovantePegar = investidorId => `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`
 
 export const UrlCarteiraExtratoPaginado = pagina => `${BASE_URL_GO}api/v1/wallet/extrato/pagina/${pagina}`
-
+export const UrlCarteiraSaldo = `${BASE_URL_GO}api/v1/wallet/saldo`
 
 
 

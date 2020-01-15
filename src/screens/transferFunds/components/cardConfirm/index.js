@@ -19,6 +19,12 @@ import {
     Easing 
 } from 'react-native'
 
+import {
+    formatMoney,
+    formatDate,
+    formatBankAccountType
+} from '../../../../utils'
+
 import { blueTwo, redTwo } from '../../../../assets/colors'
 
 export const CardConfirm = props => {
@@ -26,9 +32,15 @@ export const CardConfirm = props => {
 
     // Props 
 
-    const { index, onPress } = props
+    const { 
+        index, 
+        onPress,
+        data
+    } = props
 
     // State
+
+    const [ ted ] = useState( 0 )
 
     const [ opacity ] = useState( new Animated.Value(0) )
 
@@ -92,33 +104,33 @@ export const CardConfirm = props => {
 
     }, [index])
 
-
-
     // Render
-
 
     return (
         <Animated.View style={ { opacity: opacity }  } >
             <Title style={ setAnimatedStyle('title') } >Confirmar transfêrencia</Title>
-            <Text style={ setAnimatedStyle('text') } >Transferir hoje</Text>
+            <Text style={ setAnimatedStyle('text') } >Transferir em {formatDate(data.dateToTransfer)}</Text>
 
             <Animated.View style={ setAnimatedStyle('content') } >
 
                 <ItemTitle>Valor solicitado</ItemTitle>
-                <ItemText>R$ 1.500,00</ItemText>
+                <ItemText>{formatMoney(data.valueToTransfer)}</ItemText>
 
                 <ItemTitle>Csuto de TED</ItemTitle>
-                <ItemText color={ redTwo }>- R$ 7,00</ItemText>
+                <ItemText color={ redTwo }>- {formatMoney(ted)}</ItemText>
 
                 <ItemTitle>Valor total da transferência</ItemTitle>
-                <ItemText color={ blueTwo }>R$ 1.493,00</ItemText>
+                <ItemText color={ blueTwo }>{formatMoney(data.valueToTransfer - ted)}</ItemText>
 
             </Animated.View >
 
             <Animated.View style={ setAnimatedStyle('info') }>
 
                 <InfoText>
-                    Transferência para o Banco: Caixa Econômico Federal Agência: 0000 - Conta Corrente: 00000-0
+                    Transferência para o Banco: {data.bankData.formattedCodigoBanco} 
+                    Agência: {data.bankData.Agencia} - 
+                    {formatBankAccountType(data.bankData.TipoConta)}: 
+                    {data.bankData.Conta}
                 </InfoText>
 
             </Animated.View>

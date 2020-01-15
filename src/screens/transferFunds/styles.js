@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 import {
     white,
+    greenTwo,
     grey66,
     greyF7,
     grey99,
@@ -22,10 +23,9 @@ import {
     Platform,
     Animated,
     Dimensions,
-    ScrollView,
 } from 'react-native'
 
-const { width } = Dimensions.get('screen')
+const { width, height } = Dimensions.get('screen')
 
 export const TextInput = styled(ITextInput)`
     width: ${width - 64}px;
@@ -35,7 +35,13 @@ export const TextInput = styled(ITextInput)`
 export const Buttom = styled.TouchableOpacity`
     width: ${width - 64}px;
     height: 40px;
-    background: ${grey99};
+    background: ${props => {
+
+        if(props.enabled) return greenTwo
+
+        return grey99
+
+    }};
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -74,7 +80,7 @@ export const Header = styled(LinearGradient)`
 export const HeaderTitle = styled.Text`
     font-size: 12px;
     font-family: HelveticaNeue;
-    color: ${white}
+    color: ${white};
     text-align: center;
 `
 
@@ -85,8 +91,9 @@ export const HeaderText = styled.Text`
     text-align: center;
 `
 
-export const CardPage = styled(ScrollView)`
+export const CardPage = styled.ScrollView`
     background: ${white};
+    height: ${height};
     border-radius: 5px;
     margin: 0 16px;
     padding: 32px 16px;

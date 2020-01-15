@@ -18,6 +18,8 @@ import { WalletHistoric } from '../../screens/walletHistoric'
 
 import { TransferFunds } from '../../screens/transferFunds'
 
+import { DatePickerModal } from '../../screens/datePicker'
+
 import { tealish, white } from '../../assets/colors'
 
 import React from 'react'
@@ -101,6 +103,12 @@ export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
         WalletSheetModal,
+        DatePickerModal: {
+            screen: DatePickerModal,
+            navigationOptions: {
+                gestureResponseDistance: { vertical: 0 }
+            }
+        },
         
     },
     {

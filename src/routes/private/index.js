@@ -14,15 +14,20 @@ import { Profile } from '../../screens/profile'
 
 import { Wallet, WalletSheetModal } from '../../screens/wallet'
 
+import { WalletReceipt } from '../../screens/walletReceipt'
+
 import { WalletHistoric } from '../../screens/walletHistoric'
 
 import { TransferFunds } from '../../screens/transferFunds'
+
+import { TransferFundsConfirmation } from '../../screens/trasferFundsConfirmation'
 
 import { DatePickerModal } from '../../screens/datePicker'
 
 import { tealish, white } from '../../assets/colors'
 
 import React from 'react'
+
 import { ToolbarCloseButtom } from '../../components'
 
 
@@ -49,35 +54,36 @@ export const ScreenRoutes = createStackNavigator(
         Statistics,
         Profile,
         Wallet,
+        WalletReceipt,
         WalletHistoric,
         TransferFunds,
     },
     mainConfig
 )
 
-// export const PopupRoutes = createStackNavigator(
-//     {
-        
-//     },
-//     {
-//         mode: 'modal',  
-//         defaultNavigationOptions: ({navigation}) => (
-//             {
-//                 headerLeft: null,
-//                 headerRight: (<ToolbarCloseButtom navigation={navigation} />),
-//                 headerTintColor: white,
-//                 headerStyle: {
-//                     backgroundColor: tealish,
-//                 },
-//                 headerTitleStyle: { 
-//                     color: white,
-//                     fontFamily: 'Montserrat-Regular'
-//                 }
+export const PopupRoutes = createStackNavigator(
+    {
+        TransferFundsConfirmation,
+    },
+    {
+        mode: 'modal',  
+        defaultNavigationOptions: ({navigation}) => (
+            {
+                headerLeft: null,
+                headerRight: (<ToolbarCloseButtom navigation={navigation} />),
+                headerTintColor: white,
+                headerStyle: {
+                    backgroundColor: tealish,
+                },
+                headerTitleStyle: { 
+                    color: white,
+                    fontFamily: 'Montserrat-Regular'
+                }
                 
-//             }
-//         )
-//     }
-// )
+            }
+        )
+    }
+)
 
 const translateAnim = (props) => {
     const { 
@@ -96,13 +102,14 @@ const translateAnim = (props) => {
     })
   
     return { transform: [{ translateX }, { translateY }] }
-  }
+}
 
 
 export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
         WalletSheetModal,
+        PopupRoutes,
         DatePickerModal: {
             screen: DatePickerModal,
             navigationOptions: {

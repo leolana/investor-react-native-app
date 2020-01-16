@@ -28,7 +28,7 @@ import {
     formatBankAccountType
 } from '../../../../utils'
 
-export const CardAddValue = props => {
+export const cardAddBalanceToTransfer = props => {
 
     // Props 
 
@@ -43,9 +43,9 @@ export const CardAddValue = props => {
 
     const [ opacity ] = useState( new Animated.Value(1) )
 
-    const [ transferValue, setTransferValue ] = useState(0)
+    const [ balanceToTransfer, setBalanceToTransfer ] = useState(0)
 
-    const [ transferValueIsValid, setTransferValueIsValid ] = useState(false)
+    const [ balanceToTransferIsValid, setBalanceToTransferIsValid ] = useState(false)
 
     const [ bankName, setBankName ] = useState('')
 
@@ -66,20 +66,20 @@ export const CardAddValue = props => {
     const validateInput = inputValue => {
 
 
-        if(data.walletFunds === null || data.walletFunds === undefined) setTransferValueIsValid(false)
+        if(data.walletBalance === null || data.walletBalance === undefined) setBalanceToTransferIsValid(false)
 
-        else if(inputValue === null || inputValue === undefined) setTransferValueIsValid(false)
+        else if(inputValue === null || inputValue === undefined) setBalanceToTransferIsValid(false)
 
-        else if(inputValue >= 100 && inputValue <= data.walletFunds) setTransferValueIsValid(true)
+        else if(inputValue >= 100 && inputValue <= data.walletBalance) setBalanceToTransferIsValid(true)
 
-        else setTransferValueIsValid(false)
+        else setBalanceToTransferIsValid(false)
     }
 
     const nextStep = () => {
 
-        if(!transferValueIsValid) return 
+        if(!balanceToTransferIsValid) return 
 
-        if(props.getInsertedValue !== undefined) props.getInsertedValue(transferValue)
+        if(props.getInsertedValue !== undefined) props.getInsertedValue(balanceToTransfer)
 
         startAnimation()
     }
@@ -150,7 +150,7 @@ export const CardAddValue = props => {
                     mask={ 'currency' } 
                     onValueChange={ ({unMasked}) => {
                 
-                            setTransferValue(unMasked)
+                            setBalanceToTransfer(unMasked)
 
                             validateInput(unMasked)
 
@@ -160,7 +160,7 @@ export const CardAddValue = props => {
                     keyboardType={'numeric'}
                 />
                 <Buttom 
-                    enabled={ transferValueIsValid }
+                    enabled={ balanceToTransferIsValid }
                     onPress={ () => nextStep() } 
                 >
                     <ButtomText>PRÓXIMO</ButtomText>
@@ -170,7 +170,7 @@ export const CardAddValue = props => {
             
             <Animated.View style={ setAnimatedStyle('info') }>
                 <InfoTitle>Valor mínimo para transferência: <InfoText>R$ 100,00</InfoText></InfoTitle>
-                <InfoTitle>Saldo disponível para transferência: <InfoText>{formatMoney(data.walletFunds)}</InfoText></InfoTitle>
+                <InfoTitle>Saldo disponível para transferência: <InfoText>{formatMoney(data.walletBalance)}</InfoText></InfoTitle>
                 <InfoTitle>Custo de TED: <InfoText>R$ 0,00</InfoText></InfoTitle>
 
             </Animated.View>

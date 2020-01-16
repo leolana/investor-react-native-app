@@ -196,4 +196,4 @@ export const CardAddDateComponent = props => {
 
 }
 
-export const CardAddDate = withNavigation(CardAddDateComponent)
+export const CardAddDateToTransfer = withNavigation(CardAddDateComponent)

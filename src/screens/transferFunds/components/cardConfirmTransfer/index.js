@@ -25,9 +25,13 @@ import {
     formatBankAccountType
 } from '../../../../utils'
 
+import {
+    withNavigation
+} from 'react-navigation'
+
 import { blueTwo, redTwo } from '../../../../assets/colors'
 
-export const CardConfirm = props => {
+export const CardConfirmComponent = props => {
 
 
     // Props 
@@ -35,7 +39,8 @@ export const CardConfirm = props => {
     const { 
         index, 
         onPress,
-        data
+        data,
+        navigation
     } = props
 
     // State
@@ -137,11 +142,11 @@ export const CardConfirm = props => {
 
             <Animated.View style={ setAnimatedStyle('input') } >
 
-                <Buttom onPress={ () => {} } >
+                <Buttom onPress={ () => { navigation.navigate('TransferFundsConfirmation', { transferData: data } ) } } >
                     <ButtomText>SIM, TRANSFERIR</ButtomText>
                 </Buttom>
 
-                <Buttom background="transparent" onPress={ () => {} } >
+                <Buttom background="transparent" onPress={ () => navigation.goBack() } >
                     <InfoText>CANCELAR</InfoText>
                 </Buttom>
 
@@ -151,3 +156,5 @@ export const CardConfirm = props => {
     )
 
 }
+
+export const CardConfirmTransfer = withNavigation(CardConfirmComponent)

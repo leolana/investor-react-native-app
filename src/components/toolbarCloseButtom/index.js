@@ -8,10 +8,7 @@ import { IconClose } from '../../assets/icons'
 import { TouchableOpacity } from './styles'
 
 
-export const ToolbarCloseButtom = ({ navigation }) => {
-
-
-    console.log(navigation)
+export const ToolbarCloseButtom = ({ navigation }) => { 
 
     // Render
 

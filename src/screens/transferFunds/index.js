@@ -21,9 +21,10 @@ import {
 } from './styles'
 
 import {
-    CardAddValue,
-    CardAddDate,
-    CardConfirm,
+    CardAddBalanceToTransfer,
+    CardAddDateToTransfer,
+    CardConfirmTransfer,
+    Loading
 } from './components'
 
 import {
@@ -37,19 +38,23 @@ import {
     formatMoney
 } from '../../utils'
 
-export const TransferFundsPopup = props => {
+export const TransferFundsPage = props => {
 
     // State
 
     const [ index, setIndex ] = useState(0)
 
-    const [ walletFunds, setWalletFunds ] = useState(0)
+    const [ walletBalance, setWalletBalance ] = useState(0)
 
     const [ bankData, setBankData ] = useState(null)
 
-    const [ valueToTransfer, setValueToTransfer ] = useState(null)
+    const [ balanceToTransfer, setBalanceToTransfer ] = useState(null)
 
     const [ dateToTransfer, setDateToTransfer ] = useState(null)
+
+    const [ investorId, setInvestorId ] = useState(null)
+
+    const [ loading, setLoading ] = useState(true)
 
     const userData = useSelector( ({userData}) => userData )
 
@@ -61,7 +66,7 @@ export const TransferFundsPopup = props => {
 
         if(resp.status === 200) {
 
-            setWalletFunds(resp.data.Saldo)
+            setWalletBalance(resp.data.Saldo)
 
         }
 
@@ -70,6 +75,7 @@ export const TransferFundsPopup = props => {
 
     const getBankData = async () => {
 
+
         const resp = await Request.GET( { url: UrlInvPegar(userData.Email), header: 'bearer' } )
 
         if(resp.status === 200) {
@@ -77,6 +83,7 @@ export const TransferFundsPopup = props => {
             if(resp.data.DadosBancarios !== undefined && resp.data.DadosBancarios !== null) {
 
                 setBankData(resp.data.DadosBancarios)
+                setInvestorId(resp.data._id)
             }
 
         }
@@ -101,19 +108,19 @@ export const TransferFundsPopup = props => {
 
     }
 
-    const renderCard = () => {
+    const handleCard = () => {
 
         if(index === 0 ) return (
-            <CardAddValue 
-                data={ { bankData, walletFunds } } 
+            <CardAddBalanceToTransfer 
+                data={ { bankData, walletBalance } } 
                 onPress={ () => setIndex(1) } 
-                getInsertedValue={ value => setValueToTransfer(value) }
+                getInsertedValue={ value => setBalanceToTransfer(value) }
                 index={ index } 
             /> 
         )
 
         else if(index === 1) return (
-            <CardAddDate 
+            <CardAddDateToTransfer 
                 onPress={ () => setIndex(2) } 
                 getInsertedValue={ value => setDateToTransfer(value) }
                 index={ index } 
@@ -121,8 +128,8 @@ export const TransferFundsPopup = props => {
         )
 
         else if(index === 2) return (
-            <CardConfirm 
-                data={ { bankData, valueToTransfer, dateToTransfer } } 
+            <CardConfirmTransfer 
+                data={ { bankData, balanceToTransfer, dateToTransfer, investorId } } 
                 onPress={ () => setIndex(1) } 
                 index={ index }
             />
@@ -131,7 +138,22 @@ export const TransferFundsPopup = props => {
 
     }
 
+
     // Effects
+
+    useEffect( () => {
+
+        async function fetchData() {
+
+            await getWalletFunds()
+            await getBankData()
+
+        }
+
+        fetchData()
+
+
+    }, []) 
 
     useEffect( () => {
 
@@ -150,51 +172,46 @@ export const TransferFundsPopup = props => {
 
     useEffect( () => {
 
-        async function fetchData() {
+        if(bankData !== null && walletBalance !== null) setLoading(false)
 
-            await getWalletFunds()
-            await getBankData()
-
-        }
-
-        fetchData()
-
-
-    }, []) 
+    }, [bankData, walletBalance]) 
 
 
     // Render
 
 
     return(
-        <SafeAreaView> 
+    
+        <Loading loading={ loading }> 
 
-            <Header colors={ [ tealish, greenishBlue ] }>
+            <SafeAreaView> 
 
-                <HeaderTitle>Valor disponível para saque</HeaderTitle>
-                <HeaderText>{formatMoney(walletFunds)}</HeaderText>
+                <Header colors={ [ tealish, greenishBlue ] }>
 
-
-            </Header>
-
-            <CardPage>
-
-                <IconAddFundsStyled />
-
-                {renderCard()}
-
-            </CardPage>
+                    <HeaderTitle>Valor disponível para saque</HeaderTitle>
+                    <HeaderText>{formatMoney(walletBalance)}</HeaderText>
 
 
+                </Header>
 
-        </SafeAreaView>
+                <CardPage>
+
+                    <IconAddFundsStyled />
+
+                    { handleCard() }
+
+                </CardPage>
+
+            </SafeAreaView>
+
+        </Loading>
     )
 
 }
 
 
 export const TransferFunds = {
-    screen: TransferFundsPopup,
+    screen: TransferFundsPage,
     navigationOptions: {
         headerTitle: "TRANSFERIR",
     }

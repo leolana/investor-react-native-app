@@ -27,6 +27,8 @@ export const green = '#129B00'
 export const greenTwo = '#40CD28'
 export const blue = '#007BFF'
 export const blueTwo = '#0031FF'
+export const skeletonBone = '#E1E9EE'
+export const skeletonHighlight = '#F2F8FC'
 
 
 // $white: #fff; // Branco

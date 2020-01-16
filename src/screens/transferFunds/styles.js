@@ -92,6 +92,7 @@ export const HeaderText = styled.Text`
 `
 
 export const CardPage = styled.ScrollView`
+    width: ${width - 32}px
     background: ${white};
     height: ${height};
     border-radius: 5px;

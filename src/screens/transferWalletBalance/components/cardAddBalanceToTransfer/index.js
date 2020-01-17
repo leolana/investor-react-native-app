@@ -28,7 +28,7 @@ import {
     formatBankAccountType
 } from '../../../../utils'
 
-export const cardAddBalanceToTransfer = props => {
+export const CardAddBalanceToTransfer = props => {
 
     // Props 
 

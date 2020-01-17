@@ -186,7 +186,6 @@ android {
 }
 
 dependencies {
-    implementation project(':lottie-react-native')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-linear-gradient')

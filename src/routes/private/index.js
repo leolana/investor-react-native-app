@@ -18,9 +18,9 @@ import { WalletReceipt } from '../../screens/walletReceipt'
 
 import { WalletHistoric } from '../../screens/walletHistoric'
 
-import { TransferFunds } from '../../screens/transferFunds'
+import { TransferWalletBalance } from '../../screens/transferWalletBalance'
 
-import { TransferFundsConfirmation } from '../../screens/trasferFundsConfirmation'
+import { TransferWalletBalanceConfirmation } from '../../screens/transferWalletBalanceConfirmation'
 
 import { DatePickerModal } from '../../screens/datePicker'
 
@@ -56,14 +56,14 @@ export const ScreenRoutes = createStackNavigator(
         Wallet,
         WalletReceipt,
         WalletHistoric,
-        TransferFunds,
+        TransferWalletBalance,
     },
     mainConfig
 )
 
 export const PopupRoutes = createStackNavigator(
     {
-        TransferFundsConfirmation,
+        TransferWalletBalanceConfirmation,
     },
     {
         mode: 'modal',  

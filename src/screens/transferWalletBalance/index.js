@@ -38,7 +38,7 @@ import {
     formatMoney
 } from '../../utils'
 
-export const TransferFundsPage = props => {
+export const TransferWalletBalancePage = props => {
 
     // State
 
@@ -210,8 +210,8 @@ export const TransferFundsPage = props => {
 }
 
 
-export const TransferFunds = {
-    screen: TransferFundsPage,
+export const TransferWalletBalance = {
+    screen: TransferWalletBalancePage,
     navigationOptions: {
         headerTitle: "TRANSFERIR",
     }

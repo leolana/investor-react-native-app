@@ -24,7 +24,7 @@ export const WalletBodyComponent = props => (
         </Button>
 
 
-        <Button onPress={ () => props.navigation.navigate('TransferFunds') } >
+        <Button onPress={ () => props.navigation.navigate('TransferWalletBalance') } >
 
             <Text> TRANSFERIR PARA MINHA CONTA </Text>
 

@@ -142,7 +142,7 @@ export const CardConfirmComponent = props => {
 
             <Animated.View style={ setAnimatedStyle('input') } >
 
-                <Buttom onPress={ () => { navigation.navigate('TransferFundsConfirmation', { transferData: data } ) } } >
+                <Buttom onPress={ () => { navigation.navigate('TransferWalletBalanceConfirmation', { transferData: data } ) } } >
                     <ButtomText>SIM, TRANSFERIR</ButtomText>
                 </Buttom>
 

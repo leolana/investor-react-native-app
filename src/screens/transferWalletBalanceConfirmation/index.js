@@ -21,7 +21,7 @@ import {
     UrlCarteiraEnviarTransferencia
 } from '../../services'
 
-export const TransferFundsConfirmationPopup = props => {
+export const TransferWalletBalanceConfirmationPopup = props => {
 
     // Props
 
@@ -127,8 +127,8 @@ export const TransferFundsConfirmationPopup = props => {
 
 }
 
-export const TransferFundsConfirmation = {
-    screen: TransferFundsConfirmationPopup,
+export const TransferWalletBalanceConfirmation = {
+    screen: TransferWalletBalanceConfirmationPopup,
     navigationOptions: {
         headerTitle: "INFORME SUA SENHA"
     }

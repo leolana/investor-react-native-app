@@ -13,12 +13,14 @@ export const Card = styled.View`
     align-items: center;
     margin: 16px;
     margin-bottom: 0;
-    padding: 10px;
+    height: 120px;
+    padding: 16px;
 
 `
 
 export const ContentArea = styled.View`
-    width: 260px;
+    flex: 1;
+    padding-left: 16px;
 `
 
 

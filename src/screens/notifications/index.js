@@ -112,13 +112,10 @@ export const PageNotifications = props => {
             />
 
             <ContentArea>
-                <Title> { data.item.Titulo } </Title>
-                <Text> 
-                    { data.item.Descricao } 
+                <Title>{data.item.Titulo}</Title>
+                <Text>{data.item.Descricao}</Text>
 
-                    <Text color={ grey99 } > { formatDateNotification(data) } </Text>
-                
-                </Text>
+                <Text color={ grey99 } >{formatDateNotification(data)}</Text>
                 
             </ContentArea>
 

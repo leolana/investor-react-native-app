@@ -12,7 +12,7 @@ import {
 export const WalletBodyComponent = props => (
     <ButtonsArea>
 
-        <Button onPress={ () => {} } >
+        <Button onPress={ () => props.navigation.navigate('Opportunities') } >
 
             <>
 

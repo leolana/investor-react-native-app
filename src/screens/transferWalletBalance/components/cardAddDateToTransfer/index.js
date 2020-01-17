@@ -118,7 +118,7 @@ export const CardAddDateComponent = props => {
 
     const showDialog = () => {
 
-        if(Platform.OS === 'ios') props.navigation.navigate('DatePickerModal', { onDateChanged, date })
+        if(Platform.OS === 'ios') props.navigation.navigate('DatePicker', { onDateChanged, date })
 
         else showDialogOnAndroid()
 

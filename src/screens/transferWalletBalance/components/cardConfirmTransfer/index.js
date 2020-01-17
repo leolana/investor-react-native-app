@@ -119,13 +119,13 @@ export const CardConfirmComponent = props => {
             <Animated.View style={ setAnimatedStyle('content') } >
 
                 <ItemTitle>Valor solicitado</ItemTitle>
-                <ItemText>{formatMoney(data.valueToTransfer)}</ItemText>
+                <ItemText>{formatMoney(data.balanceToTransfer)}</ItemText>
 
                 <ItemTitle>Csuto de TED</ItemTitle>
                 <ItemText color={ redTwo }>- {formatMoney(ted)}</ItemText>
 
                 <ItemTitle>Valor total da transferência</ItemTitle>
-                <ItemText color={ blueTwo }>{formatMoney(data.valueToTransfer - ted)}</ItemText>
+                <ItemText color={ blueTwo }>{formatMoney(data.balanceToTransfer - ted)}</ItemText>
 
             </Animated.View >
 

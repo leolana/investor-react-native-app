@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import {
-    DatePicker,
+    DatePickerStyled,
     Text,
     Button,
 } from './styles'
@@ -12,7 +12,7 @@ import {
 
 import { withNavigation } from 'react-navigation'
 
-export const DatePickerModalComponent = props => {
+export const DatePickerModal = props => {
 
 
     const onDateChanged = props.navigation.getParam('onDateChanged', () => {})
@@ -26,7 +26,7 @@ export const DatePickerModalComponent = props => {
                 <Text>Pronto</Text>
             </Button>
 
-            <DatePicker 
+            <DatePickerStyled
                 mode="date"
                 date={ date }
                 onDateChange={ selectedDate => onDateChanged(selectedDate) }
@@ -42,4 +42,9 @@ export const DatePickerModalComponent = props => {
     )
 }
 
-export const DatePickerModal = withNavigation(DatePickerModalComponent)
+export const DatePicker = {
+    screen: withNavigation(DatePickerModal),
+    navigationOptions: {
+        gestureResponseDistance: { vertical: 0 }
+    }
+}

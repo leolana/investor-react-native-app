@@ -99,7 +99,7 @@ export const Text = styled.Text`
 
 export const ViewList = styled.View`
     width: ${drawerWidth};
-    padding: 20px;
+    padding: 20px 32px;
 
 `
 

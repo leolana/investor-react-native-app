@@ -74,9 +74,9 @@ export const TransferWalletBalanceConfirmationPopup = props => {
 
         if(resp.status === 200) {
 
-            alert('Transferência efetuada com sucesso')
-
             navigation.navigate('Wallet')
+
+            navigation.navigate('TransferWalletBalanceSuccess')
         }
 
         else {

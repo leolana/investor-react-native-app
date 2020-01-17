@@ -9,7 +9,7 @@ import {
 } from '../../assets/colors'
 
 
-export const DatePicker = styled(DatePickerIOS)`
+export const DatePickerStyled = styled(DatePickerIOS)`
     margin: 10px;
 
 `

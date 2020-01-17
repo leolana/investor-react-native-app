@@ -22,7 +22,9 @@ import { TransferWalletBalance } from '../../screens/transferWalletBalance'
 
 import { TransferWalletBalanceConfirmation } from '../../screens/transferWalletBalanceConfirmation'
 
-import { DatePickerModal } from '../../screens/datePicker'
+import { TransferWalletBalanceSuccess } from '../../screens/transferWalletBalanceSuccess'
+
+import { DatePicker } from '../../screens/datePicker'
 
 import { tealish, white } from '../../assets/colors'
 
@@ -110,12 +112,8 @@ export const PrivateRoutes = createStackNavigator(
         ScreenRoutes,
         WalletSheetModal,
         PopupRoutes,
-        DatePickerModal: {
-            screen: DatePickerModal,
-            navigationOptions: {
-                gestureResponseDistance: { vertical: 0 }
-            }
-        },
+        DatePicker,
+        TransferWalletBalanceSuccess,
         
     },
     {

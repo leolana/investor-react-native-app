@@ -29,7 +29,10 @@ export const blue = '#007BFF'
 export const blueTwo = '#0031FF'
 export const skeletonBone = '#E1E9EE'
 export const skeletonHighlight = '#F2F8FC'
-
+export const receiptColor = '#FFF8D0'
+export const receiptBorderColor = '#C8C177'
+export const receiptLogoColor = '#7C712A'
+export const receiptTextColor = '#988A36'
 
 // $white: #fff; // Branco
 // $black: #000; // Preto

@@ -20,8 +20,12 @@ import {
     IconPrinterStyled
 } from '../../styles'
 
+import {
+    withNavigation
+} from 'react-navigation'
 
-export const ModalPaymant = props => {
+
+export const ModalPaymantComponent = props => {
 
     // Props
 
@@ -82,7 +86,7 @@ export const ModalPaymant = props => {
                 <Text>{ formatMoney( data.Valor ) }</Text>
             </Area>
 
-            <Button>
+            <Button onPress={ () => props.navigation.navigate('WalletReceipt', { id: data.id }) }>
                 <IconPrinterStyled width={ 24 } height={ 24 } stroke={ black } fill={'none'} />
                 <Text>Visualizar detalhes</Text>
 
@@ -93,3 +97,6 @@ export const ModalPaymant = props => {
 
     )
 }
+
+
+export const ModalPaymant = withNavigation(ModalPaymantComponent)

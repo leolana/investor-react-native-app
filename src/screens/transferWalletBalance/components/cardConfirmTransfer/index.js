@@ -121,7 +121,7 @@ export const CardConfirmComponent = props => {
                 <ItemTitle>Valor solicitado</ItemTitle>
                 <ItemText>{formatMoney(data.balanceToTransfer)}</ItemText>
 
-                <ItemTitle>Csuto de TED</ItemTitle>
+                <ItemTitle>Custo de TED</ItemTitle>
                 <ItemText color={ redTwo }>- {formatMoney(ted)}</ItemText>
 
                 <ItemTitle>Valor total da transferência</ItemTitle>

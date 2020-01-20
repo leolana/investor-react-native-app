@@ -115,7 +115,7 @@ export const DrawerNavigator = props => {
         const obj = {
             'Notification': renderIconBell(),
             'Opportunitie': (<IconBriefcase fill={ white } width={ 24 } height={ 24 } />),
-            'Wallet': (<IconWallet fill={ white } width={ 24 } height={ 24 } />),
+            'Wallet': (<IconWallet stroke={ white } width={ 24 } height={ 24 } />),
             'History': (<IconOfficeArchive fill={ white } width={ 24 } height={ 24 } />),
             'Calculator': (<IconCalculator fill={ white } width={ 24 } height={ 24 } />),
             'Statistics': (<IconPieChart fill={ white } width={ 24 } height={ 24 } />),
@@ -179,12 +179,9 @@ export const DrawerNavigator = props => {
             <View colors={[dusk, twilight]} > 
                 <ViewList>
                     {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
-                    {renderNavigationItem(getIcon('Opportunitie'), 'Oportunidades', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Wallet'), 'Carteira virtual', 'Wallet')}
                     {renderNavigationItem(getIcon('History'), 'Meu histórico', 'History')}
                     {renderNavigationItem(getIcon('Statistics'), 'Estatísticas', 'Statistics')}
                     {renderNavigationItem(getIcon('Calculator'), 'Calculadora', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Profile'), 'Meu perfil', 'Profile')}
                     {renderNavigationItem(getIcon('Contact'), 'Atendimento', null)}
                 </ViewList>
             </View>

@@ -19,6 +19,7 @@ import Printer from './ico-printer.svg'
 import Close from './ico-close.svg'
 import AddFunds from './ico-add-funds.svg'
 import CheckAll from './ico-check-all.svg'
+import MoreCirlces from './ico-more-circles-horizontal.svg'
 
 
 
@@ -43,3 +44,4 @@ export const IconPrinter = Printer
 export const IconClose = Close
 export const IconAddFunds = AddFunds
 export const IconCheckAll = CheckAll
+export const IconMoreCirlces = MoreCirlces

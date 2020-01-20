@@ -14,8 +14,6 @@ import {
 
 const screenWidth = Dimensions.get('window').width
 
-const drawerWidth = screenWidth - (screenWidth / 4)
-
 import {
     IconBack,
     IconMenu
@@ -70,7 +68,6 @@ export const HeaderContent = styled.View`
 
 export const View = styled(LinearGradient)`
     flex: 1;
-    align-items: center;
     padding-top: 20px;
 
 `
@@ -98,8 +95,7 @@ export const Text = styled.Text`
 `
 
 export const ViewList = styled.View`
-    width: ${drawerWidth};
-    padding: 20px 32px;
+    margin: 0 16px;
 
 `
 

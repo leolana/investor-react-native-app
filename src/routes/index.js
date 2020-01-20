@@ -2,22 +2,39 @@
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createDrawerNavigator } from 'react-navigation-drawer'
-import { DrawerNavigator } from  '../components'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
+
+import { DrawerNavigator, BottomNavigator } from  '../components'
 
 import { PublicRoutes } from './public'
 import { PrivateRoutes } from './private'
 
+import { Dimensions } from 'react-native'
 
-const DrawerRoutes = createDrawerNavigator(
+
+const { width }  = Dimensions.get('screen')
+
+
+const TabRoutes = createBottomTabNavigator(
   {
     PrivateRoutes,
   },
   {
-      initialRouteName: 'PrivateRoutes',
-      contentComponent:  DrawerNavigator,
-      drawerPosition: 'left',
+    tabBarComponent: BottomNavigator
   }
 )
+
+const DrawerRoutes = createDrawerNavigator(
+  {
+    TabRoutes,
+  },
+  {
+    initialRouteName: 'TabRoutes',
+    contentComponent:  DrawerNavigator,
+    drawerWidth: width,
+  }
+)
+
 
 
 

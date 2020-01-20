@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="53.4" height="48.059" viewBox="0 0 53.4 48.059"><defs><style>.a{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:5px;}</style></defs><g transform="translate(-1805.3 -2024.3)"><rect class="a" width="17.931" height="10.759" transform="translate(1806 2047.414)"/><line class="a" x1="3.586" transform="translate(1816.759 2052.793)"/><g transform="translate(1811.378 2034.004)"><path class="a" d="M1812,2048.333v-9.867a3.389,3.389,0,0,1,3.332-3.423h39.959a3.389,3.389,0,0,1,3.331,3.423v30.809a3.388,3.388,0,0,1-3.331,3.423h-39.959a3.388,3.388,0,0,1-3.332-3.423v-9.867" transform="translate(-1811.999 -2035.043)"/></g><path class="a" d="M1846.5,2033.966,1826.566,2025l-6.066,8.966" transform="translate(-1.5)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="53.4" height="48.059" viewBox="0 0 53.4 48.059">
+<defs>
+<style>.a{fill:none}</style>
+</defs><g stroke-width="5" transform="translate(-1805.3 -2024.3)">
+<rect class="a" width="17.931" height="10.759" transform="translate(1806 2047.414)"/>
+<line class="a" x1="3.586" transform="translate(1816.759 2052.793)"/>
+<g stroke-width="5" transform="translate(1811.378 2034.004)">
+<path class="a" d="M1812,2048.333v-9.867a3.389,3.389,0,0,1,3.332-3.423h39.959a3.389,3.389,0,0,1,3.331,3.423v30.809a3.388,3.388,0,0,1-3.331,3.423h-39.959a3.388,3.388,0,0,1-3.332-3.423v-9.867" transform="translate(-1811.999 -2035.043)"/></g><path class="a" d="M1846.5,2033.966,1826.566,2025l-6.066,8.966" transform="translate(-1.5)"/></g></svg>

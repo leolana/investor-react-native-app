@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import {
@@ -19,6 +19,8 @@ import {
     black,
 } from '../../assets/colors'
 
+import { retrieveData } from '../../utils'
+
 import {
     Animated
 } from 'react-native'
@@ -27,17 +29,31 @@ const AnimatedTouchable = Animated.createAnimatedComponent(Touchable)
 
 export const BottomNavigator  = ({ navigation }) => {
 
-    const [ index, setIndex ] = useState('')
+    const [ index, setIndex ] = useState('Opportunities')
 
 
-    const onPressed = route => {
+    const onPressed = route => navigation.navigate(route)
 
-        setIndex(route)
+    const isOpportunities = (index === 'Opportunities')
+    const isWallet = (index === 'Wallet')
+    const isProfile = (index === 'Profile')
+    const isMore = (index === 'More')
 
-        if(route === 'menu') return navigation.openDrawer()
+    
 
-        navigation.navigate(route)
-    }
+    useEffect( () => {
+
+        async function fetchData() {
+
+            const routeName = await retrieveData('RouteName')
+
+            setIndex(routeName)
+
+        }
+
+        fetchData()
+
+    }, [navigation] )
 
 
 
@@ -46,29 +62,29 @@ export const BottomNavigator  = ({ navigation }) => {
 
             <AnimatedTouchable onPress={ () => onPressed('Opportunities') } >
                 <>
-                    <IconBriefcase fill={ index === 'Opportunities' ? black : grey99 } width={ 24 } height={ 24 } />
-                    <Text isSelected={(index === 'Opportunities')} >Oportunidades</Text>
+                    <IconBriefcase fill={ isOpportunities ? black : grey99 } width={ 24 } height={ 24 } />
+                    <Text isSelected={isOpportunities} >Oportunidades</Text>
                 </>
             </AnimatedTouchable>
 
             <AnimatedTouchable onPress={ () => onPressed('Wallet') } >
                 <>
-                    <IconWallet stroke={ index === 'Wallet' ? black : grey99 } width={ 24 } height={ 24 } />
-                    <Text isSelected={(index === 'Wallet')} >Carteira</Text>
+                    <IconWallet stroke={ isWallet ? black : grey99 } width={ 24 } height={ 24 } />
+                    <Text isSelected={isWallet} >Carteira</Text>
                 </>
             </AnimatedTouchable>
 
             <AnimatedTouchable onPress={ () => onPressed('Profile') } >
                 <>
-                    <IconProfile fill={ index === 'Profile' ? black : grey99 } width={ 24 } height={ 24 } />
-                    <Text isSelected={(index === 'Profile')} >Perfil</Text>
+                    <IconProfile fill={ isProfile ? black : grey99 } width={ 24 } height={ 24 } />
+                    <Text isSelected={isProfile} >Perfil</Text>
                 </>
             </AnimatedTouchable>
 
-            <AnimatedTouchable onPress={ () => onPressed('menu') } >
+            <AnimatedTouchable onPress={ () => onPressed('More') } >
                 <>
-                    <IconMoreCirlces fill={ grey99 } width={ 24 } height={ 24 } />
-                    <Text >Mais</Text>
+                    <IconMoreCirlces fill={ isMore ? black : grey99 } width={ 24 } height={ 24 } />
+                    <Text isSelected={isMore} >Mais</Text>
                 </>
             </AnimatedTouchable>
 

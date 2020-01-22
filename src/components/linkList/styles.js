@@ -20,7 +20,7 @@ export const TouchableOpacity = styled.TouchableOpacity`
     align-items: center;
     padding: 10px 0;
     border-color: ${greyDD};
-    border-bottom-width: ${props => props.BorderBottomWidth || '1'}px;
+    border-bottom-width: ${props => props.borderBottomWidth || '1'}px;
 `
 
 export const LinkTitle = styled.Text`

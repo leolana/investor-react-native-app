@@ -9,7 +9,7 @@ import {
 
 import {
     CircleWithChild
-} from '../circle'
+} from '../../components/circle'
 
 
 const screenWidth = Dimensions.get('window').width

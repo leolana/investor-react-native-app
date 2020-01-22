@@ -26,7 +26,8 @@ export const LinkList = props => {
 
     const renderLink = (item, index) => (
         <TouchableOpacity 
-            BorderBottomWidth={ ((index === (data.length - 1)) ? '0' : '1' ) }
+            key={index} 
+            borderBottomWidth={ ((index === (data.length - 1) && data.length > 1) ? '0' : '1' ) }
             onPress={ item.onPress } 
         >
 

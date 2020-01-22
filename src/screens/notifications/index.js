@@ -6,6 +6,7 @@ import {
     ContentArea,
     Title,
     Text,
+    SafeAreaView
 } from './styles'
 
 import {
@@ -25,7 +26,8 @@ import {
 } from '../../assets/colors'
 
 import { 
-    CircleWithChild 
+    CircleWithChild,
+    Toolbar
 } from '../../components'
 
 import {
@@ -39,7 +41,6 @@ import {
 
 import {
     FlatList,
-    SafeAreaView
 } from 'react-native'
 
 import {
@@ -124,6 +125,7 @@ export const PageNotifications = props => {
 
 
     return (
+
         <SafeAreaView>
             <FlatList
                 data={notifications}

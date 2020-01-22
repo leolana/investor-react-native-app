@@ -20,6 +20,11 @@ import Close from './ico-close.svg'
 import AddFunds from './ico-add-funds.svg'
 import CheckAll from './ico-check-all.svg'
 import MoreCirlces from './ico-more-circles-horizontal.svg'
+import Video from './ico-video.svg'
+import End from './ico-end.svg'
+import Start from './ico-start.svg'
+import Photo from './ico-photo.svg'
+import Clock from './ico-clock.svg'
 
 
 
@@ -45,3 +50,8 @@ export const IconClose = Close
 export const IconAddFunds = AddFunds
 export const IconCheckAll = CheckAll
 export const IconMoreCirlces = MoreCirlces
+export const IconVideo = Video
+export const IconEnd = End
+export const IconStart = Start
+export const IconPhoto = Photo
+export const IconClock = Clock

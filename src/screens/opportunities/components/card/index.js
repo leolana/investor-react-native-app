@@ -34,10 +34,14 @@ import {
 
 import {
     CircleWithChild
-
+ 
 } from '../../../../components'
 
-export const OpportunitiesCard = props => {
+import { withNavigation } from 'react-navigation'
+
+import { TouchableWithoutFeedback } from 'react-native'
+
+export const OpportunitiesCardComponent = props => {
 
     const data = props.data.item
 
@@ -93,49 +97,58 @@ export const OpportunitiesCard = props => {
 
 
     return (
-        <Card background={ scoreColor }>
-            
-            <Header >
 
-                <Text> ID: #{ formatCode(data.IdOportunidade) } </Text>
-                <Flex5> <Text> { formatLoanType(data.TipoEmprestimo) } </Text> </Flex5>
-                <Text> { data.Prazo } Meses </Text>
+        <TouchableWithoutFeedback onPress={ () => props.navigation.navigate('Company', { data } ) } >
 
-            </Header>
+            <Card background={ scoreColor } >
+                        
+                        <Header >
 
-            <Body>
+                            <Text> ID: #{ formatCode(data.IdOportunidade) } </Text>
+                            <Flex5> <Text> { formatLoanType(data.TipoEmprestimo) } </Text> </Flex5>
+                            <Text> { data.Prazo } Meses </Text>
 
-                <CircleWithChild 
-                    background={ scoreColor } 
-                    child={ renderScore() }
-                />
+                        </Header>
 
-                <Container>
+                        <Body>
 
-                    <Title> { data.Empresa.NomeFantasia } </Title>
-                    <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
-                    <Content> Término: <Bold> { diffDaysForOpportunitie(data.FimCaptacao) } </Bold> </Content>
-                    <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
+                            <CircleWithChild 
+                                background={ scoreColor } 
+                                child={ renderScore() }
+                            />
 
-                </Container>
+                            <Container>
 
-                <Box>
+                                <Title> { data.Empresa.NomeFantasia } </Title>
+                                <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
+                                <Content> Término: <Bold> { diffDaysForOpportunitie(data.FimCaptacao) } </Bold> </Content>
+                                <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
 
-                    <Center>
-                        <Subtitle>Captação em { formatPercent(getCaptationPercent()) } </Subtitle>
-                    </Center>
-                    
-                    <Buttom 
-                        background={ getColorByStatus() } 
-                        title={ getOpportunityStatus() } 
-                        fontSize={ 11 } 
-                        height={ 25 }
-                    />
-                    
-                </Box>
+                            </Container>
 
-            </Body>
-        </Card>
+                            <Box>
+
+                                <Center>
+                                    <Subtitle>Captação em { formatPercent(getCaptationPercent()) } </Subtitle>
+                                </Center>
+                                
+                                <Buttom 
+                                    onPress={ () => props.navigation.navigate('Company', { data } ) }
+                                    background={ getColorByStatus() } 
+                                    title={ getOpportunityStatus() } 
+                                    fontSize={ 11 } 
+                                    height={ 25 }
+                                />
+                                
+                            </Box>
+
+                        </Body>
+                    </Card>
+
+        </TouchableWithoutFeedback>
         
     )
 }
+
+
+export const OpportunitiesCard = withNavigation(OpportunitiesCardComponent)

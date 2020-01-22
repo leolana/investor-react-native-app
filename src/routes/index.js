@@ -1,44 +1,27 @@
 
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { createDrawerNavigator } from 'react-navigation-drawer'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
-
-import { DrawerNavigator, BottomNavigator } from  '../components'
 
 import { PublicRoutes } from './public'
 import { PrivateRoutes } from './private'
 
-import { Dimensions } from 'react-native'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 
+import { Opportunities } from '../screens/opportunities'
 
-const { width }  = Dimensions.get('screen')
+import { BottomNavigator } from '../components'
 
-
-const TabRoutes = createBottomTabNavigator(
-  {
-    PrivateRoutes,
+const PrivateRoutesTabs = createBottomTabNavigator(
+  { 
+    Opportunities,
+    Opportunities,
+    Opportunities,
+    PrivateRoutes 
   },
-  {
-    tabBarComponent: BottomNavigator
-  }
+  { tabBarComponent: BottomNavigator }
 )
-
-const DrawerRoutes = createDrawerNavigator(
-  {
-    TabRoutes,
-  },
-  {
-    initialRouteName: 'TabRoutes',
-    contentComponent:  DrawerNavigator,
-    drawerWidth: width,
-  }
-)
-
-
-
 
 export default createAppContainer(
-  createSwitchNavigator( { PublicRoutes, DrawerRoutes },
+  createSwitchNavigator( { PublicRoutes, PrivateRoutesTabs },
   { initialRouteName: 'PublicRoutes' }
 ))

@@ -54,16 +54,7 @@ import {
 } from '../../services'
 
 
-
-export const ToggleMenu = props => {
-    return (
-        <MenuHorizontalArea onPress={ ()=> props.scene.descriptor.navigation.openDrawer() } >
-            <IconMenu width={ 20 } height={ 20 } />
-        </MenuHorizontalArea>
-    )
-}
-
-export const DrawerNavigator = props => {
+export const More = props => {
 
     const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
 

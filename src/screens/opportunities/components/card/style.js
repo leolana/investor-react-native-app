@@ -5,7 +5,7 @@ import { IButtom } from '../../../../components/buttom'
 import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
 
 
-export const Card = styled.TouchableOpacity`
+export const Card = styled.View`
     background: ${props => props.background || greyEE } ;
     border-radius: 5px;
     margin: 16px;

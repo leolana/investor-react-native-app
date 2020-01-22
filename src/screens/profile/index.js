@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
     useSelector
@@ -13,8 +13,13 @@ import {
 } from '../../assets/colors'
 
 import {
-    LinkList
+    LinkList,
+    BottomNavigator
 } from '../../components'
+
+import {
+    ScrollView
+} from 'react-native'
 
 import {
     Background,
@@ -58,35 +63,43 @@ export const PageProfile = () => {
 
     const renderLetter = () => (<Letter>{userData.Name[0]}</Letter>)
 
+
     return (
         <SafeAreaView>
 
-            <Header> 
-                <Background colors={[tealish, greenishBlue]} />
+            <ScrollView>
 
-                <CircleShadow>
-                    <Circle
-                        size={ 158 }
-                        borderSize={ 5 }
-                        borderColor={ white }
-                        background={[greenishBlue, darkDusk]} 
-                        child={renderLetter()}
-                    />
-                </CircleShadow>
-                
-            </Header>
+                <Header> 
+                    <Background colors={[tealish, greenishBlue]} />
 
-            <Name> { userData.Name } </Name>
+                    <CircleShadow>
+                        <Circle
+                            size={ 158 }
+                            borderSize={ 5 }
+                            borderColor={ white }
+                            background={[greenishBlue, darkDusk]} 
+                            child={renderLetter()}
+                        />
+                    </CircleShadow>
+                    
+                </Header>
 
-            <Email> { userData.Email } </Email>
+                <Name> { userData.Name } </Name>
 
-            <ListArea>
+                <Email> { userData.Email } </Email>
 
-                <LinkList data={links}/>
+                <ListArea>
 
-            </ListArea>
-             
+                    <LinkList data={links}/>
+
+                </ListArea>
+
+
+
+            </ScrollView>
+        
         </SafeAreaView>
+
     )
 
 
@@ -95,6 +108,6 @@ export const PageProfile = () => {
 export const Profile = {
     screen: PageProfile,
     navigationOptions: {
-        headerTitle: "PERFIL"
+        headerTitle: "PERFIL",
     }
 }

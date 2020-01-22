@@ -24,6 +24,10 @@ import { TransferWalletBalanceConfirmation } from '../../screens/transferWalletB
 
 import { TransferWalletBalanceSuccess } from '../../screens/transferWalletBalanceSuccess'
 
+import { Company } from '../../screens/company'
+
+import { More } from '../../screens/more'
+
 import { DatePicker } from '../../screens/datePicker'
 
 import { tealish, white } from '../../assets/colors'
@@ -32,40 +36,51 @@ import React from 'react'
 
 import { ToolbarCloseButtom } from '../../components'
 
-
-const mainConfig = {
-    defaultNavigationOptions: {
-    
-        headerBackTitle: 'Voltar',
-        headerTintColor: white,
-        headerStyle: {
-            backgroundColor: tealish,
-        },
-        headerTitleStyle: { 
-            color: white,
-            fontFamily: 'Montserrat-Regular'
-        }
-    },
-}
+import { storeData } from '../../utils'
 
 export const ScreenRoutes = createStackNavigator(
     {
         Opportunities,
+        Wallet,
+        Profile,
         Notifications,
         History,
         Statistics,
-        Profile,
-        Wallet,
         WalletReceipt,
         WalletHistoric,
         TransferWalletBalance,
+        Company,
+        More: {
+            screen: More,
+            navigationOptions: {
+                header: null
+            }
+        }
     },
-    mainConfig
+    {
+        defaultNavigationOptions: ({navigation}) => {
+
+            navigation.addListener('willFocus', ({state}) => storeData('RouteName', state.routeName))
+
+            return {
+        
+                headerBackTitle: 'Voltar',
+                headerTintColor: white,
+                headerStyle: {
+                    backgroundColor: tealish,
+                },
+                headerTitleStyle: { 
+                    color: white,
+                    fontFamily: 'Montserrat-Regular'
+                }
+            }
+        }
+    }
 )
 
 export const PopupRoutes = createStackNavigator(
     {
-        TransferWalletBalanceConfirmation,
+        TransferWalletBalanceConfirmation
     },
     {
         mode: 'modal',  
@@ -86,6 +101,7 @@ export const PopupRoutes = createStackNavigator(
         )
     }
 )
+
 
 const translateAnim = (props) => {
     const { 

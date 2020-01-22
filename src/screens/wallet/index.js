@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
+
 import {
-    View,
+    ScrollView,
     Header,
     SafeAreaHeader,
+    SafeAreaView,
 } from './styles'
 
 
@@ -25,15 +27,6 @@ import {
     UrlCarteiraExtratoPaginado
 
 } from '../../services'
-
-import {
-    ScrollView
-} from 'react-native'
-
-
-
-
-
 
 export const PageWallet = props => {
 
@@ -57,12 +50,14 @@ export const PageWallet = props => {
     // Effect
 
     useEffect(() => {
+
         async function fetchData() {
             await getWallet()
         }
 
         fetchData()
-    }, [] )
+        
+    }, [])
 
 
 
@@ -70,9 +65,10 @@ export const PageWallet = props => {
     // Render
 
     return (
-        <ScrollView >
+       
+        <SafeAreaView >
 
-            <View>
+            <ScrollView>
 
                 <SafeAreaHeader>
                     <Header colors={ [ tealish, greenishBlue ] }>
@@ -90,9 +86,9 @@ export const PageWallet = props => {
 
                 <WalletFooter walletData={ walletData } />
 
-            </View>
-            
-        </ScrollView>
+            </ScrollView>
+
+        </SafeAreaView>
 
 
     )
@@ -101,7 +97,8 @@ export const PageWallet = props => {
 export const Wallet = {
     screen: PageWallet,
     navigationOptions: {
-        headerTitle: "CARTEIRA"
+        headerTitle: "CARTEIRA",
+        headerLeft: null,
     }
 }
 

@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 import LinearGradient from 'react-native-linear-gradient'
 
-import { Dimensions, Animated } from 'react-native'
+import { Dimensions, Animated, Platform } from 'react-native'
 
 import {
     receiptColor,
@@ -13,8 +13,12 @@ import {
 const { width } =  Dimensions.get('screen')
 
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
     flex: 1;
+
+    ${Platform.select({
+        android:`margin-bottom: 16px;`
+    })}
 
 
 `

@@ -34,3 +34,7 @@ export const Text = styled.Text`
     color: ${ props => props.color || grey66};
     font-family: HelveticaNeue-Medium;
 `
+
+export const SafeAreaView = styled.SafeAreaView`
+
+`

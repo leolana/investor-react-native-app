@@ -6,9 +6,6 @@ import {
     grey88,
 } from '../../assets/colors'
 
-import {
-    IconBack
-} from '../../assets/icons'
 
 export const ScrollView = styled.ScrollView`
     padding: 0 16px;
@@ -17,6 +14,10 @@ export const ScrollView = styled.ScrollView`
 
 export const SafeAreaView = styled.SafeAreaView`
     flex: 1;
+
+    ${Platform.select({
+        android:`margin-bottom: 16px;`
+    })}
 `
 
 

@@ -2,21 +2,25 @@ import styled from 'styled-components/native'
 
 import {
     grey99,
-    greyDD
+    greyDD,
+    white
 } from '../../assets/colors'
 
 
-import { Dimensions, Animated } from 'react-native'
+import { Dimensions, Animated, Platform } from 'react-native'
 
 
 const { width } =  Dimensions.get('screen')
 
 
 export const Container = styled.View`
+    background: ${white};
     border: 1px solid ${greyDD};
-    height: 80px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    height: ${ props => (Platform.OS === 'ios') ? 90 : 70 }px;
     flex-direction: row;
-
 `
 
 export const Touchable = styled.TouchableOpacity`

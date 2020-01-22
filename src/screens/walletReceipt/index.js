@@ -6,6 +6,7 @@ import {
     ReceiptArea,
     ReceiptBody,
     ReceiptBorder,
+    SafeAreaView,
 } from './styles'
 
 import {

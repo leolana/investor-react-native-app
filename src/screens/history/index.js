@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
 
-import { FlatList, SafeAreaView } from 'react-native'
+import { FlatList } from 'react-native'
 
 import {
     CardHistory,
 } from './components'
+
+import {
+    SafeAreaView
+} from './styles'
 
 
 import { 

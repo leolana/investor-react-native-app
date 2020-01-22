@@ -65,7 +65,7 @@ export const Loading = props => {
 
 
     const renderSkeleton = () => (
-        <SafeAreaView> 
+        <> 
 
             <Header colors={ [ tealish, greenishBlue ] }>
 
@@ -88,7 +88,7 @@ export const Loading = props => {
 
             </CardPage>
 
-        </SafeAreaView>
+        </>
     )
 
 

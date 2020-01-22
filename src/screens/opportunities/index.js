@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { OpportunitiesCard } from './components'
 
 import { 
     Request,
@@ -7,14 +6,13 @@ import {
 
 } from '../../services'
 
-
 import { FlatList } from 'react-native-gesture-handler'
 
-import { SafeAreaView, ActivityIndicator } from 'react-native'
+import { ActivityIndicator } from 'react-native'
 
-import { LoadingContainer } from './styles'
+import { LoadingContainer, SafeAreaView } from './styles'
 
-import { ToggleMenu } from  '../../components'
+import { OpportunitiesCard } from './components'
 
 export const PageOpportunities = props => {
 
@@ -24,7 +22,12 @@ export const PageOpportunities = props => {
 
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => loadOpportunities(), [])
+    useEffect(() => {
+    
+        loadOpportunities()
+
+
+    }, [])
 
     const requestSuccessful = ( { ItemListagemSolicitacoes } ) => {
 
@@ -46,6 +49,7 @@ export const PageOpportunities = props => {
 
         Request.GET(config).then( resp => requestSuccessful(resp.data) )
 
+
     }
 
     const renderItem = item => (<OpportunitiesCard data={item}/>)
@@ -62,6 +66,7 @@ export const PageOpportunities = props => {
     }
 
     return (
+
         <SafeAreaView>
 
             <FlatList

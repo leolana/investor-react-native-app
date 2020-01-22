@@ -36,6 +36,8 @@ export const PageStatistics = props => {
 
     const userId = "5b27d3cd1ee3fa001178c1c6"
 
+
+
     const links = [
         {
             title: 'Rendimento geral da carteira',

@@ -2,17 +2,14 @@ import styled from 'styled-components/native'
 
 import LinearGradient from 'react-native-linear-gradient'
 
-import {
-    Platform
-} from 'react-native'
+import { white } from '../../assets/colors'
 
 
-export const View = styled.SafeAreaView`
-    flex: 1;
+export const ScrollView = styled.ScrollView`
+`
 
-    ${Platform.select({
-        android:`margin-bottom: 16px;`
-    })}
+export const SafeAreaView = styled.SafeAreaView`
+    background: ${white}
 `
 
 export const SafeAreaHeader = styled.View`

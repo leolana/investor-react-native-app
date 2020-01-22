@@ -7,13 +7,14 @@ import {
 } from '../../components'
 
 import { 
-    Dimensions 
+    Dimensions, 
+    Platform
 } from 'react-native'
 
 
 import {
     white,
-    grey99
+    grey99,
     
 } from '../../assets/colors'
 
@@ -23,6 +24,7 @@ const screenWidth = Dimensions.get('window').width
 
 
 export const ListArea = styled.View`
+    margin-top: 32px;
     flex: 1;
     justify-content: center;
     padding: 0 16px;
@@ -44,8 +46,8 @@ export const Letter = styled.Text`
 `
 
 export const SafeAreaView = styled.SafeAreaView`
+    background: ${white};
     flex: 1;
-
 `
 
 export const Header = styled.View`

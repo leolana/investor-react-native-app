@@ -8,6 +8,7 @@ import Welcome from '../../screens/welcome'
 import Login from '../../screens/login'
 
 
+
 const mainConfig = {
     initialRouteName: 'Welcome',
     defaultNavigationOptions: {

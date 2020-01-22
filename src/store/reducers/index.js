@@ -1,12 +1,18 @@
-import { USER_DATA } from '../types.js'
+import * as Types from '../types.js'
 
 export default (state = {}, action) => {
 
     switch (action.type) {
 
-        case USER_DATA: return { 
+        case Types.USER_DATA: return { 
             ...state, 
             userData: action.data
+        
+        };
+
+        case Types.ROUTE_NAME: return { 
+            ...state, 
+            routeName: action.data
         
         };
 

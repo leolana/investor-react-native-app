@@ -38,6 +38,8 @@ import {
     formatMoney
 } from '../../utils'
 
+import { ScrollView } from 'react-native'
+
 export const TransferWalletBalancePage = props => {
 
     // State
@@ -181,30 +183,32 @@ export const TransferWalletBalancePage = props => {
 
 
     return(
-    
-        <Loading loading={ loading }> 
 
-            <SafeAreaView> 
+        <SafeAreaView> 
 
-                <Header colors={ [ tealish, greenishBlue ] }>
+                <Loading loading={ loading }> 
 
-                    <HeaderTitle>Valor disponível para saque</HeaderTitle>
-                    <HeaderText>{formatMoney(walletBalance)}</HeaderText>
+                    <Header colors={ [ tealish, greenishBlue ] }>
+
+                        <HeaderTitle>Valor disponível para saque</HeaderTitle>
+                        <HeaderText>{formatMoney(walletBalance)}</HeaderText>
 
 
-                </Header>
+                    </Header>
 
-                <CardPage>
+                    <CardPage>
 
-                    <IconAddFundsStyled />
+                        <ScrollView>
+                            <IconAddFundsStyled />
 
-                    { handleCard() }
+                            { handleCard() }
+                        </ScrollView>
 
-                </CardPage>
+                    </CardPage>
 
-            </SafeAreaView>
+                </Loading>
 
-        </Loading>
+        </SafeAreaView>
     )
 
 }

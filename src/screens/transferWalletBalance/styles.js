@@ -91,10 +91,10 @@ export const HeaderText = styled.Text`
     text-align: center;
 `
 
-export const CardPage = styled.ScrollView`
+export const CardPage = styled.View`
     width: ${width - 32}px
     background: ${white};
-    height: ${height};
+    height: auto;
     border-radius: 5px;
     margin: 0 16px;
     padding: 32px 16px;

@@ -7,18 +7,13 @@ import { PrivateRoutes } from './private'
 
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
-import { Opportunities } from '../screens/opportunities'
-
 import { BottomNavigator } from '../components'
 
 const PrivateRoutesTabs = createBottomTabNavigator(
   { 
-    Opportunities,
-    Opportunities,
-    Opportunities,
     PrivateRoutes 
   },
-  { tabBarComponent: BottomNavigator }
+  { tabBarComponent: BottomNavigator, initialRouteName: 'PrivateRoutes' }
 )
 
 export default createAppContainer(

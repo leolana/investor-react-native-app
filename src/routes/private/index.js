@@ -4,6 +4,8 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 import { Opportunities } from '../../screens/opportunities'
 
+import { Invest } from '../../screens/invest'
+
 import { Notifications } from '../../screens/notifications'
 
 import { History } from '../../screens/history'
@@ -30,7 +32,7 @@ import { More } from '../../screens/more'
 
 import { DatePicker } from '../../screens/datePicker'
 
-import { tealish, white } from '../../assets/colors'
+import { tealish, white, black } from '../../assets/colors'
 
 import React from 'react'
 
@@ -64,13 +66,17 @@ export const ScreenRoutes = createStackNavigator(
 
             return {
         
-                headerBackTitle: 'Voltar',
-                headerTintColor: white,
+                headerBackTitle: ' ',
+                headerTintColor: tealish,
                 headerStyle: {
-                    backgroundColor: tealish,
+                    backgroundColor: white,
+                    marginHorizontal: 10,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    borderBottomWidth: 0
                 },
-                headerTitleStyle: { 
-                    color: white,
+                headerTitleStyle: {
+                    color: black,
                     fontFamily: 'Montserrat-Regular'
                 }
             }
@@ -80,7 +86,8 @@ export const ScreenRoutes = createStackNavigator(
 
 export const PopupRoutes = createStackNavigator(
     {
-        TransferWalletBalanceConfirmation
+        TransferWalletBalanceConfirmation,
+        Invest
     },
     {
         mode: 'modal',  
@@ -88,12 +95,15 @@ export const PopupRoutes = createStackNavigator(
             {
                 headerLeft: null,
                 headerRight: (<ToolbarCloseButtom navigation={navigation} />),
-                headerTintColor: white,
+                headerTintColor: tealish,
                 headerStyle: {
-                    backgroundColor: tealish,
+                    backgroundColor: white,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    borderBottomWidth: 0
                 },
                 headerTitleStyle: { 
-                    color: white,
+                    color: black,
                     fontFamily: 'Montserrat-Regular'
                 }
                 

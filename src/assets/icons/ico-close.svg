@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25.828" height="24.828" viewBox="0 0 25.828 24.828"><defs><style>.a{fill:none;stroke-linecap:round;stroke-width:2px;}</style></defs><g transform="translate(-379.086 -56.086)"><line class="a" x2="22" y2="22" transform="translate(381.5 57.5)"/><line class="a" y1="22" x2="22" transform="translate(380.5 57.5)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25.828" height="24.828" viewBox="0 0 25.828 24.828">
+<defs>
+<style>.a{fill:none;stroke-linecap:round;stroke-width:2px;}</style>
+</defs>
+    <g stroke-width="2.5" transform="translate(-379.086 -56.086)">
+        <line class="a" x2="22" y2="22" transform="translate(381.5 57.5)"/>
+        <line class="a" y1="22" x2="22" transform="translate(380.5 57.5)"/>
+    </g>
+</svg>

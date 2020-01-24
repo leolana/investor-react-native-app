@@ -9,18 +9,13 @@ import {
     greyF7,
 } from '../../assets/colors'
 
-import { Dimensions, Platform } from 'react-native'
-
-const { width } = Dimensions.get('screen')
-
-
 export const ScrollView = styled.ScrollView`
     padding: 16px;
-    margin-bottom: ${ props => (Platform.OS === 'ios') ? 75 : 55 }px
+    margin-bottom: 16px
 `
 
 export const SafeAreaView = styled.SafeAreaView`
-    flex: 1;
+    
 
 
 `
@@ -40,8 +35,6 @@ export const IconArea = styled.View`
     align-items: center;
     justify-content: space-between;
     width: 20%; 
-
-
 
 `
 

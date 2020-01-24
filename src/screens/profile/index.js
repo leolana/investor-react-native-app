@@ -109,5 +109,6 @@ export const Profile = {
     screen: PageProfile,
     navigationOptions: {
         headerTitle: "PERFIL",
+        headerLeft: null
     }
 }

@@ -2,7 +2,7 @@
 import { createStackNavigator } from 'react-navigation-stack'
 
 
-import { white } from '../../assets/colors'
+import { white, tealish } from '../../assets/colors'
 
 import Welcome from '../../screens/welcome'
 import Login from '../../screens/login'
@@ -12,13 +12,16 @@ import Login from '../../screens/login'
 const mainConfig = {
     initialRouteName: 'Welcome',
     defaultNavigationOptions: {
-      headerBackTitle: 'Voltar',
+      headerBackTitle: ' ',
+      headerTintColor: tealish,
       headerTitleStyle: {
         color: white
       },
       headerStyle: {
-      shadowOpacity: 0,
-      elevation: 0,
+        shadowOpacity: 0,
+        elevation: 0,
+        borderBottomWidth: 0,
+        marginHorizontal: 10,
 
       },
     },

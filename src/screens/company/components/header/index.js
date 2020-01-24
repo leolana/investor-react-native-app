@@ -25,31 +25,55 @@ import {
 } from '../../../../assets/colors'
 
 
+import HTML from 'react-native-render-html'
+
+
 
 export const Header = props => {
+
+    // props
+
+    const { data } = props
+
+    // Methods
+
+    const getPhotos = () => {  
+
+        if(data.Empresa.Imagens == undefined) return [];     
+
+        return data.Empresa.Imagens;
+    }
+
+    const getVideo = () => {
+
+        if(data.Empresa.VimeoVideoUrl === undefined || data.Empresa.VimeoVideoUrl ===  '' || data.Empresa.VimeoVideoUrl === null) return null
+
+
+        return data.Empresa.VimeoVideoUrl
+    }
 
 
     return (
         <>
-            <Retangle>
+            <Retangle disabled={(getPhotos().length) === 0 ? true : false}>
 
                 <IconArea>
                     <IconPhoto fill={tealish} width={24} height={24}  />
                     <TinyTitle>Fotos</TinyTitle>
                 </IconArea>
 
-                <TinyText>7 fotos</TinyText>
+                <TinyText>{getPhotos().length} fotos</TinyText>
 
             </Retangle>
 
-            <Retangle>
+            <Retangle disabled={(getVideo() === null ? true : false)}>
 
                 <IconArea>
                     <IconVideo fill={tealish} width={24} height={24}  />
-                    <TinyTitle>Vídios</TinyTitle>
+                    <TinyTitle>Vídeos</TinyTitle>
                 </IconArea>
 
-                <TinyText>7 fotos</TinyText>
+                <TinyText>{(getVideo() === null ? 0 : 1)} vídeos</TinyText>
 
             </Retangle>
 
@@ -57,10 +81,7 @@ export const Header = props => {
 
             <ContentArea>
 
-                <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                </Text>
-
+                <HTML html={data.Empresa.InformacaoInstitucional} />
 
             </ContentArea>
         </>

@@ -27,9 +27,18 @@ import {
     greyF3F5,
 } from '../../../../assets/colors'
 
+import {
+    formatCNPJ, formatPercent
+} from '../../../../utils'
+
 
 export const Footer = props => {
 
+    // Props 
+    const { data } = props
+
+
+    // Vars
     const linkData = [ 
         { title: 'Índices financeiros', onPress: () => {} },
         { title: 'Índices complementares', onPress: () => {} },
@@ -45,16 +54,16 @@ export const Footer = props => {
             <ContentArea>
 
                 <ItemDefaultTitle bold={true} >Empresa <ItemDefaultTitle>(Razão social)</ItemDefaultTitle></ItemDefaultTitle>
-                <ItemDefaultText marginBottom={16} >IOUU Tecnologia e Serviços Financeiros LTDA - Epp</ItemDefaultText>
+                <ItemDefaultText marginBottom={16} >{data.Empresa.RazaoSocial}</ItemDefaultText>
 
                 <ItemDefaultTitle bold={true} >CPF/CNPJ</ItemDefaultTitle>
-                <ItemDefaultText marginBottom={16} >26.484.548/0001-48</ItemDefaultText>
+                <ItemDefaultText marginBottom={16} >{formatCNPJ(data.Documento)}</ItemDefaultText>
 
                 <LinkList data={ [ { title: 'Ver todos os dados da empresa', onPress: () => {} } ] } />
 
                 <RetangleContent marginTop={16} >
 
-                    <RetangleTitle>MEI - Micro empreendedor individual</RetangleTitle>
+                    <RetangleTitle>{data.Empresa.Porte ? data.Empresa.Porte : "Outros"}</RetangleTitle>
                     <RetangleText>Porte da empresa</RetangleText>
 
                 </RetangleContent>
@@ -62,7 +71,7 @@ export const Footer = props => {
                 <RetangleContent background={greyE3}>
 
                     <RetangleText color={grey99} >Setor da empresa</RetangleText>
-                    <RetangleTitle color={black} >Indústria</RetangleTitle>
+                    <RetangleTitle color={black} >{data.Empresa.SetorEmpresa}</RetangleTitle>
                     
                 </RetangleContent>
 
@@ -72,8 +81,8 @@ export const Footer = props => {
                 >
 
                     <RetangleTinyTitle>Risco de crédito do setor*</RetangleTinyTitle>
-                    <ItemDefaultText>Pontuaão do setor: <ItemDefaultText bold={true}>75</ItemDefaultText></ItemDefaultText>
-                    <ItemDefaultText>Probabilidade Média deInadimplência: <ItemDefaultText bold={true}>40.00%</ItemDefaultText></ItemDefaultText>
+                    <ItemDefaultText>Pontuaão do setor: <ItemDefaultText bold={true}>{ data.Empresa.PontuacaoSetor }</ItemDefaultText></ItemDefaultText>
+                    <ItemDefaultText>Probabilidade Média deInadimplência: <ItemDefaultText bold={true}>{formatPercent(data.Empresa.ProbabilidadeMediaInadimplencia)}</ItemDefaultText></ItemDefaultText>
                     
                 </RetangleContent>
 

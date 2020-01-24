@@ -25,6 +25,7 @@ import End from './ico-end.svg'
 import Start from './ico-start.svg'
 import Photo from './ico-photo.svg'
 import Clock from './ico-clock.svg'
+import Investor from './ico-investor.svg'
 
 
 
@@ -55,3 +56,4 @@ export const IconEnd = End
 export const IconStart = Start
 export const IconPhoto = Photo
 export const IconClock = Clock
+export const IconInvestor = Investor

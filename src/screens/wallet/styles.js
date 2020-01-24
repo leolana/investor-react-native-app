@@ -10,6 +10,7 @@ export const ScrollView = styled.ScrollView`
 
 export const SafeAreaView = styled.SafeAreaView`
     background: ${white}
+    flex: 1;
 `
 
 export const SafeAreaHeader = styled.View`

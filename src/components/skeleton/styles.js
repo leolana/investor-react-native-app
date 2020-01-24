@@ -11,7 +11,7 @@ export const Skeleton = styled.View`
     overflow: hidden;
     width: ${ props => props.width || 200 }px;
     height: ${ props => props.height || 20 }px;
-    margin-bottom:${ props => props.distance || 10 }px;
+    margin-bottom:${ props => props.distance || 0 }px;
     border-radius: 5px;
 
 `

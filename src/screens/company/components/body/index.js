@@ -35,10 +35,71 @@ import {
     IconEnd,
     IconStart,
     IconClock,
+    IconInvestor
 } from '../../../../assets/icons'
+
+import {
+    formatDate,
+    formatMoney,
+    formatPercent,
+    diffDaysForOpportunitie
+} from '../../../../utils'
 
 export const Body = props => {
 
+    // Props
+
+    const { data } = props
+
+    // Methods
+
+    const itsFinished = () => {
+
+        const { FimCaptacao, StatusAnalise } = data
+
+        return (StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == "encerrado")
+    }
+
+    const getRemainingTime = () => {
+
+        if(itsFinished()) return 0
+        
+        const date = new Date(data.FimCaptacao);
+
+        const miliSecs = (date.getTime()+ 86400000) - new Date().getTime()
+
+        if(miliSecs > 0) return Number.parseInt(miliSecs/1000/60/60/24)
+
+        else return 0
+    }
+
+    const getRemainingValue = () => {
+
+        const { Valor, ValorCaptado, ChamadaListaEspera } = data
+
+        const value = (Valor - ValorCaptado)
+
+        if(ChamadaListaEspera || value <= 0) return 'Finalizado'
+        
+        return formatMoney(value);
+    }
+
+    const getProgress = () => {
+
+        const { ValorCaptado, Valor, ChamadaListaEspera } = data
+
+        if(ChamadaListaEspera) return 100
+
+        let progress = ValorCaptado * 100 / Valor;
+
+        progress = progress < 100.00 ? progress : 100.00;
+
+        return progress.toFixed(2)
+}
+
+
+
+    // Render
 
     return (
 
@@ -50,7 +111,7 @@ export const Body = props => {
                         <IconStart />
                         <ItemDate>
                             <ItemTitleDate>Início</ItemTitleDate>
-                            <ItemTextDate>24 de jan, 2018</ItemTextDate>
+                            <ItemTextDate>{formatDate(data.InicioCaptacao, 'dd ? MMM, yyyy').replace('?', 'de')}</ItemTextDate>
                         </ItemDate>
 
                     </HeaderData>
@@ -59,7 +120,7 @@ export const Body = props => {
                         <IconEnd />
                         <ItemDate>
                             <ItemTitleDate>Prazo da captação</ItemTitleDate>
-                            <ItemTextDate>04 de fev, 2018</ItemTextDate>
+                            <ItemTextDate>{formatDate(data.FimCaptacao, 'dd ? MMM, yyyy').replace('?', 'de')}</ItemTextDate>
                         </ItemDate>
 
                     </HeaderData>
@@ -67,25 +128,25 @@ export const Body = props => {
                 </CardHeader>
 
                 <ItemTitleValue>Valor solicitado</ItemTitleValue>
-                <ItemTextValue>R$ 250.000,00</ItemTextValue>
+                <ItemTextValue>{formatMoney(data.Valor)}</ItemTextValue>
 
                 <CardBody>
 
                     <Item>
                         <ItemTitle>Retorno Bruto Anual</ItemTitle>
-                        <ItemText>2,97% a.m.</ItemText>
+                        <ItemText>{formatPercent(data.RetornoBrutoAnual)} a.a.</ItemText>
                     </Item>
 
                     <Item>
                         <ItemTitle>Retorno Bruno Mensal</ItemTitle>
-                        <ItemText>2,97% a.m.</ItemText>
+                        <ItemText>{formatPercent(data.RetornoBrutoMensal)} a.m.</ItemText>
                     </Item>
 
                 </CardBody>
 
 
                 <ItemTitle>Retorno Estimado Anual</ItemTitle>
-                <ItemText>346% CDI</ItemText>
+                <ItemText>{formatPercent(data.Cdi)} CDI</ItemText>
                 <ItemInfo center={true}>* A taxa de juros acima é igual ao seu Retorno Bruto (Retorno antes do desconto de IR e custos de TED)</ItemInfo>
 
 
@@ -93,45 +154,48 @@ export const Body = props => {
 
                     <Item>
                         <ItemTitle>Rating</ItemTitle>
-                        <ItemText>AA</ItemText>
+                        <ItemText>{data.Score}</ItemText>
                     </Item>
 
                     <Divisor />
 
                     <Item>
                         <ItemTitle>Duração esperada</ItemTitle>
-                        <ItemText>36 meses</ItemText>
+                        <ItemText>{data.Prazo} meses</ItemText>
                     </Item>
 
                 </CardBody>
 
                 <Item horizontal={true} >
                     <IconClock />
-                    <ItemTextTime >Finaliza em 10 dias*</ItemTextTime>
+                    <ItemTextTime >Finaliza em {getRemainingTime()} dias*</ItemTextTime>
                 </Item>
 
                 <ProgressArea>
 
                     <ProgressHeader>
 
-                        <ProgressTitle>Levantado: 50%</ProgressTitle>
+                        <ProgressTitle>Levantado: {formatPercent(getProgress())}</ProgressTitle>
 
-                        <ProgressTitle>Falta: <ProgressText>R$ 125.000,00</ProgressText></ProgressTitle>
+                        <ProgressTitle>Falta: <ProgressText>{getRemainingValue()}</ProgressText></ProgressTitle>
 
         
                     </ProgressHeader>
 
                     <ProgressBar>
-                        <Progress completed={50} />
-                        <ProgressIndicator>50%</ProgressIndicator>
+                        <Progress completed={getProgress()} />
+                        <ProgressIndicator>{formatPercent(getProgress())}</ProgressIndicator>
                     </ProgressBar>
 
 
                 </ProgressArea>
 
                 <Item horizontal={true} >
-                    <IconClock />
-                    <ItemTitleInvestor >62 <ItemTextInvestor>investidores</ItemTextInvestor></ItemTitleInvestor>
+                    <IconInvestor />
+                    <ItemTitleInvestor >
+                        {data.QuantidadeReservasInvestimento}  
+                        <ItemTextInvestor>{ (data.QuantidadeReservasInvestimento > 1) ? ' investidores' : ' investidor' } </ItemTextInvestor>
+                    </ItemTitleInvestor>
                 </Item>
 
             </Card>

@@ -72,7 +72,7 @@ export const ScreenRoutes = createStackNavigator(
                 headerTintColor: white,
                 headerStyle: {
                     backgroundColor: tealish,
-                    marginHorizontal: 10,
+                    paddingHorizontal: 10,
                 },
                 headerTitleStyle: {
                     color: white,
@@ -99,9 +99,6 @@ export const PopupRoutes = createStackNavigator(
                 headerTintColor: white,
                 headerStyle: {
                     backgroundColor: tealish,
-                    elevation: 0,
-                    shadowOpacity: 0,
-                    borderBottomWidth: 0
                 },
                 headerTitleStyle: { 
                     color: white,

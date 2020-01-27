@@ -28,7 +28,9 @@ import {
 } from '../../../../assets/colors'
 
 import {
-    formatCNPJ, formatPercent
+    formatCNPJ, 
+    formatPercent,
+    convertScoreByColor,
 } from '../../../../utils'
 
 
@@ -61,7 +63,7 @@ export const Footer = props => {
 
                 <LinkList data={ [ { title: 'Ver todos os dados da empresa', onPress: () => {} } ] } />
 
-                <RetangleContent marginTop={16} >
+                <RetangleContent background={convertScoreByColor(data.Score)} marginTop={16} >
 
                     <RetangleTitle>{data.Empresa.Porte ? data.Empresa.Porte : "Outros"}</RetangleTitle>
                     <RetangleText>Porte da empresa</RetangleText>

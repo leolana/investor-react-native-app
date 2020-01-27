@@ -26,6 +26,7 @@ export const IconArea = styled.View`
 export const TinyTitle = styled.Text`
     font-family: HelveticaNeue-Bold;
     font-size: 12px;
+    margin-left: 16px;
 `
 
 export const TinyText = styled.Text`

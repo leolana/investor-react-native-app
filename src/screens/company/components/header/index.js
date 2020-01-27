@@ -69,7 +69,7 @@ export const Header = props => {
             <Retangle disabled={(getVideo() === null ? true : false)}>
 
                 <IconArea>
-                    <IconVideo fill={tealish} width={24} height={24}  />
+                    <IconPhoto fill={tealish} width={24} height={24}  />
                     <TinyTitle>Vídeos</TinyTitle>
                 </IconArea>
 

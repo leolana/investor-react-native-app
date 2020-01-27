@@ -12,10 +12,10 @@ import Login from '../../screens/login'
 const mainConfig = {
     initialRouteName: 'Welcome',
     defaultNavigationOptions: {
-      headerBackTitle: ' ',
+      headerBackTitle: 'Voltar',
       headerTintColor: tealish,
       headerTitleStyle: {
-        color: white
+        color: tealish
       },
       headerStyle: {
         shadowOpacity: 0,

@@ -26,6 +26,8 @@ import { TransferWalletBalanceConfirmation } from '../../screens/transferWalletB
 
 import { TransferWalletBalanceSuccess } from '../../screens/transferWalletBalanceSuccess'
 
+import { Picker } from '../../screens/picker'
+
 import { Company } from '../../screens/company'
 
 import { More } from '../../screens/more'
@@ -66,17 +68,14 @@ export const ScreenRoutes = createStackNavigator(
 
             return {
         
-                headerBackTitle: ' ',
-                headerTintColor: tealish,
+                headerBackTitle: 'Voltar',
+                headerTintColor: white,
                 headerStyle: {
-                    backgroundColor: white,
+                    backgroundColor: tealish,
                     marginHorizontal: 10,
-                    elevation: 0,
-                    shadowOpacity: 0,
-                    borderBottomWidth: 0
                 },
                 headerTitleStyle: {
-                    color: black,
+                    color: white,
                     fontFamily: 'Montserrat-Regular'
                 }
             }
@@ -87,23 +86,25 @@ export const ScreenRoutes = createStackNavigator(
 export const PopupRoutes = createStackNavigator(
     {
         TransferWalletBalanceConfirmation,
-        Invest
+        Invest,
     },
     {
         mode: 'modal',  
         defaultNavigationOptions: ({navigation}) => (
             {
+                gesturesEnabled: false,
+                gestureResponseDistance: { vertical: 0 },
                 headerLeft: null,
                 headerRight: (<ToolbarCloseButtom navigation={navigation} />),
-                headerTintColor: tealish,
+                headerTintColor: white,
                 headerStyle: {
-                    backgroundColor: white,
+                    backgroundColor: tealish,
                     elevation: 0,
                     shadowOpacity: 0,
                     borderBottomWidth: 0
                 },
                 headerTitleStyle: { 
-                    color: black,
+                    color: white,
                     fontFamily: 'Montserrat-Regular'
                 }
                 
@@ -140,6 +141,7 @@ export const PrivateRoutes = createStackNavigator(
         PopupRoutes,
         DatePicker,
         TransferWalletBalanceSuccess,
+        Picker,
         
     },
     {

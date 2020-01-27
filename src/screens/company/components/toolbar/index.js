@@ -30,8 +30,7 @@ import {
 import { 
     greyTwo, 
     redTwo, 
-    greenTwo,
-    blueTwo
+    greenTwo
 } from '../../../../assets/colors'
 
 import {
@@ -42,26 +41,10 @@ export const ToolbarComponent = props => {
 
     // Props
 
-    const { data, navigation } = props
-
-    // States
-
-    const [ reserve, setReverve ] =  useState(null)
-
-    const [ loading, setLoading ] =  useState(true)
+    const { data, navigation, reserveData } = props
 
     // Methods
 
-    const getInvestmentReserve = async () => {
-
-        const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) })
-        
-        if(resp.status === 200) {
-            setReverve(resp.data)
-
-            setLoading(false)
-        }
-    }
 
     const itsFinished = () => {
 
@@ -70,28 +53,28 @@ export const ToolbarComponent = props => {
         return (StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == "encerrado")
     }
 
-    const enableWaitingList = () => {
+    const waitingList = () => {
 
         const { Valor, ValorCaptado, ChamadaListaEspera } = data
 
         const value = Valor - ValorCaptado;
 
-        return ( (value <= 0) || ChamadaListaEspera ) ? false : true
+        return ( (value <= 0) || ChamadaListaEspera ) 
     }
 
     const getStatus = () =>  {
 
         if(itsFinished()) return 'Encerrado'
 
-        if(reserve != null && reserve.Status != 0) {
+        if(reserveData != null && reserveData.Status != 0) {
 
-            if(reserve.StatusBoleto != 'paid' ) return 'Cancelar'
+            if(reserveData.StatusBoleto != 'paid' ) return 'Cancelar'
 
             return 'Investido'
 
         } 
 
-        else if (enableWaitingList()) return 'Lista de espera'
+        else if (waitingList()) return 'Lista de espera'
         
         return 'Investir'
         
@@ -101,7 +84,7 @@ export const ToolbarComponent = props => {
         const colors = {
             'Encerrado': greyTwo,
             'Cancelar': redTwo,
-            'Lista de espera': blueTwo,
+            'Lista de espera': greenTwo,
             'Investir': greenTwo,
         }
 
@@ -112,13 +95,11 @@ export const ToolbarComponent = props => {
 
         const status = getStatus()
 
-        console.log(status)
+        if(status === 'Investir') navigation.navigate('Invest', { waitingList: false, data } )
 
-        if(status === 'Investir') navigation.navigate('Invest')
+        else if(status === 'Lista de espera') navigation.navigate('Invest', { waitingList: true, data } )
 
-        else if(status === 'Lista de espera') navigation.navigate('Invest', { waitingList: true } )
-
-        else if(status === 'Investir') navigation.navigate('CancelInvestment')
+        else if(status === 'Investir') navigation.navigate('CancelInvestment', { data })
 
     }
 
@@ -128,7 +109,7 @@ export const ToolbarComponent = props => {
 
 
         async function fetchData() {
-            await getInvestmentReserve()
+            await getInvestmentreserveData()
         }
 
         fetchData()
@@ -150,21 +131,13 @@ export const ToolbarComponent = props => {
                     <ToolbarText>{formatPercent(data.Rendimento)} a.a</ToolbarText>
                 </Item>
 
-                {
-
-                    (loading) ? <SkeletonBone height={ 31 } width={ 140 } /> :
-
-                    (
-                        <ToolbarButtom 
-                            disabled={ (getStatus() === 'Encerrado') || (getStatus() === 'Investido') } 
-                            background={getStatusColor()} 
-                            onPress={ () => onPress() } 
-                        >
-                            <ToolbarButtomText>{getStatus()}</ToolbarButtomText>
-                        </ToolbarButtom>
-                    )
-
-                }
+                <ToolbarButtom 
+                    disabled={ (getStatus() === 'Encerrado') || (getStatus() === 'Investido') } 
+                    background={getStatusColor()} 
+                    onPress={ () => onPress() } 
+                >
+                    <ToolbarButtomText>{getStatus()}</ToolbarButtomText>
+                </ToolbarButtom>
 
             </BottomToolbar>
 

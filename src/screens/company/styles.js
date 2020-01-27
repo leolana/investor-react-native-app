@@ -15,8 +15,7 @@ export const ScrollView = styled.ScrollView`
 `
 
 export const SafeAreaView = styled.SafeAreaView`
-    
-
+    margin-bottom: 60px;
 
 `
 

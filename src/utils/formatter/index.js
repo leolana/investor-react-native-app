@@ -39,15 +39,21 @@ export const formatBankAccountType = type => {
     return type == 2 ? "Conta Poupança" : "Conta Corrente"
 }
 
-export const formatLoanType = type => {
+export const formatLoanType = (type, short = true) => {
 
-    const types = {
+    const typesShort = {
         'emprestimo-coletivo': 'Coletivo',
         'emprestimo-de-impacto2': 'Impacto',
         'emprestimo': 'Social'
     }
 
-    return types[type]
+    const types = {
+        'emprestimo-coletivo': 'Empréstimo coletivo',
+        'emprestimo-de-impacto2': 'Empréstimo de impacto',
+        'emprestimo': 'Empréstimo social'
+    }
+
+    return (short) ? typesShort[type] : types[type]
 
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-import { tealish } from '../../assets/colors'
+import { white } from '../../assets/colors'
 
 import { IconClose } from '../../assets/icons'
 
@@ -14,7 +14,7 @@ export const ToolbarCloseButtom = ({ navigation }) => {
 
     return (
         <TouchableOpacity onPress={ () => navigation.dismiss() } >
-            <IconClose stroke={tealish} />
+            <IconClose stroke={white} />
         </TouchableOpacity>
     )
 }

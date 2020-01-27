@@ -6,7 +6,9 @@ import {
     grey99,
     greyF7,
     tealish,
-    black
+    black,
+    greenTwo,
+    white,
 } from '../../assets/colors'
 
 export const SafeAreaView = styled.SafeAreaView`
@@ -165,17 +167,49 @@ export const TextInfo = styled.Text`
     font-size: 10px;
     font-family: ${ props => props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue' };
     color: ${ props => props.color || black };
+    text-align: ${ props => props.textAlign || 'left' };
 `
 
 export const InputTitle = styled.Text`
     font-size: 12px;
-    font-family: HelveticaNeue-Bold';
-    margin-top: 32px;
+    font-family: HelveticaNeue-Bold;
+    margin-top: 72px;
     text-align: center;
 `
 
-export const InputArea = styled.View`
+export const InputArea = styled.TouchableOpacity`
     border: 1px solid ${greyDD};
+    height: 40px;
+    border-radius: 5px;
+    margin: 12px 0;
+    align-items: center;
+    justify-content: center;
+`
+
+export const InputValue = styled.Text`
+    font-size: 16px;
+    font-family: HelveticaNeue;
+    text-align: center;
+    color: ${grey99};
+`
+
+export const Button = styled.TouchableOpacity`
+    height: 40px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    background: ${greenTwo};
+    margin-bottom: 16px;
+`
+
+export const ButtonText = styled.Text`
+    font-size: 16px;
+    font-family: HelveticaNeue-Bold;
+    text-align: center;
+    color: ${white};
+`
+
+export const Picker = styled.Picker`
 
 
 `

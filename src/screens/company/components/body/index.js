@@ -42,7 +42,8 @@ import {
     formatDate,
     formatMoney,
     formatPercent,
-    diffDaysForOpportunitie
+    diffDaysForOpportunitie,
+    convertScoreByColor,
 } from '../../../../utils'
 
 export const Body = props => {
@@ -95,7 +96,7 @@ export const Body = props => {
         progress = progress < 100.00 ? progress : 100.00;
 
         return progress.toFixed(2)
-}
+    }
 
 
 
@@ -128,7 +129,7 @@ export const Body = props => {
                 </CardHeader>
 
                 <ItemTitleValue>Valor solicitado</ItemTitleValue>
-                <ItemTextValue>{formatMoney(data.Valor)}</ItemTextValue>
+                <ItemTextValue>{formatMoney(data.ValorSolicitado)}</ItemTextValue>
 
                 <CardBody>
 
@@ -183,7 +184,7 @@ export const Body = props => {
                     </ProgressHeader>
 
                     <ProgressBar>
-                        <Progress completed={getProgress()} />
+                        <Progress background={convertScoreByColor(data.Score)} completed={getProgress()} />
                         <ProgressIndicator>{formatPercent(getProgress())}</ProgressIndicator>
                     </ProgressBar>
 

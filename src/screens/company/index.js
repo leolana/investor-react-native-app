@@ -19,37 +19,25 @@ import {
 } from './components'
 
 import {
-    Animated,
-    Dimensions
-} from 'react-native'
-
-import {
     Request,
-    UrlSolicitacaoPegar
+    UrlSolicitacaoPegar,
+    UrlSolicitacaoReservaInvPegar
 } from '../../services'
 
-const { height } = Dimensions.get('screen')
+import {
+    formatCode
+} from '../../utils'
 
 export const CompanyPage = props => {
 
     // States
-
-    const [ scrollY ] = useState( new Animated.Value(0) )
     const [ solData, setSolData ] = useState(null)
+    const [ reserveData, setReverveData ] =  useState('null')
     const [ loading, setLoading ] = useState(true)
 
     // Vars
 
     const data = props.navigation.getParam('data', null)
-
-    const AnimatedStyle = {
-        height:  scrollY.interpolate({
-            inputRange: [0, height],
-            outputRange: [0, 100],
-            extrapolate: 'clamp',
-        }) 
-    } 
-    
 
 
     // Methods
@@ -60,13 +48,22 @@ export const CompanyPage = props => {
 
         if(resp.status === 200) {
             setSolData(resp.data)
-            setLoading(false)
+    
         }
 
 
     }
 
-    const onScroll = Animated.event( [ { nativeEvent: { contentOffset: { y: scrollY } } } ] )
+    const getInvestmentReserve = async () => {
+
+        const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) })
+        
+        if(resp.status === 200) {
+
+            setReverveData(resp.data)
+          
+        }
+    }
 
 
     // Effects
@@ -74,13 +71,26 @@ export const CompanyPage = props => {
     useEffect( () => {
 
         async function fetchData() {
-            await getSolicitation()
+            getSolicitation()
+            getInvestmentReserve()
         }
 
         fetchData()
 
 
     }, []) 
+
+    useEffect( () => {
+        
+        if(reserveData === 'null' || solData === null) return 
+
+
+        props.navigation.setParams({ headerTitle: `ID #${formatCode(solData.IdOportunidade)}` })
+
+
+        setLoading(false)
+
+    }, [reserveData, solData]) 
 
     // Render
 
@@ -90,10 +100,7 @@ export const CompanyPage = props => {
         <Loading loading={loading} >
             <SafeAreaView>
 
-                <ScrollView
-                    scrollEventThrottle={16}
-                    onScroll={onScroll}
-                >
+                <ScrollView>
 
                     <Header data={solData} />
 
@@ -105,9 +112,7 @@ export const CompanyPage = props => {
                 
             </SafeAreaView>
 
-            <Animated.View style={ AnimatedStyle } >
-                <Toolbar data={solData} /> 
-            </Animated.View>
+            <Toolbar data={solData} reserveData={reserveData} />
             
         </Loading>
 
@@ -117,7 +122,10 @@ export const CompanyPage = props => {
 
 export const Company = {
     screen: CompanyPage,
-    navigationOptions: {
-        headerTitle: "ID #00000"
+    navigationOptions: ({navigation}) => {
+
+        return {
+            headerTitle: navigation.getParam('headerTitle', 'PERFIL DA EMPRESA'),
+        }
     }
 }

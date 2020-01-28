@@ -202,6 +202,7 @@ export const TransferWalletBalancePage = props => {
                             <IconAddFundsStyled />
 
                             { handleCard() }
+                            
                         </ScrollView>
 
                     </CardPage>

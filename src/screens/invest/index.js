@@ -3,56 +3,34 @@ import React, { useState } from 'react'
 
 import {
     SafeAreaView,
+    ScrollView,
     Item,
     Title,
     Score,
-    ScrollView,
     Subtitle,
-    Retangle,
-    Text,
-    Divisor,
-    ItemTitle,
-    ItemText,
-    ItemWithDivisor,
-    ItemWithoutDivisor,
-    ProgressArea,
-    ProgressHeader,
-    ProgressTitle,
-    ProgressText,
-    ProgressBar,
-    ProgressIndicator,
-    Progress,
-    TextInfo,
-    InputTitle,
-    InputArea,
-    InputValue,
-    Button,
-    ButtonText,
-    Picker
+    TextCNPJ,
 } from './styles'
-
-import {
-    tealish, 
-    grey99,
-    grey66
-} from '../../assets/colors'
 
 import {
     CircleWithChild
 } from '../../components'
 
 import {
-    IconInvestor
-} from '../../assets/icons'
+    InnitialStep,
+    ConfirmationStep,
+    PaymentStep
+} from './components'
 
 import {
-    formatPercent,
-    formatDate,
-    formatMoney,
     formatCode,
     formatLoanType,
-    convertScoreByColor
+    convertScoreByColor,
+    formatCNPJ
 } from '../../utils'
+
+
+import { Animated } from 'react-native'
+
 
 export const InvestPopup = props => {
 
@@ -63,99 +41,62 @@ export const InvestPopup = props => {
     // States
 
     const [ value, setValue ] = useState(0)
+    const [ reinvestmentValue, setReinvestmentValue ] = useState(0)
 
-
-
-    // Vars
-
+    const [ step, setStep ] = useState(0)
 
     // Methods
 
-    const getRemainingTime = () => {
+    const onStepChange = stepIndex => {
 
-        if(itsFinished()) return 0
-        
-        const date = new Date(data.FimCaptacao);
+        setStep( stepIndex )
 
-        const miliSecs = (date.getTime()+ 86400000) - new Date().getTime()
+        console.log(stepIndex)
 
-        if(miliSecs > 0) return Number.parseInt(miliSecs/1000/60/60/24)
-
-        else return 0
     }
 
-    const getRemainingValue = () => {
+    const handleStep = () => {
 
-        const { Valor, ValorCaptado, ChamadaListaEspera } = data
+        const innitial = (
+            <InnitialStep 
+                data={data} 
+                onValueChange={ selectedValue => setValue(selectedValue) } 
+                onStepChange={ onStepChange } 
+            />
+        )
 
-        const value = (Valor - ValorCaptado)
+        const confirmation = (
+            <ConfirmationStep 
+                data={{ ...data, value, reinvestmentValue }} 
+                onStepChange={ onStepChange } 
+            />
+        )
 
-        if(ChamadaListaEspera || value <= 0) return 'Finalizado'
-        
-        return formatMoney(value);
-    }
+        const payment = (
+            <PaymentStep 
+                data={{ ...data, value, reinvestmentValue }} 
+            />
+        )
 
-    const getProgress = () => {
-
-        const { ValorCaptado, Valor, ChamadaListaEspera } = data
-
-        if(ChamadaListaEspera) return 100
-
-        let progress = ValorCaptado * 100 / Valor;
-
-        progress = progress < 100.00 ? progress : 100.00;
-
-        return progress.toFixed(2)
-    }
-
-    const generateRangeValues = () => {
-
-        const {
-            InvestimentoMaximo,
-            InvestimentoMinimo,
-            Valor,
-            ValorCaptado,
-            ChamadaListaEspera,
-        } = data
-
-        const max = Valor - ValorCaptado
-
-        let value = InvestimentoMinimo
-
-        const values = []
-
-        while(value <= InvestimentoMaximo) {
-
-            values.push( { value, text: formatMoney(value) } )
-
-            value += value
-
-        }
+        const steps = [
+            innitial,
+            confirmation,
+            payment
+        ]
 
         
-        if(max <= 0 || ChamadaListaEspera ) return values.reverse()
+        return steps[step]
 
-        return (values.reverse()).filter( ({value}) => (value <= max) )
-        
     }
-
-    const onValueChange = value => {
-
-        setValue(value)
-    }
-
-
-    // Effects
-
 
 
     // Render
-
 
     return (
         <SafeAreaView>
 
             <ScrollView>
+
                 <Item>
                     <Title>{data.Empresa.NomeFantasia}</Title>
 
@@ -168,6 +109,8 @@ export const InvestPopup = props => {
 
                 </Item>
 
+                <TextCNPJ>{formatCNPJ(data.Documento)}</TextCNPJ>
+
                 <Item width={200} >
                     
                     <Subtitle bold={true} >ID#{formatCode(data.IdOportunidade)}</Subtitle>
@@ -176,88 +119,14 @@ export const InvestPopup = props => {
 
                 </Item>
 
-                <Retangle>
-                <Text color={grey99} >Cidade/UF: <Text bold={true} >{data.Empresa.Endereco.Cidade} / {data.Empresa.Endereco.Uf}</Text></Text>
-                </Retangle>
-
-                <Retangle>
-                    <IconInvestor width={20} height={20} />
-                    <Text bold={true} >{data.QuantidadeReservasInvestimento}<Text>{ (data.QuantidadeReservasInvestimento > 1) ? ' investidores' : ' investidor' }</Text></Text>
-                </Retangle>
-
-                <Divisor>
-
-                    <ItemWithDivisor>
-
-                        <ItemTitle>Valor solicitado</ItemTitle>
-                        <ItemText>{formatMoney(data.ValorSolicitado)}</ItemText>
-
-                    </ItemWithDivisor>
-
-                    <ItemWithoutDivisor>
-                        
-                        <ItemTitle>Valor total do emprêstimo</ItemTitle>
-                        <ItemText>{formatMoney(data.Valor)}</ItemText>
-
-                    </ItemWithoutDivisor>
-
-                </Divisor>
-
-                 <Divisor>
-
-                    <ItemWithDivisor>
-
-                        <ItemTitle>Valor da parcela</ItemTitle>
-                        <ItemText>{formatMoney(data.ValorParcela)}</ItemText>
-
-                    </ItemWithDivisor>
-
-                    <ItemWithoutDivisor>
-                        
-                        <ItemTitle>Duração esperada</ItemTitle>
-                        <ItemText>{data.Prazo} meses</ItemText>
-
-                    </ItemWithoutDivisor>
-
-                </Divisor>
-
-                <ProgressArea>
-
-                    <ProgressHeader>
-
-                        <ProgressTitle>Levantado: {formatPercent(getProgress())}</ProgressTitle>
-
-                        <ProgressTitle>Falta: <ProgressText>{getRemainingValue()}</ProgressText></ProgressTitle>
-
-        
-                    </ProgressHeader>
-
-                    <ProgressBar>
-                        <Progress background={convertScoreByColor(data.Score)} completed={getProgress()} />
-                        <ProgressIndicator>{formatPercent(getProgress())}</ProgressIndicator>
-                    </ProgressBar>
 
 
-                </ProgressArea>
+                <Animated.View>
 
+                    { handleStep() }
 
-                <TextInfo color={grey66} >Início da captação: <TextInfo bold={true} >{formatDate(data.InicioCaptacao, 'dd ? MMM, yyyy').replace('?', 'de')}</TextInfo></TextInfo>
-                <TextInfo color={grey66} >Expira em: <TextInfo bold={true} >{formatDate(data.FimCaptacao, 'dd ? MMM, yyyy').replace('?', 'de')}</TextInfo></TextInfo>
-
-                <InputTitle>Valor que deseja investir</InputTitle>
-
-                <InputArea onPress={ () => props.navigation.navigate('Picker', { data: generateRangeValues(), value, onValueChange  }) } >
-                    <InputValue>{formatMoney(value)}</InputValue>
-                </InputArea>
-
-                <Button >
-                    <ButtonText>Investir</ButtonText>
-                </Button>
-
-                <TextInfo textAlign="center" color={ grey99 } >
-                    ** Ao chegar em 100% do valor solicitado, 
-                    a solicitação é encerrada imediatamente e o pagamento do valor investido deve ser realizado em até 24 horas.
-                </TextInfo>
+                </Animated.View>
+                
 
 
 
@@ -270,7 +139,10 @@ export const InvestPopup = props => {
 
 export const Invest = {
     screen: InvestPopup,
-    navigationOptions: {
-        headerTitle: "INVESTIR"
+    navigationOptions: ({ navigation }) => {
+
+        return {
+            headerTitle: navigation.getParam('HeaderTitle', 'INVESTIR')
+        }
     }
 }

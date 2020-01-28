@@ -35,6 +35,7 @@ export const receiptColor = '#FFF8D0'
 export const receiptBorderColor = '#C8C177'
 export const receiptLogoColor = '#7C712A'
 export const receiptTextColor = '#988A36'
+export const lightBlue = '#00AEF5'
 
 // $white: #fff; // Branco
 // $black: #000; // Preto

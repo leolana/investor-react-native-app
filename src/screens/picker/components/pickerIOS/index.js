@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import {
@@ -8,6 +8,7 @@ import {
 } from './styles'
 
 import { withNavigation } from 'react-navigation'
+import { Animated } from 'react-native'
 
 
 export const PickerIOSComponent = props => {

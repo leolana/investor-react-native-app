@@ -160,7 +160,7 @@ export const CardAddBalanceToTransfer = props => {
                     keyboardType={'numeric'}
                 />
                 <Buttom 
-                    enabled={ balanceToTransferIsValid }
+                    disabled={ balanceToTransferIsValid }
                     onPress={ () => nextStep() } 
                 >
                     <ButtomText>PRÓXIMO</ButtomText>

@@ -35,13 +35,7 @@ export const TextInput = styled(ITextInput)`
 export const Buttom = styled.TouchableOpacity`
     width: ${width - 64}px;
     height: 40px;
-    background: ${props => {
-
-        if(props.enabled) return greenTwo
-
-        return grey99
-
-    }};
+    background: ${props => props.disabled ? grey99 :  greenTwo};
     border-radius: 5px;
     justify-content: center;
     align-items: center;

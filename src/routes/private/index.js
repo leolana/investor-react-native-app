@@ -127,7 +127,9 @@ const translateAnim = (props) => {
       outputRange: [height, 0, 0]
     })
   
-    return { transform: [{ translateX }, { translateY }] }
+    return { 
+        transform: [{ translateX }, { translateY }] 
+    }
 }
 
 

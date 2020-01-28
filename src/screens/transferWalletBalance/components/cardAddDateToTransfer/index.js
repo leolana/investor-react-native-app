@@ -174,7 +174,7 @@ export const CardAddDateComponent = props => {
 
                 
                 <Buttom 
-                    enabled={ dateIsValid }
+                    disabled={ dateIsValid }
                     onPress={ () => nextStep() } 
                 >
                     <ButtomText>PRÓXIMO</ButtomText>

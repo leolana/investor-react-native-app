@@ -214,7 +214,7 @@ export const InnitialStepComponent = props => {
                 <ButtomText>Investir</ButtomText>
             </Buttom>
 
-            <TextInfo textAlign="center" color={ grey99 } >
+            <TextInfo marginBottom={ 32 } textAlign="center" color={ grey99 } >
                 ** Ao chegar em 100% do valor solicitado, 
                 a solicitação é encerrada imediatamente e o pagamento do valor investido deve ser realizado em até 24 horas.
             </TextInfo>

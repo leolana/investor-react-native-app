@@ -7,13 +7,19 @@ import {
     greenTwo,
 } from '../../assets/colors'
 
+import {
+    Dimensions
+} from 'react-native'
+
+const { height } = Dimensions.get('screen')
+
 export const SafeAreaView = styled.SafeAreaView`
     flex: 1;
 `
 
 export const ScrollView = styled.ScrollView`
-
     padding: 16px;
+    
 
 
 `

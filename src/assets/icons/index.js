@@ -26,7 +26,9 @@ import Start from './ico-start.svg'
 import Photo from './ico-photo.svg'
 import Clock from './ico-clock.svg'
 import Investor from './ico-investor.svg'
-
+import Devices from './ico-devices.svg'
+import CalendarOne from './ico-calendar-one.svg'
+import Lock from './ico-lock.svg'
 
 
 export const IconIouu = Iouu
@@ -57,3 +59,6 @@ export const IconStart = Start
 export const IconPhoto = Photo
 export const IconClock = Clock
 export const IconInvestor = Investor
+export const IconDevices = Devices
+export const IconCalendarOne = CalendarOne
+export const IconLock = Lock

@@ -8,6 +8,41 @@ import {
     lightBlue
 } from '../../../../assets/colors'
 
+import {
+    IconPrinter,
+    IconDevices,
+    IconCalendarOne,
+    IconLock
+} from '../../../../assets/icons'
+
+import { SkeletonBone } from '../../../../components'
+
+export const Skeleton = styled(SkeletonBone)`
+
+`
+
+
+export const Printer = styled(IconPrinter)`
+
+    margin-right: 16px;
+`
+
+export const Devices = styled(IconDevices)`
+
+    margin-right: 16px;
+`
+
+export const Calendar = styled(IconCalendarOne)`
+
+    margin-right: 16px;
+`
+
+export const Lock = styled(IconLock)`
+
+    margin-left: 16px;
+
+`
+
 export const Divisor = styled.View`
     align-self: stretch;
     border-color: ${greyDD};
@@ -42,7 +77,7 @@ export const TableRow = styled.View`
     padding: 10px;
 `
 
-export const TableCalloutText = styled.Text`
+export const TableSpotlightText = styled.Text`
     font-family: 'HelveticaNeue-Bold';
     font-size: 14px;
     color: ${lightBlue};
@@ -52,6 +87,7 @@ export const InfoArea = styled.View`
     background: ${greyF7}
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 16px;
 
 `
 
@@ -64,4 +100,32 @@ export const Title = styled.Text`
 export const ItemText = styled.Text`
     font-family: ${ props => props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue'};
     font-size: 12px;
+    width: ${ props => props.width || 'auto'}
+`
+
+export const SpotlightTitle = styled.Text`
+    color: ${lightBlue};
+    font-size: 22px;
+    font-family: HelveticaNeue-Bold;
+    text-align: center;
+    margin: 16px 0;
+
+`
+
+export const Item = styled.View`
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+
+
+`
+
+export const Text = styled.Text`
+    font-size: 14px;
+    color: ${grey99};
+    font-family: HelveticaNeue 
+    textDecorationLine: ${props => props.underline ? 'underline' : 'none'};
+
 `

@@ -10,7 +10,7 @@ import {
     Table,
     TableText,
     TableRow,
-    TableCalloutText
+    TableSpotlightText
 } from './styles'
 
 import {
@@ -66,8 +66,8 @@ export const ConfirmationStepComponent = props => {
                 </TableRow>
 
                 <TableRow >
-                    <TableCalloutText>Total investido</TableCalloutText>
-                    <TableCalloutText>{formatMoney(data.value)}</TableCalloutText>
+                    <TableSpotlightText>Total investido</TableSpotlightText>
+                    <TableSpotlightText>{formatMoney(data.value)}</TableSpotlightText>
                 </TableRow>
 
 

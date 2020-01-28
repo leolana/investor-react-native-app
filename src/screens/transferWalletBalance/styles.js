@@ -43,6 +43,11 @@ export const Buttom = styled.TouchableOpacity`
 
 `
 
+export const ScrollView = styled.ScrollView`
+    flex: 1;
+    height: ${height}px;
+`
+
 export const ButtomText = styled.Text`
     font-size: 15px;
     font-family: HelveticaNeue-Bold;

@@ -124,12 +124,13 @@ export const TextInfo = styled.Text`
     font-family: ${ props => props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue' };
     color: ${ props => props.color || black };
     text-align: ${ props => props.textAlign || 'left' };
+    margin-bottom: ${ props => props.marginBottom || 0 }px;
 `
 
 export const InputTitle = styled.Text`
     font-size: 12px;
     font-family: HelveticaNeue-Bold;
-    margin-top: 72px;
+    margin-top: 16px;
     text-align: center;
 `
 

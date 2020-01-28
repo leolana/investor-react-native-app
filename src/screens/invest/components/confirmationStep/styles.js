@@ -67,7 +67,7 @@ export const TableRow = styled.View`
     padding: 10px;
 `
 
-export const TableCalloutText = styled.Text`
+export const TableSpotlightText = styled.Text`
     font-family: 'HelveticaNeue-Bold';
     font-size: 14px;
     color: ${lightBlue};

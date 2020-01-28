@@ -18,6 +18,7 @@ import {
     HeaderText,
     CardPage,
     IconAddFundsStyled,
+    ScrollView
 } from './styles'
 
 import {
@@ -37,8 +38,6 @@ import {
 import {
     formatMoney
 } from '../../utils'
-
-import { ScrollView } from 'react-native'
 
 export const TransferWalletBalancePage = props => {
 
@@ -186,6 +185,8 @@ export const TransferWalletBalancePage = props => {
 
         <SafeAreaView> 
 
+            <ScrollView>
+
                 <Loading loading={ loading }> 
 
                     <Header colors={ [ tealish, greenishBlue ] }>
@@ -198,16 +199,18 @@ export const TransferWalletBalancePage = props => {
 
                     <CardPage>
 
-                        <ScrollView>
-                            <IconAddFundsStyled />
+                        <IconAddFundsStyled />
 
-                            { handleCard() }
+                        { handleCard() }
                             
-                        </ScrollView>
 
                     </CardPage>
 
                 </Loading>
+
+
+            </ScrollView>
+
 
         </SafeAreaView>
     )

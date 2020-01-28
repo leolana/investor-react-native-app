@@ -148,7 +148,7 @@ export const PrivateRoutes = createStackNavigator(
         headerMode: 'none',
         transparentCard: true,
         defaultNavigationOptions: {
-            gesturesEnabled: true,
+            gesturesEnabled: false,
             gestureResponseDistance: { vertical: 1000 }
         },
         cardStyle: {

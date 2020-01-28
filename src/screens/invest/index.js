@@ -142,6 +142,7 @@ export const Invest = {
     navigationOptions: ({ navigation }) => {
 
         return {
+            gestureEnabled: false,
             headerTitle: navigation.getParam('HeaderTitle', 'INVESTIR')
         }
     }

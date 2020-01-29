@@ -186,7 +186,7 @@ export const TransferWalletBalancePage = props => {
         <SafeAreaView> 
 
             <ScrollView>
-
+                
                 <Loading loading={ loading }> 
 
                     <Header colors={ [ tealish, greenishBlue ] }>
@@ -197,17 +197,16 @@ export const TransferWalletBalancePage = props => {
 
                     </Header>
 
-                    <CardPage>
+                        <CardPage>
 
-                        <IconAddFundsStyled />
+                            <IconAddFundsStyled />
 
-                        { handleCard() }
+                            { handleCard() }
+
                             
-
-                    </CardPage>
+                        </CardPage>
 
                 </Loading>
-
 
             </ScrollView>
 

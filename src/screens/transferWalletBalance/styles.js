@@ -44,8 +44,6 @@ export const Buttom = styled.TouchableOpacity`
 `
 
 export const ScrollView = styled.ScrollView`
-    flex: 1;
-    height: ${height}px;
 `
 
 export const ButtomText = styled.Text`
@@ -63,10 +61,6 @@ export const IconAddFundsStyled = styled(IconAddFunds)`
 
 export const SafeAreaView = styled.SafeAreaView`
     flex: 1;
-
-    ${Platform.select({
-        android:`margin-bottom: 16px;`
-    })}
 `
 export const Header = styled(LinearGradient)`
     position: relative;
@@ -93,13 +87,10 @@ export const HeaderText = styled.Text`
 export const CardPage = styled.View`
     width: ${width - 32}px
     background: ${white};
-    height: auto;
     border-radius: 5px;
     margin: 0 16px;
     padding: 32px 16px;
-    position: absolute;
-    top: 100px;
-    flex: 1;
+    transform: translateY(-90px);
 
 `
 

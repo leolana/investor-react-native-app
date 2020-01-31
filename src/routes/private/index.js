@@ -59,7 +59,6 @@ const mainScreenRoutesConfig = {
             headerTintColor: white,
             headerStyle: {
                 backgroundColor: tealish,
-                paddingHorizontal: 10,
             },
             headerTitleStyle: {
                 color: white,

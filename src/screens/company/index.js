@@ -78,7 +78,7 @@ export const CompanyPage = props => {
         fetchData()
 
 
-    }, []) 
+    }, [data]) 
 
     useEffect( () => {
         

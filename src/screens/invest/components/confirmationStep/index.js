@@ -24,7 +24,8 @@ import {
 
 import {
     Request,
-    UrlSolicitacaoReservaInvCriar
+    UrlReservationCreate,
+    UrlSolicitacaoReservaPegar
 } from '../../../../services'
 
 import {
@@ -42,23 +43,35 @@ export const ConfirmationStepComponent = props => {
 
     // Methods
 
+    const getBankSlipUrl = async id => {
+
+        const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(id) })
+
+        console.log(resp)
+
+        if(resp.status === 200) return resp.data.Boleto.secure_url
+
+        else return null
+
+    }
+
     const invest = async () => {
 
         const config = {
             Valor: Number.parseFloat(data.value),
             ReInvestimento: Number.parseFloat(data.reinvestmentValue),
-            loanRequestId: data._id,
             listaEspera: data.waitingList
         }
 
         const resp = await Request.POST({
-            url: UrlSolicitacaoReservaInvCriar(data._id),
-            data: config
+            url: UrlReservationCreate(data._id),
+            data: config,
+            header: 'bearer'
         })
 
-        console.log(resp, config)
+        console.log(resp)
 
-        if(resp.status !== 200) Toast.showError(resp.data.errors[0].detail)
+        if(resp.status !== 200) Toast.showError(resp.data.Error)
 
         if(data.waitingList) {
 
@@ -68,7 +81,16 @@ export const ConfirmationStepComponent = props => {
 
         }
 
-        else props.onStepChange(2)
+        else {
+
+            const url = await getBankSlipUrl(resp.data.$__._id)
+
+            props.onDataChange(url)
+
+            props.onStepChange(2)
+
+
+        }
 
     }
 

@@ -86,6 +86,7 @@ export const InvestComponent = props => {
         const confirmation = (
             <ConfirmationStep 
                 data={{ ...data, value, reinvestmentValue }} 
+                onDataChange={ () => {} }
                 onStepChange={ onStepChange } 
             />
         )

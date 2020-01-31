@@ -30,6 +30,7 @@ import Devices from './ico-devices.svg'
 import CalendarOne from './ico-calendar-one.svg'
 import Lock from './ico-lock.svg'
 import CurrencyExchange from './ico-currency-exchange.svg'
+import NoItem from './ico-no-item.svg'
 
 
 export const IconIouu = Iouu
@@ -64,3 +65,4 @@ export const IconDevices = Devices
 export const IconCalendarOne = CalendarOne
 export const IconLock = Lock
 export const IconCurrencyExchange = CurrencyExchange
+export const IconNoItem = NoItem

@@ -24,11 +24,12 @@ export const PickerIOSComponent = props => {
             <PickerStyled
                 selectedValue={props.value}
                 onValueChange={props.onChange}
+                
             
             >
 
                 {
-                    props.data.map( data => (<PickerStyled.Item label={data.text} value={data.value} />) )
+                    props.data.map( (data, index) => (<PickerStyled.Item label={data.text} value={data.value} key={index} />) )
                 }
             </PickerStyled>
 

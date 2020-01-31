@@ -11,30 +11,32 @@ const { width } = Dimensions.get('screen')
 
 export const SafeArea = styled(Animated.View)`
     width: ${width};
-    justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     position: absolute;
-    bottom: 128px;
+    top: 72px;
 
 `
 
 export const Container = styled.View`
     min-height: 38px;
-    border-radius: 24px;
-    padding: 4px 16px;
-    background: ${ props => props.background };
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 18px;
+    background: ${ white };
+    elevation: 6;
+    box-shadow: 1px 1px 10px rgba(0,0,0, 0.4)
     justify-content: center;
     align-items: center;
     min-width: 128px;
-    max-width: ${width}px;
+    max-width: ${width - 46}px;
     flex-direction: row;
 
 `
 
 export const Text = styled.Text`
-    font-size: 16px
+    font-size: 14px
     font-family: HelveticaNeue;
-    color: ${white};
-    margin: 0 10px;
+    padding-left: 10px;
 
 `

@@ -8,7 +8,7 @@ import {
 } from './styles'
 
 import { useSelector } from 'react-redux'
-import { Animated, Easing, TouchableWithoutFeedback } from 'react-native'
+import { Animated, Easing, TouchableWithoutFeedback, Dimensions } from 'react-native'
 
 import store from '../../store'
 
@@ -16,15 +16,17 @@ import { showToast, destroyToast } from  '../../store/actions'
 
 import {
     IconClose,
-    IconCheckAll
+    IconCheckAll,
+    IconNoItem
 } from '../../assets/icons'
 
 import {
-    white,
     toastError,
     toastSuccess,
     toastInfo
 } from '../../assets/colors'
+
+const { width } = Dimensions.get('screen')
 
 export const ToastView = props => {
 
@@ -39,13 +41,16 @@ export const ToastView = props => {
 
     const toastParams = useSelector( ({toastParams}) => toastParams )
 
-    const style = { opacity } 
+    const style = { transform: [ { translateX: opacity.interpolate({
+        inputRange: [0, 1],
+        outputRange: [width, 0]
+    }) } ] } 
 
     // methods
 
     opacity.addListener( ({value}) => {
 
-        if(value != 0) return
+        if(value != 0) return setIsVisible(true)
 
         destroy()
 
@@ -66,15 +71,15 @@ export const ToastView = props => {
 
         const params = {
             'success': {
-                icon: <IconCheckAll width={16} height={16} stroke={white} />,
+                icon: <IconCheckAll width={16} height={16} stroke={toastSuccess} />,
                 color: toastSuccess
             },
             'error': {
-                icon: <IconClose width={16} height={16} stroke={white} />,
+                icon: <IconNoItem width={24} height={24} stroke={toastError} />,
                 color: toastError
             },
             'info': {
-                icon: <IconClose width={16} height={16} stroke={white} />,
+                icon: <IconClose width={16} height={16} stroke={toastInfo} />,
                 color: toastInfo
             }
         }
@@ -119,9 +124,9 @@ export const ToastView = props => {
 
         if(toastParams === undefined || toastParams === null ) return
 
-        setIsVisible(true)
+        if(isVisible) return
 
-        const duration = toastParams.duration || 450
+        const duration = toastParams.duration || 550
 
         const show = baseAnimation(1, duration)
         const hide = baseAnimation(0, duration, 2000)

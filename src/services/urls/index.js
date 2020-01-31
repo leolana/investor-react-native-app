@@ -71,6 +71,10 @@ export const UrlSolicitacaoReservaInvPegar = solicitacaoId => `${BASE_URL_NODE}a
 export const UrlSolicitacaoReservaInvCancelar = solicitacaoId => `${BASE_URL_NODE}api/v1/reserva-investimentos-CANCEL/${solicitacaoId}`
 export const UrlSolicitacaoReservaInvCriar = solicitacaoId => `${BASE_URL_NODE}api/v1/solicitacoes/${solicitacaoId}/reserva-investimento`
 
+export const UrlReservationCreate = solicitacaoId => `${BASE_URL_GO}api/v1/reserva/criar/solicitacao/${solicitacaoId}`
+export const UrlReservationDelete = reservaId => `${BASE_URL_GO}api/v1/reserva/cancelar/${reservaId}`
+export const UrlReservationCreateBankSlip = reservaId => `${BASE_URL_GO}api/v1/gerarBoleto/${reservaId}`
+
 export const UrlEstatisticasPegar = usuarioId => `${BASE_URL_GO}api/v1/GetEstatisticas/${usuarioId}`
 export const UrlEstatisticasPlataformaPegar = tipo => `${BASE_URL_GO}api/v1/GetEstatisticasPlataformaInvestidores/${tipo}`
 

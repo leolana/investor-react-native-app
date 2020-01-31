@@ -47,7 +47,10 @@ export const PageOpportunities = props => {
 
         const config = { url: UrlListaOportunidades(page, score), header: 'bearer' }
 
-        Request.GET(config).then( resp => requestSuccessful(resp.data) )
+        Request.GET(config).then( resp => {
+
+            requestSuccessful(resp.data)
+        } )
 
 
     }

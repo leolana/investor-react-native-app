@@ -2,11 +2,11 @@ import styled from 'styled-components/native'
 
 import {
     greyDD
-} from '../../../../assets/colors'
+} from '../../assets/colors'
 
 import {
     IconPrinter
-} from '../../../../assets/icons'
+} from '../../assets/icons'
 
 
 export const IconPrinterStyled = styled(IconPrinter)`

@@ -16,6 +16,17 @@ export default (state = {}, action) => {
         
         };
 
+        case Types.TOAST_SHOW: return { 
+            ...state, 
+            toastParams: action.data
+        
+        };
+
+        case Types.TOAST_DESTROY: return { 
+            ...state, 
+            toastParams: null
+        };
+
 
         default: return state;
     }

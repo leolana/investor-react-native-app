@@ -29,6 +29,7 @@ import Investor from './ico-investor.svg'
 import Devices from './ico-devices.svg'
 import CalendarOne from './ico-calendar-one.svg'
 import Lock from './ico-lock.svg'
+import CurrencyExchange from './ico-currency-exchange.svg'
 
 
 export const IconIouu = Iouu
@@ -62,3 +63,4 @@ export const IconInvestor = Investor
 export const IconDevices = Devices
 export const IconCalendarOne = CalendarOne
 export const IconLock = Lock
+export const IconCurrencyExchange = CurrencyExchange

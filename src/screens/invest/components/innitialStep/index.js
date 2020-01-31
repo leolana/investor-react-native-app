@@ -56,6 +56,8 @@ export const InnitialStepComponent = props => {
 
     const [ value, setValue ] = useState(0)
 
+    const [ reinvestimentValue , setReinvestmentValue ] = useState(0)
+
 
     // Methods
 
@@ -114,9 +116,28 @@ export const InnitialStepComponent = props => {
         
     }
 
-    const onValueChange = value => {
 
-        setValue(value)
+    const openPicker = () => {
+
+        const onValueChange = value => setValue(value)
+
+        const params = { data: generateRangeValues(), value, onValueChange  }
+
+        props.navigation.navigate('Picker', params)
+    }
+
+    
+
+    const hasWalletBalance = () => {
+
+        if( data.walletBalance === undefined || data.walletBalance === null) return props.onStepChange(1)
+
+        if(data.walletBalance <= 0 || reinvestimentValue > 0) return props.onStepChange(1)
+
+        const onValueChange = value => setReinvestmentValue(value)
+
+        props.navigation.navigate('ReinvestmentSheetModal', { data: {...data, value} , onValueChange } )
+
     }
 
     // Effects
@@ -125,9 +146,9 @@ export const InnitialStepComponent = props => {
 
         if(props.onValueChange === undefined) return 
 
-        props.onValueChange(value)
+        props.onValueChange(value, reinvestimentValue)
 
-    }, [value]) 
+    }, [value, reinvestimentValue]) 
     
 
     // render
@@ -137,7 +158,7 @@ export const InnitialStepComponent = props => {
         <>
 
             <Retangle>
-            <Text color={grey99} >Cidade/UF: <Text bold={true} >{data.Empresa.Endereco.Cidade} / {data.Empresa.Endereco.Uf}</Text></Text>
+                <Text color={grey99} >Cidade/UF: <Text bold={true} >{data.Empresa.Endereco.Cidade} / {data.Empresa.Endereco.Uf}</Text></Text>
             </Retangle>
 
             <Retangle>
@@ -163,7 +184,7 @@ export const InnitialStepComponent = props => {
 
             </Divisor>
 
-                <Divisor>
+            <Divisor>
 
                 <ItemWithDivisor>
 
@@ -206,11 +227,11 @@ export const InnitialStepComponent = props => {
 
             <InputTitle>Valor que deseja investir</InputTitle>
 
-            <InputArea onPress={ () => props.navigation.navigate('Picker', { data: generateRangeValues(), value, onValueChange  }) } >
+            <InputArea onPress={ () => openPicker() } >
                 <InputValue>{formatMoney(value)}</InputValue>
             </InputArea>
 
-            <Buttom disabled={ value === 0 } onPress={ () => props.onStepChange(1) } >
+            <Buttom disabled={ value === 0 } onPress={ () => hasWalletBalance() } >
                 <ButtomText>Investir</ButtomText>
             </Buttom>
 

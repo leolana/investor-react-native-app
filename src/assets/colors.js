@@ -37,6 +37,10 @@ export const receiptLogoColor = '#7C712A'
 export const receiptTextColor = '#988A36'
 export const lightBlue = '#00AEF5'
 
+export const toastError = '#e53935'
+export const toastSuccess = '#7cb342'
+export const toastInfo = '#039be5'
+
 // $white: #fff; // Branco
 // $black: #000; // Preto
 // $greenish-blue: #0f8b8d;

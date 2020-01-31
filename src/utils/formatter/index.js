@@ -14,7 +14,7 @@ export const formatCode = code => {
 
     const zeroIndex = 5 - code.length
 
-    return `${zeros[zeroIndex]}${code}`
+    return `${zeros[zeroIndex - 1]}${code}`
 
 }
 

@@ -5,11 +5,20 @@ import { Provider } from 'react-redux'
 
 import Store from './store'
 
+import { ToastView } from './components'
+
 export default class App extends Component {
   render() {
     return (
       <Provider store={Store} >
-        <Routes/>
+
+        <>
+
+          <Routes/>
+
+          <ToastView />
+          
+        </>
       </Provider>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState, useEffect }  from 'react'
 
 import {
     SheetModal
-} from '../../../../components'
+} from '../../components'
 
 
 import {

@@ -14,7 +14,9 @@ import { Statistics } from '../../screens/statistics'
 
 import { Profile } from '../../screens/profile'
 
-import { Wallet, WalletSheetModal } from '../../screens/wallet'
+import { Wallet } from '../../screens/wallet'
+
+import { WalletSheetModal } from '../../screens/walletSheetModal'
 
 import { WalletReceipt } from '../../screens/walletReceipt'
 
@@ -30,86 +32,57 @@ import { Picker } from '../../screens/picker'
 
 import { Company } from '../../screens/company'
 
-import { More } from '../../screens/more'
+import { Menu } from '../../screens/menu'
 
 import { DatePicker } from '../../screens/datePicker'
 
-import { tealish, white, black } from '../../assets/colors'
+import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
-import React from 'react'
-
-import { ToolbarCloseButtom } from '../../components'
+import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
 
-export const ScreenRoutes = createStackNavigator(
-    {
-        Opportunities,
-        Wallet,
-        Profile,
-        Notifications,
-        History,
-        Statistics,
-        WalletReceipt,
-        WalletHistoric,
-        TransferWalletBalance,
-        Company,
-        More: {
-            screen: More,
-            navigationOptions: {
-                header: null
-            }
-        }
-    },
-    {
-        defaultNavigationOptions: ({navigation}) => {
 
-            navigation.addListener('willFocus', ({state}) => storeData('RouteName', state.routeName))
+// Vars
 
-            return {
-        
-                headerBackTitle: 'Voltar',
-                headerTintColor: white,
-                headerStyle: {
-                    backgroundColor: tealish,
-                    paddingHorizontal: 10,
-                },
-                headerTitleStyle: {
-                    color: white,
-                    fontFamily: 'Montserrat-Regular'
-                }
+const mainScreenRoutesConfig = {
+
+    defaultNavigationOptions: ({navigation}) => {
+
+        navigation.addListener('willFocus', ({state}) => storeData('RouteName', state.routeName))
+
+        return {
+    
+            headerBackTitle: 'Voltar',
+            headerTintColor: white,
+            headerStyle: {
+                backgroundColor: tealish,
+                paddingHorizontal: 10,
+            },
+            headerTitleStyle: {
+                color: white,
+                fontFamily: 'Montserrat-Regular'
             }
         }
     }
-)
+}
 
-export const PopupRoutes = createStackNavigator(
-    {
-        TransferWalletBalanceConfirmation,
-        Invest,
+const modalScreenRoutesConfig = {
+
+    mode: 'modal',
+    headerMode: 'none',
+    transparentCard: true,
+    defaultNavigationOptions: {
+        gesturesEnabled: false,
+        gestureResponseDistance: { vertical: 1000 }
     },
-    {
-        mode: 'modal',  
-        defaultNavigationOptions: ({navigation}) => (
-            {
-                gesturesEnabled: false,
-                gestureResponseDistance: { vertical: 0 },
-                headerLeft: null,
-                headerRight: (<ToolbarCloseButtom navigation={navigation} />),
-                headerTintColor: white,
-                headerStyle: {
-                    backgroundColor: tealish,
-                },
-                headerTitleStyle: { 
-                    color: white,
-                    fontFamily: 'Montserrat-Regular'
-                }
-                
-            }
-        )
-    }
-)
+    cardStyle: {
+        opacity: 1.0
+    },
+    transitionConfig: () => ({ screenInterpolator: translateAnim }),
+}
 
+// Methods
 
 const translateAnim = (props) => {
     const { 
@@ -132,30 +105,39 @@ const translateAnim = (props) => {
     }
 }
 
+// Routes
+
+export const ScreenRoutes = createStackNavigator(
+    {
+        Opportunities,
+        Wallet,
+        Profile,
+        Notifications,
+        History,
+        Statistics,
+        WalletReceipt,
+        WalletHistoric,
+        TransferWalletBalance,
+        Company,
+        Invest,
+        TransferWalletBalanceConfirmation,
+        Menu,
+    },
+    mainScreenRoutesConfig
+)
+
 
 export const PrivateRoutes = createStackNavigator(
     {
         ScreenRoutes,
         WalletSheetModal,
-        PopupRoutes,
+        ReinvestmentSheetModal,
         DatePicker,
         TransferWalletBalanceSuccess,
         Picker,
         
     },
-    {
-        mode: 'modal',
-        headerMode: 'none',
-        transparentCard: true,
-        defaultNavigationOptions: {
-            gesturesEnabled: false,
-            gestureResponseDistance: { vertical: 1000 }
-        },
-        cardStyle: {
-            opacity: 1.0
-        },
-        transitionConfig: () => ({ screenInterpolator: translateAnim }),
-    }
+    modalScreenRoutesConfig
 )
 
   

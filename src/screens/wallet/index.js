@@ -101,5 +101,3 @@ export const Wallet = {
         headerLeft: null,
     }
 }
-
-export * from './components/walletSheetModal'

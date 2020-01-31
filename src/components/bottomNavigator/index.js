@@ -37,7 +37,7 @@ export const BottomNavigator  = ({ navigation }) => {
     const isOpportunities = (index === 'Opportunities')
     const isWallet = (index === 'Wallet')
     const isProfile = (index === 'Profile')
-    const isMore = (index === 'More')
+    const isMenu = (index === 'Menu')
 
     
 
@@ -83,8 +83,8 @@ export const BottomNavigator  = ({ navigation }) => {
 
             <AnimatedTouchable onPress={ () => onPressed('More') } >
                 <>
-                    <IconMoreCirlces fill={ isMore ? black : grey99 } width={ 24 } height={ 24 } />
-                    <Text isSelected={isMore} >Mais</Text>
+                    <IconMoreCirlces fill={ isMenu ? black : grey99 } width={ 24 } height={ 24 } />
+                    <Text isSelected={isMenu} >Mais</Text>
                 </>
             </AnimatedTouchable>
 

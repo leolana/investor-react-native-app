@@ -29,9 +29,9 @@ export const PickerAndroidComponent = props => {
         <ScrollView showsVerticalScrollIndicator={false}>  
 
             {
-                props.data.map( data => (
+                props.data.map( (data, index) => (
 
-                    <TouchableOpacity onPress={() => onSelected(data) } >
+                    <TouchableOpacity onPress={() => onSelected(data) } key={index}  >
 
                         <Text>{data.text}</Text>
                         

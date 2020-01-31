@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import {
@@ -28,11 +28,14 @@ import {
     formatCNPJ
 } from '../../utils'
 
+import {
+    Request,
+    UrlCarteiraSaldo
+} from '../../services'
 
-import { Animated } from 'react-native'
+import { Animated, BackHandler } from 'react-native'
 
-
-export const InvestPopup = props => {
+export const InvestComponent = props => {
 
     // Props
 
@@ -43,15 +46,32 @@ export const InvestPopup = props => {
     const [ value, setValue ] = useState(0)
     const [ reinvestmentValue, setReinvestmentValue ] = useState(0)
 
+    const [ walletBalance, setWalletBalance ] = useState(null)
+
     const [ step, setStep ] = useState(0)
 
     // Methods
 
+    BackHandler.addEventListener( 'hardwareBackPress',  () => props.navigation.goBakc() )
+
+    const getWalletBalance = async () => {
+        
+        const resp = await Request.GET( { url: UrlCarteiraSaldo, header: 'bearer' } )
+
+        if(resp.status === 200) setWalletBalance(resp.data.Saldo)
+
+    }
+
+    const onValueChange = (selectedValue, reinvestmentValue) => {
+
+        setValue(selectedValue)
+        setReinvestmentValue(reinvestmentValue)
+        
+    } 
+
     const onStepChange = stepIndex => {
 
         setStep( stepIndex )
-
-        console.log(stepIndex)
 
     }
 
@@ -59,8 +79,8 @@ export const InvestPopup = props => {
 
         const innitial = (
             <InnitialStep 
-                data={data} 
-                onValueChange={ selectedValue => setValue(selectedValue) } 
+                data={ { ...data, walletBalance } } 
+                onValueChange={ onValueChange } 
                 onStepChange={ onStepChange } 
             />
         )
@@ -88,6 +108,21 @@ export const InvestPopup = props => {
         return steps[step]
 
     }
+
+    // useEffect
+
+    useEffect( () => {
+
+        async function fetchData() {
+
+            await getWalletBalance()
+
+        }
+
+        fetchData()
+
+
+    }, [])
 
 
     // Render
@@ -119,15 +154,11 @@ export const InvestPopup = props => {
 
                 </Item>
 
-
-
                 <Animated.View>
 
                     { handleStep() }
 
                 </Animated.View>
-                
-
 
 
             </ScrollView>
@@ -138,12 +169,12 @@ export const InvestPopup = props => {
 }
 
 export const Invest = {
-    screen: InvestPopup,
+    screen: InvestComponent,
     navigationOptions: ({ navigation }) => {
 
         return {
-            gestureEnabled: false,
             headerTitle: navigation.getParam('HeaderTitle', 'INVESTIR')
         }
     }
 }
+

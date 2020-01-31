@@ -2,16 +2,18 @@ import React from 'react'
 
 import {
     formatMoney,
-} from '../../../../../../utils'
+} from '../../../../utils'
 
 import {
     Text,
     Item,
     Area,
+    Button,
+    IconPrinterStyled
 } from '../../styles'
 
 
-export const ModalInvestment = props => {
+export const ModalDeposit = props => {
 
     // Props
 
@@ -29,10 +31,15 @@ export const ModalInvestment = props => {
 
             <Item marginBottom={5} >Detalhes de Recebimento</Item>
 
-            <Area  marginBottom={2}>
+            <Area>
                 <Item>Valor: </Item> 
                 <Text>{ formatMoney( data.Valor ) }</Text>
             </Area>
+
+            <Button>
+                <IconPrinterStyled width={ 24 } height={ 24 } stroke={ black } fill={'none'} />
+                <Text>Visualizar detalhes</Text>
+            </Button>
 
 
         </>

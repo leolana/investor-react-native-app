@@ -54,7 +54,7 @@ import {
 } from '../../services'
 
 
-export const More = props => {
+export const MenuComponent = props => {
 
     const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
 
@@ -178,4 +178,11 @@ export const More = props => {
             </View>
         </>
     )
+}
+
+export const Menu = {
+    screen: MenuComponent,
+    navigationOptions: {
+        header: null
+    }
 }

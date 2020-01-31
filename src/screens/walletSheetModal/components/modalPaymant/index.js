@@ -3,13 +3,13 @@ import React from 'react'
 
 import {
     black
-} from '../../../../../../assets/colors'
+} from '../../../../assets/colors'
 
 import {
     formatCNPJ,
     formatMoney,
     formatPercent,
-} from '../../../../../../utils'
+} from '../../../../utils'
 
 import {
     Title,

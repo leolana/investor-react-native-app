@@ -27,7 +27,7 @@ import {
 } from '../../styles'
 
 import {
-    formatMoney
+    formatMoney, formatCode
 } from '../../../../utils'
 
 import {
@@ -78,7 +78,7 @@ export const PaymentStepComponent = props => {
             const { Bairro, Cep, Cidade, Complemento, Logradouro, Numero, Uf } = Endereco
 
             const aux = 
-                `${Logradouro}, ${Numero} - ${(Complemento) ? Complemento + ',' : ''} ${Cidade}, ${Uf}, ${Cep}`
+                `${Logradouro}, ${Numero} - ${(Complemento) ? Complemento + ',' : ''} ${Bairro}, ${Cidade}, ${Uf}, ${Cep}`
             
             setAddress(aux)
 
@@ -110,7 +110,7 @@ export const PaymentStepComponent = props => {
         <>
             <Table>
                 <TableRow showBorder={ true } >   
-                    <TableText>ID #00000</TableText>
+                    <TableText>ID #{formatCode(data.IdOportunidade)}</TableText>
                     <TableText bold={true}>{formatMoney(data.value)}</TableText>
 
                 </TableRow>
@@ -166,7 +166,7 @@ export const PaymentStepComponent = props => {
                 <ItemText>o prazo de validade do boleto é de <ItemText bold={true}>1 dia útil</ItemText></ItemText>
             </Divisor>
 
-            <SpotlightTitle>Total: R$ 1.000,00</SpotlightTitle>
+            <SpotlightTitle>Total: ${formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
 
             <Buttom>
                 <ButtomText>PAGAR BOLETO</ButtomText>

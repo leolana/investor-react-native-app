@@ -45,7 +45,7 @@ export const CardAddBalanceToTransfer = props => {
 
     const [ balanceToTransfer, setBalanceToTransfer ] = useState(0)
 
-    const [ balanceToTransferIsValid, setBalanceToTransferIsValid ] = useState(false)
+    const [ isValid, setIsValid ] = useState(false)
 
     const [ bankName, setBankName ] = useState('')
 
@@ -66,18 +66,18 @@ export const CardAddBalanceToTransfer = props => {
     const validateInput = inputValue => {
 
 
-        if(data.walletBalance === null || data.walletBalance === undefined) setBalanceToTransferIsValid(false)
+        if(data.walletBalance === null || data.walletBalance === undefined) setIsValid(false)
 
-        else if(inputValue === null || inputValue === undefined) setBalanceToTransferIsValid(false)
+        else if(inputValue === null || inputValue === undefined) setIsValid(false)
 
-        else if(inputValue >= 100 && inputValue <= data.walletBalance) setBalanceToTransferIsValid(true)
+        else if(inputValue >= 100 && inputValue <= data.walletBalance) setIsValid(true)
 
-        else setBalanceToTransferIsValid(false)
+        else setIsValid(false)
     }
 
     const nextStep = () => {
 
-        if(!balanceToTransferIsValid) return 
+        if(!isValid) return 
 
         if(props.getInsertedValue !== undefined) props.getInsertedValue(balanceToTransfer)
 
@@ -160,7 +160,7 @@ export const CardAddBalanceToTransfer = props => {
                     keyboardType={'numeric'}
                 />
                 <Buttom 
-                    disabled={ balanceToTransferIsValid }
+                    disabled={ !isValid }
                     onPress={ () => nextStep() } 
                 >
                     <ButtomText>PRÓXIMO</ButtomText>

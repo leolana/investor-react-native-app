@@ -33,26 +33,24 @@ import {
     UrlCarteiraSaldo
 } from '../../services'
 
-import { Animated, BackHandler } from 'react-native'
+import { Animated } from 'react-native'
 
 export const InvestComponent = props => {
 
-    // Props
+    // Vars
 
     const data = props.navigation.getParam('data', null)
 
     // States
 
     const [ value, setValue ] = useState(0)
-    const [ reinvestmentValue, setReinvestmentValue ] = useState(0)
+    const [ reinvestmentValue, setReinvestmentValue ] = useState(null)
 
     const [ walletBalance, setWalletBalance ] = useState(null)
 
     const [ step, setStep ] = useState(0)
 
     // Methods
-
-    BackHandler.addEventListener( 'hardwareBackPress',  () => props.navigation.goBakc() )
 
     const getWalletBalance = async () => {
         

@@ -38,6 +38,8 @@ import { DatePicker } from '../../screens/datePicker'
 
 import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
+import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
+
 import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
@@ -121,6 +123,7 @@ export const ScreenRoutes = createStackNavigator(
         Company,
         Invest,
         TransferWalletBalanceConfirmation,
+        InvestWaitingListSuccess,
         Menu,
     },
     mainScreenRoutesConfig

@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
 
-
-
-
 import {
     Divisor,
     ItemTitle,
@@ -24,6 +21,16 @@ import {
     formatPercent,
     formatMoney
 } from '../../../../utils'
+
+import {
+    Request,
+    UrlSolicitacaoReservaInvCriar
+} from '../../../../services'
+
+import {
+    Toast
+} from '../../../../components'
+
 import { withNavigation } from 'react-navigation'
 
 
@@ -33,10 +40,44 @@ export const ConfirmationStepComponent = props => {
 
     const { data } = props
 
+    // Methods
+
+    const invest = async () => {
+
+        const config = {
+            Valor: Number.parseFloat(data.value),
+            ReInvestimento: Number.parseFloat(data.reinvestmentValue),
+            loanRequestId: data._id,
+            listaEspera: data.waitingList
+        }
+
+        const resp = await Request.POST({
+            url: UrlSolicitacaoReservaInvCriar(data._id),
+            data: config
+        })
+
+        console.log(resp, config)
+
+        if(resp.status !== 200) Toast.showError(resp.data.errors[0].detail)
+
+        if(data.waitingList) {
+
+            props.navigation.navigate('Company', { data } )
+
+            props.navigation.navigate('InvestWaitingListSuccessModal')
+
+        }
+
+        else props.onStepChange(2)
+
+    }
+
+
+
     // Effects
 
     useEffect( () => {
-        props.navigation.setParams({HeaderTitle: 'CONFIRMAR INVESTIMENTO'})
+        props.navigation.setParams({HeaderTitle: 'CONFIRMAR'})
     } , []) 
 
     // Render
@@ -56,7 +97,7 @@ export const ConfirmationStepComponent = props => {
             <Table>
                 <TableRow showBorder={ true } >   
                     <TableText>Reinvestimento</TableText>
-                    <TableText bold={true}>{formatMoney(data.value)}</TableText>
+                    <TableText bold={true}>{formatMoney(data.reinvestmentValue)}</TableText>
 
                 </TableRow>
 
@@ -73,9 +114,7 @@ export const ConfirmationStepComponent = props => {
 
             </Table>
 
-            <Buttom onPress={ () => {
-                props.onStepChange(2)
-            } } >
+            <Buttom onPress={ () => invest() } >
                 <ButtomText>CONFIRMAR INVESTIMENTO</ButtomText>
             </Buttom>
 

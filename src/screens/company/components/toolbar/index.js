@@ -95,9 +95,13 @@ export const ToolbarComponent = props => {
 
         const status = getStatus()
 
-        if(status === 'Investir') navigation.navigate('Invest', { waitingList: false, data } )
+        const waitingList = (status === 'Lista de espera')
+        
+        data.waitingList = waitingList
 
-        else if(status === 'Lista de espera') navigation.navigate('Invest', { waitingList: true, data } )
+        if(status === 'Investir') navigation.navigate('Invest', { data } )
+
+        else if(status === 'Lista de espera') navigation.navigate('Invest', { data } )
 
         else if(status === 'Investir') navigation.navigate('CancelInvestment', { data })
 

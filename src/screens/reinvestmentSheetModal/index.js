@@ -44,30 +44,29 @@ export const ReinvestmentSheetModal = props => {
 
     const onValueChange = props.navigation.getParam( 'onValueChange', () => {} )
 
-
-    // methods
-
-    const validateValue = () => {
-
-        onValueChange(reinvestmentValue)
-
-        props.navigation.goBack()
-    }
-
     // Effects 
 
     useEffect( () => {
 
+        onValueChange(reinvestmentValue)
+
         if(reinvestmentValue > data.value) {
 
-            Toast.showError('O valor do reinvestimento é maior do que o do investimento!')
+            Toast.showError(`O valor deve ser menor ou igual ao investido: ${formatMoney(data.value)}`)
+            
+            return setIsValid(false)
+        }
+
+        else if(reinvestmentValue > data.walletBalance) {
+
+            Toast.showError(`Saldo indisponível para o reinvestimento. Valor máximo: ${formatMoney(data.walletBalance)}`)
 
             return setIsValid(false)
         }
 
-        else if(reinvestmentValue > data.walletBalance || reinvestmentValue <= 0 ) setIsValid(false)
+        else if(reinvestmentValue <= 0 ) return setIsValid(false)
 
-        else setIsValid(true)
+        else return setIsValid(true)
 
 
     }, [reinvestmentValue]) 
@@ -97,7 +96,7 @@ export const ReinvestmentSheetModal = props => {
                     keyboardType={'numeric'}
                 />
 
-                <Buttom disabled={ !isValid } onPress={ () => validateValue() }>
+                <Buttom disabled={ !isValid } onPress={ () => props.navigation.goBack() }>
                     <ButtomText>REINVESTIR</ButtomText>
                 </Buttom>
 

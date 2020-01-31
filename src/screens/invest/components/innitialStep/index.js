@@ -56,7 +56,7 @@ export const InnitialStepComponent = props => {
 
     const [ value, setValue ] = useState(0)
 
-    const [ reinvestimentValue , setReinvestmentValue ] = useState(0)
+    const [ reinvestimentValue , setReinvestmentValue ] = useState(null)
 
 
     // Methods
@@ -133,6 +133,8 @@ export const InnitialStepComponent = props => {
         if( data.walletBalance === undefined || data.walletBalance === null) return props.onStepChange(1)
 
         if(data.walletBalance <= 0 || reinvestimentValue > 0) return props.onStepChange(1)
+
+        if(reinvestimentValue !== null) return props.onStepChange(1)
 
         const onValueChange = value => setReinvestmentValue(value)
 

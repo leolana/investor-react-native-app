@@ -33,8 +33,6 @@ export const TransferWalletBalanceConfirmationComponent = props => {
 
     const [ password, setPassword ] = useState('')
 
-
-
     // Vars
 
     const userData = useSelector( ({userData}) => userData )

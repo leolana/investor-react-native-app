@@ -81,7 +81,7 @@ export const BottomNavigator  = ({ navigation }) => {
                 </>
             </AnimatedTouchable>
 
-            <AnimatedTouchable onPress={ () => onPressed('More') } >
+            <AnimatedTouchable onPress={ () => onPressed('Menu') } >
                 <>
                     <IconMoreCirlces fill={ isMenu ? black : grey99 } width={ 24 } height={ 24 } />
                     <Text isSelected={isMenu} >Mais</Text>

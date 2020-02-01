@@ -102,48 +102,48 @@ export const OpportunitiesCardComponent = props => {
 
             <Card background={ scoreColor } >
                         
-                        <Header >
+                <Header >
 
-                            <Text> ID: #{ formatCode(data.IdOportunidade) } </Text>
-                            <Flex5> <Text> { formatLoanType(data.TipoEmprestimo) } </Text> </Flex5>
-                            <Text> { data.Prazo } Meses </Text>
+                    <Text> ID #{ formatCode(data.IdOportunidade) } </Text>
+                    <Flex5> <Text> { formatLoanType(data.TipoEmprestimo) } </Text> </Flex5>
+                    <Text> { data.Prazo } Meses </Text>
 
-                        </Header>
+                </Header>
 
-                        <Body>
+                <Body>
 
-                            <CircleWithChild 
-                                background={ scoreColor } 
-                                child={ renderScore() }
-                            />
+                    <CircleWithChild 
+                        background={ scoreColor } 
+                        child={ renderScore() }
+                    />
 
-                            <Container>
+                    <Container>
 
-                                <Title> { data.Empresa.NomeFantasia } </Title>
-                                <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
-                                <Content> Término: <Bold> { diffDaysForOpportunitie(data.FimCaptacao) } </Bold> </Content>
-                                <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
+                        <Title> { data.Empresa.NomeFantasia } </Title>
+                        <Content> valor solicitado: <Bold> { formatMoney(data.Valor) } </Bold> </Content>
+                        <Content> Término: <Bold> { diffDaysForOpportunitie(data.FimCaptacao) } </Bold> </Content>
+                        <Content> Rendimento: <Bold> { formatPercent(data.Rendimento) } </Bold> </Content>
 
-                            </Container>
+                    </Container>
 
-                            <Box>
+                    <Box>
 
-                                <Center>
-                                    <Subtitle>Captação em { formatPercent(getCaptationPercent()) } </Subtitle>
-                                </Center>
-                                
-                                <Buttom 
-                                    onPress={ () => props.navigation.navigate('Company', { data } ) }
-                                    background={ getColorByStatus() } 
-                                    title={ getOpportunityStatus() } 
-                                    fontSize={ 11 } 
-                                    height={ 25 }
-                                />
-                                
-                            </Box>
+                        <Center>
+                            <Subtitle>Captação em { formatPercent(getCaptationPercent()) } </Subtitle>
+                        </Center>
+                        
+                        <Buttom 
+                            onPress={ () => props.navigation.navigate('Company', { data } ) }
+                            background={ getColorByStatus() } 
+                            title={ getOpportunityStatus() } 
+                            fontSize={ 11 } 
+                            height={ 25 }
+                        />
+                        
+                    </Box>
 
-                        </Body>
-                    </Card>
+                </Body>
+            </Card>
 
         </TouchableWithoutFeedback>
         

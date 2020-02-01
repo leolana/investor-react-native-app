@@ -21,7 +21,7 @@ export const Container = styled.View`
     align-items: center;
     justify-content: center;
     padding: 16px;
-    padding-bottom: 6px;
+    padding-bottom: ${ props => (props.additionalHeight + 6)}px;
 `
 
 export const TextInput = styled(ITextInput)`

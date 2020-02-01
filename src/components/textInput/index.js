@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { Text, TextInput } from './styles'
+import { 
+    Text, 
+    TextInput,
+    ErrorMessage
+} from './styles'
 
 import * as InputMask from './masks'
+
+import { useSelector } from 'react-redux'
 
 
 export const ITextInput = props => {
@@ -12,13 +18,18 @@ export const ITextInput = props => {
 
     const [focused, setFocused] = useState(false)
 
+    const [errorMessage, setErrorMessage] = useState('')
+
     const [value, setValue] = useState({
         unMasked: null,
         masked: null
     })
 
-    // Methods
+    // Vars
 
+    const errors = useSelector( ({inputError}) =>  inputError)
+
+    // Methods
 
     const handleChange = text => {
 
@@ -32,6 +43,22 @@ export const ITextInput = props => {
 
     }
 
+    // Effects
+
+
+    useEffect( () => {
+
+        if(errors === undefined ) return
+
+        errors.forEach( err => {
+
+            if(err.id === props.id) setErrorMessage(err.message)
+
+
+        })
+
+    }, [errors])
+
 
     // Render
 
@@ -42,6 +69,8 @@ export const ITextInput = props => {
             <Text> { props.title } </Text>
 
             <TextInput 
+
+                error={ (errorMessage !== '') }
 
                 focus={focused}
 
@@ -57,6 +86,9 @@ export const ITextInput = props => {
                 
                 { ...props } 
             />
+
+            <ErrorMessage>{errorMessage}</ErrorMessage>
+
             
 
         </>

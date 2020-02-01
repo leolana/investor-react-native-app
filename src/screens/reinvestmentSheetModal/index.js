@@ -6,6 +6,10 @@ import {
 } from '../../components'
 
 import {
+    setInputError
+} from '../../store/actions'
+
+import {
     Container,
     TextInput,
     InfoText,
@@ -24,9 +28,11 @@ import {
     grey99 
 } from '../../assets/colors'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { formatMoney } from '../../utils'
+
+import { Keyboard } from 'react-native'
 
 export const ReinvestmentSheetModal = props => {
 
@@ -36,7 +42,11 @@ export const ReinvestmentSheetModal = props => {
 
     const [ isValid, setIsValid ] = useState(false)
 
+    const [ additionalHeight, setAdditionalHeight ] = useState(0)
+
     // vars
+
+    const dispatch = useDispatch()
 
     const name = useSelector( ({userData}) => userData.Name )
 
@@ -44,30 +54,51 @@ export const ReinvestmentSheetModal = props => {
 
     const onValueChange = props.navigation.getParam( 'onValueChange', () => {} )
 
+    // methods
+
+    Keyboard.addListener('keyboardDidShow', () => setAdditionalHeight(50))
+
+    Keyboard.addListener('keyboardDidHide', () => setAdditionalHeight(0))
+
     // Effects 
 
     useEffect( () => {
 
         onValueChange(reinvestmentValue)
 
+        const errorData = {
+            id: 'reinvestment',
+            message: ''
+        }
+
         if(reinvestmentValue > data.value) {
 
-            Toast.showError(`O valor deve ser menor ou igual ao investido: ${formatMoney(data.value)}`)
+            errorData.message = `O valor deve ser menor ou igual ao investido: ${formatMoney(data.value)}.`
             
-            return setIsValid(false)
+           setIsValid(false)
         }
 
         else if(reinvestmentValue > data.walletBalance) {
 
-            Toast.showError(`Saldo indisponível para o reinvestimento. Valor máximo: ${formatMoney(data.walletBalance)}`)
+            errorData.message =  `Saldo indisponível para o reinvestimento. Valor máximo: ${formatMoney(data.walletBalance)}.`
 
-            return setIsValid(false)
+            setIsValid(false)
         }
 
-        else if(reinvestmentValue <= 0 ) return setIsValid(false)
+        else if(reinvestmentValue < 0 )  {
 
-        else return setIsValid(true)
+            errorData.message =  `Valor para o reinvestimento não pode ser negativo.`
 
+            setIsValid(false)
+        }
+
+        else {
+
+            setIsValid(true)
+        }
+
+
+        dispatch(setInputError(errorData))
 
     }, [reinvestmentValue]) 
 
@@ -78,7 +109,7 @@ export const ReinvestmentSheetModal = props => {
     return (
         <SheetModal>
 
-            <Container>
+            <Container additionalHeight={additionalHeight}>
 
                 <IconCurrencyExchange fill={greenTwo} width={ 64 } height={ 64 } />
 
@@ -91,6 +122,7 @@ export const ReinvestmentSheetModal = props => {
                 <InfoText>Saldo: <Text>{formatMoney(data.walletBalance)}</Text></InfoText>
 
                 <TextInput
+                    id="reinvestment"
                     mask={ 'currency' } 
                     onValueChange={ ({unMasked}) => setReinvestmentValue(unMasked) } 
                     keyboardType={'numeric'}

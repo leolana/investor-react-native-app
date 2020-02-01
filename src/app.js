@@ -8,6 +8,14 @@ import Store from './store'
 import { ToastView } from './components'
 
 export default class App extends Component {
+
+  componentDidMount() {
+
+    console.disableYellowBox = true
+    
+  }
+
+  
   render() {
     return (
       <Provider store={Store} >

@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 
 import { Text, TextInput } from './styles'
 
-import { formatMoney } from '../../utils'
+import * as InputMask from './masks'
+
 
 export const ITextInput = props => {
+
 
     // States
 
@@ -17,27 +19,16 @@ export const ITextInput = props => {
 
     // Methods
 
-    const getCurrencyMask = text => {
-
-        const value = parseFloat(String(text).replace(/\D/g, '') ) / 100
-
-        const newState = {
-            unMasked: value,
-            masked: formatMoney(value)
-        }
-
-        if(props.onValueChange !== undefined) props.onValueChange(newState)
-
-        return newState
-
-    }
 
     const handleChange = text => {
 
+        const mask = InputMask.findByType(props.mask)
 
-        if (props.mask == 'currency') setValue(getCurrencyMask(text))
-        
-        else setValue({})
+        const newValue = mask(text, props)
+
+        if(newValue === null) setValue({})
+
+        else setValue(newValue) 
 
     }
 

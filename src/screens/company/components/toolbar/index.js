@@ -107,22 +107,6 @@ export const ToolbarComponent = props => {
 
     }
 
-    // Effects
-
-    useEffect( () => {
-
-
-        async function fetchData() {
-            await getInvestmentreserveData()
-        }
-
-        fetchData()
-        
-
-    }, [])
-
-
-
 
     // Render
 

@@ -6,11 +6,11 @@ class Api {
 
     getHeader = async (type) => {
 
-        let token = await retrieveData('Authorization')
+        let auth = await retrieveData('Authorization')
 
-        token = (type == 'bearer') ? `Bearer ${token}` : `${token}`
+        auth = (type == 'bearer') ? `Bearer ${auth}` : `${auth}`
         
-        return { "authorization": token }
+        return { "authorization": auth }
         
     }
 

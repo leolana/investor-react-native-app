@@ -16,7 +16,8 @@ import {
 } from '../../services'
 
 import {
-  useDispatch
+  useDispatch, 
+  useSelector
 } from 'react-redux'
 
 import {
@@ -45,6 +46,8 @@ export default App = ( { navigation }) => {
 
   const dispatch = useDispatch()
 
+  const userData = useSelector( ({userData}) => userData)
+
 
   // methods
 
@@ -60,18 +63,14 @@ export default App = ( { navigation }) => {
 
       <Buttons>
         
-        <IButtom title={'entrar'} onPress={ () => navigation.navigate('Login') } />
+        <IButtom title={'entrar'} onPress={ () => navigation.navigate('Login', { authenticated: false }) } />
         <IButtom title={'criar uma conta'} background={'transparent'} />
 
       </Buttons>
     </>
   )
 
-  const isAuthenticated = async () => {
-
-    const email = await retrieveData('Email')
-
-    if(!email) return null
+  const isAuthenticated = async email => {
 
     const { status, data } = await Request.GET({url: UrlUsuarioPegar(email), header: 'bearer'})
 
@@ -83,11 +82,17 @@ export default App = ( { navigation }) => {
 
   useEffect( () => {
 
+    if(userData) return setLoading(false)
+
     async function fetchData() {
 
-      const status = await isAuthenticated()
+      const email = await retrieveData('Email')
 
-      if(status) props.navigation.navigate('Login')
+      if(!email) return setLoading(false)
+
+      const status = await isAuthenticated(email)
+
+      if(status) navigation.navigate('Login', { authenticated: true })
 
       else setLoading(false)
       

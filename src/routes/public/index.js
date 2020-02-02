@@ -1,13 +1,13 @@
 
 import { createStackNavigator } from 'react-navigation-stack'
 
-
 import { tealish } from '../../assets/colors'
 
 import Welcome from '../../screens/welcome'
 import Login from '../../screens/login'
 
 
+// vars
 
 const mainConfig = {
     initialRouteName: 'Welcome',
@@ -26,17 +26,16 @@ const mainConfig = {
     },
 }
 
-
 export const PublicRoutes = createStackNavigator(
-    {
-      Welcome: {
-        screen: Welcome,
-        navigationOptions: {
-          headerShown: false,
-        }
-      },
-      Login
-      
+  {
+    Welcome: {
+      screen: Welcome,
+      navigationOptions: {
+        headerShown: false,
+      }
     },
-    mainConfig
-  )
+    Login,
+    
+  },
+  mainConfig
+)

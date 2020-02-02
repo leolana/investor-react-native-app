@@ -26,27 +26,28 @@ import {
   Welcome,
   Description,
   Container,
-  ViewCheckbox,
-  Text,
-  Switch,
   Buttom
 } from './style.js'
 
 export default App = props => {
 
-  const dispatch = useDispatch()
+  // props
 
-  const {
+  const { navigation } = props
 
-    navigation
-    
-  } = props
+  // states
 
   const [email, setEmail] = useState(null)
 
   const [password, setPassword] = useState(null)
 
-  const [autoLogin, setAutoLogin] = useState(false)
+  // vars
+
+  const dispatch = useDispatch()
+
+  const authenticated = navigation.getParam('authenticated', false)
+
+  // methods
 
   const loginSuccessful = data => {
 
@@ -69,10 +70,9 @@ export default App = props => {
     else alert(resp.data.Msg)
   }
 
-
   const prepareToLoginRequest = async () => {
 
-    if(email == null || password == null) return alert("Informações inválidas!")
+    if(email == null || password == null) return alert("Email e senha não podem estar vazios.")
 
     const form = new FormData()
 
@@ -83,6 +83,19 @@ export default App = props => {
     loginRequest(form)
 
   }
+
+
+  // effects
+
+  useEffect( () => {
+
+    if(!authenticated) return
+
+    navigation.navigate('Opportunities')
+
+  }, [authenticated])
+
+  // render
 
   
   return ( 
@@ -97,14 +110,6 @@ export default App = props => {
         <ITextInput title={ 'E-mail' } onChangeText={ value => setEmail(value) } />
         
         <ITextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
-        
-        <ViewCheckbox>
-
-          <Switch value={ autoLogin } onChange={ () => setAutoLogin(!autoLogin) } />
-
-          <Text> Permanecer conectado </Text>
-
-        </ViewCheckbox>
 
         <Buttom title="Entrar" onPress={ () => prepareToLoginRequest() } />
 

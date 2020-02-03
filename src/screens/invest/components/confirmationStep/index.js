@@ -75,7 +75,7 @@ export const ConfirmationStepComponent = props => {
 
         if(data.waitingList) {
 
-            props.navigation.navigate('Company', { data } )
+            props.navigation.navigate('OpportunitieProfile', { data } )
 
             props.navigation.navigate('InvestWaitingListSuccessModal')
 

@@ -30,6 +30,8 @@ import { TransferWalletBalanceSuccess } from '../../screens/transferWalletBalanc
 
 import { Picker } from '../../screens/picker'
 
+import { OpportunitieProfile } from '../../screens/opportunitieProfile'
+
 import { Company } from '../../screens/company'
 
 import { Menu } from '../../screens/menu'
@@ -119,6 +121,7 @@ export const ScreenRoutes = createStackNavigator(
         WalletReceipt,
         WalletHistoric,
         TransferWalletBalance,
+        OpportunitieProfile,
         Company,
         Invest,
         TransferWalletBalanceConfirmation,

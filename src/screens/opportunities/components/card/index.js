@@ -98,7 +98,7 @@ export const OpportunitiesCardComponent = props => {
 
     return (
 
-        <TouchableWithoutFeedback onPress={ () => props.navigation.navigate('Company', { data } ) } >
+        <TouchableWithoutFeedback onPress={ () => props.navigation.navigate('OpportunitieProfile', { data } ) } >
 
             <Card background={ scoreColor } >
                         
@@ -133,7 +133,7 @@ export const OpportunitiesCardComponent = props => {
                         </Center>
                         
                         <Buttom 
-                            onPress={ () => props.navigation.navigate('Company', { data } ) }
+                            onPress={ () => props.navigation.navigate('OpportunitieProfile', { data } ) }
                             background={ getColorByStatus() } 
                             title={ getOpportunityStatus() } 
                             fontSize={ 11 } 

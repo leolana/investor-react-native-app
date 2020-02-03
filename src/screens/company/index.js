@@ -1,131 +1,124 @@
-import React, { useState, useEffect } from 'react'
-
+import React from 'react'
 
 import {
+    SafeAreaView,
+    ContentArea,
+    Title,
     ScrollView,
-    SafeAreaView
-} from './styles'
+    ItemDefaultTitle,
+    ItemDefaultText,
+
+} from './styles.js'
+
+import HTML from 'react-native-render-html'
 
 import {
-    Loading
-} from '../../components'
-
-
-import {
-    Header,
-    Body,
-    Footer,
-    Toolbar
-} from './components'
-
-import {
-    Request,
-    UrlSolicitacaoPegar,
-    UrlSolicitacaoReservaInvPegar
-} from '../../services'
-
-import {
-    formatCode
+    formatCNPJ,
+    formatDate
 } from '../../utils'
 
-export const CompanyPage = props => {
+export const CompanyComponent = props => {
 
-    // States
-    const [ solData, setSolData ] = useState(null)
-    const [ reserveData, setReverveData ] =  useState('null')
-    const [ loading, setLoading ] = useState(true)
+    // props 
 
-    // Vars
+    const { navigation } = props
 
-    const data = props.navigation.getParam('data', null)
+    // vars
 
+    const data = navigation.getParam('data', null)
 
-    // Methods
+    // methods
 
-    const getSolicitation = async () => {
+    const formatAddress = endereco => {
 
-        const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id) })
+        const { 
+            Bairro, 
+            Cep, 
+            Cidade, 
+            Complemento, 
+            Logradouro, 
+            Numero, 
+            Uf 
+        } = endereco
 
-        if(resp.status === 200) {
-            setSolData(resp.data)
-    
-        }
-
-
-    }
-
-    const getInvestmentReserve = async () => {
-
-        const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) })
         
-        if(resp.status === 200) {
+        return `${Logradouro}, ${Numero} - ${(Complemento) ? Complemento + ',' : ''} ${Bairro}, ${Cidade}, ${Uf}, ${Cep}`
 
-            setReverveData(resp.data)
-          
-        }
-    }
+    } 
 
 
-    // Effects
 
-    useEffect( () => {
-
-        async function fetchData() {
-            getSolicitation()
-            getInvestmentReserve()
-        }
-
-        fetchData()
-
-
-    }, [data]) 
-
-    useEffect( () => {
-        
-        if(reserveData === 'null' || solData === null) return 
-
-
-        props.navigation.setParams({ headerTitle: `ID #${formatCode(solData.IdOportunidade)}` })
-
-
-        setLoading(false)
-
-    }, [reserveData, solData]) 
-
-    // Render
-
+    // render
 
     return (
+        <SafeAreaView>
+            <ScrollView>
 
-        <Loading loading={loading} >
-            <SafeAreaView>
+                <Title>Descrição breve sobre a empresa</Title>
 
-                <ScrollView>
+                <ContentArea>
 
-                    <Header data={solData} />
+                    <HTML />
 
-                    <Body data={solData} />
+                </ContentArea>
 
-                    <Footer data={solData} />
+                <Title>Dados da empresa</Title>
 
-                </ScrollView>
-                
-            </SafeAreaView>
+                <ContentArea>
 
-            <Toolbar data={solData} reserveData={reserveData} />
-            
-        </Loading>
+                    <ItemDefaultTitle bold={true} >Empresa <ItemDefaultTitle>(Razão social)</ItemDefaultTitle></ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{data.Empresa.RazaoSocial}</ItemDefaultText>
 
+                    <ItemDefaultTitle bold={true} >CPF/CNPJ</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{formatCNPJ(data.Documento)}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Nome fantasia</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{data.Empresa.NomeFantasia}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Data de fundação</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{formatDate(data.Empresa.DataFundacao)}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Número de funcionários</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{data.Empresa.QuantidadeEmpregados}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Endereço</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{formatAddress(data.Empresa.Endereco)}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Site</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} >{data.Empresa.Site}</ItemDefaultText>
+
+                    <ItemDefaultTitle bold={true} >Redes sociais</ItemDefaultTitle>
+                    <ItemDefaultText marginBottom={16} ></ItemDefaultText>
+
+                    
+
+                </ContentArea>
+
+                <Title>Motivo da solicitação do empréstimo</Title>
+
+                <ContentArea>
+
+                    <HTML html={data.Motivo} />
+
+                </ContentArea>
+
+                <Title>Análise sobre a empresa</Title>
+
+                <ContentArea>
+
+                    <HTML html={data.AnaliseEmpresa}/>
+
+                </ContentArea>
+
+
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
-
 export const Company = {
-    screen: CompanyPage,
-    navigationOptions: ({navigation}) => {
-
-        return {
-            headerTitle: navigation.getParam('headerTitle', 'PERFIL DA EMPRESA'),
-        }
+    screen: CompanyComponent,
+    navigationOptions: {
+        headerTitle: "DADOS DA EMPRESA"
     }
 }

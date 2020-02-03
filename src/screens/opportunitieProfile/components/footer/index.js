@@ -33,11 +33,12 @@ import {
     convertScoreByColor,
 } from '../../../../utils'
 
+import { withNavigation } from 'react-navigation'
 
-export const Footer = props => {
+export const FooterComponent = props => {
 
     // Props 
-    const { data } = props
+    const { data, navigation } = props
 
 
     // Vars
@@ -61,7 +62,7 @@ export const Footer = props => {
                 <ItemDefaultTitle bold={true} >CPF/CNPJ</ItemDefaultTitle>
                 <ItemDefaultText marginBottom={16} >{formatCNPJ(data.Documento)}</ItemDefaultText>
 
-                <LinkList data={ [ { title: 'Ver todos os dados da empresa', onPress: () => {} } ] } />
+                <LinkList data={ [ { title: 'Ver todos os dados da empresa', onPress: () => navigation.navigate('Company', { data }) } ] } />
 
                 <RetangleContent background={convertScoreByColor(data.Score)} marginTop={16} >
 
@@ -103,3 +104,5 @@ export const Footer = props => {
 
     )
 }
+
+export const Footer = withNavigation(FooterComponent)

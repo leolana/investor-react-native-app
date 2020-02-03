@@ -37,6 +37,8 @@ target 'AppIouu' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'AppIouuTests' do
     inherit! :search_paths
     # Pods for testing

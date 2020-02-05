@@ -14,6 +14,8 @@ import { LoadingContainer, SafeAreaView } from './styles'
 
 import { OpportunitiesCard } from './components'
 
+import { MessageBox } from '../../components'
+
 export const PageOpportunities = props => {
 
     const [ opportunities, setOpportunities ] = useState([])
@@ -71,6 +73,8 @@ export const PageOpportunities = props => {
     return (
 
         <SafeAreaView>
+
+            <MessageBox />
 
             <FlatList
                 data={opportunities}

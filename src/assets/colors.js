@@ -36,16 +36,14 @@ export const receiptBorderColor = '#C8C177'
 export const receiptLogoColor = '#7C712A'
 export const receiptTextColor = '#988A36'
 export const lightBlue = '#00AEF5'
-
 export const toastError = '#e53935'
 export const toastSuccess = '#7cb342'
 export const toastInfo = '#039be5'
-
 export const lightGreen = '#00DFC1'
-
 export const lightRed = '#FF5C5F'
-
 export const lightYellow = '#FFD858'
+export const messageBoxBackground = '#FF4E00'
+
 
 // $white: #fff; // Branco
 // $black: #000; // Preto

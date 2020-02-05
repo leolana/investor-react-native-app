@@ -9,3 +9,6 @@ export const TOAST_SHOW = 'TOAST_SHOW'
 export const TOAST_DESTROY = 'TOAST_DESTROY'
 
 export const INPUT_ERROR = 'INPUT_ERROR'
+
+export const INVEST_AVAILABLE = 'INVEST_AVAILABLE'
+

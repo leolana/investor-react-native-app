@@ -16,6 +16,8 @@ const handleError = ({ inputError }, data) => {
 
 export default (state = {}, action) => {
 
+    console.log(action)
+
     switch (action.type) {
 
         case Types.USER_DATA: return { 
@@ -44,6 +46,11 @@ export default (state = {}, action) => {
         case Types.INPUT_ERROR: return {
             ...state, 
             inputError: handleError(state, action.data)
+        }
+
+        case Types.INVEST_AVAILABLE: return {
+            ...state,
+            isAvailableToInvest: action.data
         }
 
 

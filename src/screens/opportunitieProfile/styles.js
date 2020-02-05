@@ -9,6 +9,35 @@ import {
     greyF7,
 } from '../../assets/colors'
 
+import { Dimensions } from 'react-native'
+
+
+const { width } = Dimensions.get('screen') 
+
+export const ImgContainer = styled.View`
+    position: relative;
+`
+
+export const Img = styled.Image`
+    flex: 1;
+    margin-bottom: 32px;
+    width: ${width - 32};
+    resize-mode: cover;
+
+`
+
+export const Message = styled.Text`
+    top: 40%;
+    width: ${width - 32};
+    position: absolute;
+    font-size: 15px;
+    font-family: HelveticaNeue-Bold;
+    text-align: center;
+    padding: 0 16px;
+
+`
+
+
 export const ScrollView = styled.ScrollView`
     padding: 16px;
     margin-bottom: 16px

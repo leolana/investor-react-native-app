@@ -7,7 +7,8 @@ import {
     ScrollView,
     ItemDefaultTitle,
     ItemDefaultText,
-
+    SocialMedia,
+    Touchable,
 } from './styles.js'
 
 import HTML from 'react-native-render-html'
@@ -16,6 +17,20 @@ import {
     formatCNPJ,
     formatDate
 } from '../../utils'
+
+import {
+    IconFacebook,
+    IconInstagram,
+    IconLinkedin,
+    IconTwitter,
+    IconVimeo
+
+} from '../../assets/icons'
+
+import {
+    Linking
+} from 'react-native'
+
 
 export const CompanyComponent = props => {
 
@@ -58,7 +73,7 @@ export const CompanyComponent = props => {
 
                 <ContentArea>
 
-                    <HTML />
+                    <HTML html={data.Empresa.InformacaoInstitucional}/>
 
                 </ContentArea>
 
@@ -88,9 +103,45 @@ export const CompanyComponent = props => {
                     <ItemDefaultText marginBottom={16} >{data.Empresa.Site}</ItemDefaultText>
 
                     <ItemDefaultTitle bold={true} >Redes sociais</ItemDefaultTitle>
-                    <ItemDefaultText marginBottom={16} ></ItemDefaultText>
 
-                    
+                    <SocialMedia>
+
+                        <Touchable 
+                            onPress={ () => Linking.openURL(data.Empresa.Facebook) } 
+                            disabled={ !data.Empresa.Facebook }
+                        >
+                            <IconFacebook />
+                        </Touchable>
+
+                        <Touchable 
+                            onPress={ () => Linking.openURL(data.Empresa.Instagram) } 
+                            disabled={ !data.Empresa.Instagram }
+                        >
+                            <IconInstagram />
+                        </Touchable>
+
+                        <Touchable 
+                            onPress={ () => Linking.openURL(data.Empresa.Twitter) } 
+                            disabled={ !data.Empresa.Twitter }
+                        >
+                            <IconTwitter />
+                        </Touchable>
+
+                        <Touchable 
+                            onPress={ () => Linking.openURL(data.Empresa.Linkedin) } 
+                            disabled={ !data.Empresa.Linkedin }
+                        >
+                            <IconLinkedin />
+                        </Touchable>
+
+                        <Touchable 
+                            onPress={ () => Linking.openURL(data.Empresa.Vimeo) } 
+                            disabled={ !data.Empresa.Vimeo }
+                        >
+                            <IconVimeo />
+                        </Touchable>
+
+                    </SocialMedia>
 
                 </ContentArea>
 

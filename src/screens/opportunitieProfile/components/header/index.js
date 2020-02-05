@@ -24,16 +24,17 @@ import {
     tealish,
 } from '../../../../assets/colors'
 
-
 import HTML from 'react-native-render-html'
 
+import { withNavigation } from 'react-navigation'
 
 
-export const Header = props => {
+
+export const HeaderComponent = props => {
 
     // props
 
-    const { data } = props
+    const { data, navigation } = props
 
     // Methods
 
@@ -55,7 +56,11 @@ export const Header = props => {
 
     return (
         <>
-            <Retangle disabled={(getPhotos().length) === 0 ? true : false}>
+            <Retangle 
+                disabled={(getPhotos().length) === 0 ? true : false} 
+                onPress={ () => navigation.navigate('PhotoViewer', { data: getPhotos() })}
+                
+            >
 
                 <IconArea>
                     <IconPhoto fill={tealish} width={24} height={24}  />
@@ -66,7 +71,10 @@ export const Header = props => {
 
             </Retangle>
 
-            <Retangle disabled={(getVideo() === null ? true : false)}>
+            <Retangle 
+                disabled={(getVideo() === null ? true : false)}
+                onPress={ () => navigation.navigate('VideoViewer', { data: getVideo() } ) }
+            >
 
                 <IconArea>
                     <IconPhoto fill={tealish} width={24} height={24}  />
@@ -88,3 +96,5 @@ export const Header = props => {
 
     )
 }
+
+export const Header = withNavigation(HeaderComponent)

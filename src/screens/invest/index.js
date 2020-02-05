@@ -172,7 +172,7 @@ export const Invest = {
     navigationOptions: ({ navigation }) => {
 
         return {
-            headerTitle: navigation.getParam('HeaderTitle', 'INVESTIR')
+            headerTitle: navigation.getParam('HeaderTitle', 'Investir')
         }
     }
 }

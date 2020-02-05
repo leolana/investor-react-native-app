@@ -89,6 +89,6 @@ export const PageOpportunities = props => {
 export const Opportunities = {
     screen: PageOpportunities,
     navigationOptions: {
-        headerTitle: "OPORTUNIDADES"
+        headerTitle: "Oportunidades"
     }
 }

@@ -6,13 +6,15 @@ import {
     grey99
 } from '../../assets/colors'
 
+import { Dimensions } from 'react-native'
+
+const { width } = Dimensions.get('screen')
+
 export const ScrollView = styled.ScrollView`
     padding: 16px;
-    margin-bottom: 16px
 `
 
 export const SafeAreaView = styled.SafeAreaView`
-    margin-bottom: 60px;
     flex: 1;
 
 `
@@ -42,5 +44,19 @@ export const ItemDefaultTitle = styled.Text`
     font-family: ${ props => props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue'};
     font-size: 12px;
     color: ${grey99};
+
+`
+
+export const SocialMedia = styled.View`
+    margin-top: 5px;
+    width: ${width / 2}
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+`
+
+export const Touchable = styled.TouchableOpacity`
+    flex: 2;
 
 `

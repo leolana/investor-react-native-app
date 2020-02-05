@@ -41,6 +41,12 @@ export const toastError = '#e53935'
 export const toastSuccess = '#7cb342'
 export const toastInfo = '#039be5'
 
+export const lightGreen = '#00DFC1'
+
+export const lightRed = '#FF5C5F'
+
+export const lightYellow = '#FFD858'
+
 // $white: #fff; // Branco
 // $black: #000; // Preto
 // $greenish-blue: #0f8b8d;

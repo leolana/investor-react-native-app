@@ -31,6 +31,12 @@ import CalendarOne from './ico-calendar-one.svg'
 import Lock from './ico-lock.svg'
 import CurrencyExchange from './ico-currency-exchange.svg'
 import NoItem from './ico-no-item.svg'
+import Facebook from './ico-facebook.svg'
+import Instagram from './ico-instagram.svg'
+import Linkedin from './ico-linkedin.svg'
+import Twitter from './ico-twitter.svg'
+import Vimeo from './ico-vimeo.svg'
+import Graph from './ico-graph.svg'
 
 
 export const IconIouu = Iouu
@@ -66,3 +72,9 @@ export const IconCalendarOne = CalendarOne
 export const IconLock = Lock
 export const IconCurrencyExchange = CurrencyExchange
 export const IconNoItem = NoItem
+export const IconFacebook = Facebook
+export const IconInstagram = Instagram
+export const IconLinkedin = Linkedin
+export const IconTwitter = Twitter
+export const IconVimeo = Vimeo
+export const IconGraph = Graph

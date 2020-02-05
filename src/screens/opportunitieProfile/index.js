@@ -125,7 +125,7 @@ export const OpportunitieProfile = {
     navigationOptions: ({navigation}) => {
 
         return {
-            headerTitle: navigation.getParam('headerTitle', 'OPORTUNIDADE'),
+            headerTitle: navigation.getParam('headerTitle', 'Oportunidade'),
         }
     }
 }

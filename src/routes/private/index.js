@@ -28,6 +28,12 @@ import { TransferWalletBalanceConfirmation } from '../../screens/transferWalletB
 
 import { TransferWalletBalanceSuccess } from '../../screens/transferWalletBalanceSuccess'
 
+import { FinancialIndicators } from '../../screens/financialIndicators'
+
+import { ComplementaryIndicators } from '../../screens/complementaryIndicators'
+
+import { SocioInformation } from '../../screens/socioInformation'
+
 import { Picker } from '../../screens/picker'
 
 import { OpportunitieProfile } from '../../screens/opportunitieProfile'
@@ -41,6 +47,10 @@ import { DatePicker } from '../../screens/datePicker'
 import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
+
+import { PhotoViewer } from '../../screens/photoViewer'
+
+import { VideoViewer } from '../../screens/videoViewer'
 
 import { tealish, white } from '../../assets/colors'
 
@@ -123,9 +133,14 @@ export const ScreenRoutes = createStackNavigator(
         TransferWalletBalance,
         OpportunitieProfile,
         Company,
+        FinancialIndicators,
+        ComplementaryIndicators,
+        SocioInformation,
         Invest,
         TransferWalletBalanceConfirmation,
         InvestWaitingListSuccess,
+        PhotoViewer,
+        VideoViewer,
         Menu,
     },
     mainScreenRoutesConfig

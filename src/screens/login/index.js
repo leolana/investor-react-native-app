@@ -21,6 +21,8 @@ import {
   Buttom
 } from './style.js'
 
+import onInit from '../../store/reducers/init'
+
 export default App = props => {
 
   // props
@@ -39,9 +41,11 @@ export default App = props => {
 
   // methods
 
-  const loginSuccessful = data => {
+  const loginSuccessful = async data => {
 
-    storeData('Authorization', data.Authorization)
+    await storeData('Authorization', data.Authorization)
+
+    await onInit()
 
     navigation.navigate('Opportunities')
 

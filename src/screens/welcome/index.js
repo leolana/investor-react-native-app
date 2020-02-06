@@ -22,7 +22,7 @@ import { IButtom } from '../../components'
 
 import { ActivityIndicator } from 'react-native'
 
-export default App = ( { navigation }) => {
+export const WelcomeComponent = ( { navigation }) => {
 
   // states
 
@@ -78,6 +78,13 @@ export default App = ( { navigation }) => {
 
     </Background>
   )
+}
+
+export const Welcome = {
+  screen: WelcomeComponent,
+  navigationOptions: {
+    headerShown: false,
+  }
 }
 
 

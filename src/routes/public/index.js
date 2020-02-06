@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 import { tealish } from '../../assets/colors'
 
-import Welcome from '../../screens/welcome'
+import { Welcome } from '../../screens/welcome'
 import Login from '../../screens/login'
 
 
@@ -28,12 +28,7 @@ const mainConfig = {
 
 export const PublicRoutes = createStackNavigator(
   {
-    Welcome: {
-      screen: Welcome,
-      navigationOptions: {
-        headerShown: false,
-      }
-    },
+    Welcome,
     Login,
     
   },

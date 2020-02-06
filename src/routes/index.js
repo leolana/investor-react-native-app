@@ -2,6 +2,8 @@
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
+import { createStackNavigator } from 'react-navigation-stack'
+
 import { PublicRoutes } from './public'
 import { PrivateRoutes } from './private'
 
@@ -17,6 +19,9 @@ const PrivateRoutesTabs = createBottomTabNavigator(
 )
 
 export default createAppContainer(
-  createSwitchNavigator( { PublicRoutes, PrivateRoutesTabs },
-  { initialRouteName: 'PublicRoutes' }
+  createStackNavigator( { PublicRoutes, PrivateRoutesTabs },
+  { 
+    initialRouteName: 'PublicRoutes',
+    headerMode: 'none',
+  }
 ))

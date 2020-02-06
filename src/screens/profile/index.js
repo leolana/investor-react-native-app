@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
-    useSelector
+    useSelector, 
+    useDispatch
 } from 'react-redux'
+
+import {
+    setAccountData
+} from '../../store/actions'
 
 import {
     tealish,
@@ -14,7 +19,6 @@ import {
 
 import {
     LinkList,
-    BottomNavigator
 } from '../../components'
 
 import {
@@ -34,9 +38,27 @@ import {
     
 } from './styles'
 
-export const PageProfile = () => {
+import {
+    removeData
+} from '../../utils'
+
+export const PageProfile = props => {
+
+    // props
+
+    const { navigation } = props
+
+    // states
+
+    const [ name, setName ] = useState('')
+    const [ nameLetter, setNameLetter ] = useState('')
+    const [ email, setEmail ] = useState('')
+
+    // vars
 
     const accountData = useSelector( ({accountData}) => accountData )
+
+    const dispatch = useDispatch()
 
     const links = [
         {
@@ -58,11 +80,39 @@ export const PageProfile = () => {
         {
             title: 'Assinatura CCB’s',
             onPrss: () => {}
+        },
+        {
+            title: 'Sair',
+            onPress: async () => {
+
+                await removeData('Authorization')
+
+                navigation.navigate('Welcome')
+
+                dispatch(setAccountData(null))
+
+            }
         }
     ]
 
-    const renderLetter = () => (<Letter>{accountData.Nome[0]}</Letter>)
+    // mehtods
 
+    const renderLetter = () => (<Letter>{nameLetter}</Letter>)
+
+    // effects
+
+    useEffect( () => {
+
+        if(accountData === undefined || accountData === null) return 
+
+        setName(accountData.Nome)
+        setNameLetter(accountData.Nome[0])
+        setEmail(accountData.Email)
+
+    }, [])
+
+
+    // render
 
     return (
         <SafeAreaView>
@@ -84,9 +134,9 @@ export const PageProfile = () => {
                     
                 </Header>
 
-                <Name> { accountData.Nome } </Name>
+                <Name> { name } </Name>
 
-                <Email> { accountData.Email } </Email>
+                <Email> { email } </Email>
 
                 <ListArea>
 

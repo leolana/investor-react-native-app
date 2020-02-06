@@ -48,7 +48,7 @@ export const ReinvestmentSheetModal = props => {
 
     const dispatch = useDispatch()
 
-    const name = useSelector( ({userData}) => userData.Name )
+    const name = useSelector( ({accountData}) => accountData.Nome )
 
     const data = props.navigation.getParam('data', null)
 

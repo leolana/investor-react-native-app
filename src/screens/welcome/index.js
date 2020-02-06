@@ -7,22 +7,8 @@ import {
 } from './styles'
 
 import {
-  retrieveData,
-} from '../../utils'
-
-import {
-  Request,
-  UrlUsuarioPegar,
-} from '../../services'
-
-import {
-  useDispatch, 
   useSelector
 } from 'react-redux'
-
-import {
-  setUserData
-} from '../../store/actions'
 
 import {
   Background,
@@ -44,10 +30,7 @@ export default App = ( { navigation }) => {
 
   // vars
 
-  const dispatch = useDispatch()
-
-  const userData = useSelector( ({userData}) => userData)
-
+  const accountData = useSelector( ({accountData}) => accountData)
 
   // methods
 
@@ -70,37 +53,18 @@ export default App = ( { navigation }) => {
     </>
   )
 
-  const isAuthenticated = async email => {
 
-    const { status, data } = await Request.GET({url: UrlUsuarioPegar(email), header: 'bearer'})
-
-    if(status === 200) dispatch(setUserData(data))
-    
-    return (status === 200)
-
-  }
+  // effects
 
   useEffect( () => {
 
-    if(userData) return setLoading(false)
+    if(accountData === undefined) return
 
-    async function fetchData() {
+    if(accountData === null) setLoading(false)
 
-      const email = await retrieveData('Email')
+    else navigation.navigate('Login', { authenticated: true })
 
-      if(!email) return setLoading(false)
-
-      const status = await isAuthenticated(email)
-
-      if(status) navigation.navigate('Login', { authenticated: true })
-
-      else setLoading(false)
-      
-    }
-
-    fetchData()
-
-  }, [])
+  }, [accountData])
 
 
   // render

@@ -36,7 +36,7 @@ import {
 
 export const PageProfile = () => {
 
-    const userData = useSelector( ({userData}) => userData )
+    const accountData = useSelector( ({accountData}) => accountData )
 
     const links = [
         {
@@ -61,7 +61,7 @@ export const PageProfile = () => {
         }
     ]
 
-    const renderLetter = () => (<Letter>{userData.Name[0]}</Letter>)
+    const renderLetter = () => (<Letter>{accountData.Nome[0]}</Letter>)
 
 
     return (
@@ -84,9 +84,9 @@ export const PageProfile = () => {
                     
                 </Header>
 
-                <Name> { userData.Name } </Name>
+                <Name> { accountData.Nome } </Name>
 
-                <Email> { userData.Email } </Email>
+                <Email> { accountData.Email } </Email>
 
                 <ListArea>
 

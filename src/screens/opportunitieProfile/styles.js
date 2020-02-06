@@ -40,11 +40,10 @@ export const Message = styled.Text`
 
 export const ScrollView = styled.ScrollView`
     padding: 16px;
-    margin-bottom: 16px
 `
 
 export const SafeAreaView = styled.SafeAreaView`
-    margin-bottom: 60px;
+    margin-bottom: ${ props => props.marginBottom || 76}px;
 
 `
 

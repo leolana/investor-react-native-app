@@ -1,6 +1,6 @@
 import * as Types from '../types.js'
 
-
+import onInit from './init'
 
 const handleError = ({ inputError }, data) => {
 
@@ -16,13 +16,13 @@ const handleError = ({ inputError }, data) => {
 
 export default (state = {}, action) => {
 
-    console.log(action)
+    if(action.type.includes(Types.REDUX_INIT)) onInit()
 
     switch (action.type) {
 
-        case Types.USER_DATA: return { 
+        case Types.ACCOUNT_DATA: return { 
             ...state, 
-            userData: action.data
+            accountData: action.data
         
         };
 
@@ -46,11 +46,6 @@ export default (state = {}, action) => {
         case Types.INPUT_ERROR: return {
             ...state, 
             inputError: handleError(state, action.data)
-        }
-
-        case Types.INVEST_AVAILABLE: return {
-            ...state,
-            isAvailableToInvest: action.data
         }
 
 

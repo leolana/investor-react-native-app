@@ -50,7 +50,7 @@ import {
 
 export const PageNotifications = props => {
 
-    const userId = useSelector(store => store.userData.id)
+    const userId = useSelector(({accountData}) => accountData.UsuarioId)
 
     const [ notifications, setNotifications ] = useState([])
 

@@ -27,7 +27,7 @@ export const InvestWaitingListSuccessModal = props => {
 
     // vars
 
-    const name = useSelector( ({userData}) => userData.Name )
+    const name = useSelector( ({accountData}) => accountData.Nome )
 
 
     // effects

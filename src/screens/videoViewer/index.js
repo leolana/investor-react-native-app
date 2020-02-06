@@ -1,8 +1,5 @@
 import React from 'react'
 
-
-import Video from 'react-native-video';
-
 import { Dimensions } from 'react-native'
 
 const { width, height } = Dimensions.get('screen')
@@ -29,15 +26,7 @@ export const VideoViewerComponent = props => {
     // render
 
     return (
-        <Video 
-            source={{uri: data}}
-            fullscreen={true}
-            fullscreenOrientation="landscape"
-            controls={true}
-            onError={ onError }
-            style={ { width, height } }
-        
-        />
+        null
     )
 } 
 

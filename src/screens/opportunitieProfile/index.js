@@ -47,10 +47,9 @@ export const OpportunitieProfileComponent = props => {
 
     // Vars
 
-    const isAvailableToInvest = useSelector( ({isAvailableToInvest}) => isAvailableToInvest)
+    const accountData = useSelector( ({accountData}) => accountData)
 
     const data = props.navigation.getParam('data', null)
-
 
     // Methods
 
@@ -76,7 +75,8 @@ export const OpportunitieProfileComponent = props => {
 
         const hasInvestment = investorHasInvestment()
 
-        console.log(isAvailableToInvest)
+        const isAvailableToInvest = (accountData.Status === 'APROVADO')
+        
 
         if ( isAvailableToInvest && hasInvestment ) return true
 
@@ -163,7 +163,7 @@ export const OpportunitieProfileComponent = props => {
     return (
 
         <Loading loading={loading} >
-            <SafeAreaView>
+            <SafeAreaView marginBottom={ isAvailable ? "76" : "0" } >
 
                 <ScrollView>
 
@@ -194,7 +194,11 @@ export const OpportunitieProfileComponent = props => {
                 
             </SafeAreaView>
 
-            <Toolbar data={solData} reserveData={reserveData} />
+            {
+                (isAvailable) ? <Toolbar data={solData} reserveData={reserveData} /> : null
+            }
+
+            
             
         </Loading>
 

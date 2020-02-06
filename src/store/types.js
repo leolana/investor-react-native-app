@@ -1,6 +1,6 @@
 
 
-export const USER_DATA = 'USER_DATA'
+export const ACCOUNT_DATA = 'ACCOUNT_DATA'
 
 export const ROUTE_NAME = 'ROUTE_NAME'
 
@@ -10,5 +10,5 @@ export const TOAST_DESTROY = 'TOAST_DESTROY'
 
 export const INPUT_ERROR = 'INPUT_ERROR'
 
-export const INVEST_AVAILABLE = 'INVEST_AVAILABLE'
+export const REDUX_INIT = '@@redux/INIT'
 

@@ -56,7 +56,7 @@ import {
 
 export const MenuComponent = props => {
 
-    const userName = useSelector( ({userData}) => (userData !== undefined) ? userData.Name : '' )
+    const userName = useSelector( ({accountData}) => (accountData !== undefined) ? accountData.Nome : '' )
 
     const [ walletFunds, setWalletFunds ] = useState(null)
 

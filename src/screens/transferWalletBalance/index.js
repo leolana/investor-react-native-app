@@ -57,7 +57,7 @@ export const TransferWalletBalancePage = props => {
 
     const [ loading, setLoading ] = useState(true)
 
-    const userData = useSelector( ({userData}) => userData )
+    const accountData = useSelector( ({accountData}) => accountData )
 
     // Methods
 
@@ -77,7 +77,7 @@ export const TransferWalletBalancePage = props => {
     const getBankData = async () => {
 
 
-        const resp = await Request.GET( { url: UrlInvPegar(userData.Email), header: 'bearer' } )
+        const resp = await Request.GET( { url: UrlInvPegar(accountData.Email), header: 'bearer' } )
 
         if(resp.status === 200) {
 

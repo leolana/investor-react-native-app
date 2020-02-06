@@ -35,7 +35,7 @@ export const TransferWalletBalanceConfirmationComponent = props => {
 
     // Vars
 
-    const userData = useSelector( ({userData}) => userData )
+    const accountData = useSelector( ({accountData}) => accountData )
 
 
     // Methods
@@ -56,7 +56,7 @@ export const TransferWalletBalanceConfirmationComponent = props => {
         const config = { 
             'url': UrlCarteiraEnviarTransferencia,
             'data': {
-                'id': userData.id,
+                'id': accountData.UsuarioId,
                 'idInvestor': investorId,
                 'password': password,
                 'carteira': {
@@ -98,7 +98,7 @@ export const TransferWalletBalanceConfirmationComponent = props => {
     return (
         <Container>
 
-            <Title>{userData.Name}, informe sua senha!</Title>
+            <Title>{accountData.Nome}, informe sua senha!</Title>
 
             <Info>
                 Por favor insira sua senha no campo abaixo para finalizar seu pedido de transferência.

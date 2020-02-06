@@ -11,105 +11,57 @@ import {
 
 } from './styles'
 
-import {
-    formatDate
-} from '../../utils'
-
 import { 
     useSelector, 
-    useDispatch 
 
 } from 'react-redux'
-
-import { 
-    Request,
-    UrlInvPegar
-} from '../../services'
-
-import {
-    setInvestIsAvailable
-} from '../../store/actions'
-
-
 
 export const MessageBox = props => {
 
     // states
 
-    const [ investorData, setInvestorData ] = useState(null)
-
-    const [ endDateBlock, setEndDateBlock ] = useState(null)
-
     const [ message, setMessage ] = useState(null)
 
     // vars
 
-    const dispatch = useDispatch()
-
-    const userData = useSelector( ({userData}) => userData)
-
-    const email = userData.Email
-    
-    const hasInvestor = userData.HasInvestor
-
-    const hasSuitability = userData.HasSuitability
+    const accountData = useSelector( ({accountData}) => accountData)
 
     // methods
 
 
-    const getInvestorData = async () => {
-
-        const resp = await Request.GET({ url: UrlInvPegar(email), header: 'bearer' })
-
-        if(resp.status === 200) setInvestorData(resp.data)
-    }
-
-
     const investorIsBlocked = () => {
 
-        if(investorData.Bloqueio === undefined || investorData.Bloqueio.FimBloqueio === undefined ) return false
+        if(accountData.Bloqueio === undefined || accountData.Bloqueio.FimBloqueio === undefined ) return false
 
-        const { FimBloqueio } = investorData
+        const { FimBloqueio } = accountData.Bloqueio
 
-        setEndDateBlock(formatDate(FimBloqueio))
-
-        return new Date(formatDate(FimBloqueio)) > new Date()
+        return new Date(FimBloqueio) > new Date()
 
     }
 
-    const investorIsApproved = () => investorData.Status === 'APROVADO'
+    const investorIsApproved = () => accountData.Status === 'APROVADO'
 
     const handleMessage = () => {
 
-        if(!hasInvestor) return `Complete seu cadastro de investidor para investir.`
+        if(investorIsBlocked()) return `Perfil bloqueado, favor retornar após ${accountData.Bloqueio.Dias} dias.`
 
-        else if(!hasSuitability) return `Complete seu cadastro no suitability para investir.`
+        else if(!accountData.HasInvestor) return `Complete seu cadastro de investidor para investir.`
+
+        else if(!accountData.HasSuitability) return `Complete seu cadastro no suitability para investir.`
 
         else if(!investorIsApproved) return `Agora estamos analisando suas informações e retornaremos em até 1 dia útil.`
 
-        else if(investorIsBlocked()) return `Perfil bloqueado, favor retornar após ${endDateBlock} dias.`
-
     }
 
-
     useEffect( () => {
-        async function fetchData() {
-            await getInvestorData()
-        }
 
-        if(investorData === null) fetchData()
+        if(accountData === undefined || accountData === null) return 
 
-        else {
+        const msg = handleMessage()
 
-            const msg = handleMessage()
+        setMessage(msg)
 
-            setMessage(msg)
-
-            dispatch(setInvestIsAvailable(investorIsApproved()))
-
-        }
-
-    }, [investorData]) 
+    }, [accountData])
 
     // render
 

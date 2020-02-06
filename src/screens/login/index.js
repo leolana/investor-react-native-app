@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import {
-  useDispatch,
-} from 'react-redux'
-
-import {
-  setUserData
-} from '../../store/actions'
-
-import {
   ITextInput
 } from '../../components'
 
@@ -43,8 +35,6 @@ export default App = props => {
 
   // vars
 
-  const dispatch = useDispatch()
-
   const authenticated = navigation.getParam('authenticated', false)
 
   // methods
@@ -53,11 +43,7 @@ export default App = props => {
 
     storeData('Authorization', data.Authorization)
 
-    storeData('Email', data.usuario.Email)
-
     navigation.navigate('Opportunities')
-
-    dispatch(setUserData(data.usuario))
 
   }
 

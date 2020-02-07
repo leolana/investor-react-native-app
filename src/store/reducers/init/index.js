@@ -13,9 +13,7 @@ import Store from '../../index'
 
 const getAccountData = async () => {
 
-    const resp = await Request.GET({url: 'http://192.168.15.47:9090/api/v1/conta/informacoes', header: 'bearer'})
-
-    console.log(resp)
+    const resp = await Request.GET({url: 'http://192.168.15.40:9090/api/v1/conta/informacoes', header: 'bearer'})
 
     const { status, data } = resp
 

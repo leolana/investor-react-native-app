@@ -58,6 +58,8 @@ export const WelcomeComponent = ( { navigation }) => {
 
   useEffect( () => {
 
+    console.log(accountData)
+
     if(accountData === undefined) return
 
     if(accountData === null) setLoading(false)

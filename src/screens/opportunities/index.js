@@ -44,7 +44,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', null)
+    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR')
 
     // methods
 
@@ -52,15 +52,13 @@ export const PageOpportunities = props => {
 
         if(page > pageTotal) return 
 
-        const score = (filter === null || filter === 'Todos') ? 'A-B-C-D-E-HR' : filter
-
         if(loading) return
         
         setLoading(true)
 
-        const resp = await Request.GET({ url: UrlListaOportunidades(page, score), header: 'bearer' })
+        const resp = await Request.GET({ url: UrlListaOportunidades(page, filter), header: 'bearer' })
 
-        console.log(resp.data)
+        console.log(resp)
 
         if(resp.status === 200) {
 
@@ -69,10 +67,17 @@ export const PageOpportunities = props => {
             setOpportunities([...opportunities, ...resp.data.ItemListagemSolicitacoes ])
 
             setPage( page + 1 )
-                
-            setLoading(false)
-
+        
         }
+
+        else {
+            
+            navigation.setParams({'filter': 'A-B-C-D-E-HR'})
+
+            alert('Nenhuma oportunidade foi encontrada.')
+        }
+
+        setLoading(false)
 
     }
 
@@ -142,10 +147,10 @@ export const Opportunities = {
                 { text: 'D',  value: 'D' },
                 { text: 'E',  value: 'E' },
                 { text: 'HR',  value: 'HR' },
-                { text: 'Todos',  value: 'Todos' },
+                { text: 'Todos',  value: 'A-B-C-D-E-HR' },
             ],
-            onValueChange: data => navigation.setParams({'filter': data}),
-            value: navigation.getParam('Filter', 'Todos')
+            onValueChange: value => navigation.setParams({'filter': value}),
+            value: navigation.getParam('filter', 'A-B-C-D-E-HR')
         }
 
         return {

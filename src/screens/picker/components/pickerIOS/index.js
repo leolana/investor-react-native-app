@@ -8,24 +8,30 @@ import {
 } from './styles'
 
 import { withNavigation } from 'react-navigation'
-import { Animated } from 'react-native'
-
 
 export const PickerIOSComponent = props => {
+
+    const [ value, setValue ] = useState(props.value)
+
+    const setData = () => {
+
+        props.onChange(value)
+
+        props.navigation.goBack()
+
+    }
 
 
     return (
         <>
 
-            <Button onPress={ () => props.navigation.goBack() } >
+            <Button onPress={ () =>  setData() } >
                 <Text>Pronto</Text>
             </Button>
 
             <PickerStyled
-                selectedValue={props.value}
-                onValueChange={props.onChange}
-                
-            
+                selectedValue={value}
+                onValueChange={ data => setValue(data) }
             >
 
                 {

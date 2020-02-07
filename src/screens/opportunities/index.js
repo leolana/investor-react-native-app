@@ -6,54 +6,73 @@ import {
 
 } from '../../services'
 
-import { FlatList } from 'react-native-gesture-handler'
+import { 
+    ActivityIndicator, 
+    TouchableOpacity,
+    FlatList
 
-import { ActivityIndicator } from 'react-native'
+} from 'react-native'
 
-import { LoadingContainer, SafeAreaView } from './styles'
+import { 
+    LoadingContainer, 
+    SafeAreaView,
+    Filter
+} from './styles'
 
-import { OpportunitiesCard } from './components'
+import { 
+    OpportunitiesCard
+
+} from './components'
 
 import { MessageBox } from '../../components'
 
 export const PageOpportunities = props => {
 
+    // props
+
+    const { navigation } = props
+
+    // states
+
     const [ opportunities, setOpportunities ] = useState([])
 
     const [ page, setPage ] = useState(1)
 
+    const [ pageTotal, setPageTotal ] = useState(1)
+
     const [ loading, setLoading ] = useState(false)
 
-    useEffect(() => {
-    
-        loadOpportunities()
+    // vars
 
+    const filter = navigation.getParam('filter', null)
 
-    }, [])
+    // methods
 
-    const requestSuccessful = ( { ItemListagemSolicitacoes } ) => {
+    const loadOpportunities = async () => {
 
-        setOpportunities([...opportunities, ...ItemListagemSolicitacoes ])
+        if(page > pageTotal) return 
 
-        setLoading(false)
-
-        setPage( page + 1 )
-        
-    }
-
-    const loadOpportunities = (score = 'A-B-C-D-E-HR') => {
+        const score = (filter === null || filter === 'Todos') ? 'A-B-C-D-E-HR' : filter
 
         if(loading) return
-
+        
         setLoading(true)
 
-        const config = { url: UrlListaOportunidades(page, score), header: 'bearer' }
+        const resp = await Request.GET({ url: UrlListaOportunidades(page, score), header: 'bearer' })
 
-        Request.GET(config).then( resp => {
+        console.log(resp.data)
 
-            requestSuccessful(resp.data)
-        } )
+        if(resp.status === 200) {
 
+            setPageTotal(resp.data.Paginas)
+
+            setOpportunities([...opportunities, ...resp.data.ItemListagemSolicitacoes ])
+
+            setPage( page + 1 )
+                
+            setLoading(false)
+
+        }
 
     }
 
@@ -70,6 +89,26 @@ export const PageOpportunities = props => {
         )
     }
 
+    // effects
+
+    useEffect(() => {
+
+        setPage(1)
+
+        setOpportunities([])
+
+    }, [filter])
+
+    useEffect(() => {
+
+        if(opportunities.length > 0) return
+
+        loadOpportunities()
+
+    }, [opportunities])
+
+    // render
+
     return (
 
         <SafeAreaView>
@@ -80,8 +119,8 @@ export const PageOpportunities = props => {
                 data={opportunities}
                 renderItem={renderItem}
                 ListFooterComponent={ renderFooter }
+                onEndReached={ loadOpportunities }
                 keyExtractor={ item => item._id }
-                onEndReached={ loadOpportunities } 
                 onEndReachedThreshold={ 0.1 }
             />
 
@@ -92,7 +131,30 @@ export const PageOpportunities = props => {
 
 export const Opportunities = {
     screen: PageOpportunities,
-    navigationOptions: {
-        headerTitle: "Oportunidades"
+    navigationOptions: ({ navigation }) => {
+
+        const params = { 
+            data: [
+                { text: 'AA', value: 'AA' },
+                { text: 'A',  value: 'A' },
+                { text: 'B',  value: 'B' },
+                { text: 'C',  value: 'C' },
+                { text: 'D',  value: 'D' },
+                { text: 'E',  value: 'E' },
+                { text: 'HR',  value: 'HR' },
+                { text: 'Todos',  value: 'Todos' },
+            ],
+            onValueChange: data => navigation.setParams({'filter': data}),
+            value: navigation.getParam('Filter', 'Todos')
+        }
+
+        return {
+            headerTitle: "Oportunidades",
+            headerRight: () => (
+                <TouchableOpacity onPress={ () => navigation.navigate('Picker', params) }>
+                    <Filter />
+                </TouchableOpacity>
+            )
+        }
     }
 }

@@ -28,6 +28,8 @@ import HTML from 'react-native-render-html'
 
 import { withNavigation } from 'react-navigation'
 
+import { Linking } from 'react-native'
+
 
 
 export const HeaderComponent = props => {
@@ -73,11 +75,11 @@ export const HeaderComponent = props => {
 
             <Retangle 
                 disabled={(getVideo() === null ? true : false)}
-                onPress={ () => navigation.navigate('VideoViewer', { data: getVideo() } ) }
+                onPress={ () => Linking.openURL( getVideo() ) }
             >
 
                 <IconArea>
-                    <IconPhoto fill={tealish} width={24} height={24}  />
+                    <IconVideo fill={tealish} width={24} height={24}  />
                     <TinyTitle>Vídeos</TinyTitle>
                 </IconArea>
 

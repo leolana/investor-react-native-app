@@ -37,6 +37,7 @@ import Linkedin from './ico-linkedin.svg'
 import Twitter from './ico-twitter.svg'
 import Vimeo from './ico-vimeo.svg'
 import Graph from './ico-graph.svg'
+import Filter from './ico-filter.svg'
 
 
 export const IconIouu = Iouu
@@ -78,3 +79,4 @@ export const IconLinkedin = Linkedin
 export const IconTwitter = Twitter
 export const IconVimeo = Vimeo
 export const IconGraph = Graph
+export const IconFilter = Filter

@@ -63,7 +63,7 @@ export const HistoricPaymentComponent = props => {
             if(resp.status === 200) {
 
                 for (let i = 0; i < item.length; i++) {
-                    item[i] = {...item[i], valorParcela: resp.data.tabela.TabelaPrice[i].Parcela.toFixed(2)}
+                    item[i] = { ...item[i], valorParcela: resp.data.tabela.TabelaPrice[i].Parcela.toFixed(2)}
                 }
                 
                 setFatura(item)

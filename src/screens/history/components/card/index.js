@@ -80,8 +80,7 @@ export const CardHistory = props => {
         else if(
             StatusAnalise == 'ENCERRADO' && 
             !GerouBoletosPagamento && 
-            BoletosAtrasados == undefined && 
-            BoletosAtrasados == 0 &&
+            (BoletosAtrasados == undefined || BoletosAtrasados == 0) &&
             data.AssinouCCB != true && 
             CCBsAssinaturas != true) return 'Aguardando formalização'
 
@@ -174,6 +173,7 @@ export const CardHistory = props => {
             </Header>
 
             <Body>
+                <Text > Nome da empresa: <Text fontFamily={ 'HelveticaNeue' } > { data.SolicitacaoId.Empresa.NomeFantasia } </Text> </Text>
                 <Text > Participação: <Text fontFamily={ 'HelveticaNeue' } > { formatMoney(data.Valor) } </Text> </Text>
                 <Text > Tipo de empréstimo: <Text fontFamily={ 'HelveticaNeue' } > { formatLoanType(data.SolicitacaoId.TipoEmprestimo) } </Text> </Text>
                 <Text > Taxa de juros: <Text fontFamily={ 'HelveticaNeue' } > { formatPercent(data.SolicitacaoId.RetornoBrutoMensal) } a.m. </Text> </Text>

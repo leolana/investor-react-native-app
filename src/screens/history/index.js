@@ -41,7 +41,7 @@ export const PageHistory = props => {
     return (
         <SafeAreaView>
             <FlatList
-                data={historyList}
+                data={historyList.reverse()}
                 renderItem={renderHistoryCard}
                 keyExtractor={ item => item.id }
             />

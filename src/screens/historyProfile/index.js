@@ -30,7 +30,8 @@ import {
     formatLoanType,
     formatMoney,
     formatPercent,
-    formatDate
+    formatDate,
+    formatCode
 
 } from '../../utils'
 
@@ -44,7 +45,7 @@ import {
     Footer
 } from './components'
 
-export const HistoryProfile = props => {
+export const HistoryProfileComponent = props => {
 
     // props 
 
@@ -93,6 +94,8 @@ export const HistoryProfile = props => {
         }
 
         fetchData()
+
+        navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` })
 
 
     }, [])
@@ -166,4 +169,14 @@ export const HistoryProfile = props => {
             </ScrollView>
         </SafeAreaView>
     )
+}
+
+export const HistoryProfile = {
+    screen: HistoryProfileComponent,
+    navigationOptions: ({navigation}) => {
+
+        return {
+            headerTitle: navigation.getParam('headerTitle', 'ID# ')
+        }
+    }
 }

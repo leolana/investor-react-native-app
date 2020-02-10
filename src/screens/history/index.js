@@ -18,6 +18,10 @@ import {
 
 } from '../../services'
 
+import {
+    Loading
+} from  '../../components'
+
 
 export const PageHistory = props => {
 
@@ -39,14 +43,18 @@ export const PageHistory = props => {
 
 
     return (
-        <SafeAreaView>
-            <FlatList
-                data={historyList.reverse()}
-                renderItem={renderHistoryCard}
-                keyExtractor={ item => item.id }
-            />
+        <Loading loading={historyList.length === 0} >
+            <SafeAreaView>
 
-        </SafeAreaView>
+                <FlatList
+                    data={historyList.reverse()}
+                    renderItem={renderHistoryCard}
+                    keyExtractor={ item => item.id }
+                />
+
+            </SafeAreaView>
+            
+        </Loading>
     )
 }
 
@@ -54,6 +62,6 @@ export const PageHistory = props => {
 export const History = {
     screen: PageHistory,
     navigationOptions: {
-        headerTitle: "HISTÓRICO"
+        headerTitle: "Histórico"
     }
 }

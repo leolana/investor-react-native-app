@@ -105,9 +105,12 @@ export const PageProfile = props => {
 
         if(accountData === undefined || accountData === null) return 
 
-        setName(accountData.Nome)
-        setNameLetter(accountData.Nome[0])
-        setEmail(accountData.Email)
+        if(accountData.Nome !== undefined) {
+            setName(accountData.Nome)
+            setNameLetter(accountData.Nome[0])
+        }
+        
+        if(accountData.Email !== undefined) setEmail(accountData.Email)
 
     }, [])
 

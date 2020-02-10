@@ -45,9 +45,9 @@ export default App = props => {
 
     await storeData('Authorization', data.Authorization)
 
-    await onInit()
+    const success = await onInit()
 
-    navigation.navigate('Opportunities')
+    if(success) navigation.navigate('Opportunities')
 
   }
 

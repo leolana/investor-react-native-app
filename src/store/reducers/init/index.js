@@ -13,7 +13,7 @@ import Store from '../../index'
 
 const getAccountData = async () => {
 
-    const resp = await Request.GET({url: 'http://192.168.15.40:9090/api/v1/conta/informacoes', header: 'bearer'})
+    const resp = await Request.GET({url: 'http://192.168.15.47:9090/api/v1/conta/informacoes', header: 'bearer'})
 
     const { status, data } = resp
 
@@ -31,5 +31,7 @@ export default async () => {
 
     Store.dispatch(setAccountData(data))
 
+    if(data === null) return false
 
+    return true
 }

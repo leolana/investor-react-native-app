@@ -143,7 +143,7 @@ export const CardHistoryComponent = props => {
     // render
 
     return (
-        <TouchableWithoutFeedback onPress={ () => navigation.navigate('HistoryProfile', { data: { ...data, formattedStatus: status } })}>
+        <TouchableWithoutFeedback onPress={ () => navigation.navigate('HistoricProfile', { data: { ...data, formattedStatus: status } })}>
             <Card >
             <Header>
                 <IconArrowRight stroke={ tealish } width={ 10 }  height={ 18 } />

@@ -8,8 +8,6 @@ import { Invest } from '../../screens/invest'
 
 import { Notifications } from '../../screens/notifications'
 
-import { History } from '../../screens/history'
-
 import { Statistics } from '../../screens/statistics'
 
 import { Profile } from '../../screens/profile'
@@ -46,7 +44,11 @@ import { DatePicker } from '../../screens/datePicker'
 
 import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
-import { HistoryProfile } from '../../screens/historyProfile'
+import { Historic } from '../../screens/historic'
+
+import { HistoricProfile } from '../../screens/historicProfile'
+
+import { HistoricPayment } from '../../screens/historicPayment'
 
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
@@ -128,8 +130,9 @@ export const ScreenRoutes = createStackNavigator(
         Wallet,
         Profile,
         Notifications,
-        History,
-        HistoryProfile,
+        Historic,
+        HistoricProfile,
+        HistoricPayment,
         Statistics,
         WalletReceipt,
         WalletHistoric,

@@ -65,6 +65,8 @@ export const UrlUsuarioPegar = email => `${BASE_URL_GO}api/v1/usuario/email/${em
 
 export const UrlTomadorFatura = id => `${BASE_URL_NODE}api/v1/FaturaTomador/solicitacao/${id}`
 
+export const UrlTabelaValoresInvestidores = (solicitacaoId, reservaId) => `${BASE_URL_GO}/api/v1/tabela/price/alongamento/${solicitacaoId}/${reservaId}`
+
 export const UrlSolicitacaoPegar = id => `${BASE_URL_NODE}api/v1/solicitacoes/${id}`
 export const UrlSolicitacaoReservaPegar = reservaId => `${BASE_URL_NODE}api/v1/reserva/solicitacao/${reservaId}`
 export const UrlSolicitacaoReservaInvPegar = solicitacaoId => `${BASE_URL_NODE}api/v1/solicitacoes/${solicitacaoId}/reserva-investimento`

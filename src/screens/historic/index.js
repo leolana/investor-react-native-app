@@ -23,7 +23,7 @@ import {
 } from  '../../components'
 
 
-export const PageHistory = props => {
+export const HistoricComponent = props => {
 
     const [ historyList, setHistoryList ] = useState([])
 
@@ -49,7 +49,7 @@ export const PageHistory = props => {
                 <FlatList
                     data={historyList.reverse()}
                     renderItem={renderHistoryCard}
-                    keyExtractor={ item => item.id }
+                    key={ item => item.id }
                 />
 
             </SafeAreaView>
@@ -59,9 +59,10 @@ export const PageHistory = props => {
 }
 
 
-export const History = {
-    screen: PageHistory,
+export const Historic = {
+    screen: HistoricComponent,
     navigationOptions: {
         headerTitle: "Histórico"
     }
 }
+

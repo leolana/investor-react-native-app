@@ -170,7 +170,7 @@ export const MenuComponent = props => {
             <View colors={[dusk, twilight]} > 
                 <ViewList>
                     {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
-                    {renderNavigationItem(getIcon('History'), 'Meu histórico', 'History')}
+                    {renderNavigationItem(getIcon('History'), 'Meu histórico', 'Historic')}
                     {renderNavigationItem(getIcon('Statistics'), 'Estatísticas', 'Statistics')}
                     {renderNavigationItem(getIcon('Calculator'), 'Calculadora', 'Opportunities')}
                     {renderNavigationItem(getIcon('Contact'), 'Atendimento', null)}

@@ -16,8 +16,6 @@ import {
     Item,
     ItemTitle,
     ItemText,
-    Divisor,
-    DivisorTitle,
 } from './styles'
 
 import {
@@ -45,7 +43,7 @@ import {
     Footer
 } from './components'
 
-export const HistoryProfileComponent = props => {
+export const HistoricProfileComponent = props => {
 
     // props 
 
@@ -64,11 +62,12 @@ export const HistoryProfileComponent = props => {
     const links = [
         {
             title: 'Ver todos os dados da empresa',
-            onPrss: () => {}
+            onPress: () => {}
         },
         {
             title: 'Pagamentos',
-            onPrss: () => {},
+            onPress: () => navigation.navigate('HistoricPayment', { data: reserve }),
+            disabled: (reserve === null)
         },
     ]
 
@@ -171,8 +170,8 @@ export const HistoryProfileComponent = props => {
     )
 }
 
-export const HistoryProfile = {
-    screen: HistoryProfileComponent,
+export const HistoricProfile = {
+    screen: HistoricProfileComponent,
     navigationOptions: ({navigation}) => {
 
         return {

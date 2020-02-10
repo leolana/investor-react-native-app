@@ -5,10 +5,33 @@ import {
     grey99, 
     white,
     greenTwo,
-    tealish,
     greyDD
 
 } from '../../assets/colors'
+
+
+import {
+    IconBack
+} from '../../assets/icons'
+
+export const IconArrowRight = styled(IconBack)`
+    transform: rotate(180deg);
+
+`
+
+export const TouchableOpacity = styled.TouchableOpacity`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-color: ${greyDD};
+    border-bottom-width: 1px;
+`
+
+export const LinkTitle = styled.Text`
+    font-size: 16px;
+    font-family: HelveticaNeue-Bold;
+`
 
 export const SafeAreaView = styled.SafeAreaView`
  

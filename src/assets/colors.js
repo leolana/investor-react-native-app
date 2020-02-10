@@ -43,6 +43,7 @@ export const lightGreen = '#00DFC1'
 export const lightRed = '#FF5C5F'
 export const lightYellow = '#FFD858'
 export const messageBoxBackground = '#FF4E00'
+export const greyAC = '#ACACAC'
 
 
 // $white: #fff; // Branco

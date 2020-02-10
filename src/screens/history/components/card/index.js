@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import {
@@ -19,6 +19,8 @@ import {
     tealish,
     greenTwo,
     greyTwo,
+    redTwo,
+    blueTwo
 } from '../../../../assets/colors'
 
 import {
@@ -33,11 +35,21 @@ import {
 
 export const CardHistory = props => {
 
+    // props
+
     const {
         data
     } = props
 
+    // states
+
+    const [ status, setStatus ] = useState('')
+
+    // vars
+
     const scoreColor = convertScoreByColor(data.SolicitacaoId.Score)
+
+    // methdos
 
     const getStatus = () => {
 
@@ -49,19 +61,19 @@ export const CardHistory = props => {
             GerouBoletosPagamento, 
             CCBsAssinaturas 
             
-        } = data.SolicitacaoId;
+        } = data.SolicitacaoId
 
         if(
             Valor > ValorCaptado && 
             BoletosAtrasados == undefined || 
             BoletosAtrasados == 0 && 
-            StatusAnalise != 'ENCERRADO') return 'Captando';
+            StatusAnalise != 'ENCERRADO') return 'Captando'
 
         else if(
             Valor <= ValorCaptado && 
             BoletosAtrasados == undefined || 
             BoletosAtrasados == 0 && 
-            StatusAnalise != 'ENCERRADO') return 'Captado';
+            StatusAnalise != 'ENCERRADO') return 'Captado'
 
         else if(BoletosAtrasados != undefined && BoletosAtrasados != 0) return 'Em Atraso'
 
@@ -71,15 +83,15 @@ export const CardHistory = props => {
             BoletosAtrasados == undefined && 
             BoletosAtrasados == 0 &&
             data.AssinouCCB != true && 
-            CCBsAssinaturas != true) return 'Aguardando formalização';
+            CCBsAssinaturas != true) return 'Aguardando formalização'
 
         else if(
-                StatusAnalise == 'ENCERRADO' && 
-                !GerouBoletosPagamento && 
-                (BoletosAtrasados == undefined || 
-                BoletosAtrasados == 0) && 
-                data.AssinouCCB != true && 
-                CCBsAssinaturas == true) return 'Assinar CCB';
+            StatusAnalise == 'ENCERRADO' && 
+            !GerouBoletosPagamento && 
+            (BoletosAtrasados == undefined || 
+            BoletosAtrasados == 0) && 
+            data.AssinouCCB != true && 
+            CCBsAssinaturas == true) return 'Assinar CCB'
 
         else if (
             StatusAnalise == 'ENCERRADO' && 
@@ -87,32 +99,58 @@ export const CardHistory = props => {
             (BoletosAtrasados == undefined || 
             BoletosAtrasados == 0) && 
             data.AssinouCCB == true && 
-            CCBsAssinaturas == true ) return 'Processando Desembolso';
+            CCBsAssinaturas == true ) return 'Processando Desembolso'
 
         else if(StatusAnalise == 'ENCERRADO' && 
-                GerouBoletosPagamento && 
-                (BoletosAtrasados == undefined || 
-                BoletosAtrasados == 0)) return 'Empréstimo Ativo';
+            GerouBoletosPagamento && 
+            (BoletosAtrasados == undefined || 
+            BoletosAtrasados == 0)) return 'Empréstimo Ativo'
 
         
 
     }
 
+    const getStatusColor = status => {
 
+        const statusColors = {
+            'Captando': greyTwo,
+            'Captado': greenTwo,
+            'Em Atraso': redTwo,
+            'Aguardando formalização': blueTwo,
+            'Assinar CCB': blueTwo,
+            'Processando Desembolso': blueTwo,
+            'Empréstimo Ativo': greenTwo,
+        }
+
+        return statusColors[status]
+    }
+
+    // effects
+
+
+    useEffect(() => {
+        
+        const status = getStatus()
+
+        setStatus(status)
+
+    }, [])
+
+    // render
 
     return (
         <Card>
             <Header>
                 <IconArrowRight stroke={ tealish } width={ 10 }  height={ 18 } />
-                <Title > ID #{ data.SolicitacaoId.IdOportunidade }   </Title>
+                <Title > ID #{ data.SolicitacaoId.IdOportunidade } </Title>
 
                 <HelperArea>
 
                     <Text 
                         fontFamily={ 'HelveticaNeue-Medium' }
                         width="178px"
-                        color={ greenTwo } > 
-                            { getStatus() } 
+                        color={ getStatusColor(status) } > 
+                            { status } 
                     </Text>
 
 

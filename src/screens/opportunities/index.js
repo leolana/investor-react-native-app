@@ -9,7 +9,8 @@ import {
 import { 
     ActivityIndicator, 
     TouchableOpacity,
-    FlatList
+    FlatList,
+    BackHandler
 
 } from 'react-native'
 
@@ -97,10 +98,21 @@ export const PageOpportunities = props => {
     // effects
 
     useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', function() {
+            
+
+            console.log('teste')
+        
+            return false
+        })
+    }, [])
+
+    useEffect(() => {
 
         setPage(1)
 
         setOpportunities([])
+        
 
     }, [filter])
 

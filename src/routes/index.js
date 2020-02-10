@@ -23,5 +23,8 @@ export default createAppContainer(
   { 
     initialRouteName: 'PublicRoutes',
     headerMode: 'none',
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    },
   }
 ))

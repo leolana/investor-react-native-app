@@ -59,8 +59,6 @@ export const PageOpportunities = props => {
 
         const resp = await Request.GET({ url: UrlListaOportunidades(page, filter), header: 'bearer' })
 
-        console.log(resp)
-
         if(resp.status === 200) {
 
             setPageTotal(resp.data.Paginas)

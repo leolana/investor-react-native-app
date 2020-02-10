@@ -46,6 +46,8 @@ import { DatePicker } from '../../screens/datePicker'
 
 import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
+import { HistoryProfile } from '../../screens/historyProfile'
+
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
 import { PhotoViewer } from '../../screens/photoViewer'
@@ -127,6 +129,7 @@ export const ScreenRoutes = createStackNavigator(
         Profile,
         Notifications,
         History,
+        HistoryProfile,
         Statistics,
         WalletReceipt,
         WalletHistoric,

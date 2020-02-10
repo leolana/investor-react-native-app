@@ -28,7 +28,7 @@ export const LinkList = props => {
         <TouchableOpacity 
             key={index} 
             disabled={item.disabled}
-            borderBottomWidth={ ((index === (data.length - 1) && data.length > 1) ? '0' : '1' ) }
+            borderBottomWidth={ props.borderBottomWidth || ((index === (data.length - 1) && data.length > 1) ? '0' : '1' ) }
             onPress={ item.onPress } 
         >
 

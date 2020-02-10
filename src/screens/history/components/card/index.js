@@ -32,13 +32,18 @@ import {
 
 } from '../../../../utils'
 
+import { withNavigation } from 'react-navigation'
 
-export const CardHistory = props => {
+import { TouchableWithoutFeedback } from 'react-native'
+
+
+export const CardHistoryComponent = props => {
 
     // props
 
     const {
-        data
+        data,
+        navigation
     } = props
 
     // states
@@ -138,7 +143,8 @@ export const CardHistory = props => {
     // render
 
     return (
-        <Card>
+        <TouchableWithoutFeedback onPress={ () => navigation.navigate('HistoryProfile', { data: { ...data, formattedStatus: status } })}>
+            <Card >
             <Header>
                 <IconArrowRight stroke={ tealish } width={ 10 }  height={ 18 } />
                 <Title > ID #{ data.SolicitacaoId.IdOportunidade } </Title>
@@ -186,9 +192,11 @@ export const CardHistory = props => {
             <Text > Data do investimento: <Text fontFamily={ 'HelveticaNeue' } > { formatDate(data.Created) } </Text> </Text>
             
         </Card>
-
+        </TouchableWithoutFeedback>
 
     )
 
 
 }
+
+export const CardHistory = withNavigation(CardHistoryComponent)

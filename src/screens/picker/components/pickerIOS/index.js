@@ -11,14 +11,21 @@ import { withNavigation } from 'react-navigation'
 
 export const PickerIOSComponent = props => {
 
-    const [ value, setValue ] = useState(props.value)
+    const [ selectedData, setSelectedData ] = useState(props.data)
 
     const setData = () => {
 
-        props.onChange(value)
+        props.onChange(selectedData)
 
         props.navigation.goBack()
 
+    }
+
+    const getData = selectedValue => {
+
+        const data = props.options.filter( ({value}) => value === selectedValue )
+
+        setSelectedData(data[0])
     }
 
 
@@ -30,12 +37,12 @@ export const PickerIOSComponent = props => {
             </Button>
 
             <PickerStyled
-                selectedValue={value}
-                onValueChange={ data => setValue(data) }
+                selectedValue={selectedData.value}
+                onValueChange={ data => getData(data) }
             >
 
                 {
-                    props.data.map( (data, index) => (<PickerStyled.Item label={data.text} value={data.value} key={index} />) )
+                    props.options.map( (data, index) => (<PickerStyled.Item label={data.text} value={data.value} key={index} />) )
                 }
             </PickerStyled>
 

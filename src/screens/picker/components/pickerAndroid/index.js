@@ -17,7 +17,7 @@ export const PickerAndroidComponent = props => {
 
     const onSelected = data => {
 
-        props.onChange(data.value)
+        props.onChange(data)
 
         props.navigation.goBack()
     }
@@ -29,7 +29,7 @@ export const PickerAndroidComponent = props => {
         <ScrollView showsVerticalScrollIndicator={false}>  
 
             {
-                props.data.map( (data, index) => (
+                props.options.map( (data, index) => (
 
                     <TouchableOpacity onPress={() => onSelected(data) } key={index}  >
 

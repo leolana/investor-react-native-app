@@ -45,7 +45,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR')
+    const filter = navigation.getParam('filter', { text: 'Todos',  value: 'A-B-C-D-E-HR' } )
 
     // methods
 
@@ -57,7 +57,7 @@ export const PageOpportunities = props => {
         
         setLoading(true)
 
-        const resp = await Request.GET({ url: UrlListaOportunidades(page, filter), header: 'bearer' })
+        const resp = await Request.GET({ url: UrlListaOportunidades(page, filter.value), header: 'bearer' })
 
         if(resp.status === 200) {
 
@@ -71,7 +71,7 @@ export const PageOpportunities = props => {
 
         else {
             
-            navigation.setParams({'filter': 'A-B-C-D-E-HR'})
+            navigation.setParams({'filter': { text: 'Todos',  value: 'A-B-C-D-E-HR' } })
 
             alert('Nenhuma oportunidade foi encontrada.')
         }
@@ -98,7 +98,6 @@ export const PageOpportunities = props => {
     useEffect(() => {
         BackHandler.addEventListener('hardwareBackPress', function() {
             
-
             console.log('teste')
         
             return false
@@ -112,7 +111,7 @@ export const PageOpportunities = props => {
         setOpportunities([])
         
 
-    }, [filter])
+    }, [filter.value])
 
     useEffect(() => {
 
@@ -149,7 +148,7 @@ export const Opportunities = {
     navigationOptions: ({ navigation }) => {
 
         const params = { 
-            data: [
+            options: [
                 { text: 'AA', value: 'AA' },
                 { text: 'A',  value: 'A' },
                 { text: 'B',  value: 'B' },
@@ -159,8 +158,8 @@ export const Opportunities = {
                 { text: 'HR',  value: 'HR' },
                 { text: 'Todos',  value: 'A-B-C-D-E-HR' },
             ],
-            onValueChange: value => navigation.setParams({'filter': value}),
-            value: navigation.getParam('filter', 'A-B-C-D-E-HR')
+            onValueChange: selectedData => navigation.setParams({'filter': selectedData}),
+            data: navigation.getParam('filter', { text: 'Todos',  value: 'A-B-C-D-E-HR' } )
         }
 
         return {

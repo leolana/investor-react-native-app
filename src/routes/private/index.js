@@ -46,6 +46,8 @@ import { ReinvestmentSheetModal } from '../../screens/reinvestmentSheetModal'
 
 import { Historic } from '../../screens/historic'
 
+import { HistoricFilter } from '../../screens/historicFilter'
+
 import { HistoricProfile } from '../../screens/historicProfile'
 
 import { HistoricPayment } from '../../screens/historicPayment'
@@ -133,6 +135,7 @@ export const ScreenRoutes = createStackNavigator(
         Historic,
         HistoricProfile,
         HistoricPayment,
+        HistoricFilter,
         Statistics,
         WalletReceipt,
         WalletHistoric,

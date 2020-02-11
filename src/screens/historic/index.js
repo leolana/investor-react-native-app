@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
 import { FlatList } from 'react-native'
 
 import {
@@ -8,7 +7,8 @@ import {
 } from './components'
 
 import {
-    SafeAreaView
+    SafeAreaView,
+    TouchableOpacity
 } from './styles'
 
 
@@ -21,6 +21,10 @@ import {
 import {
     Loading
 } from  '../../components'
+
+import {
+    IconFilter
+} from '../../assets/icons'
 
 
 export const HistoricComponent = props => {
@@ -37,7 +41,6 @@ export const HistoricComponent = props => {
         Request.GET( config ).then( resp => setHistoryList(resp.data) )
 
     }
-
 
     const renderHistoryCard = data => (<CardHistory data={ data.item } />)
 
@@ -61,8 +64,16 @@ export const HistoricComponent = props => {
 
 export const Historic = {
     screen: HistoricComponent,
-    navigationOptions: {
-        headerTitle: "Histórico"
+    navigationOptions: ({ navigation }) => {
+
+        return {
+            headerRight: () => (
+                <TouchableOpacity onPress={ () => navigation.navigate('HistoricFilter')} >
+                    <IconFilter />
+                </TouchableOpacity>
+            ),
+            headerTitle: "Histórico"
+        }
     }
 }
 

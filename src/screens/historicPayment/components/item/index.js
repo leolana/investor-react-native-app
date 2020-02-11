@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
     Circle,
@@ -40,16 +40,26 @@ export const Item = props => {
         let boletoDate = new Date(spliter[0], spliter[1] - 1, spliter[2], 23, 59, 59)
         let today      = new Date()
         let status     = boleto.StatusBoleto
-
-        if(boletoDate < today && status !== "paid") return redTwo
         
-        else if(status === "" || status === undefined) return greyTwo
-        
-        else if(status === "pending") return lightYellow
+        if(status === "pending") return lightYellow
         
         else if (status === "paid") return greenTwo
+
+        else if(status === "" || status === undefined) return greyTwo
+
+        else if(boletoDate < today && status !== "paid") return redTwo
         
     }
+
+    // useEffects
+
+    useEffect( () => {
+
+        const defaultData = { IndiceFatura: 0, valorParcela: 0, Boleto: { due_date: null, } }
+
+        if(data == undefined || data === 'none' || data === null) data = defaultData
+
+    }, [data])
 
     // render
 

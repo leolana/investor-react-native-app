@@ -33,20 +33,20 @@ export const HistoricFilterComponent = props => {
 
     // states
 
-    const [ type, setType ] = useState({ text: 'Empréstimo Coletivo', value: 'coletivo' })
+    const [ type, setType ] = useState({ text: '', value: '' })
 
-    const [ dateFrom, setDateFrom ] = useState( new Date() )
+    const [ dateFrom, setDateFrom ] = useState( null )
 
-    const [ dateTo, setDateTo ] = useState( new Date() )
+    const [ dateTo, setDateTo ] = useState( null )
 
-    const [ score, setScore ] = useState({ text: 'Todos',  value: 'A-B-C-D-E-HR' })
+    const [ score, setScore ] = useState({ text: '',  value: '' })
 
     // vars
 
     const typeParams = { 
         options: [
-            { text: 'Empréstimo Coletivo', value: 'coletivo' },
-            { text: 'Empréstimo Social',  value: 'social' },
+            { text: 'Empréstimo Coletivo', value: 'emprestimo-coletivo' },
+            { text: 'Empréstimo Social',  value: 'emprestimo-social' },
         ],
         onValueChange: value => setType(value),
         data: type
@@ -79,7 +79,18 @@ export const HistoricFilterComponent = props => {
 
     // methods
 
+    const applyFilter = () => {
 
+        const filter = {
+            type,
+            dateFrom,
+            dateTo,
+            score
+        }
+
+        navigation.navigate('Historic', { filter })
+
+    }
     
 
     // render
@@ -89,7 +100,7 @@ export const HistoricFilterComponent = props => {
 
             <Text>Tipo de investimento:</Text>
             <FieldInput onPress={ () => navigation.navigate('Picker', typeParams) } >
-                <FieldText>{type.value}</FieldText>
+                <FieldText>{type.text}</FieldText>
                 <Arrow stroke={grey99} width={14} height={14} />
             </FieldInput>
             
@@ -122,7 +133,7 @@ export const HistoricFilterComponent = props => {
                 <Arrow stroke={grey99} width={14} height={14} />
             </FieldInput>
 
-            <Buttom>
+            <Buttom onPress={ () => applyFilter() } >
                 <ButtomText>APLICAR FILTRO</ButtomText>
             </Buttom>
             

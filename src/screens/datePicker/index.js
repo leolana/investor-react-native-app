@@ -28,7 +28,7 @@ export const DatePickerModal = props => {
 
             <DatePickerStyled
                 mode="date"
-                date={ date }
+                date={ (date == null) ? new Date() : date }
                 onDateChange={ selectedDate => onDateChanged(selectedDate) }
             />
 

@@ -62,7 +62,8 @@ export const HistoricProfileComponent = props => {
     const links = [
         {
             title: 'Ver todos os dados da empresa',
-            onPress: () => {}
+            onPress: () => navigation.navigate('Company', { data: reserve.SolicitacaoId }),
+            disabled: (reserve === null)
         },
         {
             title: 'Pagamentos',

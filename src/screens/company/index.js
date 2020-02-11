@@ -44,7 +44,7 @@ export const CompanyComponent = props => {
 
     // methods
 
-    const formatAddress = endereco => {
+    const formatAddress = address => {
 
         const { 
             Bairro, 
@@ -54,7 +54,7 @@ export const CompanyComponent = props => {
             Logradouro, 
             Numero, 
             Uf 
-        } = endereco
+        } = address
 
         
         return `${Logradouro}, ${Numero} - ${(Complemento) ? Complemento + ',' : ''} ${Bairro}, ${Cidade}, ${Uf}, ${Cep}`
@@ -170,6 +170,6 @@ export const CompanyComponent = props => {
 export const Company = {
     screen: CompanyComponent,
     navigationOptions: {
-        headerTitle: "DADOS DA EMPRESA"
+        headerTitle: "Dados da empresa"
     }
 }

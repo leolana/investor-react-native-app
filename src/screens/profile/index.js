@@ -42,7 +42,7 @@ import {
     removeData
 } from '../../utils'
 
-export const PageProfile = props => {
+export const ProfileComponent = props => {
 
     // props
 
@@ -63,23 +63,23 @@ export const PageProfile = props => {
     const links = [
         {
             title: 'Alterar senha',
-            onPrss: () => {}
+            onPress: () => navigation.navigate('ChangePassword')
         },
         {
             title: 'Informações pessoais',
-            onPrss: () => {}
+            onPress: () => {}
         },
         {
             title: 'Configurações',
-            onPrss: () => {}
+            onPress: () => {}
         },
         {
             title: 'Documentos',
-            onPrss: () => {}
+            onPress: () => {}
         },
         {
             title: 'Assinatura CCB’s',
-            onPrss: () => {}
+            onPress: () => {}
         },
         {
             title: 'Sair',
@@ -95,7 +95,7 @@ export const PageProfile = props => {
         }
     ]
 
-    // mehtods
+    // methods
 
     const renderLetter = () => (<Letter>{nameLetter}</Letter>)
 
@@ -106,11 +106,11 @@ export const PageProfile = props => {
         if(accountData === undefined || accountData === null) return 
 
         if(accountData.Nome !== undefined) {
-            setName(accountData.Nome)
-            setNameLetter(accountData.Nome[0])
-        }
+            setName(accountData.Nome || '')
+            setNameLetter(accountData.Nome[0] || '')
+        } 
         
-        if(accountData.Email !== undefined) setEmail(accountData.Email)
+        if(accountData.Email !== undefined) setEmail(accountData.Email || '')
 
     }, [])
 
@@ -143,7 +143,7 @@ export const PageProfile = props => {
 
                 <ListArea>
 
-                    <LinkList data={links}/>
+                    <LinkList data={links} />
 
                 </ListArea>
 
@@ -159,9 +159,9 @@ export const PageProfile = props => {
 }
 
 export const Profile = {
-    screen: PageProfile,
+    screen: ProfileComponent,
     navigationOptions: {
-        headerTitle: "PERFIL",
+        headerTitle: "Perfil",
         headerLeft: null
     }
 }

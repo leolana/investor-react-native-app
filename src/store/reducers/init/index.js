@@ -15,6 +15,8 @@ const getAccountData = async () => {
 
     const resp = await Request.GET({url: 'http://192.168.15.47:9090/api/v1/conta/informacoes', header: 'bearer'})
 
+    console.log(resp)
+    
     const { status, data } = resp
 
     if(status === 200) return data

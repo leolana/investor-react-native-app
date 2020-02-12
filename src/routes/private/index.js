@@ -12,6 +12,8 @@ import { Statistics } from '../../screens/statistics'
 
 import { Profile } from '../../screens/profile'
 
+import { ChangePassword } from '../../screens/changePassword'
+
 import { Wallet } from '../../screens/wallet'
 
 import { WalletSheetModal } from '../../screens/walletSheetModal'
@@ -131,6 +133,7 @@ export const ScreenRoutes = createStackNavigator(
         Opportunities,
         Wallet,
         Profile,
+        ChangePassword,
         Notifications,
         Historic,
         HistoricProfile,

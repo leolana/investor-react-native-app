@@ -112,7 +112,7 @@ export const HistoricComponent = props => {
 
         else return alert('Ocorreu um erro ao aplicar o filtro. Tente novamente mais tarde.')
 
-        const list = resp.data
+        let list = resp.data
 
         list = applyDefaultFilter(list)
 

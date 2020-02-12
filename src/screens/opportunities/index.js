@@ -45,7 +45,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', { text: 'Todos',  value: 'A-B-C-D-E-HR' } )
+    const filter = navigation.getParam('filter', null )
 
     // methods
 
@@ -57,7 +57,11 @@ export const PageOpportunities = props => {
         
         setLoading(true)
 
-        const resp = await Request.GET({ url: UrlListaOportunidades(page, filter.value), header: 'bearer' })
+        let scores = 'A-B-C-D-E-HR'
+
+        if(filter !== null) scores = filter.value
+
+        const resp = await Request.GET({ url: UrlListaOportunidades(page, scores), header: 'bearer' })
 
         if(resp.status === 200) {
 
@@ -70,8 +74,7 @@ export const PageOpportunities = props => {
         }
 
         else {
-            
-            navigation.setParams({'filter': { text: 'Todos',  value: 'A-B-C-D-E-HR' } })
+        
 
             alert('Nenhuma oportunidade foi encontrada.')
         }
@@ -106,12 +109,14 @@ export const PageOpportunities = props => {
 
     useEffect(() => {
 
+        if(filter === null) return
+
         setPage(1)
 
         setOpportunities([])
         
 
-    }, [filter.value])
+    }, [filter])
 
     useEffect(() => {
 

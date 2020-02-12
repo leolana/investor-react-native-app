@@ -15,7 +15,7 @@ const handleError = ({ inputError }, data) => {
 }
 
 export default (state = {}, action) => {
-
+    
     if(action.type.includes(Types.REDUX_INIT)) onInit()
 
     switch (action.type) {

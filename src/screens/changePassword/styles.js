@@ -5,7 +5,9 @@ import {
 } from '../../components'
 
 import {
-    tealish
+    tealish, 
+    white,
+    grey99
 } from '../../assets/colors'
 
 export const SafeAreaView = styled.SafeAreaView`
@@ -19,12 +21,18 @@ export const TextInput = styled(ITextInput)`
 `
 
 export const Buttom = styled.TouchableOpacity`
-    background: ${tealish};
+    background: ${ props => props.disabled ? grey99 : tealish};
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
     
 `
 
-export const ButtomText = styled.TouchableOpacity` 
+export const ButtomText = styled.Text` 
+    color: ${white};
+    font-family: HelveticaNeue-Bold;
+    font-size: 13px;
 
 
 `

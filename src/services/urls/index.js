@@ -19,7 +19,7 @@ const DESENV = {
 const { BASE_URL_GO, BASE_URL_NODE, BASE_URL_HUB } = TEST
 
 
-export const UrlValidarToken = `${BASE_URL_NODE}api/v1/validar-token`
+export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`
 
 export const UrlLogin = `${BASE_URL_GO}sign_in`
 export const UrlLoginRedeSocial = (provedor, token) => `${BASE_URL_GO}oauth/${provedor}/callback/${token}`
@@ -54,14 +54,14 @@ export const UrlCarteiraPegarDetalhesOperacao = id =>  `${BASE_URL_GO}api/v1/wal
 export const UrlCarteiraSaldo = `${BASE_URL_GO}api/v1/wallet/saldo`
 
 
-
-
 export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`
 export const UrlInfoInvSolicitacao = solicitacaoId => `${BASE_URL_NODE}api/v1/investimentos/meus/solicitacoes/${solicitacaoId}`
 
 export const UrlInvPegar = email => `${BASE_URL_GO}api/v1/investidor/email/${email}`
 
 export const UrlUsuarioPegar = email => `${BASE_URL_GO}api/v1/usuario/email/${email}`
+
+export const UrlUsuarioMudarSenha = `${BASE_URL_GO}api/v1/usuario/atualizar/senha`
 
 export const UrlTomadorFatura = id => `${BASE_URL_NODE}api/v1/FaturaTomador/solicitacao/${id}`
 

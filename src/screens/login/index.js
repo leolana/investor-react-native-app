@@ -60,7 +60,7 @@ export default App = props => {
     else alert(resp.data.Msg)
   }
 
-  const prepareToLoginRequest = async () => {
+  const validateLogin = async () => {
 
     if(email == null || password == null) return alert("Email e senha não podem estar vazios.")
 
@@ -101,7 +101,7 @@ export default App = props => {
         
         <ITextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
 
-        <Buttom title="Entrar" onPress={ () => prepareToLoginRequest() } />
+        <Buttom title="Entrar" onPress={ () => validateLogin() } />
 
       </Container>
       

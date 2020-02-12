@@ -33,7 +33,6 @@ import {
 
 import {
     IconBell,
-    IconMenu,
     IconOfficeArchive,
     IconBriefcase,
     IconCalculator,

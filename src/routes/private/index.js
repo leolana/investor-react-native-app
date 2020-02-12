@@ -54,6 +54,8 @@ import { HistoricProfile } from '../../screens/historicProfile'
 
 import { HistoricPayment } from '../../screens/historicPayment'
 
+import { Configurations } from '../../screens/configurations'
+
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
 import { PhotoViewer } from '../../screens/photoViewer'
@@ -144,6 +146,7 @@ export const ScreenRoutes = createStackNavigator(
         WalletHistoric,
         TransferWalletBalance,
         OpportunitieProfile,
+        Configurations,
         Company,
         FinancialIndicators,
         ComplementaryIndicators,

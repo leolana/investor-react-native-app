@@ -9,8 +9,7 @@ import {
 import { 
     ActivityIndicator, 
     TouchableOpacity,
-    FlatList,
-    BackHandler
+    FlatList
 
 } from 'react-native'
 
@@ -45,7 +44,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', null )
+    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR')
 
     // methods
 
@@ -57,11 +56,9 @@ export const PageOpportunities = props => {
         
         setLoading(true)
 
-        let scores = 'A-B-C-D-E-HR'
+        const resp = await Request.GET({ url: UrlListaOportunidades(page, filter), header: 'bearer' })
 
-        if(filter !== null) scores = filter.value
-
-        const resp = await Request.GET({ url: UrlListaOportunidades(page, scores), header: 'bearer' })
+        console.log(resp)
 
         if(resp.status === 200) {
 
@@ -74,7 +71,8 @@ export const PageOpportunities = props => {
         }
 
         else {
-        
+            
+            navigation.setParams({'filter': 'A-B-C-D-E-HR'})
 
             alert('Nenhuma oportunidade foi encontrada.')
         }
@@ -99,22 +97,10 @@ export const PageOpportunities = props => {
     // effects
 
     useEffect(() => {
-        BackHandler.addEventListener('hardwareBackPress', function() {
-            
-            console.log('teste')
-        
-            return false
-        })
-    }, [])
-
-    useEffect(() => {
-
-        if(filter === null) return
 
         setPage(1)
 
         setOpportunities([])
-        
 
     }, [filter])
 
@@ -153,7 +139,7 @@ export const Opportunities = {
     navigationOptions: ({ navigation }) => {
 
         const params = { 
-            options: [
+            data: [
                 { text: 'AA', value: 'AA' },
                 { text: 'A',  value: 'A' },
                 { text: 'B',  value: 'B' },
@@ -163,8 +149,8 @@ export const Opportunities = {
                 { text: 'HR',  value: 'HR' },
                 { text: 'Todos',  value: 'A-B-C-D-E-HR' },
             ],
-            onValueChange: selectedData => navigation.setParams({'filter': selectedData}),
-            data: navigation.getParam('filter', { text: 'Todos',  value: 'A-B-C-D-E-HR' } )
+            onValueChange: value => navigation.setParams({'filter': value}),
+            value: navigation.getParam('filter', 'A-B-C-D-E-HR')
         }
 
         return {

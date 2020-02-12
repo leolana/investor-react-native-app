@@ -60,7 +60,7 @@ const CardComponent = props => {
 
         if(data === null) return 
 
-        setTitle( `${formatTitle()} ${(data.Descricao ? `| ${data.Descricao}` : '')}` )
+        setTitle( `${formatTitle()} ${( (data.Descricao ) ? `| ${data.Descricao}` : '')}` )
 
         setDate( formatDate(data.Data, 'dd MMM yyyy').replace('2020', '') )
 

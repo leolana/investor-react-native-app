@@ -13,8 +13,18 @@ import {
 } from './components'
 
 import {
-    useSelector
+    useSelector,
+    useDispatch
 } from 'react-redux'
+
+import {
+    setAccountData
+} from '../../store/actions'
+
+import {
+    Request,
+    UrlPerfilConfigNotificacaoSalvar
+} from '../../services'
 
 
 export const ConfigurationsComponent = () => {
@@ -35,7 +45,9 @@ export const ConfigurationsComponent = () => {
 
     // vars
 
-    const configs = useSelector( ({accountData}) => accountData.NotificacoesInvestidor )
+    const dispatch = useDispatch()
+
+    const accountData = useSelector( ({accountData}) => accountData )
 
     // methods
 
@@ -49,15 +61,48 @@ export const ConfigurationsComponent = () => {
 
     }
 
+    const saveConfig = async () => {
+
+        const data = {
+            id: accountData.UsuarioId,
+            options: config,
+        };
+
+        const resp = await Request.POST({ url: UrlPerfilConfigNotificacaoSalvar, data })
+
+        if(resp.status === 200) {
+
+            accountData.NotificacoesInvestidor = config
+
+            dispatch(setAccountData(accountData))
+
+        }
+        
+        else alert('Ocorreu um erro ao tenatr salver as configurações. Tente novamente mais terde.')
+
+    
+    }
+
     // effects
 
     useEffect( () => {
 
-        if(configs === undefined || configs === null) return
+        if(accountData.NotificacoesInvestidor === undefined || accountData.NotificacoesInvestidor === null) return
 
-        setConfig(configs)
+        setConfig(accountData.NotificacoesInvestidor)
 
-    }, [configs])
+    }, [accountData])
+
+    useEffect( () => {
+
+        async function updateData() {
+
+            await saveConfig()
+        }
+
+        updateData()
+
+    }, [saveConfig])
 
     // render
 

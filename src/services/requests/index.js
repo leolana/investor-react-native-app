@@ -8,8 +8,6 @@ class Api {
 
         let auth = await retrieveData('Authorization')
 
-        console.log(auth)
-
         auth = (type == 'bearer') ? `Bearer ${auth}` : `${auth}`
         
         return { "authorization": auth }

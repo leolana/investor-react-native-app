@@ -48,7 +48,7 @@ const CardComponent = props => {
 
         const { Tipo, Detalhes } = data
 
-        if( Tipo === 'PAGAMENTO' ) return Detalhes.Pagamento.NomeEmpresa
+        if( Tipo === 'PAGAMENTO' ) return (Detalhes.Pagamento.NomeEmpresa) ? Detalhes.Pagamento.NomeEmpresa : Tipo
 
         return Tipo
 

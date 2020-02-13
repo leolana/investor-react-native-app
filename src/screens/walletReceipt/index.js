@@ -92,10 +92,7 @@ export const WalletReceiptPage = props => {
                         height={ 75 }
                     />
 
-                    {
-                        (operationsDetails !== null) ? <ReceiptPayment data={operationsDetails} /> : null
-                    }
-
+                    { (operationsDetails !== null) ? <ReceiptPayment data={operationsDetails} /> : null }
 
                 </ReceiptBody>
 
@@ -113,6 +110,6 @@ export const WalletReceiptPage = props => {
 export const WalletReceipt = {
     screen: WalletReceiptPage,
     navigationOptions: {
-        headerTitle: "#00000"
+        headerTitle: "Comprovante"
     }
 }

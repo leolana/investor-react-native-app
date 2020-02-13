@@ -33,6 +33,8 @@ export const ModalPaymantComponent = props => {
 
     const { Pagamento } = data.Detalhes
 
+    console.log(data)
+
     // Render
 
     return (

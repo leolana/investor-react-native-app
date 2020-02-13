@@ -57,7 +57,7 @@ export const Content = styled.View`
 export const ReceiptBorder = styled.Image`
     width: ${width - 64}px;
     height: 14px;
-    resize-Mode: contain;
+    resize-Mode: cover;
 
     ${
         props => {

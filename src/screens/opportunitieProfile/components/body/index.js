@@ -169,7 +169,13 @@ export const Body = props => {
 
                 <Item horizontal={true} >
                     <IconClock />
-                    <ItemTextTime >Finaliza em {getRemainingTime()} dias*</ItemTextTime>
+                    <ItemTextTime>
+                        { 
+                            (getRemainingTime() <= 0) ? 
+                            'Finalizado' : 
+                            `Finaliza em ${getRemainingTime()} dias*`
+                        } 
+                    </ItemTextTime>
                 </Item>
 
                 <ProgressArea>

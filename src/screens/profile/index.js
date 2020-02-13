@@ -78,8 +78,8 @@ export const ProfileComponent = props => {
             onPress: () => {}
         },
         {
-            title: 'Assinatura CCB’s',
-            onPress: () => {}
+            title: 'Formalizações',
+            onPress: () => navigation.navigate('CCBsList')
         },
         {
             title: 'Sair',

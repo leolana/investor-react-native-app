@@ -122,7 +122,7 @@ export const HistoricProfileComponent = props => {
                 <LoanType>{formatLoanType(data.SolicitacaoId.TipoEmprestimo, false)}</LoanType>
 
                 <Row>
-                    <Buttom>
+                    <Buttom onPress={ () => navigation.navigate('OpportunitieProfile', { data: data.SolicitacaoId })} >
                         <ButtomText>VER SOLICITAÇÃO</ButtomText>
                     </Buttom>
 

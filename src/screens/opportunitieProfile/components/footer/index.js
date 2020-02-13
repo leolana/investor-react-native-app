@@ -42,6 +42,12 @@ export const FooterComponent = props => {
 
 
     // Vars
+
+    const companyLink = [ { 
+        title: 'Ver todos os dados da empresa', 
+        onPress: () => navigation.navigate('Company', { data }) 
+    } ]
+
     const linkData = [ 
         { 
             title: 'Índices financeiros', onPress: () => navigation.navigate('FinancialIndicators', { data }), 
@@ -72,7 +78,7 @@ export const FooterComponent = props => {
                 <ItemDefaultTitle bold={true} >CPF/CNPJ</ItemDefaultTitle>
                 <ItemDefaultText marginBottom={16} >{formatCNPJ(data.Documento)}</ItemDefaultText>
 
-                <LinkList data={ [ { title: 'Ver todos os dados da empresa', onPress: () => navigation.navigate('Company', { data }) } ] } />
+                <LinkList data={ companyLink } />
 
                 <RetangleContent background={convertScoreByColor(data.Score)} marginTop={16} >
 

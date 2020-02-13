@@ -93,34 +93,6 @@ export const ReceiptPayment = props => {
                 <Text>{formatCNPJ(DocumentoEmpresa)}</Text>
             </Line>
 
-            <Divisor>
-                <Title>Recebimento realizado</Title>
-            </Divisor>
-
-            <Line>
-                <Text>Principal: </Text>
-                <Text>{Detalhes.Pagamento.NomeEmpresa}</Text>
-            </Line>
-
-            <Line>
-                <Text>Juros: </Text>
-                <Text>{Detalhes.Pagamento.NomeEmpresa}</Text>
-            </Line>
-
-            <Line>
-                <Text>Multa por atraso: </Text>
-                <Text>{formatMoney(ValorBruto)}</Text>
-            </Line>
-
-            <Line>
-                <Text>Valor bruto pago: </Text>
-                <Text>{Detalhes.Pagamento.NomeEmpresa}</Text>
-            </Line>
-
-        
-        
-        
-        
         </Content>
     )
 }

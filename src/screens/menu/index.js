@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import {
     View,
-    Letter,
     Text,
     ViewList,
     NavigationItem,
-    HeaderContent,
-    HeaderContainer,
-    Header,
-    Circle,
     IconGo,
-    MenuHorizontalArea,
     IconSafeArea,
     NotificationDot,
 
@@ -23,13 +17,11 @@ import {
 
 import {
     dusk,
-    darkDusk,
     tealish,
     twilight,
-    greenishBlue,
     white,
     redTwo
-}   from '../../assets/colors'
+} from '../../assets/colors'
 
 import {
     IconBell,
@@ -43,46 +35,17 @@ import {
 } from '../../assets/icons'
 
 import {
-    formatMoney,
-    trunc
-} from '../../utils'
-
-import {
-    Request,
-    UrlCarteiraPegar
-} from '../../services'
-
+    Header,
+    Item
+} from './components'
 
 export const MenuComponent = props => {
 
-    const userName = useSelector( ({accountData}) => (accountData !== undefined) ? accountData.Nome : '' )
+    // vars
 
-    const [ walletFunds, setWalletFunds ] = useState(null)
+    const accountData = useSelector( ({accountData}) => accountData )
 
-    const { navigation } = props
-
-    useEffect(() => getWallet(), [navigation.state.isDrawerOpen] )
-
-    const formatWalletFunds = ({ debito, credito }) => {
-
-        const availableFunds = 
-            ( parseFloat ( trunc(credito) ) -  parseFloat( trunc(debito) ) )
-
-        const funds = 
-            (parseFloat(availableFunds) > -0.1 && availableFunds < 0.01) ? 0 : availableFunds
-
-
-        setWalletFunds(funds)
-    }
-
-    const getWallet = () => {
-        
-        const promise = Request.GET( { url: UrlCarteiraPegar } )
-
-        promise.then( resp => formatWalletFunds(resp.data) )
-
-    }
-
+    // methods
 
     const renderIconBell = () => (
         <IconSafeArea> 
@@ -99,80 +62,33 @@ export const MenuComponent = props => {
         </IconSafeArea>
     )
 
-
-
-    const getIcon = key => {
-        const obj = {
-            'Notification': renderIconBell(),
-            'Opportunitie': (<IconBriefcase fill={ white } width={ 24 } height={ 24 } />),
-            'Wallet': (<IconWallet stroke={ white } width={ 24 } height={ 24 } />),
-            'History': (<IconOfficeArchive fill={ white } width={ 24 } height={ 24 } />),
-            'Calculator': (<IconCalculator fill={ white } width={ 24 } height={ 24 } />),
-            'Statistics': (<IconPieChart fill={ white } width={ 24 } height={ 24 } />),
-            'Profile': (<IconProfile fill={ white } width={ 24 } height={ 24 } />),
-            'Contact': (<IconBubbleDialog fill={ white } width={ 24 } height={ 24 } />),
-
-        }
-
-        return obj[key]
-    }
-
-
-    const renderNavigationItem = (icon, title, route) => (
-        <NavigationItem onPress={ () => navigation.navigate(route) }>
-            { icon }
-            <Text textAlign="left" > { title } </Text>
-            <IconGo stroke={ tealish } width={ 16 } height={ 16 }/>
-        </NavigationItem>
-    )
-
-
-    const renderLetter = () => (<Letter>{userName[0]}</Letter>)
-
-    const renderHeaderContent = () => (
-        <>
-            <Circle
-                size={ 90 }
-                borderSize={ 4 }
-                borderColor={ white }
-                background={[greenishBlue, darkDusk]} 
-                child={renderLetter()}
-            />
-
-            <Text
-                fontWeight="bold"
-                fontFamily="Montserrat-Regular"
-            > 
-                { userName }
-            </Text>
-
-            <Text
-                fontSize={ 14 }
-            > 
-                Saldo: { formatMoney(walletFunds) }
-            </Text>
-        </>
-    )
-
     return (
         <>
-            <Header>
-                <HeaderContainer>
-                    <HeaderContent>
-
-                        {renderHeaderContent()}
-
-                    </HeaderContent>
-        
-                </HeaderContainer>
-            </Header>
+            <Header accountData={accountData} />
+            
             <View colors={[dusk, twilight]} > 
                 <ViewList>
-                    {renderNavigationItem(getIcon('Notification'), 'Notificações', 'Notifications')}
-                    {renderNavigationItem(getIcon('History'), 'Meu histórico', 'Historic')}
-                    {renderNavigationItem(getIcon('Statistics'), 'Estatísticas', 'Statistics')}
-                    {renderNavigationItem(getIcon('Calculator'), 'Calculadora', 'Opportunities')}
-                    {renderNavigationItem(getIcon('Contact'), 'Atendimento', null)}
+
+                    <Item title="Notificações" route="Notifications">
+                        {renderIconBell()}
+                    </Item>
+
+                    <Item title="Meu histórico" route="Historic">
+                        <IconOfficeArchive fill={ white } />
+                    </Item>
+
+                    <Item title="Estatísticas" route="Statistics">
+                        <IconPieChart fill={ white } />
+                    </Item>
+
+                    <Item title="Calculadora" route="Opportunities">
+                        <IconCalculator fill={ white } />
+                    </Item>
+
+                    <Item title="Atendimento" route="Contact">
+                        <IconBubbleDialog fill={ white } />
+                    </Item>
+
                 </ViewList>
             </View>
         </>

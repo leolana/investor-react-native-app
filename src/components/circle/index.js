@@ -19,7 +19,7 @@ export const CircleWithChild = props => {
     return (
         <Circle colors={helperColorsArray()} { ...props } >
 
-            { props.child }
+            { props.children }
 
 
         </Circle>

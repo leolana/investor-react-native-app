@@ -95,10 +95,6 @@ export const ProfileComponent = props => {
         }
     ]
 
-    // methods
-
-    const renderLetter = () => (<Letter>{nameLetter}</Letter>)
-
     // effects
 
     useEffect( () => {
@@ -131,8 +127,9 @@ export const ProfileComponent = props => {
                             borderSize={ 5 }
                             borderColor={ white }
                             background={[greenishBlue, darkDusk]} 
-                            child={renderLetter()}
-                        />
+                        > 
+                            <Letter>{nameLetter}</Letter>
+                        </Circle>
                     </CircleShadow>
                     
                 </Header>

@@ -1,43 +1,15 @@
 import styled from 'styled-components/native'
 
-import LinearGradient from 'react-native-linear-gradient'
-
 import {
     CircleWithChild
-} from '../../components/circle'
-
-import {
-    IconBack,
-} from '../../assets/icons'
-
+} from '../../../../components/circle'
 
 import {
     twilight,
     white
-} from '../../assets/colors'
+} from '../../../../assets/colors'
 
-
-export const IconGo = styled(IconBack)`
-    transform: rotate(180deg);
-`
-
-export const IconSafeArea = styled.View`
-    position: relative;
-
-`
-
-export const NotificationDot = styled(CircleWithChild)`
-    position: absolute;
-    top: -3px;
-    right: 1px;
-`
-
-export const MenuHorizontalArea = styled.TouchableOpacity`
-    padding: 0 20px
-
-`
-
-export const Header = styled.View`
+export const Container = styled.View`
     background: ${twilight};
     height: 238px;
     flex-direction: column-reverse;
@@ -56,12 +28,6 @@ export const HeaderContent = styled.View`
     align-items: center;
 `
 
-
-export const View = styled(LinearGradient)`
-    flex: 1;
-    padding-top: 20px;
-
-`
 
 export const Circle = styled(CircleWithChild)`
     margin-bottom: 25px;
@@ -83,19 +49,4 @@ export const Text = styled.Text`
     font-size: ${ props => props.fontSize || 16}px;
     color: ${white};
     font-family: ${ props => props.fontFamily || 'HelveticaNeue-Medium'};
-`
-
-export const ViewList = styled.View`
-    margin: 0 16px;
-
-`
-
-export const NavigationItem = styled.TouchableOpacity`
-    flex-direction: row;
-    border-bottom-width: 0.4px;
-    border-bottom-color: rgba(255, 255, 255, 0.4);
-    padding: 11px 0;
-    align-items: center;
-    justify-content: space-between;
-
 `

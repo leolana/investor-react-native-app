@@ -80,8 +80,6 @@ export const OpportunitiesCardComponent = props => {
 
     }
 
-    const renderScore = () => (<Score> { data.Score } </Score>)
-
     const getColorByStatus = () => {
 
         const status = getOpportunityStatus()
@@ -114,8 +112,9 @@ export const OpportunitiesCardComponent = props => {
 
                     <CircleWithChild 
                         background={ scoreColor } 
-                        child={ renderScore() }
-                    />
+                    >
+                        <Score> { data.Score } </Score>
+                    </CircleWithChild>
 
                     <Container>
 

@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react'
 import { 
     Text, 
     TextInput,
-    ErrorMessage
+    ErrorMessage,
+    View
 } from './styles'
 
 import * as InputMask from './masks'
 
 import { useSelector } from 'react-redux'
-
 
 export const ITextInput = props => {
 
@@ -64,7 +64,7 @@ export const ITextInput = props => {
 
     return (
 
-        <> 
+        <View> 
 
             <Text> { props.title } </Text>
 
@@ -91,7 +91,7 @@ export const ITextInput = props => {
 
             
 
-        </>
+        </View>
     )
     
 }

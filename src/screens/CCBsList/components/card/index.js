@@ -24,7 +24,7 @@ import {
     formatCompanyName
     
 } from '../../../../utils'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { TouchableWithoutFeedback } from 'react-native'
 
 import { withNavigation } from 'react-navigation'
 
@@ -66,7 +66,7 @@ export const CardComponents = props => {
                 </Body>
 
                 <Footer>
-                    <Buttom disabled={data.AssinouCCB} onPress={ () => navigation.navigate('Opportunities') }>
+                    <Buttom disabled={data.AssinouCCB} onPress={ () => navigation.navigate('CCBSign', { data } ) }>
                         <ButtomText>{(data.AssinouCCB ? 'ASSINADO' : 'ASSINAR')}</ButtomText>
                     </Buttom>
 

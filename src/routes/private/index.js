@@ -58,6 +58,10 @@ import { Configurations } from '../../screens/configurations'
 
 import { CCBsList } from '../../screens/CCBsList'
 
+import { CCBSign } from '../../screens/CCBSign'
+
+import { CCBSignSuccess } from '../../screens/CCBSignSuccess'
+
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
 import { PhotoViewer } from '../../screens/photoViewer'
@@ -150,6 +154,7 @@ export const ScreenRoutes = createStackNavigator(
         OpportunitieProfile,
         Configurations,
         CCBsList,
+        CCBSign,
         Company,
         FinancialIndicators,
         ComplementaryIndicators,
@@ -172,6 +177,7 @@ export const PrivateRoutes = createStackNavigator(
         ReinvestmentSheetModal,
         DatePicker,
         TransferWalletBalanceSuccess,
+        CCBSignSuccess,
         Picker,
         
     },

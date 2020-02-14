@@ -38,6 +38,7 @@ import Twitter from './ico-twitter.svg'
 import Vimeo from './ico-vimeo.svg'
 import Graph from './ico-graph.svg'
 import Filter from './ico-filter.svg'
+import InfoYellow from './ico-info-yellow.svg'
 
 
 export const IconIouu = Iouu
@@ -80,3 +81,4 @@ export const IconTwitter = Twitter
 export const IconVimeo = Vimeo
 export const IconGraph = Graph
 export const IconFilter = Filter
+export const IconInfoYellow = InfoYellow

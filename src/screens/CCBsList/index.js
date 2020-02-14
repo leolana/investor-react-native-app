@@ -113,6 +113,6 @@ export const CCBsListComponent = props => {
 export const CCBsList = {
     screen: CCBsListComponent,
     navigationOptions: {
-        headerTitle: "Assinaturas CCB’s",
+        headerTitle: "Minhas CCB's",
     }
 }

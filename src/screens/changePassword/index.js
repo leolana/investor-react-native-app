@@ -73,8 +73,6 @@ export const ChangePasswordComponent = props => {
 
         const resp = await Request.POST({ url: UrlPerfilSenhaAlterar, data })
 
-        console.log(resp)
-
         if(resp.status === 200) alert('Senha alterada com sucesso.')
 
         else alert('Os Campos não conferem.')

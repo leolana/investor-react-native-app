@@ -53,6 +53,26 @@ export const OpportunitieProfileComponent = props => {
 
     // Methods
 
+    const itsFinished = () => {
+
+        const { FimCaptacao, StatusAnalise } = data
+
+        return (StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == "encerrado")
+    }
+
+    const getRemainingTime = () => {
+
+        if(itsFinished()) return 0
+        
+        const date = new Date(data.FimCaptacao);
+
+        const miliSecs = (date.getTime()+ 86400000) - new Date().getTime()
+
+        if(miliSecs > 0) return Number.parseInt(miliSecs/1000/60/60/24)
+
+        else return 0
+    }
+
     const investorHasInvestment = () => {
 
         const statusDate = diffDaysForOpportunitie(solData.FimCaptacao)
@@ -65,7 +85,7 @@ export const OpportunitieProfileComponent = props => {
 
         if(isEnded && hasReserve) return true
 
-        else if(hasReserve) return false
+        else if(hasReserve) return true
 
         else return false
 
@@ -76,9 +96,10 @@ export const OpportunitieProfileComponent = props => {
         const hasInvestment = investorHasInvestment()
 
         const isAvailableToInvest = (accountData.Status === 'APROVADO')
-        
 
-        if ( isAvailableToInvest && hasInvestment ) return true
+        if(getRemainingTime() <= 0 && hasInvestment) return true
+
+        else if (getRemainingTime() > 0 && isAvailableToInvest) return true
 
         else if(!isAvailableToInvest) {
 

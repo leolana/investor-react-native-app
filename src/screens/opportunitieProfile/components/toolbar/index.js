@@ -45,12 +45,24 @@ export const ToolbarComponent = props => {
 
     // Methods
 
-
     const itsFinished = () => {
 
         const { FimCaptacao, StatusAnalise } = data
 
         return (StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == "encerrado")
+    }
+
+    const getRemainingTime = () => {
+
+        if(itsFinished()) return 0
+        
+        const date = new Date(data.FimCaptacao);
+
+        const miliSecs = (date.getTime()+ 86400000) - new Date().getTime()
+
+        if(miliSecs > 0) return Number.parseInt(miliSecs/1000/60/60/24)
+
+        else return 0
     }
 
     const waitingList = () => {
@@ -59,7 +71,7 @@ export const ToolbarComponent = props => {
 
         const value = Valor - ValorCaptado;
 
-        return ( (value <= 0) || ChamadaListaEspera ) 
+        return ( (getRemainingTime() <= 0) || ChamadaListaEspera ) 
     }
 
     const getStatus = () =>  {
@@ -103,7 +115,7 @@ export const ToolbarComponent = props => {
 
         else if(status === 'Lista de espera') navigation.navigate('Invest', { data } )
 
-        else if(status === 'Investir') navigation.navigate('CancelInvestment', { data })
+        else if(status === 'Cancelar') navigation.navigate('CancelInvestment', { data: reserveData })
 
     }
 

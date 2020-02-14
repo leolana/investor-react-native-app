@@ -22,5 +22,4 @@ export const Text = styled.Text`
     text-align: center;
     color: ${grey66};
     margin-top: 16px;
-
 `

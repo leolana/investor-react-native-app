@@ -64,6 +64,8 @@ import { CCBSignSuccess } from '../../screens/CCBSignSuccess'
 
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
+import { CancelInvestment } from '../../screens/cancelInvestment'
+
 import { PhotoViewer } from '../../screens/photoViewer'
 
 import { VideoViewer } from '../../screens/videoViewer'
@@ -175,6 +177,7 @@ export const PrivateRoutes = createStackNavigator(
         ScreenRoutes,
         WalletSheetModal,
         ReinvestmentSheetModal,
+        CancelInvestment,
         DatePicker,
         TransferWalletBalanceSuccess,
         CCBSignSuccess,

@@ -66,6 +66,8 @@ import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess
 
 import { CancelInvestment } from '../../screens/cancelInvestment'
 
+import { Documents } from '../../screens/documents'
+
 import { PhotoViewer } from '../../screens/photoViewer'
 
 import { VideoViewer } from '../../screens/videoViewer'
@@ -164,6 +166,7 @@ export const ScreenRoutes = createStackNavigator(
         Invest,
         TransferWalletBalanceConfirmation,
         InvestWaitingListSuccess,
+        Documents,
         PhotoViewer,
         VideoViewer,
         Menu,

@@ -31,6 +31,8 @@ import CalendarOne from './ico-calendar-one.svg'
 import Lock from './ico-lock.svg'
 import CurrencyExchange from './ico-currency-exchange.svg'
 import NoItem from './ico-no-item.svg'
+import AlertItem from './ico-alert-item.svg'
+import OkItem from './ico-ok-item.svg'
 import Facebook from './ico-facebook.svg'
 import Instagram from './ico-instagram.svg'
 import Linkedin from './ico-linkedin.svg'
@@ -39,6 +41,8 @@ import Vimeo from './ico-vimeo.svg'
 import Graph from './ico-graph.svg'
 import Filter from './ico-filter.svg'
 import InfoYellow from './ico-info-yellow.svg'
+import Pdf from './ico-pdf.svg'
+import Jpg from './ico-jpg.svg'
 
 
 export const IconIouu = Iouu
@@ -82,3 +86,7 @@ export const IconVimeo = Vimeo
 export const IconGraph = Graph
 export const IconFilter = Filter
 export const IconInfoYellow = InfoYellow
+export const IconPdf = Pdf
+export const IconJpg = Jpg
+export const IconAlertItem = AlertItem
+export const IconOkItem = OkItem

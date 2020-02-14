@@ -75,7 +75,7 @@ export const ProfileComponent = props => {
         },
         {
             title: 'Documentos',
-            onPress: () => {}
+            onPress: () => navigation.navigate('Documents')
         },
         {
             title: 'Formalizações',

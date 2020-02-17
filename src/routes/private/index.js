@@ -62,6 +62,8 @@ import { CCBSign } from '../../screens/CCBSign'
 
 import { CCBSignSuccess } from '../../screens/CCBSignSuccess'
 
+import { Calculator } from '../../screens/calculator'
+
 import { InvestWaitingListSuccess } from '../../screens/investWaitingListSuccess'
 
 import { CancelInvestment } from '../../screens/cancelInvestment'
@@ -151,6 +153,7 @@ export const ScreenRoutes = createStackNavigator(
         HistoricProfile,
         HistoricPayment,
         HistoricFilter,
+        Calculator,
         Statistics,
         WalletReceipt,
         WalletHistoric,

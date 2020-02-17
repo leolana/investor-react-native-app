@@ -7,12 +7,16 @@ import {
 
 } from './styles'
 
+import {
+    Linking
+} from 'react-native'
 
 import {
     tealish,
 } from '../../../../assets/colors'
 
 import { withNavigation } from 'react-navigation'
+
 
 export const ItemComponent = props => {
 
@@ -26,7 +30,7 @@ export const ItemComponent = props => {
 
 
     return (
-        <NavigationItem onPress={ () => navigation.navigate(route) }>
+        <NavigationItem onPress={ () => (route.includes('http') ? Linking.openURL(route) : navigation.navigate(route) ) }>
             { children }
             <Text textAlign="left" > { title } </Text>
             <IconGo stroke={ tealish } width={ 16 } height={ 16 }/>

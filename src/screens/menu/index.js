@@ -39,6 +39,10 @@ import {
     Item
 } from './components'
 
+import {
+    UrlIouuAjuda
+} from '../../services'
+
 export const MenuComponent = props => {
 
     // vars
@@ -81,11 +85,11 @@ export const MenuComponent = props => {
                         <IconPieChart fill={ white } />
                     </Item>
 
-                    <Item title="Calculadora" route="Opportunities">
+                    <Item title="Calculadora" route="Calculator">
                         <IconCalculator fill={ white } />
                     </Item>
 
-                    <Item title="Atendimento" route="Contact">
+                    <Item title="Atendimento" route={ UrlIouuAjuda }>
                         <IconBubbleDialog fill={ white } />
                     </Item>
 

@@ -5,7 +5,7 @@ const PROD = {
 }
 
 const TEST = {
-    "BASE_URL_GO": "https://api-test.iouu.com.br/",
+    "BASE_URL_GO": "http://localhost:9090/",
     "BASE_URL_NODE": "https://server-test.iouu.com.br/",
     "BASE_URL_HUB": "https://hub-test.iouu.com.br/",
 }

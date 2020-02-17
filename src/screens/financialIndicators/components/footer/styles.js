@@ -9,13 +9,16 @@ import {
     grey70
 } from '../../../../assets/colors'
 
+import {
+    widthPercentageToDP as wp, 
+    heightPercentageToDP as hp
+
+} from 'react-native-responsive-screen'
+
 import { IconBack } from '../../../../assets/icons'
 
 
 import { Dimensions } from 'react-native'
-
-
-const { width } = Dimensions.get('screen')
 
 export const Line = styled.View`
     flex-direction: row;
@@ -45,7 +48,7 @@ export const ContentArea = styled.View`
 export const Tab = styled.TouchableOpacity`
     border-bottom-width: 1px;
     border-bottom-color: ${ props => props.selected ? tealish : greyDD };
-    width: ${(width - 32) / 3}
+    flex: 1;
     padding: 10px;
 `
 

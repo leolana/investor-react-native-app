@@ -81,7 +81,7 @@ export default App = props => {
 
     if(!authenticated) return
 
-    navigation.navigate('Opportunities')
+    navigation.navigate('Calculator')
 
   }, [authenticated])
 

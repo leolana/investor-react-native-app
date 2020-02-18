@@ -8,8 +8,13 @@ import {
 } from '../../assets/colors'
 
 export const SafeAreaView = styled.SafeAreaView`
-    margin: 16px;
+    
 ` 
+
+export const ScrollView = styled.ScrollView`
+    padding: 16px;
+
+`
 
 export const Title = styled.Text`
     font-size: 22px;

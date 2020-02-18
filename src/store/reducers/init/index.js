@@ -17,6 +17,8 @@ const getAccountData = async () => {
     const resp = await Request.GET({url: UrlContaPegar, header: 'bearer'})
 
     console.log(resp)
+
+    return {}
     
     const { status, data } = resp
 

@@ -28,4 +28,5 @@ export const Text = styled.Text`
     font-size: 12px;
     font-family: HelveticaNeue;
     color: ${ props => props.selected ? tealish : dusk };
+    text-align: center;
 `

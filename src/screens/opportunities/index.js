@@ -72,7 +72,7 @@ export const PageOpportunities = props => {
             
             navigation.setParams({'filter': 'A-B-C-D-E-HR'})
 
-            alert('Nenhuma oportunidade foi encontrada.')
+            alert('Nenhuma oportunidade foi encontrada. 2')
         }
 
         setLoading(false)

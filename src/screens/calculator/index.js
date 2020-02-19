@@ -24,10 +24,6 @@ import {
 
 } from '../../services'
 
-import {
-    PMT,
-} from '../../utils'
-
 
 export const CalculatorComponent = props =>  {
 
@@ -48,6 +44,8 @@ export const CalculatorComponent = props =>  {
 
     const tabs = ['IOUU', 'Poupança', 'CDB', 'Tesouro Direto']
 
+    let loans = [], iouu = []
+
     const getTaxes = async () => {
 
         const resp = await Request.GET({ url: UrlTaxasPegar })
@@ -56,70 +54,118 @@ export const CalculatorComponent = props =>  {
 
     }
 
-    const FV = (rate, periods, payment, value, type) => {
+    const calculoInvestimento = (investimento, taxa, indice) => {
+        investimento = investimento + (investimento * (taxa * indice) / 100.0);
+        return parseFloat(investimento.toFixed(2));
+    }
+
+    const PMT = (rate, periods, present, future, type) => {
         // Credits: algorithm inspired by Apache OpenOffice
-      
+
         // Initialize type
         type = (typeof type == 'undefined') ? 0 : type;
-      
+
+        // Initialize future
+        future = 0;
+
         // Evaluate rate (TODO: replace with secure expression evaluator)
         rate = eval(rate);
-      
-        // Return future value
+
+        // Return payment
         var result;
         if (rate == 0) {
-          result = value + payment * periods;
+        result = (present + future) / periods;
         } else {
-          var term = Math.pow(1 + rate, periods);
-          if (type == 1) {
-            result = value * term + payment * (1 + rate) * (term - 1.0) / rate;
-          } else {
-            result = value * term + payment * (term - 1) / rate;
-          }
+        var term = Math.pow(1 + rate, periods);
+        if (type == 1) {
+        result = (future * rate / (term - 1) + present * rate / (1 - 1 / term)) / (1 + rate);
+        } else {
+        result = future * rate / (term - 1) + present * rate / (1 - 1 / term);
         }
-      
-      
+        }
+
+        // result = Math.round(result * 100) / 100;
+
         return -result;
     }
-      
+    
+    const FV = (rate, periods, payment, value, type) => {
+      // Credits: algorithm inspired by Apache OpenOffice
+
+      // Initialize type
+      type = (typeof type == 'undefined') ? 0 : type;
+
+      // Evaluate rate (TODO: replace with secure expression evaluator)
+      rate = eval(rate);
+
+      // Return future value
+      var result;
+      if (rate == 0) {
+        result = value + payment * periods;
+      } else {
+        var term = Math.pow(1 + rate, periods);
+        if (type == 1) {
+          result = value * term + payment * (1 + rate) * (term - 1.0) / rate;
+        } else {
+          result = value * term + payment * (term - 1) / rate;
+        }
+      }
+
+
+      return -result;
+    }
+
     const IPMT = (rate, period, periods, present, future, type) => {
         // Credits: algorithm inspired by Apache OpenOffice
-    
+
         // Initialize type
         type = (typeof type == 'undefined') ? 0 : type;
-    
+
         // Initialize future
         future = (typeof future == 'undefined') ? 0 : future;
-    
+
         // Evaluate rate and periods (TODO: replace with secure expression evaluator)
         rate = eval(rate);
         periods = eval(periods);
-    
+
         // Compute payment
         var payment = PMT(rate, periods, present, future, type);
-    
+
         // Compute interest
         var interest;
         if (period == 1) {
-        if (type == 1) {
+          if (type == 1) {
             interest = 0;
-        } else {
+          } else {
             interest = -present;
-        }
+          }
         } else {
-        if (type == 1) {
+          if (type == 1) {
             interest = FV(rate, period - 2, payment, present, 1) - payment;
-        } else {
+          } else {
             interest = FV(rate, period - 1, payment, present, 0);
+          }
         }
-        }
-    
+
         var result = interest * rate;
         // result = Math.round(result * 100) / 100;
-    
+
         // Return interest
         return interest * rate;
+  }
+
+
+  const calcularJuros = (prazo, taxa) => {
+    let juros = 0;
+
+    for(let i = 0; i < loans.length; i++) {
+      juros += -IPMT(taxa / 100, loans[i].parcela, prazo, loans[i].valor);
+      loans[i].parcela++;
     }
+
+    return juros;
+}
+
       
 
     const calculate = () => {
@@ -132,22 +178,7 @@ export const CalculatorComponent = props =>  {
         setYear(year)
     }
 
-    const calcInvestment = (investimento, taxa, indice) => {
-        investimento = investimento + (investimento * (taxa * indice) / 100.0)
-        return parseFloat(investimento.toFixed(2))
-    }
-
-    const calcJuros = (prazo, taxa, loans) => {
-        let juros = 0;
-
-        for(let i = 0; i < loans.length; i++) {
-          juros += -IPMT(taxa / 100, loans[i].parcela, prazo, loans[i].valor);
-          loans[i].parcela++;
-        }
-
-        return juros;
-    }
-
+    
     const formatData = values => {
 
         const { Tesouro, Poupanca, CDB, IOUU } = values
@@ -184,18 +215,18 @@ export const CalculatorComponent = props =>  {
           IOUU: [],
         }
 
-        let loans = [
+        loans = [
             {
                 "valor": valor,
                 "parcela": 1
             }    
         ]
 
-        let valorTesouro = calcInvestment(valor, taxes[1].valores[pos].valorTaxa, 1);
+        let valorTesouro = calculoInvestimento(valor, taxes[1].valores[pos].valorTaxa, 1);
 
-        let valorCDB = calcInvestment(valor, taxes[1].valores[pos].valorTaxa, 1.1);
+        let valorCDB = calculoInvestimento(valor, taxes[1].valores[pos].valorTaxa, 1.1);
 
-        let valorPoupanca = calcInvestment(valor, taxes[0].valores[pos].valorTaxa, 1);
+        let valorPoupanca = calculoInvestimento(valor, taxes[0].valores[pos].valorTaxa, 1);
 
         values.Tesouro = [...values.Tesouro, valorTesouro]
 
@@ -205,22 +236,20 @@ export const CalculatorComponent = props =>  {
     
         values = generateAnotherValues(pos, values);
 
-        const obj = generateIOUUValues(pos, values, loans);
+        gerarDadosIOUU(pos, value);
 
-        values = obj.values
-
-        console.log(values)
+        console.log(iouu)
           
     }
 
     const generateAnotherValues = (pos, values) => {
         for(let i = pos -1 ; i >= 0; i--) {
 
-            let valorTesouro = calcInvestment(values.Tesouro[ values.Tesouro.length - 1 ], taxes[1].valores[i].valorTaxa, 1);
+            let valorTesouro = calculoInvestimento(values.Tesouro[ values.Tesouro.length - 1 ], taxes[1].valores[i].valorTaxa, 1);
 
-            let valorCDB = calcInvestment(values.CDB[ values.CDB.length - 1 ], taxes[1].valores[i].valorTaxa, 1.1);
+            let valorCDB = calculoInvestimento(values.CDB[ values.CDB.length - 1 ], taxes[1].valores[i].valorTaxa, 1.1);
 
-            let valorPoupanca = calcInvestment(values.Poupanca[ values.Poupanca.length - 1 ], taxes[0].valores[i].valorTaxa, 1);
+            let valorPoupanca = calculoInvestimento(values.Poupanca[ values.Poupanca.length - 1 ], taxes[0].valores[i].valorTaxa, 1);
             
             values.Tesouro = [...values.Tesouro, valorTesouro];
             values.CDB = [...values.CDB, valorCDB];
@@ -231,11 +260,12 @@ export const CalculatorComponent = props =>  {
         return values
     }
 
-    const generateIOUUValues = (pos, values, loans) => {
-        let jurosTotal = 0, jurosA = 0, total = parseFloat(500);
+    const gerarDadosIOUU = (pos, value) => {
+
+        let jurosTotal = 0, jurosA = 0, total = parseFloat(value);
 
         for(let i = 0; i < pos +1 ; i++) {
-            let juros = calcJuros(pos+1, taxes[2].ultimaTaxaMensal, loans);
+            let juros = calcularJuros(pos+1, taxes[2].ultimaTaxaMensal);
 
             jurosTotal += juros;
             jurosA += juros;
@@ -247,28 +277,21 @@ export const CalculatorComponent = props =>  {
                 jurosTotal -= 500;
 
                 let inicio = {
-                    "valor": 500,
-                    "parcela": 1
+                  "valor": 500,
+                  "parcela": 1
                 }
 
                 loans.push(inicio);
 
-                console.log(loans)
-
-
+  
             }
 
-            values.IOUU = [...values.IOUU, Number((total + jurosTotal).toFixed(2))];
-        }
+            iouu = [...iouu, (total + jurosTotal).toFixed(2)];
+          }
 
-        return {
-            values,
-            loans
-            
-        }
+      }
 
-    }
-
+    
     useEffect(() => {
 
         getTaxes()
@@ -279,7 +302,7 @@ export const CalculatorComponent = props =>  {
 
         if(taxes === null) return
 
-        generateData(value, year * 11)
+        generateData(parseFloat(value), 11)
 
     }, [value, year])
 

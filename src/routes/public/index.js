@@ -6,6 +6,10 @@ import { tealish } from '../../assets/colors'
 import { Welcome } from '../../screens/welcome'
 import Login from '../../screens/login'
 
+import { SignUpUser } from '../../screens/signUpUser'
+
+import { SignUpSuccess } from '../../screens/signUpSuccess'
+
 
 // vars
 
@@ -30,6 +34,8 @@ export const PublicRoutes = createStackNavigator(
   {
     Welcome,
     Login,
+    SignUpUser,
+    SignUpSuccess
     
   },
   mainConfig

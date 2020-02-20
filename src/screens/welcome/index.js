@@ -46,8 +46,14 @@ export const WelcomeComponent = ( { navigation }) => {
 
       <Buttons>
         
-        <IButtom title={'entrar'} onPress={ () => navigation.navigate('Login', { authenticated: false }) } />
-        <IButtom title={'criar uma conta'} background={'transparent'} />
+        <IButtom 
+          title={'entrar'} 
+          onPress={ () => navigation.navigate('Login', { authenticated: false }) } 
+        />
+        <IButtom 
+          title={'criar uma conta'} 
+          onPress={ () => navigation.navigate('SignUpUser') } background={'transparent'} 
+        />
 
       </Buttons>
     </>

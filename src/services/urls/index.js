@@ -16,7 +16,7 @@ const DESENV = {
     "BASE_URL_HUB": "https://hub-desenv.iouu.com.br/",
 }
 
-const { BASE_URL_GO, BASE_URL_NODE, BASE_URL_HUB } = PROD
+const { BASE_URL_GO, BASE_URL_NODE, BASE_URL_HUB } = TEST
 
 
 export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`

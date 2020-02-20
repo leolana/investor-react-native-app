@@ -20,6 +20,8 @@ const getAccountData = async () => {
     
     const { status, data } = resp
 
+    return true
+
     if(status === 200) return data
 
     return null

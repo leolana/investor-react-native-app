@@ -44,7 +44,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR')
+    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR').value
 
     // methods
 
@@ -100,6 +100,8 @@ export const PageOpportunities = props => {
 
         setOpportunities([])
 
+        console.log(filter)
+
     }, [filter])
 
     useEffect(() => {
@@ -137,7 +139,7 @@ export const Opportunities = {
     navigationOptions: ({ navigation }) => {
 
         const params = { 
-            data: [
+            options: [
                 { text: 'AA', value: 'AA' },
                 { text: 'A',  value: 'A' },
                 { text: 'B',  value: 'B' },
@@ -148,7 +150,7 @@ export const Opportunities = {
                 { text: 'Todos',  value: 'A-B-C-D-E-HR' },
             ],
             onValueChange: value => navigation.setParams({'filter': value}),
-            value: navigation.getParam('filter', 'A-B-C-D-E-HR')
+            data: navigation.getParam('filter', 'A-B-C-D-E-HR')
         }
 
         return {

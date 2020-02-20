@@ -19,8 +19,6 @@ export const SignUpSuccess = props => {
         navigation
     } = props
 
-
-
     return (
         <SafeAreaView>
 
@@ -34,7 +32,7 @@ export const SignUpSuccess = props => {
                 começar a investir nas oportunidades da plataforma.
             </Text>
 
-            <Button marginTop="32" onPress={ () => navigation.navigate('Opportunities') } >
+            <Button marginTop="32" onPress={ () => navigation.navigate('SignUpInvestorStepOne') } >
                 <ButtonText>Quero completar meu cadastro</ButtonText>
             </Button>
 

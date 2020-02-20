@@ -44,7 +44,7 @@ export const PageOpportunities = props => {
 
     // vars
 
-    const filter = navigation.getParam('filter', 'A-B-C-D-E-HR').value
+    const filter = navigation.getParam('filter', {value: 'A-B-C-D-E-HR'}).value
 
     // methods
 
@@ -72,7 +72,7 @@ export const PageOpportunities = props => {
             
             navigation.setParams({'filter': 'A-B-C-D-E-HR'})
 
-            alert('Nenhuma oportunidade foi encontrada. 2')
+            alert('Nenhuma oportunidade foi encontrada.')
         }
 
         setLoading(false)
@@ -96,11 +96,15 @@ export const PageOpportunities = props => {
 
     useEffect(() => {
 
+        navigation.navigate('SignUpInvestorStepOne')
+
+    }, [])
+
+    useEffect(() => {
+
         setPage(1)
 
         setOpportunities([])
-
-        console.log(filter)
 
     }, [filter])
 

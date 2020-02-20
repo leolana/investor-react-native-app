@@ -74,6 +74,8 @@ import { PhotoViewer } from '../../screens/photoViewer'
 
 import { VideoViewer } from '../../screens/videoViewer'
 
+import { SignUpInvestorStepOne } from '../../screens/signUpInvestorStepOne'
+
 import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
@@ -173,6 +175,7 @@ export const ScreenRoutes = createStackNavigator(
         PhotoViewer,
         VideoViewer,
         Menu,
+        SignUpInvestorStepOne
     },
     mainScreenRoutesConfig
 )

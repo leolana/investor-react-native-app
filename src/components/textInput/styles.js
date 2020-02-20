@@ -17,6 +17,7 @@ export const Text = styled.Text`
     margin-bottom: 5px;
     font-size: 12px;
     align-self: stretch;
+    font-family: HelveticaNeue;
 
 `
 

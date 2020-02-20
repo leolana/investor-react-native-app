@@ -7,7 +7,9 @@ import  {
     ItemText,
     InfoCard,
     InfoText,
-    ScrollView
+    ScrollView,
+    BackgroundGradiant,
+    ButtonText
 
 } from './styles'
 
@@ -24,6 +26,20 @@ import {
 
 } from '../../services'
 
+import {
+  formatMoney
+} from '../../utils'
+
+import { 
+  dusk,
+  darkDusk
+
+} from '../../assets/colors'
+
+import {
+  TouchableOpacity
+} from 'react-native'
+
 
 export const CalculatorComponent = props =>  {
 
@@ -34,9 +50,15 @@ export const CalculatorComponent = props =>  {
         IOUU: []
     })
 
+    const [ simulate, setSimulate ] = useState(false)
+
     const [ taxes, setTaxes ] = useState(null)
 
     const [ value, setValue ] = useState(500)
+
+    const [ comparationValue, setComparationValue ] = useState(0)
+
+    const [ iouuValue, setIouuValue ] = useState(0)
 
     const [ year, setYear ] = useState(1)
 
@@ -44,7 +66,14 @@ export const CalculatorComponent = props =>  {
 
     const tabs = ['IOUU', 'Poupança', 'CDB', 'Tesouro Direto']
 
-    let loans = [], iouu = []
+    let loans = [], yearString = ['um', 'dois', 'três', 'quatro', 'cinco']
+
+    let rendimento = {
+        Tesouro: [],
+        Poupanca: [],
+        CDB: [],
+        IOUU: []
+    }
 
     const getTaxes = async () => {
 
@@ -74,14 +103,14 @@ export const CalculatorComponent = props =>  {
         // Return payment
         var result;
         if (rate == 0) {
-        result = (present + future) / periods;
+          result = (present + future) / periods;
         } else {
-        var term = Math.pow(1 + rate, periods);
-        if (type == 1) {
-        result = (future * rate / (term - 1) + present * rate / (1 - 1 / term)) / (1 + rate);
-        } else {
-        result = future * rate / (term - 1) + present * rate / (1 - 1 / term);
-        }
+          var term = Math.pow(1 + rate, periods);
+          if (type == 1) {
+            result = (future * rate / (term - 1) + present * rate / (1 - 1 / term)) / (1 + rate);
+          } else {
+            result = future * rate / (term - 1) + present * rate / (1 - 1 / term);
+          }
         }
 
         // result = Math.round(result * 100) / 100;
@@ -156,153 +185,202 @@ export const CalculatorComponent = props =>  {
 
 
   const calcularJuros = (prazo, taxa) => {
-    let juros = 0;
+      let juros = 0;
 
-    for(let i = 0; i < loans.length; i++) {
-      juros += -IPMT(taxa / 100, loans[i].parcela, prazo, loans[i].valor);
-      loans[i].parcela++;
-    }
+      for(let i = 0; i < loans.length; i++) {
+        juros += -IPMT(taxa / 100, loans[i].parcela, prazo, loans[i].valor);
+        loans[i].parcela++;
+      }
 
-    return juros;
-}
+      return juros;
+  }
 
+
+  const onDataChange = (value, year) => {
+      setValue(value)
+
+      setYear(year)
+  }
+
+
+  const popularTesouro = (i) => {
+      let ultimoIndice = rendimento.Tesouro[ rendimento.Tesouro.length - 1 ];
+
+      let taxa = taxes[1].valores[i].valorTaxa;
+
+      let valorTesouro = calculoInvestimento( ultimoIndice , taxa, 1);
       
+      rendimento.Tesouro.push(valorTesouro);
+  }
 
-    const calculate = () => {
+  const popularCDB = (i) => {
 
-    }
+      let ultimoIndice = rendimento.CDB[ rendimento.CDB.length - 1 ];
 
-    const onDataChange = (value, year) => {
-        setValue(value)
+      let taxa = taxes[1].valores[i].valorTaxa;
 
-        setYear(year)
-    }
+      let valorCDB = calculoInvestimento(ultimoIndice, taxa, 1.1);
 
-    
-    const formatData = values => {
+      rendimento.CDB.push(valorCDB);
+  }
 
-        const { Tesouro, Poupanca, CDB, IOUU } = values
+  const popularPoupanca = (i) => {
 
-        values.Tesouro = Tesouro[Tesouro.length - 1]
-        values.Poupanca = Poupanca[Poupanca.length - 1]
-        values.CDB = CDB[CDB.length - 1]
-        values.IOUU = IOUU[IOUU.length - 1]
+      let ultimoIndice = rendimento.Poupanca[ rendimento.Poupanca.length - 1 ]
 
-        let list = [values.Tesouro, values.Poupanca, values.CDB, values.IOUU]
+      let taxa = taxes[0].valores[i].valorTaxa;
 
-        list = list.sort()
+      console.log(taxa)
 
-        list.map( (v, i) => {
+      let valorPoupanca = calculoInvestimento(ultimoIndice, taxa, 1);
 
-            if(v === values.Tesouro) values.Tesouro = (v * 100) / list[list.length - 1]
-            else if(v === values.Poupanca) values.Poupanca = (v * 100) / list[list.length - 1]
-            else if(v === values.CDB) values.CDB = (v * 100) / list[list.length - 1]
-            else values.IOUU = (v * 100) / list[list.length - 1]
+      rendimento.Poupanca.push(valorPoupanca);
+  }
 
-        })
+  const calcComparationValue = () => {
 
-        setData(values)
+    const key = getKey(tabName)
 
-    }
+    const val = getComparationValue(key)
+
+    setComparationValue(val)
 
 
-    const generateData = (valor, pos) => {
+  }
 
-        let values = {
+  const gerarRendimentoConcorrencia = (prazo) => {
+      for(let i = prazo - 2; i >= 0; i--) {
+
+          popularTesouro(i);
+
+          popularCDB(i);
+
+          popularPoupanca(i);
+      }
+      
+  }
+
+
+  const iniciarVetoresDeRendimentoConcorrencia = (valor, prazo) => {
+
+      rendimento = {
           Tesouro: [],
           Poupanca: [],
           CDB: [],
-          IOUU: [],
-        }
+          IOUU: []
+      }
 
-        loans = [
-            {
-                "valor": valor,
-                "parcela": 1
-            }    
-        ]
+      loans= [ { "valor": valor, "parcela": 1 } ];
 
-        let valorTesouro = calculoInvestimento(valor, taxes[1].valores[pos].valorTaxa, 1);
+      let { valorTaxa } = taxes[1].valores[prazo];
 
-        let valorCDB = calculoInvestimento(valor, taxes[1].valores[pos].valorTaxa, 1.1);
+      rendimento.Tesouro.push(calculoInvestimento(valor, valorTaxa, 1))
 
-        let valorPoupanca = calculoInvestimento(valor, taxes[0].valores[pos].valorTaxa, 1);
+      rendimento.CDB.push(calculoInvestimento(valor, valorTaxa, 1.1))
 
-        values.Tesouro = [...values.Tesouro, valorTesouro]
+      rendimento.Poupanca.push(calculoInvestimento(valor, taxes[0].valores[prazo].valorTaxa, 1));
 
-        values.CDB = [...values.CDB, valorCDB];
+      gerarRendimentoConcorrencia(prazo);
+  }
 
-        values.Poupanca = [...values.Poupanca, valorPoupanca];
-    
-        values = generateAnotherValues(pos, values);
+  const gerarDadosIOUU = (prazo, value) => {
 
-        gerarDadosIOUU(pos, value);
+    let jurosTotal = 0, jurosA = 0, total = parseFloat(value);
 
-        console.log(iouu)
-          
-    }
+    for(let i = 0; i < prazo; i++) {
+        let juros = calcularJuros(prazo+1, taxes[2].ultimaTaxaMensal);
 
-    const generateAnotherValues = (pos, values) => {
-        for(let i = pos -1 ; i >= 0; i--) {
-
-            let valorTesouro = calculoInvestimento(values.Tesouro[ values.Tesouro.length - 1 ], taxes[1].valores[i].valorTaxa, 1);
-
-            let valorCDB = calculoInvestimento(values.CDB[ values.CDB.length - 1 ], taxes[1].valores[i].valorTaxa, 1.1);
-
-            let valorPoupanca = calculoInvestimento(values.Poupanca[ values.Poupanca.length - 1 ], taxes[0].valores[i].valorTaxa, 1);
-            
-            values.Tesouro = [...values.Tesouro, valorTesouro];
-            values.CDB = [...values.CDB, valorCDB];
-            values.Poupanca = [...values.Poupanca, valorPoupanca];
-
-        }
-
-        return values
-    }
-
-    const gerarDadosIOUU = (pos, value) => {
-
-        let jurosTotal = 0, jurosA = 0, total = parseFloat(value);
-
-        for(let i = 0; i < pos +1 ; i++) {
-            let juros = calcularJuros(pos+1, taxes[2].ultimaTaxaMensal);
-
-            jurosTotal += juros;
-            jurosA += juros;
+        jurosTotal += juros;
+        jurosA += juros;
 
 
-            if(jurosA > 500) {
-                total += 500;
-                jurosA -= 500;
-                jurosTotal -= 500;
+        if(jurosA > 500) {
+            total += 500;
+            jurosA -= 500;
+            jurosTotal -= 500;
 
-                let inicio = {
-                  "valor": 500,
-                  "parcela": 1
-                }
-
-                loans.push(inicio);
-
-  
+            let inicio = {
+              "valor": 500,
+              "parcela": 1
             }
 
-            iouu = [...iouu, (total + jurosTotal).toFixed(2)];
-          }
+            loans.push(inicio);
+
+
+        }
+
+        rendimento.IOUU = [...rendimento.IOUU, (total + jurosTotal).toFixed(2)];
+      }
+
+  }
+
+  const calculate = () => {
+
+    setSimulate(true)
+
+    generateData(value, (year * 12) - 1 )
+
+  }
+
+  const generateData = (valor, prazo) => {
+
+      iniciarVetoresDeRendimentoConcorrencia(valor, prazo)
+
+      gerarDadosIOUU(prazo, valor)
+
+      setIouuValue(rendimento.IOUU[rendimento.IOUU.length - 1])
+
+      console.log(rendimento)
+
+      setData(rendimento)
+        
+  }
+
+  const getComparationValue = key => {
+
+    const values = data[key]
+
+    return values[values.length - 1]
+  }
+
+  const getKey = name => {
+
+      const obj ={
+          'Poupança': 'Poupanca',
+          'CDB': 'CDB',
+          'IOUU': 'IOUU',
+          'Tesouro Direto': 'Tesouro'
 
       }
 
+      return obj[name]
+  }
     
     useEffect(() => {
 
-        getTaxes()
+      async function fetchData() {
+
+        await getTaxes()
+
+      }
+
+      fetchData()
 
     }, [])
 
     useEffect(() => {
 
+      calcComparationValue()
+
+    }, [tabName])
+
+    useEffect(() => {
+
         if(taxes === null) return
 
-        generateData(parseFloat(value), 11)
+        generateData(value, (year * 12) - 1 )
+
+        calcComparationValue()
 
     }, [value, year])
 
@@ -321,29 +399,56 @@ export const CalculatorComponent = props =>  {
                 
                 />
 
-                <Chart
-                    tabName={tabName} 
-                    data={data}
+                {
+                  (!simulate) ? (
+                    <TouchableOpacity onPress={ () => calculate() }>
+                        <BackgroundGradiant colors={[dusk, darkDusk]}>
+                            <ButtonText>Simular investimento</ButtonText>
+                        </BackgroundGradiant>
+                    </TouchableOpacity>
+                  ) : (
+                    <>
+                        <Chart
+                            value={value}
+                            taxes={taxes}
+                            year={year}
+                            tabName={tabName} 
+                            data={data}
+                        />
+
+                        {
+                          (tabName === 'IOUU') ? null : (
+                            <>
+                                <ItemTitle>Na {tabName} renderia</ItemTitle>
+                                <ItemText>{formatMoney(comparationValue)}</ItemText>
+                            </>
+                          )
+                        }
+        
+
+                        <ItemTitle>Em {yearString[year - 1]} ano(s) você terá na IOUU aproximadamente</ItemTitle>
+                        <ItemText>{formatMoney(iouuValue)}</ItemText>
+        
+                        <ItemTitle>Na IOUU seu dinheiro renderá em {yearString[year - 1]} ano(s) aproximadamente</ItemTitle>
+                        <ItemText>{formatMoney(iouuValue - value)}</ItemText>
+        
+                        <InfoCard>
+        
+                            <InfoText>
+                                (1) Todas as taxes são Brutas (antes do desconto do Imposto de Renda). 
+                                Apenas a poupança é isenta de IR. 
+                                (2) Considerando a taxa média de retorno atual (Dezembro/2018) de 28,36% ao ano da plataforma IOUU e o reinvestimento das parcelas recebidas quando atingem o mínimo de R$ 500,00. 
+                                (3) Tesouro 100% Selic (LFT) - Fonte: http://tesouro.fazenda.gov.br/tesouro-direto-precos-e-taxas-dos-titulos. Consultado em 07/01/2019. (4) CDB de 110% do CDI (Dados Históricos utilizados de Jan/2014 em diante) - Fonte: Banco Central do Brasil. (5) Poupança - (Dados Históricos utilizados de Jan/2014 em diante) - Fonte: Banco Central do Brasil.
+                            </InfoText>
+        
+                        </InfoCard>
+                    </>
+                  )
+                }
+
                 
+
                 
-                />
-
-                <ItemTitle>Em um ano você terá na IOUU aproximadamente</ItemTitle>
-                <ItemText>R$ 12.238,00</ItemText>
-
-                <ItemTitle>Na IOUU seu dinheiro renderá em um ano aproximadamente</ItemTitle>
-                <ItemText>R$ 12.238,00</ItemText>
-
-                <InfoCard>
-
-                    <InfoText>
-                        (1) Todas as Taxas são Brutas (antes do desconto do Imposto de Renda). 
-                        Apenas a poupança é isenta de IR. 
-                        (2) Considerando a taxa média de retorno atual (Dezembro/2018) de 28,36% ao ano da plataforma IOUU e o reinvestimento das parcelas recebidas quando atingem o mínimo de R$ 500,00. 
-                        (3) Tesouro 100% Selic (LFT) - Fonte: http://tesouro.fazenda.gov.br/tesouro-direto-precos-e-taxas-dos-titulos. Consultado em 07/01/2019. (4) CDB de 110% do CDI (Dados Históricos utilizados de Jan/2014 em diante) - Fonte: Banco Central do Brasil. (5) Poupança - (Dados Históricos utilizados de Jan/2014 em diante) - Fonte: Banco Central do Brasil.
-                    </InfoText>
-
-                </InfoCard>
 
 
             </ScrollView>

@@ -3,9 +3,31 @@ import styled from 'styled-components/native'
 import {
     grey70,
     greyF1,
-    black
+    black,
+    white
 
 } from '../../assets/colors'
+
+import LinearGradient from 'react-native-linear-gradient'
+
+
+
+export const BackgroundGradiant = styled(LinearGradient)`
+    height: 52px;
+    border-radius: 5px;
+    justify-content: center;
+    margin: 32px 0;
+    justify-content: center;
+    align-items: center;
+
+`
+
+export const ButtonText = styled.Text`
+    font-size: 14px;
+    font-family: Helveticaneue-Bold;
+    color: ${white};
+
+`
 
 export const SafeAreaView = styled.SafeAreaView`
     
@@ -40,11 +62,13 @@ export const ItemText = styled.Text`
 export const InfoCard = styled.View`
     background: ${greyF1};
     border-radius: 5px;
+    margin: 32px 0;
+    margin-top: 0;
+    padding: 10px;
 `
 
 export const InfoText = styled.Text`
     font-size: 8px;
     font-family: HelveticaNeue;
-    padding: 10px;
 
 `

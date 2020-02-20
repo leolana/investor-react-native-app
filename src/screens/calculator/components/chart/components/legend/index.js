@@ -27,7 +27,8 @@ export const Legend = props => {
         collapse,
         hideOnCollapse,
         title,
-        text
+        text,
+        tabName
     } = props
 
     const [ translateX ] = useState(new Animated.Value(0))
@@ -59,13 +60,11 @@ export const Legend = props => {
         >   
 
             {
-                (title || text) ? (
+                (tabName === 'IOUU' && !collapse) ? (<IconIouu fill={tealish} width={64} height={64} />) : (
                     <Item>
                         <ItemTitle>{title}</ItemTitle>
                         <ItemText>{text}</ItemText>
                     </Item>
-                ) : (
-                    <IconIouu fill={tealish} width={64} height={64} />
                 )
             }
 

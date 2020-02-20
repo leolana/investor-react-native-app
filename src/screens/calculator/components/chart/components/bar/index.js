@@ -26,7 +26,10 @@ export const Bar = props => {
         color,
         colors,
         percente,
-        hideOnCollapse
+        hideOnCollapse,
+        title,
+        text
+        
     } = props
 
     const [ translate, setTranslate ] = useState({
@@ -67,8 +70,8 @@ export const Bar = props => {
             
         >   
 
-            <ItemTitle>+ 28,4%</ItemTitle>
-            <ItemText>de renda em 1 ano</ItemText>
+            <ItemTitle>{title}</ItemTitle>
+            <ItemText>{text}</ItemText>
 
             <ChartBar colors={ (colors !== undefined) ? colors : [color, color] }  />
         </BarContainer>

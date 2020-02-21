@@ -96,12 +96,6 @@ export const PageOpportunities = props => {
 
     useEffect(() => {
 
-        navigation.navigate('SignUpInvestorStepOne')
-
-    }, [])
-
-    useEffect(() => {
-
         setPage(1)
 
         setOpportunities([])

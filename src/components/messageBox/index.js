@@ -16,6 +16,12 @@ import {
 
 } from 'react-redux'
 
+import {
+    IconArrow2Right
+} from '../../assets/icons'
+
+import { white } from '../../assets/colors'
+
 export const MessageBox = props => {
 
     // states
@@ -75,6 +81,7 @@ export const MessageBox = props => {
                             <Text>{message}</Text>
                             <Touchable>
                                 <TouchableText>Vamos lá </TouchableText>
+                                <IconArrow2Right fill={white} />
                             </Touchable>
                         </Container>
                     </Margin>

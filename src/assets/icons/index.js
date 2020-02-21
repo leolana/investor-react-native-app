@@ -43,6 +43,7 @@ import Filter from './ico-filter.svg'
 import InfoYellow from './ico-info-yellow.svg'
 import Pdf from './ico-pdf.svg'
 import Jpg from './ico-jpg.svg'
+import Arrow2Right from './ico-arrow-2-right.svg'
 
 
 export const IconIouu = Iouu
@@ -90,3 +91,4 @@ export const IconPdf = Pdf
 export const IconJpg = Jpg
 export const IconAlertItem = AlertItem
 export const IconOkItem = OkItem
+export const IconArrow2Right = Arrow2Right

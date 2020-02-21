@@ -22,7 +22,13 @@ import {
 
 import { white } from '../../assets/colors'
 
-export const MessageBox = props => {
+import { withNavigation } from 'react-navigation'
+
+export const MessageBoxComponent = props => {
+
+    const {
+        navigation
+    } = props
 
     // states
 
@@ -59,6 +65,16 @@ export const MessageBox = props => {
 
     }
 
+    const handleScreen = () => {
+
+        if(!accountData.HasInvestor) return 'SignUpInvestorStepOne'
+
+        else if(!accountData.HasSuitability) return 'SignUpSuitability'
+
+        return null
+
+    }
+
     useEffect( () => {
 
         if(accountData === undefined || accountData === null) return 
@@ -79,10 +95,14 @@ export const MessageBox = props => {
                         <Title>Importante</Title>
                         <Container>
                             <Text>{message}</Text>
-                            <Touchable>
-                                <TouchableText>Vamos lá </TouchableText>
-                                <IconArrow2Right fill={white} />
-                            </Touchable>
+                            {
+                                ( handleScreen() === null ) ? null : (
+                                    <Touchable onPress={ () => navigation.navigate( handleScreen() )} >
+                                        <TouchableText>Vamos lá </TouchableText>
+                                        <IconArrow2Right fill={white} />
+                                    </Touchable>
+                                )
+                            }
                         </Container>
                     </Margin>
                 )
@@ -91,3 +111,6 @@ export const MessageBox = props => {
 
     )
 }
+
+
+export const MessageBox = withNavigation(MessageBoxComponent)

@@ -79,7 +79,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="second" />
                                 <Options>
                                     Sim, pretendo utilizar um percentual relevante dos meus investimentos no médio prazo (de 1 a 3 anos).
                                 </Options>
@@ -93,7 +93,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="four" />
+                                <RadioButton value="fourth" />
                                 <Options>
                                     Aumento de capital - O objetivo é obter um retorno acima da inflação, resultando no aumento do capital investido, aceitando incorrer em alto nível de risco.
                                 </Options>
@@ -119,7 +119,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="second" />
                                 <Options>
                                     De 10% a 25%.
                                 </Options>
@@ -152,7 +152,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="second" />
                                 <Options>
                                     De R$ 1.200,00 até R$ 4.000,00.
                                 </Options>
@@ -166,7 +166,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="four" />
+                                <RadioButton value="fourth" />
                                 <Options>
                                     Acima de R$ 10.000,00.
                                 </Options>
@@ -192,7 +192,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="second" />
                                 <Options>
                                     De R$ 50.001,00 a R$ 200.000,00.
                                 </Options>
@@ -206,14 +206,14 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="four" />
+                                <RadioButton value="fourth" />
                                 <Options>
                                     De R$ 500.001,00 a R$ 1.000.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="five"/>
+                                <RadioButton value="fifth"/>
                                 <Options>
                                     Acima de R$ 1.000.000,00.
                              </Options>
@@ -222,7 +222,7 @@ export const FormSuitabilityOne = props => {
                     </RadioButton.Group>
                 </View>
 
-                <Button  >
+                <Button onPress={() => props.navigation.navigate('SuitabilityTwo')} >
                     <TextButton> Continuar </TextButton>
                 </Button>
 

@@ -82,6 +82,8 @@ import { storeData } from '../../utils'
 
 import { SuitabilityOne } from '../../screens/formSuitabilityStepOne'
 
+import { SuitabilityTwo } from '../../screens/formSuitabilityStepTwo'
+
 
 
 // Vars
@@ -180,6 +182,7 @@ export const ScreenRoutes = createStackNavigator(
         Menu,
         SignUpInvestorStepOne,
         SuitabilityOne,
+        SuitabilityTwo,
     },
     mainScreenRoutesConfig
 )

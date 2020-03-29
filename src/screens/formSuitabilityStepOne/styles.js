@@ -38,6 +38,11 @@ export const Options = styled.Text`
     color: ${grey99};
     width: 90%;
 `
+export const OptionsContainer = styled.View `
+    flex-direction: row;
+    justify-content: center
+`
+
 export const Button = styled.TouchableOpacity`
     flex-direction: row;
     background: ${tealish};

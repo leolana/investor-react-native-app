@@ -33,8 +33,7 @@ export const FormSuitabilityThree = props => {
 
                 </Box>
 
-                {/* <Button onPress={() => props.navigation.navigate('SuitabilityFour')} >*/}
-                <Button>
+                <Button onPress={() => props.navigation.navigate('SuitabilityFour')} >
                     <ButtonText > SUBMETER RESPOSTAS </ButtonText>
                 </Button>
 

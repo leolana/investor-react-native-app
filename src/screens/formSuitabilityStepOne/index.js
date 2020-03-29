@@ -12,13 +12,15 @@ import {
     Options,
     OptionsContainer,
     Button,
+    TextButton,
 } from './styles'
 
 export const FormSuitabilityOne = props => {
     const [questao1, setQuestao1] = useState('')
     const [questao2, setQuestao2] = useState('')
     const [questao3, setQuestao3] = useState('')
-
+    const [questao4, setQuestao4] = useState('')
+    const [questao5, setQuestao5] = useState('')
 
     return (
         <SafeAreaView>
@@ -132,7 +134,98 @@ export const FormSuitabilityOne = props => {
                         </View>
                     </RadioButton.Group>
                 </View>
-                
+
+                <View>
+                    <Question>
+                        d. Situação financeira: Qual sua renda mensal média declarada?
+                    </Question>
+                    <RadioButton.Group
+                        onValueChange={(value) => setQuestao4(value)}
+                        value={questao4}
+                    >
+                        <View>
+                            <OptionsContainer>
+                                <RadioButton value="first" />
+                                <Options>
+                                    Até R$ 1.200,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="secound" />
+                                <Options>
+                                    De R$ 1.200,00 até R$ 4.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="third" />
+                                <Options>
+                                    De R$ 4.001,00 até R$ 10.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="four" />
+                                <Options>
+                                    Acima de R$ 10.000,00.
+                                </Options>
+                            </OptionsContainer>
+                        </View>
+                    </RadioButton.Group>
+                </View>
+
+                <View>
+                    <Question>
+                        e. Qual o valor total do seu patrimônio incluindo aplicações financeiras e outros bens (exceto imóvel que reside)?
+                    </Question>
+                    <RadioButton.Group
+                        onValueChange={(value) => setQuestao5(value)}
+                        value={questao5}
+                    >
+                        <View>
+                            <OptionsContainer>
+                                <RadioButton value="first" />
+                                <Options> 
+                                    Até R$ 50.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="secound" />
+                                <Options>
+                                    De R$ 50.001,00 a R$ 200.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="third" />
+                                <Options>
+                                    De R$ 200.001,00 a R$ 500.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="four" />
+                                <Options>
+                                    De R$ 500.001,00 a R$ 1.000.000,00.
+                                </Options>
+                            </OptionsContainer>
+
+                            <OptionsContainer>
+                                <RadioButton value="five"/>
+                                <Options>
+                                    Acima de R$ 1.000.000,00.
+                             </Options>
+                            </OptionsContainer>
+                        </View>
+                    </RadioButton.Group>
+                </View>
+
+                <Button  >
+                    <TextButton> Continuar </TextButton>
+                </Button>
+
             </ScrollView>
         </SafeAreaView>
     )

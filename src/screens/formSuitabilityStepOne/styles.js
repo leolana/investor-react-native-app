@@ -34,13 +34,14 @@ export const Options = styled.Text`
     font-size: 14;
     font-family: HelveticaNeue;
     text-align: justify;
-    margin-bottom: 10;
     color: ${grey99};
     width: 90%;
+
 `
 export const OptionsContainer = styled.View `
     flex-direction: row;
-    justify-content: center
+    alignItems: center;
+    marginBottom: 10;
 `
 
 export const Button = styled.TouchableOpacity`
@@ -55,7 +56,7 @@ export const Button = styled.TouchableOpacity`
     margin-top: 28px;
 `
 
-export const Text = styled.Text`
+export const TextButton = styled.Text`
     font-size: 14px;
     font-family: HelveticaNeue-Bold;
     color: white

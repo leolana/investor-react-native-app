@@ -82,6 +82,10 @@ export const ProfileComponent = props => {
             onPress: () => navigation.navigate('CCBsList')
         },
         {
+            title: 'Suitability',
+            onPress: () => navigation.navigate('SuitabilityOne')
+        },
+        {
             title: 'Sair',
             onPress: async () => {
 

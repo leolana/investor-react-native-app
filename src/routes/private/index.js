@@ -80,6 +80,9 @@ import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
 
+import { SuitabilityOne } from '../../screens/formSuitabilityStepOne'
+
+
 
 // Vars
 
@@ -175,7 +178,8 @@ export const ScreenRoutes = createStackNavigator(
         PhotoViewer,
         VideoViewer,
         Menu,
-        SignUpInvestorStepOne
+        SignUpInvestorStepOne,
+        SuitabilityOne,
     },
     mainScreenRoutesConfig
 )

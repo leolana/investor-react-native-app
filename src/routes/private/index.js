@@ -84,6 +84,9 @@ import { SuitabilityOne } from '../../screens/formSuitabilityStepOne'
 
 import { SuitabilityTwo } from '../../screens/formSuitabilityStepTwo'
 
+import { SuitabilityThree } from '../../screens/formSuitabilityStepThree'
+
+
 
 
 // Vars
@@ -183,6 +186,7 @@ export const ScreenRoutes = createStackNavigator(
         SignUpInvestorStepOne,
         SuitabilityOne,
         SuitabilityTwo,
+        SuitabilityThree,
     },
     mainScreenRoutesConfig
 )

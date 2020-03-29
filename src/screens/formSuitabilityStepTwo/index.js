@@ -272,8 +272,7 @@ export const FormSuitabilityTwo = props => {
                     </RadioButton.Group>
                 </View>
 
-                {/* <Button onPress={() => props.navigation.navigate('SuitabilityTwo')} > */}
-                <Button>    
+                <Button onPress={() => props.navigation.navigate('SuitabilityThree')} >
                     <TextButton> Continuar </TextButton>
                 </Button>
 

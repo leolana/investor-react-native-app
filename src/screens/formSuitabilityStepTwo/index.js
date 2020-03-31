@@ -19,16 +19,16 @@ import {
 } from './styles'
 
 export const FormSuitabilityTwo = props => {
-    const [questao1Opcao1, setQuestao1Opcao1] = useState('')
-    const [questao1Opcao2, setQuestao1Opcao2] = useState('')
-    const [questao1Opcao3, setQuestao1Opcao3] = useState('')
-    const [questao1Opcao4, setQuestao1Opcao4] = useState('')
-    const [questao1Opcao5, setQuestao1Opcao5] = useState('')
+    const [RendaFixa, setRendaFixa] = useState('')
+    const [FundosMultimercados, setFundosMultimercados] = useState('')
+    const [RendaVariavel, setRendaVariavel] = useState('')
+    const [FundosImobiliarios, setFundosImobiliarios] = useState('')
+    const [Derivativos, setDerivativos] = useState('')
 
-    const [questao2, setQuestao2] = useState('')
-    const [questao3, setQuestao3] = useState('')
-    const [questao4, setQuestao4] = useState('')
-    const [questao5, setQuestao5] = useState('')
+    const [ExpectativaAtrativos, setExpectativaAtrativos] = useState('')
+    const [Conforto, setConforto] = useState('')
+    const [Expectativa, setExpectativa] = useState('')
+    const [Formacao, setFormacao] = useState('')
 
 
     return (
@@ -60,66 +60,66 @@ export const FormSuitabilityTwo = props => {
 
                     <OptionsBox>
                         <RadioButton.Group
-                            onValueChange={(value) => setQuestao1Opcao1(value)}
-                            value={questao1Opcao1}
+                            onValueChange={(value) => setRendaFixa(value)}
+                            value={RendaFixa}
                         >
                             <Options style={{width:'30%'}}>Renda fixa</Options>
 
-                            <RadioButton value="first" />
-                            <RadioButton value="second" />
-                            <RadioButton value="third" />
+                            <RadioButton value="1" />
+                            <RadioButton value="2" />
+                            <RadioButton value="3" />
                         </RadioButton.Group>
                     </OptionsBox>
 
                     <OptionsBox>
                         <RadioButton.Group
-                            onValueChange={(value) => setQuestao1Opcao2(value)}
-                            value={questao1Opcao2}
+                            onValueChange={(value) => setFundosMultimercados(value)}
+                            value={FundosMultimercados}
                         >
                             <Options style={{width: '30%'}}>Fundos multimercados e estruturados</Options>
                             
-                            <RadioButton value="first" />
-                            <RadioButton value="second" />
-                            <RadioButton value="third" />
+                            <RadioButton value="1" />
+                            <RadioButton value="2" />
+                            <RadioButton value="3" />
                         </RadioButton.Group>
                     </OptionsBox>
 
                     <OptionsBox>
                         <RadioButton.Group
-                            onValueChange={(value) => setQuestao1Opcao3(value)}
-                            value={questao1Opcao3}
+                            onValueChange={(value) => setRendaVariavel(value)}
+                            value={RendaVariavel}
                         >
                             <Options style={{width: '30%'}}>Renda variável</Options>  
 
-                            <RadioButton value="first" />
-                            <RadioButton value="second" />
-                            <RadioButton value="third" />
+                            <RadioButton value="1" />
+                            <RadioButton value="2" />
+                            <RadioButton value="3" />
                         </RadioButton.Group>
                     </OptionsBox>
 
                     <OptionsBox>
                         <RadioButton.Group
-                            onValueChange={(value) => setQuestao1Opcao4(value)}
-                            value={questao1Opcao4}
+                            onValueChange={(value) => setFundosImobiliarios(value)}
+                            value={FundosImobiliarios}
                         >
                             <Options style={{width: '30%'}}>Fundos imobiliários</Options>
 
-                            <RadioButton value="first" />
-                            <RadioButton value="second" />
-                            <RadioButton value="third" />
+                            <RadioButton value="1" />
+                            <RadioButton value="2" />
+                            <RadioButton value="3" />
                         </RadioButton.Group>
                     </OptionsBox>
 
                     <OptionsBox>
                         <RadioButton.Group
-                            onValueChange={(value) => setQuestao1Opcao5(value)}
-                            value={questao1Opcao5}
+                            onValueChange={(value) => setDerivativos(value)}
+                            value={Derivativos}
                         >
                             <Options style={{width: '30%'}}>Derivativos, COE e Private Equity</Options>
 
-                            <RadioButton value="first" />
-                            <RadioButton value="second" />
-                            <RadioButton value="third" />
+                            <RadioButton value="1" />
+                            <RadioButton value="2" />
+                            <RadioButton value="3" />
                         </RadioButton.Group>
                     </OptionsBox>
                 </View>
@@ -130,26 +130,26 @@ export const FormSuitabilityTwo = props => {
                         são mais atrativos do que produtos de menor risco?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao2(value)}
-                        value={questao2}
+                        onValueChange={(value) => setExpectativaAtrativos(value)}
+                        value={ExpectativaAtrativos}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Não
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Depende
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Sim
                                 </Options>
@@ -163,26 +163,26 @@ export const FormSuitabilityTwo = props => {
                         c. Conforto: Como você reagiria se os seus investimentos caíssem mais de 10% (mesmo que temporariamente)?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao3(value)}
-                        value={questao3}
+                        onValueChange={(value) => setConforto(value)}
+                        value={Conforto}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Venderia imediatamente.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Entendo que isso pode acontecer para determinados ativos, mas não para o portfólio como um todo.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Entendo que o meu portfólio está sujeito a sofrer flutuações dessa magnitude.     
                                 </Options>
@@ -196,40 +196,40 @@ export const FormSuitabilityTwo = props => {
                         d. Expectativa dos investimentos.
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao4(value)}
-                        value={questao4}
+                        onValueChange={(value) => setExpectativa(value)}
+                        value={Expectativa}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Não admito perder nada do capital investido. Procuro um retorno seguro e sem oscilações. Segurança é mais importante do que rentabilidade. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Não admito perder nada do capital investido, no entanto, posso arriscar uma parte do capital para alcan.ar resultados melhores que a renda fixa tradicional. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Posso correr riscos para conseguir uma rentabilidade acima da média, no entanto, prezo a preservação de 100% do capital investido. Divido minhas preferências entre segurança e rentabilidade, mas ainda prefiro segurança à rentabilidade. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fourth" />
+                                <RadioButton value="4" />
                                 <Options>
                                 Admito perdas de até 20% do capital investido, se a proposta de investimento gerar possibilidade de altos retornos. A procura por rentabilidade é mais importante do que segurança. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fifth" />
+                                <RadioButton value="5" />
                                 <Options>
                                     Minha prioridade é maximizar a rentabilidade, com segurança em segundo plano. Posso correr grandes riscos para obter elevados retornos, admitindo perder mais de 20% do meu principal investido. 
                                 </Options>
@@ -243,26 +243,26 @@ export const FormSuitabilityTwo = props => {
                         e. Formação acadêmica e experiência profissional: Você considera que sua formação acadêmica e/ou experiência profissional lhe traz conhecimento sobre o mercado financeiro?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao5(value)}
-                        value={questao5}
+                        onValueChange={(value) => setFormacao(value)}
+                        value={Formacao}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                 Nenhum ou pouco conhecimento para entender a relação risco-retorno de produtos complexos. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Algum conhecimento para entender a relação risco-retorno de produtos complexos. 
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Conhecimento para entender a relação risco-retorno de produtos complexos. 
                                 </Options>

@@ -16,11 +16,11 @@ import {
 } from './styles'
 
 export const FormSuitabilityOne = props => {
-    const [questao1, setQuestao1] = useState('')
-    const [questao2, setQuestao2] = useState('')
-    const [questao3, setQuestao3] = useState('')
-    const [questao4, setQuestao4] = useState('')
-    const [questao5, setQuestao5] = useState('')
+    const [HorizonteInvestimento, setHorizonteInvestimento] = useState('')
+    const [MomentoVida, setMomentoVida] = useState('')
+    const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('')
+    const [SitucaoFinanceira, setSitucaoFinanceira] = useState('')
+    const [Patrimonio, setPatrimonio] = useState('')
 
     return (
         <SafeAreaView>
@@ -34,26 +34,26 @@ export const FormSuitabilityOne = props => {
                         dos seus investimentos no curto ou médio prazo?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao1(value)}
-                        value={questao1}
+                        onValueChange={(value) => setHorizonteInvestimento(value)}
+                        value={HorizonteInvestimento}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Sim, pretendo utilizar um percentual relevante dos meus investimentos no curto prazo (até 1 ano).
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="secound" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Sim, pretendo utilizar um percentual relevante dos meus investimentos no médio prazo (de 1 a 3 anos).
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Não tenho previsão de utilizar no curto e médio prazo.
                                 </Options>
@@ -67,33 +67,26 @@ export const FormSuitabilityOne = props => {
                         b. Momento de vida: Qual das opções abaixo melhor define sua finalidade de investimento?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao2(value)}
-                        value={questao2}
+                        onValueChange={(value) => setMomentoVida(value)}
+                        value={MomentoVida}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Preservação de capital - O objetivo é obter um retorno suficiente para compensar a inflação, mantendo o valor real do capital constante, sem se expor a um nível de risco elevado.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="second" />
-                                <Options>
-                                    Sim, pretendo utilizar um percentual relevante dos meus investimentos no médio prazo (de 1 a 3 anos).
-                                </Options>
-                            </OptionsContainer>
-
-                            <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="2" />
                                 <Options>
                                     Geração de renda - O objetivo é obter um retorno constante como fonte de renda, gerando um rendimento regular, aceitando um nível de risco moderado.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fourth" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Aumento de capital - O objetivo é obter um retorno acima da inflação, resultando no aumento do capital investido, aceitando incorrer em alto nível de risco.
                                 </Options>
@@ -107,26 +100,26 @@ export const FormSuitabilityOne = props => {
                         c. Distribuição dos investimentos: Qual o percentual do seu patrimônio você pretende alocar os seus investimentos na IOUU?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao3(value)}
-                        value={questao3}
+                        onValueChange={(value) => setDistribuicaoInvestimento(value)}
+                        value={DistribuicaoInvestimento}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Mais de 25%.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="second" />
+                                <RadioButton value="2" />
                                 <Options>
                                     De 10% a 25%.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     Até 10%.
                                 </Options>
@@ -140,33 +133,33 @@ export const FormSuitabilityOne = props => {
                         d. Situação financeira: Qual sua renda mensal média declarada?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao4(value)}
-                        value={questao4}
+                        onValueChange={(value) => setSitucaoFinanceira(value)}
+                        value={SitucaoFinanceira}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options>
                                     Até R$ 1.200,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="second" />
+                                <RadioButton value="2" />
                                 <Options>
                                     De R$ 1.200,00 até R$ 4.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     De R$ 4.001,00 até R$ 10.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fourth" />
+                                <RadioButton value="4" />
                                 <Options>
                                     Acima de R$ 10.000,00.
                                 </Options>
@@ -180,40 +173,40 @@ export const FormSuitabilityOne = props => {
                         e. Qual o valor total do seu patrimônio incluindo aplicações financeiras e outros bens (exceto imóvel que reside)?
                     </Question>
                     <RadioButton.Group
-                        onValueChange={(value) => setQuestao5(value)}
-                        value={questao5}
+                        onValueChange={(value) => setPatrimonio(value)}
+                        value={Patrimonio}
                     >
                         <View>
                             <OptionsContainer>
-                                <RadioButton value="first" />
+                                <RadioButton value="1" />
                                 <Options> 
                                     Até R$ 50.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="second" />
+                                <RadioButton value="2" />
                                 <Options>
                                     De R$ 50.001,00 a R$ 200.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="third" />
+                                <RadioButton value="3" />
                                 <Options>
                                     De R$ 200.001,00 a R$ 500.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fourth" />
+                                <RadioButton value="4" />
                                 <Options>
                                     De R$ 500.001,00 a R$ 1.000.000,00.
                                 </Options>
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="fifth"/>
+                                <RadioButton value="5"/>
                                 <Options>
                                     Acima de R$ 1.000.000,00.
                              </Options>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 
 import { RadioButton } from 'react-native-paper'
 
@@ -15,6 +15,11 @@ import {
     TextButton,
 } from './styles'
 
+import {
+    useSelector
+} from 'react-redux'
+import { UrlUsuarioPegar } from '../../services';
+
 export const FormSuitabilityOne = props => {
     const [HorizonteInvestimento, setHorizonteInvestimento] = useState('')
     const [MomentoVida, setMomentoVida] = useState('')
@@ -22,11 +27,28 @@ export const FormSuitabilityOne = props => {
     const [SitucaoFinanceira, setSitucaoFinanceira] = useState('')
     const [Patrimonio, setPatrimonio] = useState('')
 
+    const FormularioCapacidade = { 
+        HorizonteInvestimento, 
+        MomentoVida, 
+        DistribuicaoInvestimento,
+        SitucaoFinanceira, 
+        Patrimonio 
+    }
+
+    const avancaEtapa = () => {
+        if (HorizonteInvestimento === "" || MomentoVida === "" || DistribuicaoInvestimento === "" || SitucaoFinanceira === "" || Patrimonio === "") {
+            Alert.alert("Todas a opçoes devem ser preenchias")
+        } else {
+            props.navigation.navigate('SuitabilityTwo')
+        }
+    }
+    const userId = useSelector( ({accountData}) => accountData.usuarioId )
+
     return (
         <SafeAreaView>
             <ScrollView >
                 <Title>
-                    1. Avaliação da capacidade de assumir riscos
+                    1. Avaliação da capacidade de assumir riscos {userId}
                 </Title>
                 <View>
                     <Question>
@@ -179,7 +201,7 @@ export const FormSuitabilityOne = props => {
                         <View>
                             <OptionsContainer>
                                 <RadioButton value="1" />
-                                <Options> 
+                                <Options>
                                     Até R$ 50.000,00.
                                 </Options>
                             </OptionsContainer>
@@ -206,7 +228,7 @@ export const FormSuitabilityOne = props => {
                             </OptionsContainer>
 
                             <OptionsContainer>
-                                <RadioButton value="5"/>
+                                <RadioButton value="5" />
                                 <Options>
                                     Acima de R$ 1.000.000,00.
                              </Options>
@@ -215,7 +237,7 @@ export const FormSuitabilityOne = props => {
                     </RadioButton.Group>
                 </View>
 
-                <Button onPress={() => props.navigation.navigate('SuitabilityTwo')} >
+                <Button onPress={avancaEtapa} >
                     <TextButton> Continuar </TextButton>
                 </Button>
 

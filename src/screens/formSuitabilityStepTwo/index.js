@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View } from 'react-native'
+import { View, Alert } from 'react-native'
 
 import { RadioButton } from 'react-native-paper'
 
@@ -29,6 +29,30 @@ export const FormSuitabilityTwo = props => {
     const [Conforto, setConforto] = useState('')
     const [Expectativa, setExpectativa] = useState('')
     const [Formacao, setFormacao] = useState('')
+
+    const AvaliacaoRisco = {
+        RendaFixa,
+        FundosMultimercados,
+        RendaVariavel,
+        FundosImobiliarios,
+        Derivativos,
+        ExpectativaAtrativos,
+        Conforto,
+        Expectativa,
+        Formacao,
+    }
+
+    const avancaEtapa = () => {
+        if (RendaFixa === "" || FundosMultimercados === "" || RendaVariavel === "" || 
+            FundosImobiliarios === "" || Derivativos === "" ||Derivativos === "" ||
+            ExpectativaAtrativos === "" || Conforto === "" || Expectativa === "" ||
+            Formacao === ""
+            ) {
+            Alert.alert("Todas a opçoes devem ser preenchias")
+        } else {
+            props.navigation.navigate('SuitabilityThree')
+        }
+    }
 
 
     return (
@@ -272,7 +296,7 @@ export const FormSuitabilityTwo = props => {
                     </RadioButton.Group>
                 </View>
 
-                <Button onPress={() => props.navigation.navigate('SuitabilityThree')} >
+                <Button onPress={avancaEtapa} >
                     <TextButton> Continuar </TextButton>
                 </Button>
 

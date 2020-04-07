@@ -76,6 +76,32 @@ import { VideoViewer } from '../../screens/videoViewer'
 
 import { SignUpInvestorStepOne } from '../../screens/signUpInvestorStepOne'
 
+import { SignUpInvestorStepTwo } from '../../screens/signUpInvestorStepTwo'
+
+import { SignUpInvestorStepThree } from '../../screens/signUpInvestorStepThree'
+
+import { SignUpInvestorStepFour } from '../../screens/signUpInvestorStepFour'
+
+import { SignUpInvestorStepFive } from '../../screens/signUpInvestorStepFive'
+
+import { SignUpInvestorStepSix } from '../../screens/signUpInvestorStepSix'
+
+import { SignUpInvestorStepSeven } from '../../screens/signUpInvestorStepSeven'
+
+import { SignUpInvestorStepEight } from '../../screens/signUpInvestorStepEight'
+
+import { SignUpInvestorStepNine } from '../../screens/signUpInvestorStepNine'
+
+import { SignUpInvestorStepTen } from '../../screens/signUpInvestorStepTen'
+
+import { SignUpInvestorStepEleven } from '../../screens/signUpInvestorStepEleven'
+
+import { SignUpInvestorStepTwelve } from '../../screens/signUpInvestorStepTwelve'
+
+import { SignUpInvestorStepThirteen } from '../../screens/signUpInvestorStepThirteen'
+
+import { SignUpInvestorStepFourteen } from '../../screens/signUpInvestorStepFourteen'
+
 import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
@@ -183,6 +209,19 @@ export const ScreenRoutes = createStackNavigator(
         VideoViewer,
         Menu,
         SignUpInvestorStepOne,
+        SignUpInvestorStepTwo,
+        SignUpInvestorStepThree,
+        SignUpInvestorStepFour,
+        SignUpInvestorStepFive,
+        SignUpInvestorStepSix,
+        SignUpInvestorStepSeven,
+        SignUpInvestorStepEight,
+        SignUpInvestorStepNine,
+        SignUpInvestorStepTen,
+        SignUpInvestorStepEleven,
+        SignUpInvestorStepTwelve,
+        SignUpInvestorStepThirteen,
+        SignUpInvestorStepFourteen,
         SuitabilityOne,
         SuitabilityTwo,
         SuitabilityThree,

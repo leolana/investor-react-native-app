@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { TouchableOpacity } from 'react-native'
 
 import {
     SafeAreaView,
@@ -7,27 +7,25 @@ import {
     ButtonText,
     Title,
     Text,
-    Container,
-    ContainerTitle,
     Note    
 } from './styles'
 
 export const SignUpInvestorStepElevenComponent = props => {
     return (
         <SafeAreaView>
-            <Title>Comprovante de residência</Title>
+            <Title>Documento de identidade</Title>
 
-            <Note>É necessário estar em seu nome ou em nome de seus pais</Note>
+            <Title>Enviado com sucesso!</Title>
+
+            <Note>O documento enviado está em processo de análise.</Note>
             
-            <Container>
-                <ContainerTitle>Enviar Frente</ContainerTitle>
-                <Note>Conta de luz, água, telefone, fatura do cartão, tv a cabo e plano de saúde dos últimos 3 meses.</Note>
                 <Button>
-                    <ButtonText>ABRIR CÂMERA</ButtonText>
+                    <ButtonText>CONFIRMAR</ButtonText>
                 </Button>
-            </Container>
             
-            <Text> CONTINUAR DEPOIS </Text>
+            <TouchableOpacity>
+                <Text onPress={() => props.navigation.navigate('SignUpInvestorStepTwelve')}> CONTINUAR DEPOIS </Text>
+            </TouchableOpacity>
            
         </SafeAreaView>
     )

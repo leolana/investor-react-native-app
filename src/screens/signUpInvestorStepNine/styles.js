@@ -15,7 +15,8 @@ export const Title = styled.Text`
     marginBottom: 20px;
 `
 export const SafeAreaView = styled.View`
-    margin: 16px;
+    margin-horizontal: 16px;
+    margin-vertical: 50px;
     alignItems: center
 `
 
@@ -29,14 +30,14 @@ export const Container = styled.View`
 `
 
 export const ContainerTitle = styled.Text`
-    fontSize: 16;
+    fontSize: 16px;
     fontWeight: bold,
     color: ${grey99};
     alignSelf: center;
 `
 
 export const Note = styled.Text`
-    fontSize: 12;
+    fontSize: 14px
     fontWeight: bold,
     color: ${grey66};
 `
@@ -47,7 +48,7 @@ export const Text = styled.Text`
 `
 
 export const Button = styled.TouchableOpacity`
-    background: ${ props => props.disabled ?  grey99 : tealish }
+    background: ${ props => props.disabled ? grey99 : tealish}
     border-radius: 5px;
     padding: 10px;
     marginTop: 15px;
@@ -60,3 +61,4 @@ export const ButtonText = styled.Text`
     font-family: 'HelveticaNeue-Bold';
     color: ${white};
 `
+

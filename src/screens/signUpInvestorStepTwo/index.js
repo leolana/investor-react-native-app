@@ -21,30 +21,73 @@ import {
 } from '../../components'
 
 export const SignUpInvestorStepTwoComponent = props => {
-    const [disabled, setDisabled] = useState(false)
     const [birthday, setBirthday] = useState('')
-    const [birthState, setBirthState] = useState('')
+    const [birthState, setBirthState] = useState()
     const [birthCity, setBirthCity] = useState('')
-    const [optionsState, setOptionsState] = useState('')
+    const [apiState, setApiState] = useState([{
+        id: "",
+        text: "",
+        value: ""
+    }])
+    const [apiCity, setApiCity] = useState([{
+        id: "",
+        text: "",
+        value: ""
+    }])
 
-    // const getStates = async () => {
+    async function myAsyncEffect() {
+        await getStates()
+    }
 
-    //     const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
+    useEffect(() => { myAsyncEffect() }, []);
 
-    //     if (resp.status === 200) setOptionsState(resp.data.nome)
+    function mapApiState() {
 
-    //     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
-    // }
+        const optionsState = apiState.map((resp) => {
+            return {
+                text: resp.nome,
+                value: resp.sigla
+            }
+        })
+        return optionsState
+    }
 
-    const getCity = async () => {
+    function mapApiCity() {
+        getCities()
 
-        const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar('SP') })
+        const optionsCities = apiCity.map((resp) => {
+            return {
+                text: resp.nome,
+                value: resp.nome
+            }
+        })
 
-        if (resp.status === 200) setOptionsState(resp.data.nome)
+        return optionsCities
+    }
+
+    async function getStates() {
+
+        const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
+
+        if (resp.status === 200) setApiState(resp.data)
 
         else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
     }
 
+    async function getCities() {
+
+        const resp = await Request.GET({ url: UrlLocalizacaoCidadesPegar(birthState) })
+
+        if (resp.status === 200) setApiCity(resp.data)
+
+        else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
+    }
+
+    const validateDate = () => {
+        const teste = birthday.isValid()
+
+        if(teste) alert("FOI")
+    }
 
     return (
         <SafeAreaView>
@@ -52,7 +95,7 @@ export const SignUpInvestorStepTwoComponent = props => {
             <TextInputMask
                 type={'datetime'}
                 options={{
-                  format: 'DD/MM/YYYY'
+                    format: 'DD/MM/YYYY'
                 }}
                 value={birthday}
                 onChangeText={value => setBirthday(value)}
@@ -61,14 +104,13 @@ export const SignUpInvestorStepTwoComponent = props => {
 
             <Select
                 title={'Estado de nascimento'}
-                options={optionsState}
+                options={mapApiState()}
                 onValueChange={obj => setBirthState(obj.value)}
                 value={birthState}
             />
-
             <Select
                 title={'Cidade de nascimento'}
-                // options={optionsNationality}
+                options={mapApiCity()}
                 onValueChange={obj => setBirthCity(obj.value)}
                 value={birthCity}
             />

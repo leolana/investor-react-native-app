@@ -38,10 +38,17 @@ export const Label = styled.Text`
     color: ${grey99};
     margin-bottom: 5px;
     font-size: 12px;
-    align-self: stretch;
     font-family: HelveticaNeue;
 
 `
+
+export const Container = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30;
+`
+
 const styles = StyleSheet.create({
     input: {
         borderColor: '#DDD',
@@ -53,6 +60,7 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
         alignSelf: 'stretch',
+        width: '80%',
         marginBottom: 30,
     }
 })

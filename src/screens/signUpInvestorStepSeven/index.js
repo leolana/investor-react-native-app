@@ -8,58 +8,48 @@ import {
     ButtonText,
     TextInput,
     ScrollView,
-    ContainerLine,
-    TextLine
+    ContainerLine
 } from './styles'
 
 export const SignUpInvestorStepSevenComponent = props => {
     const [ disabled, setDisabled ] = useState(true)
-    const [ radioButton, setRadioButton] = useState('')
-    const [ renda, setRenda ] = useState('')
-    const [ patrimonio, setPatrimonio ] = useState('')
+    const [ bankAccountType, setBankAccountType ] = useState('')
+    const [ bankAgency, setBankAgency ] = useState('')
+    const [ bankAccount, setBankAccount ] = useState('')
 
-    useEffect( () => {
-        setDisabled(renda === '' || patrimonio === '')
-    }, [ renda, patrimonio])
-
-    const checkButton = () => {
-        if(radioButton === '1') {
-            setRadioButton('0')
-        } else {
-            setRadioButton('1')
-        }
-    }
+    useEffect(() => {
+        setDisabled(bankAccountType === '' || bankAgency === '' || bankAccount === '')
+    },[bankAccountType, bankAgency, bankAccount] )
 
     return (
         <SafeAreaView>
             <ScrollView>
                 <TextInput 
-                    title={'Rensa mensal aprox. (R$)'} 
-                    mask={ 'currency' } 
-                    onValueChange={ ({unMasked}) => setRenda(unMasked) } 
-                    keyboardType={'numeric'}
+                    title={'Agência'} 
+                    onChangeText={ value => setBankAgency(value) }                 
                 />
             
                 <TextInput 
-                    title={'Patrimônio aprox. (R$)'} 
-                    mask={ 'currency' } 
-                    onValueChange={ ({unMasked}) => setPatrimonio(unMasked) } 
-                    keyboardType={'numeric'}
+                    title={'Conta'} 
+                    onChangeText={ value => setBankAccount(value) }                                    
                 />
 
-                <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
+                <RadioButton.Group
+                    onValueChange={(value) => setBankAccountType(value)}
+                    value={bankAccountType}
+                >
+                    <ContainerLine>
+                        <RadioButton value="1" />
+                        <Text>Conta poupança</Text>
+                    </ContainerLine>
+                    
+                    <ContainerLine>
+                        <RadioButton value="2" />
+                        <Text>Conta corrente</Text>
+                    </ContainerLine>
+                </RadioButton.Group>
 
-                <ContainerLine>
-                    <RadioButton
-                        value='1'
-                        status={radioButton === '1' ? 'checked' :'unchecked'}
-                        onPress={checkButton}
-                    />
-
-                    <Text>Declaro ser PPE</Text>
-                </ContainerLine>
-                
-                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThirteen')}>
+                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
                     <ButtonText>Continuar</ButtonText>
                 </Button>
             </ScrollView>

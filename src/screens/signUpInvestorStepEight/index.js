@@ -1,33 +1,78 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import {Linking, TouchableOpacity } from 'react-native'
 
+import { RadioButton, Text,  } from 'react-native-paper'
 
 import {
     SafeAreaView,
     Button,
     ButtonText,
-    Title,
-    Text,
-    Container,
-    ContainerTitle,
-    Note    
+    TextInput,
+    ScrollView,
+    ContainerLine,
+    TextLine
 } from './styles'
 
 export const SignUpInvestorStepEightComponent = props => {
+    const [ disabled, setDisabled ] = useState(true)
+    const [ radioButton, setRadioButton] = useState('')
+    const [ renda, setRenda ] = useState('')
+    const [ patrimonio, setPatrimonio ] = useState('')
+
+    useEffect( () => {
+        setDisabled(renda === '' || patrimonio === '')
+    }, [ renda, patrimonio])
+
+    const checkButton = () => {
+        if(radioButton === '1') {
+            setRadioButton('0')
+        } else {
+            setRadioButton('1')
+        }
+    }
+
+    
+
+    const openLinkPPE = () => {
+        Linking.openURL('http://fazenda.gov.br/orgaos/coaf').catch(err => console.error('Impossível carregar página', err))
+    }
+
     return (
         <SafeAreaView>
-            <Title>Documento de identidade</Title>
+            <ScrollView>
+                <TextInput 
+                    title={'Rensa mensal aprox. (R$)'} 
+                    mask={ 'currency' } 
+                    onValueChange={ ({unMasked}) => setRenda(unMasked) } 
+                    keyboardType={'numeric'}
+                />
+            
+                <TextInput 
+                    title={'Patrimônio aprox. (R$)'} 
+                    mask={ 'currency' } 
+                    onValueChange={ ({unMasked}) => setPatrimonio(unMasked) } 
+                    keyboardType={'numeric'}
+                />
+                <TouchableOpacity onPress={openLinkPPE} >
+                    <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
+                </TouchableOpacity>
+                
 
-            <Note>É necessário estar em seu nome (RG ou CNH)</Note>
-            
-            <Container>
-                <ContainerTitle>Enviar Frente</ContainerTitle>
-                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('Opportunities')}>
-                    <ButtonText>ABRIR CÂMERA</ButtonText>
+                <ContainerLine>
+                    <RadioButton
+                        value='1'
+                        status={radioButton === '1' ? 'checked' :'unchecked'}
+                        onPress={checkButton}
+                    />
+
+                    <Text>Declaro ser PPE</Text>
+                </ContainerLine>
+                
+                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
+                    <ButtonText>Continuar</ButtonText>
                 </Button>
-            </Container>
+            </ScrollView>
             
-            <Text> CONTINUAR DEPOIS </Text>
-           
         </SafeAreaView>
     )
 }

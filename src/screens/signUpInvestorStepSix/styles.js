@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { StyleSheet } from 'react-native'
 
 import {
     ITextInput
@@ -23,13 +24,6 @@ export const Button = styled.TouchableOpacity`
     padding: 10px;
     justify-content: center;
     align-items: center;
-    marginTop: 30px;
-`
-
-export const ContainerLine = styled.View`
-    flexDirection: row;
-    alignItems: center;
-
 `
 
 export const ButtonText = styled.Text`
@@ -40,3 +34,34 @@ export const ButtonText = styled.Text`
 export const ScrollView = styled.ScrollView`
 
 `
+export const Label = styled.Text`
+    color: ${grey99};
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-family: HelveticaNeue;
+
+`
+
+export const Container = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30;
+`
+
+const styles = StyleSheet.create({
+    input: {
+        borderColor: '#DDD',
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderWidth: 1,
+        borderRadius: 5,
+        fontFamily: 'HelveticaNeue',
+        height: 40,
+        fontSize: 16,
+        alignSelf: 'stretch',
+        width: '80%'
+    }
+})
+
+export default styles

@@ -1,44 +1,56 @@
 import React, { useState, useEffect } from 'react'
 
-import { TouchableOpacity } from 'react-native'
-
-import { white } from '../../assets/colors.js'
+import { RadioButton, Text } from 'react-native-paper'
 
 import {
     SafeAreaView,
+    Button,
+    ButtonText,
+    ScrollView,
+    ContainerLine,
+    TextLine,
     Title,
-    Text,
-    Note,
-    TextOpportunities,
-    TextSuitability,
-    Logo,
+    TextLineBold
 } from './styles'
 
 export const SignUpInvestorStepFourteenComponent = props => {
+    const [ disabled, setDisabled ] = useState(true)
+    const [ radioButton, setRadioButton] = useState('')
+
+    const checkButton = () => {
+        if(radioButton === '1') {
+            setRadioButton('0')
+        } else {
+            setRadioButton('1')
+        }
+    }
+
     return (
         <SafeAreaView>
-             <Logo fill={ white } width={120} height={120} />
+            <ScrollView>
+                <Title>Esse é o último passo do seu cadastro de Investidor</Title>
 
-            <Title>Cadastro concluído com sucesso</Title>
+                <TextLine>
+                    Confirmo que as informações e documentos fornecidos são verdadeiros e concordo expressamente com o inteiro
+                    teor dos <TextLineBold>Termos e Condições Gerais de Uso</TextLineBold> e <TextLineBold>Política de Provacidade</TextLineBold> , ficando desde já obriagado e sujeito aos
+                    direitos e obrigações oriundos dos instrumentos.
+                </TextLine>
 
-            <Text>
-                Agora, farermos uma análise e em até 24 horas você receberá uma resposta.
-            </Text>
+                <ContainerLine>
+                    <RadioButton
+                        value='1'
+                        status={radioButton === '1' ? 'checked' :'unchecked'}
+                        onPress={checkButton}
+                    />
 
-            <Note>
-                Ah, não esqueça de preencher o formulário de suitability, ele é muito importante para mapear o seu perfil de
-                investimetno e indicamos os produstos, serviçoes e operações mais adequadas às suas necessidades.
-                </Note>
-
-            <TouchableOpacity onPress={() => props.navigation.navigate('SuitabilityOne')}>
-                <TextSuitability>PREENCHER O SUITABILITY</TextSuitability>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => props.navigation.navigate('Opportunities')}>
-                <TextOpportunities>VER OPORTUNIDADES</TextOpportunities>
-
-            </TouchableOpacity>
-
+                    <Text>CONFIRMO E CONCORDO</Text>
+                </ContainerLine>
+                
+                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepFifteen')}>
+                    <ButtonText>CONTINUAR</ButtonText>
+                </Button>
+            </ScrollView>
+            
         </SafeAreaView>
     )
 }

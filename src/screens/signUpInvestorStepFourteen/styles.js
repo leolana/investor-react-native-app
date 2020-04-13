@@ -1,50 +1,56 @@
 import styled from 'styled-components/native'
 
-import { IconIouu } from '../../assets/icons'
-
-import { Dimensions } from 'react-native'
-
-import { tealish } from '../../assets/colors'
-
-const { width } = Dimensions.get('screen')
-
-export const Logo = styled(IconIouu)`
-  position: absolute;
-  top: 64px;
-  left: ${(width / 2) - 60}
-`
+import {
+    white,
+    tealish,
+    grey99
+} from '../../assets/colors'
 
 export const SafeAreaView = styled.View`
     margin-horizontal: 16px;
     margin-vertical: 50px;
+    
 `
 
-export const Text = styled.Text`
-    fontSize: 18;
-    marginBottom: 30px;
-    text-align: center;
+export const Button = styled.TouchableOpacity`
+    background: ${ props => props.disabled ?  grey99 : tealish }
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    width: 80%;
+    align-self: center
+`
+
+export const ContainerLine = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
+
+export const ButtonText = styled.Text`
+    font-size: 16px;
+    font-family: 'HelveticaNeue-Bold';
+    color: ${ white }
+`
+export const ScrollView = styled.ScrollView`
+`
+
+export const TextLine = styled.Text`
+    font-size: 16;
+    margin-bottom: 15px;
+    text-align: justify
+`
+export const TextLineBold = styled.Text`
+    font-size: 16;
+    margin-bottom: 15px;
+    text-align: justify;
+    font-weight: bold;
 `
 
 export const Title = styled.Text`
     font-size: 22;
     font-family: HelveticaNeue-Bold;
     text-align: center;
-    margin-bottom: 40px;
-`
-
-export const Note = styled.Text`
-    fontSize: 16;
-    marginBottom: 30px;
-    text-align: center;
-`
-export const TextSuitability = styled.Text`
-    fontSize: 16;
-    marginBottom: 20px;
-    text-align: center;
-    color: ${tealish}
-`
-
-export const TextOpportunities = styled.Text`
-    fontSize: 16;
-    text-align: center;
+    margin-bottom: 20px;
 `

@@ -102,6 +102,8 @@ import { SignUpInvestorStepThirteen } from '../../screens/signUpInvestorStepThir
 
 import { SignUpInvestorStepFourteen } from '../../screens/signUpInvestorStepFourteen'
 
+import { SignUpInvestorStepFifteen } from '../../screens/signUpInvestorStepFifteen'
+
 import { tealish, white } from '../../assets/colors'
 
 import { storeData } from '../../utils'
@@ -222,6 +224,7 @@ export const ScreenRoutes = createStackNavigator(
         SignUpInvestorStepTwelve,
         SignUpInvestorStepThirteen,
         SignUpInvestorStepFourteen,
+        SignUpInvestorStepFifteen,
         SuitabilityOne,
         SuitabilityTwo,
         SuitabilityThree,

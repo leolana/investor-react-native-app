@@ -9,39 +9,22 @@ import {
 } from '../../assets/colors'
 
 export const Title = styled.Text`
-    font-size: 24;
+    font-size: 22;
     font-family: HelveticaNeue-Bold;
     text-align: center;
     marginBottom: 20px;
 `
 export const SafeAreaView = styled.View`
-    margin: 16px;
+    margin-horizontal: 16px;
+    margin-vertical: 50px;
     alignItems: center
 `
 
-export const Container = styled.View`
-    border-radius: 5px;
-    padding: 20px;
-    margin: 25px;
-    width: 350px;
-    border: ${greyDD};
-    justifyContent: center;
-`
-
-export const ContainerTitle = styled.Text`
-    fontSize: 16;
-    fontWeight: bold,
-    color: ${grey99};
-    alignSelf: center;
-    marginBottom: 10px;
-`
-
 export const Note = styled.Text`
-    fontSize: 12;
+    fontSize: 14;
     fontWeight: bold,
     color: ${grey66};
 `
-
 export const Text = styled.Text`
     fontSize: 14;
     fontWeight: bold,
@@ -52,9 +35,11 @@ export const Button = styled.TouchableOpacity`
     background: ${ props => props.disabled ?  grey99 : tealish }
     border-radius: 5px;
     padding: 10px;
-    marginTop: 15px;
+    marginTop: 30px;
+    marginBottom: 30px;
     justify-content: center;
     align-items: center;
+    width: 80%
 `
 
 export const ButtonText = styled.Text`

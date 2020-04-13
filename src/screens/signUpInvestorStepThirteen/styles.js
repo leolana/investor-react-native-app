@@ -3,54 +3,47 @@ import styled from 'styled-components/native'
 import {
     white,
     tealish,
-    grey99
+    greyDD,
+    grey99,
+    grey66,
 } from '../../assets/colors'
 
+export const Title = styled.Text`
+    font-size: 22;
+    font-family: HelveticaNeue-Bold;
+    text-align: center;
+    marginBottom: 20px;
+`
 export const SafeAreaView = styled.View`
     margin-horizontal: 16px;
     margin-vertical: 50px;
-    
+    alignItems: center
+`
+
+export const Note = styled.Text`
+    fontSize: 14;
+    fontWeight: bold,
+    color: ${grey66};
+`
+export const Text = styled.Text`
+    fontSize: 14;
+    fontWeight: bold,
+    color: ${grey66};
 `
 
 export const Button = styled.TouchableOpacity`
     background: ${ props => props.disabled ?  grey99 : tealish }
     border-radius: 5px;
     padding: 10px;
+    marginTop: 30px;
+    marginBottom: 30px;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    width: 80%;
-    align-self: center
-`
-
-export const ContainerLine = styled.View`
-    flex-direction: row;
-    align-items: center;
+    width: 80%
 `
 
 export const ButtonText = styled.Text`
-    font-size: 16px;
+    font-size: 14px;
     font-family: 'HelveticaNeue-Bold';
-    color: ${ white }
-`
-export const ScrollView = styled.ScrollView`
-`
-
-export const TextLine = styled.Text`
-    font-size: 16;
-    margin-bottom: 15px;
-    text-align: justify
-`
-export const TextLineBold = styled.Text`
-    font-size: 16;
-    margin-bottom: 15px;
-    text-align: justify;
-    font-weight: bold;
-`
-
-export const Title = styled.Text`
-    font-size: 22;
-    font-family: HelveticaNeue-Bold;
-    text-align: center;
-    margin-bottom: 20px;
+    color: ${white};
 `

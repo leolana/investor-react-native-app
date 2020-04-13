@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { KeyboardAvoidingView, Platform } from 'react-native'
+import { KeyboardAvoidingView, Platform, View } from 'react-native'
 
 import { TextInputMask } from 'react-native-masked-text'
 
 import {
-    Request,
-    UrlLocalizacaoCEPPegar
+    Select
+} from '../../components'
 
+import {
+    Request,
+    UrlLocalizacaoEstadosPegar,
 } from '../../services'
 
 import Styles, {
@@ -15,31 +18,67 @@ import Styles, {
     ButtonText,
     TextInput,
     ScrollView,
-    Label
+    Label,
+    Container
 } from './styles'
 
 export const SignUpInvestorStepFiveComponent = props => {
     const [disabled, setDisabled] = useState('')
-    const [CEP, setCEP] = useState('')
-    const [street, setStreet] = useState('')
-    const [number, setNumber] = useState('')
-    const [complement, setComplement] = useState('')
-    const [state, setState] = useState('')
-    const [city, setCity] = useState('')
-    const [neighborhood, setNeighborhood] = useState('')
-    const [contentCEP, setContentCEP] = useState('')
+    const [emissionDate, setEmissionDate] = useState('')
+    const [emissionState, setEmissionState] = useState('')
+    const [emissonOrgan, setEmissionOrgan] = useState('')
+    const [rg, setRg] = useState('')
+    const [apiState, setApiState] = useState([{
+        id: "",
+        text: "",
+        value: ""
+    }])
 
+    function mapApiState() {
+        getStates()
 
-    const getCEP = async () => {
+        const optionsState = apiState.map((resp) => {
+            return {
+                text: resp.sigla,
+                value: resp.sigla
+            }
+        })
+        return optionsState
+    }
 
-        const resp = await Request.GET({ url: UrlLocalizacaoCEPPegar(CEP) })
+    async function getStates() {
 
-        if (resp.status === 200) setContentCEP(resp.data)
+        const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
+
+        if (resp.status === 200) setApiState(resp.data)
 
         else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
     }
 
+    const opcoesOrgaoEmissor = [
+        { text: "SSP", value: "SSP" },
+        { text: "PM", value: "PM" },
+        { text: "PC", value: "PC" },
+        { text: "CNT", value: "CNT" },
+        { text: "DIC", value: "DIC" },
+        { text: "CTPS", value: "CTPS" },
+        { text: "FGTS", value: "FGTS" },
+        { text: "IFP", value: "IFP" },
+        { text: "IPF", value: "IPF" },
+        { text: "IML", value: "IML" },
+        { text: "MTE", value: "MTE" },
+        { text: "MMA", value: "MMA" },
+        { text: "MAE", value: "MAE" },
+        { text: "MEX", value: "MEX" },
+        { text: "POF", value: "POF" },
+        { text: "POM", value: "POM" },
+        { text: "SES", value: "SES" },
+        { text: "SJS", value: "SJS" },
+        { text: "SJTS", value: "SJTS" },
+        { text: "ZZZ", value: "ZZZ" },
 
+    ]
+    
     // useEffect(() => {
     //     setDisabled(CEP === '' || street === ''   || state === '' || city === '' || neighborhood === ''
     //     )
@@ -49,53 +88,36 @@ export const SignUpInvestorStepFiveComponent = props => {
         <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height"} >
             <SafeAreaView>
                 <ScrollView>
-                    <Label>CEP</Label>
 
+                    <TextInput
+                        title={'RG'}
+                        onChangeText={value => setRg(value)}
+                    />
+
+                    <Select
+                        title='Orgão emissor'
+                        options={opcoesOrgaoEmissor}
+                        onValueChange={obj => setEmissionOrgan(obj.value)}
+                        value={emissonOrgan}
+                    />
+
+                    <Select
+                        title='Estado de emissão'
+                        options={mapApiState()}
+                        onValueChange={obj => setEmissionState(obj.value)}
+                        value={emissionState}
+                    />
+
+                    <Label>Data de emissão</Label>
                     <TextInputMask
-                        type={'zip-code'}
-                        value={CEP}
-                        onChangeText={value => setCEP(value)}
+                        type={'datetime'}
+                        options={{
+                            format: 'DD/MM/YYYY'
+                        }}
+                        value={emissionDate}
+                        onChangeText={value => setEmissionDate(value)}
                         style={Styles.input}
                     />
-
-                    <Button onPress={getCEP}>
-                        <ButtonText>Pesquisar</ButtonText>
-                    </Button>
-
-                    <TextInput
-                        title={'Logradouro'}
-                        value={contentCEP.logradouro}
-                        onChangeText={value => setStreet(value)}
-                    />
-
-                    <TextInput
-                        title={'Número'}
-                        onChangeText={value => setNumber(value)}
-                        keyboardType={'numeric'}
-                    />
-
-                    <TextInput
-                        title={'Complemento'}
-                        onChangeText={value => setComplement(value)}
-                    />
-                    <TextInput
-                        title={'Cidade'}
-                        value={contentCEP.localidade}
-                        onChangeText={value => setCity(value)}
-                    />
-
-                    <TextInput
-                        title={'Bairro'}
-                        value={contentCEP.bairro}
-                        onChangeText={value => setNeighborhood(value)}
-                    />
-                    <TextInput
-                        title={'Estado'}
-                        value={contentCEP.uf}
-                        onChangeText={value => setState(value)}
-                    />
-
-
 
                     <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
                         <ButtonText>Continuar</ButtonText>
@@ -103,6 +125,8 @@ export const SignUpInvestorStepFiveComponent = props => {
                 </ScrollView>
 
             </SafeAreaView>
+
+
         </KeyboardAvoidingView>
     )
 }

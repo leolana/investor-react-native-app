@@ -26,7 +26,7 @@ export const WelcomeComponent = ( { navigation }) => {
 
   // states
 
-  const [ loading, setLoading ] = useState(true)
+  const [ loading, setLoading ] = useState(false)
 
   // vars
 
@@ -70,7 +70,7 @@ export const WelcomeComponent = ( { navigation }) => {
 
     if(accountData === null) setLoading(false)
 
-    else navigation.navigate('Login', { authenticated: true })
+    else navigation.navigate('Login', { authenticated: false })
 
   }, [accountData])
 

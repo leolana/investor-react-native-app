@@ -9,15 +9,8 @@ import {
 } from './styles'
 
 export const SignUpInvestorStepThreeComponent = props => {
-    const [ disabled, setDisabled ] = useState(true)
     const [motherName, setMotherName] = useState('')
     const [fatherName, setFatherName] = useState('')
-
-    useEffect(() => {
-
-        setDisabled(motherName === '' || fatherName === '')
-
-    }, [motherName, fatherName])
 
     return (
         <SafeAreaView>
@@ -31,7 +24,7 @@ export const SignUpInvestorStepThreeComponent = props => {
                 onChangeText={ value => setFatherName(value) }
             />
 
-            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepFour')}>
+            <Button onPress={() => props.navigation.navigate('SignUpInvestorStepFour')}>
                 <ButtonText>Continuar</ButtonText>
             </Button>
         </SafeAreaView>

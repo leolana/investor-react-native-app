@@ -20,11 +20,14 @@ import Styles, {
     TextInput,
     ScrollView,
     Label,
-    Container
+    Error
 } from './styles'
 
 export const SignUpInvestorStepSixComponent = props => {
+    //states
+
     const [loading, setLoading] = useState(false)
+    const [valid, setValid] = useState(true)
     const [disabled, setDisabled] = useState('')
     const [CEP, setCEP] = useState('')
     const [street, setStreet] = useState('')
@@ -35,6 +38,8 @@ export const SignUpInvestorStepSixComponent = props => {
     const [neighborhood, setNeighborhood] = useState('')
     const [contentCEP, setContentCEP] = useState('')
 
+    //async functions
+
     const getCEP = async () => {
         if (loading) return
 
@@ -42,37 +47,51 @@ export const SignUpInvestorStepSixComponent = props => {
 
         const resp = await Request.GET({ url: UrlLocalizacaoCEPPegar(CEP) })
 
-        if (resp.status === 200) setContentCEP(resp.data)
+        if (resp.data.erro)
+            setValid(false)
+
+        if (resp.status === 200 && !resp.data.erro) setContentCEP(resp.data)
 
         else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
 
         setLoading(false)
     }
 
+    //functions
 
-    // useEffect(() => {
-    //     setDisabled(CEP === '' || street === ''   || state === '' || city === '' || neighborhood === ''
-    //     )
-    // }, [CEP, street, state, city, neighborhood])
+    const validaCep = () => {
+        if (CEP != "") {
+            let validar = /^[0-9]{5}-[0-9]{3}$/
+
+            if (validar.test(CEP)) {
+                setValid(true)
+                getCEP()
+            }
+
+            else setValid(false)
+        }
+    }
+
+    useEffect(() => {
+        setDisabled(CEP === '' || street === '' || state === '' || city === '' || neighborhood === '')
+    }, [CEP, street, state, city, neighborhood])
 
     return (
         <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height"} >
             <SafeAreaView>
                 <ScrollView>
                     <Label>CEP</Label>
-                    <Container>
-                        <TextInputMask
-                            type={'zip-code'}
-                            value={CEP}
-                            onChangeText={value => setCEP(value)}
-                            style={Styles.input}
-                        />
-
-                        <Button onPress={getCEP}>
-                            <ButtonText>Buscar</ButtonText>
-                        </Button>
-                    </Container>
-
+                    <TextInputMask
+                        type={'zip-code'}
+                        value={CEP}
+                        onChangeText={value => setCEP(value)}
+                        style={Styles.input}
+                        onBlur={validaCep}
+                    />
+                    {
+                        !valid ? <Error>Insira um CEP válido</Error>
+                            : <View style={{ marginBottom: 30 }}></View>
+                    }
                     <Loading loading={loading} >
 
                         <TextInput
@@ -107,8 +126,6 @@ export const SignUpInvestorStepSixComponent = props => {
                             value={contentCEP.uf}
                             onChangeText={value => setState(value)}
                         />
-
-
 
                         <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSeven')}>
                             <ButtonText>Continuar</ButtonText>

@@ -11,8 +11,6 @@ import {
 } from '../../components'
 
 export const SignUpInvestorStepOneComponent = props => {
-
-
     // states
 
     const [ gender, setGender ] = useState('')
@@ -42,10 +40,7 @@ export const SignUpInvestorStepOneComponent = props => {
 
     }, [gender, nationality])
 
-    
-
     // render
-
 
     return (
         <SafeAreaView>

@@ -11,7 +11,8 @@ export const TextInput = styled(ITextInput)`
 import {
     white,
     tealish,
-    grey99
+    grey99,
+    redTwo
 } from '../../assets/colors'
 
 export const SafeAreaView = styled.View`
@@ -19,7 +20,7 @@ export const SafeAreaView = styled.View`
 `
 
 export const Button = styled.TouchableOpacity`
-    background: ${ props => props.disabled ?  grey99 : tealish }
+    background: ${ props => props.disabled ? grey99 : tealish}
     border-radius: 5px;
     padding: 10px;
     justify-content: center;
@@ -29,7 +30,7 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
     font-size: 16px;
     font-family: 'HelveticaNeue-Bold';
-    color: ${ white }
+    color: ${ white}
 `
 export const Label = styled.Text`
     color: ${grey99};
@@ -37,6 +38,16 @@ export const Label = styled.Text`
     font-size: 12px;
     align-self: stretch;
     font-family: HelveticaNeue;
+
+`
+export const Error = styled.Text`
+    font-family: HelveticaNeue;
+    font-size: 10px;
+    color: ${redTwo}
+    text-align: left;
+    align-self: stretch;
+    margin-top: 4px;
+    margin-bottom: 15px;
 
 `
 
@@ -51,7 +62,6 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
         alignSelf: 'stretch',
-        marginBottom: 30,
     }
 })
 

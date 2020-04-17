@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { View } from 'react-native'
 
 import { TextInputMask } from 'react-native-masked-text'
 
@@ -13,7 +14,8 @@ import Styles, {
     SafeAreaView,
     Button,
     ButtonText,
-    Label
+    Label,
+    Error
 } from './styles'
 
 import {
@@ -21,6 +23,10 @@ import {
 } from '../../components'
 
 export const SignUpInvestorStepTwoComponent = props => {
+    // states
+
+    const [disabled, setDisabled] = useState(true)
+    const [valid, setValid] = useState(true)
     const [birthday, setBirthday] = useState('')
     const [birthState, setBirthState] = useState()
     const [birthCity, setBirthCity] = useState('')
@@ -35,11 +41,8 @@ export const SignUpInvestorStepTwoComponent = props => {
         value: ""
     }])
 
-    async function myAsyncEffect() {
-        await getStates()
-    }
 
-    useEffect(() => { myAsyncEffect() }, []);
+    //vars
 
     function mapApiState() {
 
@@ -65,6 +68,12 @@ export const SignUpInvestorStepTwoComponent = props => {
         return optionsCities
     }
 
+
+    //async functions
+    async function myAsyncEffect() {
+        await getStates()
+    }
+
     async function getStates() {
 
         const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
@@ -83,11 +92,44 @@ export const SignUpInvestorStepTwoComponent = props => {
         else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
     }
 
-    const validateDate = () => {
-        const teste = birthday.isValid()
+    //functions
 
-        if(teste) alert("FOI")
+    const isOfAge = (year) => {
+        let courentYear = new Date().getFullYear()
+        let teste = courentYear - year
+
+        if (teste < 18) return false
+        else return true
     }
+
+    const validateDate = () => {
+        let valid = false
+        let regex = new RegExp("^([0-9]{2})/([0-9]{2})/([0-9]{4})$")
+        let matches = regex.exec(birthday)
+
+        if (matches != null) {
+            let day = parseInt(matches[1], 10)
+            let month = parseInt(matches[2], 10) - 1
+            let year = parseInt(matches[3], 10)
+            let date = new Date(year, month, day, 0, 0, 0, 0)
+            valid = date.getFullYear() == year && date.getMonth() == month && date.getDate() == day
+            valid = isOfAge(year)
+        }
+
+        if (valid) setValid(true)
+        else setValid(false)
+    }
+
+    //effect
+
+    useEffect(() => { myAsyncEffect() }, [])
+
+    useEffect(() => {
+        setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '')
+
+    }, [valid, birthday, birthState, birthCity,])
+
+    //render
 
     return (
         <SafeAreaView>
@@ -100,7 +142,12 @@ export const SignUpInvestorStepTwoComponent = props => {
                 value={birthday}
                 onChangeText={value => setBirthday(value)}
                 style={Styles.input}
+                onBlur={validateDate}
             />
+            {
+                !valid ? <Error>Você deve ser maior de 18 anos ou inserir uma data válida</Error>
+                    : <View style={{ marginBottom: 30 }}></View>
+            }
 
             <Select
                 title={'Estado de nascimento'}

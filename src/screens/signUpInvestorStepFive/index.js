@@ -19,11 +19,12 @@ import Styles, {
     TextInput,
     ScrollView,
     Label,
-    Container
+    Error
 } from './styles'
 
 export const SignUpInvestorStepFiveComponent = props => {
     const [disabled, setDisabled] = useState('')
+    const [valid, setValid] = useState(true)
     const [emissionDate, setEmissionDate] = useState('')
     const [emissionState, setEmissionState] = useState('')
     const [emissonOrgan, setEmissionOrgan] = useState('')
@@ -33,27 +34,6 @@ export const SignUpInvestorStepFiveComponent = props => {
         text: "",
         value: ""
     }])
-
-    function mapApiState() {
-        getStates()
-
-        const optionsState = apiState.map((resp) => {
-            return {
-                text: resp.sigla,
-                value: resp.sigla
-            }
-        })
-        return optionsState
-    }
-
-    async function getStates() {
-
-        const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
-
-        if (resp.status === 200) setApiState(resp.data)
-
-        else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
-    }
 
     const opcoesOrgaoEmissor = [
         { text: "SSP", value: "SSP" },
@@ -76,13 +56,49 @@ export const SignUpInvestorStepFiveComponent = props => {
         { text: "SJS", value: "SJS" },
         { text: "SJTS", value: "SJTS" },
         { text: "ZZZ", value: "ZZZ" },
-
     ]
-    
-    // useEffect(() => {
-    //     setDisabled(CEP === '' || street === ''   || state === '' || city === '' || neighborhood === ''
-    //     )
-    // }, [CEP, street, state, city, neighborhood])
+
+    function mapApiState() {
+        getStates()
+
+        const optionsState = apiState.map((resp) => {
+            return {
+                text: resp.sigla,
+                value: resp.sigla
+            }
+        })
+        return optionsState
+    }
+
+    async function getStates() {
+
+        const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar })
+
+        if (resp.status === 200) setApiState(resp.data)
+
+        else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
+    }
+
+    const validateDate = () => {
+        let valid = false
+        let regex = new RegExp("^([0-9]{2})/([0-9]{2})/([0-9]{4})$")
+        let matches = regex.exec(emissionDate)
+
+        if (matches != null) {
+            let day = parseInt(matches[1], 10)
+            let month = parseInt(matches[2], 10) - 1
+            let year = parseInt(matches[3], 10)
+            let date = new Date(year, month, day, 0, 0, 0, 0)
+            valid = date.getFullYear() == year && date.getMonth() == month && date.getDate() == day
+        }
+
+        if (valid) setValid(true)
+        else setValid(false)
+    }
+
+    useEffect(() => {
+        setDisabled(emissionDate === '' || emissionState === '' || emissonOrgan === '' || !valid)
+    }, [emissionDate, emissionState, emissonOrgan, valid])
 
     return (
         <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height"} >
@@ -92,6 +108,7 @@ export const SignUpInvestorStepFiveComponent = props => {
                     <TextInput
                         title={'RG'}
                         onChangeText={value => setRg(value)}
+                        value={rg}
                     />
 
                     <Select
@@ -116,10 +133,15 @@ export const SignUpInvestorStepFiveComponent = props => {
                         }}
                         value={emissionDate}
                         onChangeText={value => setEmissionDate(value)}
+                        onBlur={validateDate}
                         style={Styles.input}
                     />
+                    {
+                        !valid ? <Error>Você deve inserir uma data válida</Error>
+                            : <View style={{ marginBottom: 30 }}></View>
+                    }
 
-                    <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
+                    <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
                         <ButtonText>Continuar</ButtonText>
                     </Button>
                 </ScrollView>

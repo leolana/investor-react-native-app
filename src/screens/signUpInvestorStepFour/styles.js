@@ -9,6 +9,13 @@ import {
 
 } from '../../assets/colors'
 
+import {
+    ITextInput
+} from '../../components'
+
+export const TextInput = styled(ITextInput)`
+`
+
 export const SafeAreaView = styled.View`
     margin: 16px;
 `

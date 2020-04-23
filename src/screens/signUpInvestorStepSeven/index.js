@@ -17,11 +17,17 @@ import {
 } from './styles'
 
 export const SignUpInvestorStepSevenComponent = props => {
+
+    //states
+
     const [disabled, setDisabled] = useState(true)
     const [bank, setBank] = useState('')
     const [bankAccountType, setBankAccountType] = useState('')
     const [bankAgency, setBankAgency] = useState('')
     const [bankAccount, setBankAccount] = useState('')
+
+
+    //vars 
 
     const optionsBank = [
         { value: '001', text: 'Banco do Brasil S.A.' },
@@ -41,9 +47,13 @@ export const SignUpInvestorStepSevenComponent = props => {
         { value: '212', text: 'Banco Original' }
     ];
 
+    //effect
+
     useEffect(() => {
-        setDisabled(bankAccountType === '' || bankAgency === '' || bankAccount === '')
-    }, [bankAccountType, bankAgency, bankAccount])
+        setDisabled(bank === '' || bankAccountType === '' || bankAgency === '' || bankAccount === '')
+    }, [bank,bankAccountType, bankAgency, bankAccount])
+
+    //render
 
     return (
         <SafeAreaView>
@@ -60,11 +70,13 @@ export const SignUpInvestorStepSevenComponent = props => {
                 <TextInput
                     title={'Agência'}
                     onChangeText={value => setBankAgency(value)}
+                    keyboardType={'numeric'}
                 />
 
                 <TextInput
                     title={'Conta'}
                     onChangeText={value => setBankAccount(value)}
+                    keyboardType={'numeric'}
                 />
 
                 <RadioButton.Group
@@ -82,7 +94,7 @@ export const SignUpInvestorStepSevenComponent = props => {
                     </ContainerLine>
                 </RadioButton.Group>
 
-                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
+                <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
                     <ButtonText>Continuar</ButtonText>
                 </Button>
             </ScrollView>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-
 import {
     SafeAreaView,
     Button,
@@ -9,9 +8,11 @@ import {
 } from './styles'
 
 export const SignUpInvestorStepThreeComponent = props => {
+    //states
     const [motherName, setMotherName] = useState('')
     const [fatherName, setFatherName] = useState('')
 
+    //render
     return (
         <SafeAreaView>
             <TextInput 

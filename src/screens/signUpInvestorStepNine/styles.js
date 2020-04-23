@@ -17,7 +17,7 @@ export const Title = styled.Text`
 export const SafeAreaView = styled.View`
     margin-horizontal: 16px;
     margin-vertical: 50px;
-    alignItems: center
+    alignItems: center;
 `
 
 export const Container = styled.View`

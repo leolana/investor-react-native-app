@@ -23,10 +23,12 @@ import {
 } from '../../components'
 
 export const SignUpInvestorStepTwoComponent = props => {
+    
     // states
-
+    
     const [disabled, setDisabled] = useState(true)
     const [valid, setValid] = useState(true)
+    const [maritalStatus, setMaritalStatus] = useState('')
     const [birthday, setBirthday] = useState('')
     const [birthState, setBirthState] = useState()
     const [birthCity, setBirthCity] = useState('')
@@ -68,8 +70,15 @@ export const SignUpInvestorStepTwoComponent = props => {
         return optionsCities
     }
 
+    const optionsMaritalStatus = [
+        { text: "Solteiro (a)", value: 1 },
+        { text: "Casado (a)", value: 2 },
+        { text: "Divorciado (a)", value: 3 },
+        { text: "Viúvo (a)", value: 4 }
+    ]
 
     //async functions
+
     async function myAsyncEffect() {
         await getStates()
     }
@@ -92,7 +101,7 @@ export const SignUpInvestorStepTwoComponent = props => {
         else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
     }
 
-    //functions
+    //Validate functions
 
     const isOfAge = (year) => {
         let courentYear = new Date().getFullYear()
@@ -125,9 +134,9 @@ export const SignUpInvestorStepTwoComponent = props => {
     useEffect(() => { myAsyncEffect() }, [])
 
     useEffect(() => {
-        setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '')
+        setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '' || maritalStatus === '')
 
-    }, [valid, birthday, birthState, birthCity,])
+    }, [valid, birthday, birthState, birthCity, maritalStatus])
 
     //render
 
@@ -162,7 +171,14 @@ export const SignUpInvestorStepTwoComponent = props => {
                 value={birthCity}
             />
 
-            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThree')} >
+            <Select
+                title="Estado civil"
+                options={optionsMaritalStatus}
+                onValueChange={obj => setMaritalStatus(obj.value)}
+                value={maritalStatus}
+            />
+
+            <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepThree')} >
                 <ButtonText>Continuar</ButtonText>
             </Button>
         </SafeAreaView>

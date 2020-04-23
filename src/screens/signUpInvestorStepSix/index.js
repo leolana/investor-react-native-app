@@ -36,7 +36,6 @@ export const SignUpInvestorStepSixComponent = props => {
     const [state, setState] = useState('')
     const [city, setCity] = useState('')
     const [neighborhood, setNeighborhood] = useState('')
-    const [contentCEP, setContentCEP] = useState('')
 
     //async functions
 
@@ -50,14 +49,24 @@ export const SignUpInvestorStepSixComponent = props => {
         if (resp.data.erro)
             setValid(false)
 
-        if (resp.status === 200 && !resp.data.erro) setContentCEP(resp.data)
+        if (resp.status === 200 && !resp.data.erro) contentCep(resp.data)
 
-        else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
+
+        else console.log('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.')
+        console.log(resp.data)
 
         setLoading(false)
     }
 
-    //functions
+    //functions 
+    function contentCep(value) {
+        setStreet(value.logradouro)
+        setState(value.uf)
+        setCity(value.localidade)
+        setNeighborhood(value.bairro)
+    }
+
+    //validate functions
 
     const validaCep = () => {
         if (CEP != "") {
@@ -72,9 +81,13 @@ export const SignUpInvestorStepSixComponent = props => {
         }
     }
 
+    //effect
+    
     useEffect(() => {
-        setDisabled(CEP === '' || street === '' || state === '' || city === '' || neighborhood === '')
-    }, [CEP, street, state, city, neighborhood])
+        setDisabled(CEP === '' || street === '' || state === '' || city === '' || neighborhood === '' || number === '')
+    }, [CEP, street, state, city, neighborhood, number])
+
+    //render
 
     return (
         <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height"} >
@@ -96,7 +109,7 @@ export const SignUpInvestorStepSixComponent = props => {
 
                         <TextInput
                             title={'Logradouro'}
-                            value={contentCEP.logradouro}
+                            value={street}
                             onChangeText={value => setStreet(value)}
                         />
 
@@ -108,26 +121,27 @@ export const SignUpInvestorStepSixComponent = props => {
 
                         <TextInput
                             title={'Complemento'}
+                            value={complement}
                             onChangeText={value => setComplement(value)}
                         />
                         <TextInput
                             title={'Cidade'}
-                            value={contentCEP.localidade}
+                            value={city}
                             onChangeText={value => setCity(value)}
                         />
 
                         <TextInput
                             title={'Bairro'}
-                            value={contentCEP.bairro}
+                            value={neighborhood}
                             onChangeText={value => setNeighborhood(value)}
                         />
                         <TextInput
                             title={'Estado'}
-                            value={contentCEP.uf}
+                            value={state}
                             onChangeText={value => setState(value)}
                         />
 
-                        <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSeven')}>
+                        <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepSeven')}>
                             <ButtonText>Continuar</ButtonText>
                         </Button>
                     </Loading>

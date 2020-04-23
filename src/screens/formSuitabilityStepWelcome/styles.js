@@ -1,10 +1,9 @@
 import styled from 'styled-components/native'
-
 import { IconIouu } from '../../assets/icons'
 
 import { Dimensions } from 'react-native'
 
-import { tealish } from '../../assets/colors'
+import { tealish, grey99, white } from '../../assets/colors'
 
 const { width } = Dimensions.get('screen')
 
@@ -37,14 +36,17 @@ export const Note = styled.Text`
     marginBottom: 30px;
     text-align: center;
 `
-export const TextSuitability = styled.Text`
-    fontSize: 16;
-    marginBottom: 20px;
-    text-align: center;
-    color: ${tealish}
+
+export const Button = styled.TouchableOpacity`
+    background: ${ props => props.disabled ? grey99 : tealish}
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 `
 
-export const TextOpportunities = styled.Text`
-    fontSize: 16;
-    text-align: center;
+export const ButtonText = styled.Text`
+    font-size: 16px;
+    font-family: 'HelveticaNeue-Bold';
+    color: ${ white}
 `

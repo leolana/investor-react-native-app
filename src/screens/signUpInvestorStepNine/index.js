@@ -21,11 +21,15 @@ export const SignUpInvestorStepNineComponent = props => {
 
     const onChangePhoto = newPhoto => {
         setPhoto(newPhoto)
-        setIsCameraVisible(false)
+        setOpenCamera(false)
     };
 
     const onCloseCamera = () => {
-        setIsCameraVisible(false)
+        setOpenCamera(false)
+    }
+
+    const setOpenCamera = value => {
+        setIsCameraVisible(value)
     }
 
     return (
@@ -38,7 +42,7 @@ export const SignUpInvestorStepNineComponent = props => {
 
                 <ContainerTitle>Enviar Frente</ContainerTitle>
 
-                <Button onPress={() => { setIsCameraVisible(true) }}>
+                <Button onPress={() => { setOpenCamera(true) }}>
                     <ButtonText>ABRIR CÂMERA</ButtonText>
                 </Button>
 
@@ -47,13 +51,19 @@ export const SignUpInvestorStepNineComponent = props => {
             <TouchableOpacity>
                 <Text onPress={() => props.navigation.navigate('SignUpInvestorStepTen')}> CONTINUAR DEPOIS </Text>
             </TouchableOpacity>
+            {/* <TouchableOpacity>
+                <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
+            </TouchableOpacity> */}
 
             <Camera
                 isVisible={isCameraVisible}
                 onChangePhoto={onChangePhoto}
                 onCloseCamera={onCloseCamera}
+                setOpenCamera={setOpenCamera}
+                props={props}
+                nextStep={'SignUpInvestorStepTen'}
             />
-            
+
         </SafeAreaView>
     )
 }

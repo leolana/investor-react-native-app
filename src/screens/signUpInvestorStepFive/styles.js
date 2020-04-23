@@ -2,13 +2,6 @@ import styled from 'styled-components/native'
 import { StyleSheet } from 'react-native'
 
 import {
-    ITextInput
-} from '../../components'
-
-export const TextInput = styled(ITextInput)`
-`
-
-import {
     white,
     tealish,
     grey99,
@@ -55,6 +48,17 @@ export const Error = styled.Text`
 
 const styles = StyleSheet.create({
     input: {
+        borderColor: '#DDD',
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderWidth: 1,
+        borderRadius: 5,
+        fontFamily: 'HelveticaNeue',
+        height: 40,
+        fontSize: 16,
+        alignSelf: 'stretch',
+    },
+    inputMargin: {
         borderColor: '#DDD',
         paddingLeft: 10,
         paddingRight: 10,

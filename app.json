@@ -1,4 +1,17 @@
 {
   "name": "AppIouu",
-  "displayName": "AppIouu"
+  "displayName": "AppIouu",
+  "expo": {
+    "name": "AppIouu",
+    "slug": "AppIouu",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
 }

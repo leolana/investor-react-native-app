@@ -76,13 +76,15 @@ import com.android.build.OutputFile
  */
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
-
 project.ext.react = [
     entryFile: "index.js",
-    enableHermes: false,  // clean and rebuild if changing
+    enableHermes: false,
+    bundleInRelease: false
 ]
 
+apply from: '../../node_modules/react-native-unimodules/gradle.groovy'
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/expo-updates/expo-updates.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -195,6 +197,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-linear-gradient')
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    addUnimodulesDependencies()
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

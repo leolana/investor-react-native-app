@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { IButtom } from '../../../../components/buttom';
 
-import { white, greyEE, grey99, black } from '../../../../assets/colors.js';
+import { white, greyEE, grey99, black } from '../../../../assets/colors';
 
 export const Card = styled.View`
   background: ${(props) => props.background || greyEE};

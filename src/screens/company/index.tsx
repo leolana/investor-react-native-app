@@ -9,7 +9,7 @@ import {
   ItemDefaultText,
   SocialMedia,
   Touchable,
-} from './styles.js';
+} from './styles';
 
 import HTML from 'react-native-render-html';
 

@@ -1,4 +1,4 @@
-import { grey99, greyDD, tealish, redTwo } from '../../assets/colors.js';
+import { grey99, greyDD, tealish, redTwo } from '../../assets/colors';
 
 import styled from 'styled-components/native';
 

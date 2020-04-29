@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TouchableOpacity } from 'react-native';
 
-import { white } from '../../assets/colors.js';
+import { white } from '../../assets/colors';
 
 import { SafeAreaView, Title, Text, Note, TextOpportunities, TextSuitability, Logo } from './styles';
 

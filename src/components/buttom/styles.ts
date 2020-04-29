@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { tealish, white } from '../../assets/colors.js';
+import { tealish, white } from '../../assets/colors';
 
 export const TouchableOpacity = styled.TouchableOpacity`
   align-self: stretch;

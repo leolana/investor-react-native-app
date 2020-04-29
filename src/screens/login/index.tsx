@@ -6,7 +6,7 @@ import { Request, UrlLogin } from '../../services';
 
 import { storeData } from '../../utils';
 
-import { KeyboardAvoidingView, Welcome, Description, Container, Buttom } from './style.js';
+import { KeyboardAvoidingView, Welcome, Description, Container, Buttom } from './style';
 
 import onInit from '../../store/reducers/init';
 

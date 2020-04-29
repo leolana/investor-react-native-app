@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { grey99, grey33, tealish } from '../../assets/colors.js';
+import { grey99, grey33, tealish } from '../../assets/colors';
 
 import { IButtom } from '../../components';
 

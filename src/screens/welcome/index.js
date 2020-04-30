@@ -48,7 +48,7 @@ export const WelcomeComponent = ( { navigation }) => {
         
         <IButtom 
           title={'entrar'} 
-          onPress={ () => navigation.navigate('Login', { authenticated: false }) } 
+          onPress={ () => navigation.navigate('Login', { authenticated: true }) } 
         />
         <IButtom 
           title={'criar uma conta'} 
@@ -70,7 +70,7 @@ export const WelcomeComponent = ( { navigation }) => {
 
     if(accountData === null) setLoading(false)
 
-    else navigation.navigate('Login', { authenticated: false })
+    else navigation.navigate('Login', { authenticated: true })
 
   }, [accountData])
 

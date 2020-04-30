@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { tealish } from '../../assets/colors';
 
 import { Welcome } from '../../screens/welcome';
-import Login from '../../screens/login';
+import { Login } from '../../screens/login';
 
 import { SignUpUser } from '../../screens/signUpUser';
 

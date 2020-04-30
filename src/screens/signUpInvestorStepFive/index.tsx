@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
@@ -7,7 +7,7 @@ import { Select } from '../../components';
 
 import { Request, UrlLocalizacaoEstadosPegar } from '../../services';
 
-import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label, Container } from './styles';
+import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label } from './styles';
 
 export const SignUpInvestorStepFiveComponent = (props) => {
   const [disabled, setDisabled] = useState('');

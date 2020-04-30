@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { BottomToolbar, ToolbarTitle, ToolbarText, ToolbarButtom, ToolbarButtomText, Container } from './styles';
 
 import { Item } from '../../styles';
 
 import { formatPercent, diffDaysForOpportunitie } from '../../../../utils';
-
-import { Request, UrlSolicitacaoReservaInvPegar } from '../../../../services';
-
-import { SkeletonBone } from '../../../../components';
 
 import { greyTwo, redTwo, greenTwo } from '../../../../assets/colors';
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {} from './styles';
+// import {} from './styles';
 
 import { Modal } from '../../components';
 

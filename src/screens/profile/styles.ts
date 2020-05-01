@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { CircleWithChild } from '../../components';
 
@@ -28,7 +28,7 @@ export const Letter = styled.Text`
   text-align: center;
   font-size: 63px;
   color: ${white};
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const SafeAreaView = styled.SafeAreaView`
@@ -43,7 +43,7 @@ export const Header = styled.View`
 export const Name = styled.Text`
   text-align: center;
   font-size: 20px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-bottom: 5px;
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { white } from '../../../../assets/colors';
 
@@ -16,7 +16,7 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 22px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-bottom: 16px;
 `;
 
@@ -41,7 +41,7 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
   font-size: 25px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;
 

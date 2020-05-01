@@ -8,7 +8,7 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Divisor = styled.View`

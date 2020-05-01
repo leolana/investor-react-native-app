@@ -8,7 +8,7 @@ const { width } = Dimensions.get('screen');
 
 export const Title = styled(Animated.Text)`
   font-size: 20px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${grey66};
   text-align: center;
   margin-bottom: 16px;
@@ -24,13 +24,13 @@ export const Text = styled(Animated.Text)`
 
 export const ItemTitle = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
   font-size: 18px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   color: ${(props) => props.color || grey66};
   margin-bottom: 16px;

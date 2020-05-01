@@ -19,7 +19,7 @@ export const TouchableOpacity = styled.TouchableOpacity`
 
 export const LinkTitle = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const SafeAreaView = styled.SafeAreaView``;
@@ -53,7 +53,7 @@ export const LoanType = styled.Text`
 export const Score = styled.Text`
     font-size: 15px;
     color: ${grey99}
-    font-family: HelveticaNeue-Bold;
+    font-family: OpenSans-Bold;
 `;
 
 export const ScoreCircle = styled.View`
@@ -75,14 +75,14 @@ export const Buttom = styled.TouchableOpacity`
 export const ButtomText = styled.Text`
     font-size: 10px;
     color: ${white}
-    font-family: HelveticaNeue-Bold;
+    font-family: OpenSans-Bold;
 `;
 
 export const Text = styled.Text`
     margin-left: 10px;
     flex: 1
     font-size: 12px;
-    font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+    font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
 `;
 
 export const Item = styled.View`
@@ -103,13 +103,13 @@ export const Item = styled.View`
 export const ItemTitle = styled.Text`
     font-size: 10px;
     color: ${grey99}
-    font-family: HelveticaNeue-Bold;
+    font-family: OpenSans-Bold;
 
 `;
 
 export const ItemText = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Divisor = styled.View`
@@ -121,6 +121,6 @@ export const Divisor = styled.View`
 
 export const DivisorTitle = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-top: 16px;
 `;

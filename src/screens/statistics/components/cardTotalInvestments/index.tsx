@@ -35,7 +35,7 @@ export const CardTotalInvestiments = (props) => {
       <ScoreArea>
         <Circle background={convertScoreByColor(title)} size={16} />
 
-        <ItemText fontSize={'HelveticaNeue-Bold'}> {title} </ItemText>
+        <ItemText fontSize={'OpenSans-Bold'}> {title} </ItemText>
       </ScoreArea>
 
       <ItemText> {value} </ItemText>
@@ -69,7 +69,7 @@ export const CardTotalInvestiments = (props) => {
 
         {renderItem('Cobrança judicial', 0)}
 
-        {renderItem('Total', 0, 'HelveticaNeue-Bold')}
+        {renderItem('Total', 0, 'OpenSans-Bold')}
       </Body>
 
       <Body>

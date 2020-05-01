@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { grey99, white, greyDD } from '../../../../assets/colors';
 
 export const TitleDivisor = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   align-self: stretch;
 `;
@@ -30,6 +30,6 @@ export const Divisor = styled.View`
 
 export const Text = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;

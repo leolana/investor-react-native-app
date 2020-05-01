@@ -30,27 +30,27 @@ export const ItemDate = styled.View`
 `;
 
 export const ItemTitleDate = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 10px;
   color: ${grey99};
 `;
 
 export const ItemTextDate = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${black};
 `;
 
 export const ItemTitleValue = styled.Text`
   margin-top: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${grey99};
   text-align: center;
 `;
 
 export const ItemTextValue = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 24px;
   color: ${black};
   text-align: center;
@@ -89,21 +89,21 @@ export const Divisor = styled.View`
 `;
 
 export const ItemTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 22px;
   color: ${black};
   text-align: center;
 `;
 
 export const ItemTextTime = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${black};
   text-align: center;
@@ -121,7 +121,7 @@ export const ProgressTitle = styled.Text`
 `;
 
 export const ProgressText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${black};
 `;
@@ -142,7 +142,7 @@ export const ProgressBar = styled.View`
 `;
 
 export const ProgressIndicator = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 11px;
   color: ${black};
   position: absolute;
@@ -158,7 +158,7 @@ export const Progress = styled.View`
 `;
 
 export const ItemTitleInvestor = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${black};
   text-align: center;

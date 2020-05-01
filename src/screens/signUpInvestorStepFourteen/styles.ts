@@ -25,7 +25,7 @@ export const ContainerLine = styled.View`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   color: ${white};
 `;
 export const ScrollView = styled.ScrollView``;
@@ -44,7 +44,7 @@ export const TextLineBold = styled.Text`
 
 export const Title = styled.Text`
   font-size: 22;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 20px;
 `;

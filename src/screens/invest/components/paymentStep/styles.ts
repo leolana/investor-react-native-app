@@ -42,7 +42,7 @@ export const Table = styled.View`
 `;
 
 export const TableText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   color: ${(props) => (props.bold ? black : grey99)};
 `;
@@ -57,7 +57,7 @@ export const TableRow = styled.View`
 `;
 
 export const TableSpotlightText = styled.Text`
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   font-size: 14px;
   color: ${lightBlue};
 `;
@@ -71,13 +71,13 @@ export const InfoArea = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   font-size: 14px;
   text-align: ${(props) => props.textAlign || 'center'};
 `;
 
 export const ItemText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   width: ${(props) => props.width || 'auto'};
 `;
@@ -85,7 +85,7 @@ export const ItemText = styled.Text`
 export const SpotlightTitle = styled.Text`
   color: ${lightBlue};
   font-size: 22px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   margin: 16px 0;
 `;

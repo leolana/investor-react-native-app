@@ -13,7 +13,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-bottom: 16px;
 `;
 
@@ -46,7 +46,7 @@ export const Buttom = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;
 

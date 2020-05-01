@@ -16,7 +16,7 @@ export const Retangle = styled.View`
 export const Text = styled.Text`
   flex: 0.96;
   font-size: 14px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${(props) => props.color || black};
 `;
 
@@ -33,13 +33,13 @@ export const Divisor = styled.View`
 export const ItemTitle = styled.Text`
   color: ${grey99};
   font-size: 10px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
@@ -64,7 +64,7 @@ export const ProgressTitle = styled.Text`
 `;
 
 export const ProgressText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${black};
 `;
@@ -85,7 +85,7 @@ export const ProgressBar = styled.View`
 `;
 
 export const ProgressIndicator = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 11px;
   color: ${black};
   position: absolute;
@@ -102,7 +102,7 @@ export const Progress = styled.View`
 
 export const TextInfo = styled.Text`
   font-size: 10px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${(props) => props.color || black};
   text-align: ${(props) => props.textAlign || 'left'};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
@@ -110,7 +110,7 @@ export const TextInfo = styled.Text`
 
 export const InputTitle = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-top: 16px;
   text-align: center;
 `;

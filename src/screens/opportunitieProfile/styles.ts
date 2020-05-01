@@ -22,7 +22,7 @@ export const Message = styled.Text`
   width: ${width - 32};
   position: absolute;
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   padding: 0 16px;
 `;
@@ -53,18 +53,18 @@ export const IconArea = styled.View`
 `;
 
 export const TinyTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
 `;
 
 export const TinyText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 16px;
 `;
 
@@ -108,27 +108,27 @@ export const ItemDate = styled.View`
 `;
 
 export const ItemTitleDate = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 10px;
   color: ${grey99};
 `;
 
 export const ItemTextDate = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${black};
 `;
 
 export const ItemTitleValue = styled.Text`
   margin-top: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${grey99};
   text-align: center;
 `;
 
 export const ItemTextValue = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 24px;
   color: ${black};
   text-align: center;
@@ -167,14 +167,14 @@ export const Divisor = styled.View`
 `;
 
 export const ItemTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 22px;
   color: ${black};
   text-align: center;
@@ -189,7 +189,7 @@ export const ItemInfo = styled.Text`
 `;
 
 export const ItemTextTime = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${black};
   text-align: center;
@@ -207,7 +207,7 @@ export const ProgressTitle = styled.Text`
 `;
 
 export const ProgressText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${black};
 `;
@@ -228,7 +228,7 @@ export const ProgressBar = styled.View`
 `;
 
 export const ProgressIndicator = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 11px;
   color: ${black};
   position: absolute;
@@ -244,7 +244,7 @@ export const Progress = styled.View`
 `;
 
 export const ItemTitleInvestor = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${black};
   text-align: center;
@@ -266,32 +266,32 @@ export const RetangleContent = styled.View`
 `;
 
 export const RetangleTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 17px;
   color: ${(props) => props.color || white};
 `;
 
 export const RetangleText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${(props) => props.color || white};
 `;
 
 export const RetangleTinyTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
 `;
 
 export const ItemDefaultText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 15px;
   color: ${black};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 export const ItemDefaultTitle = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   color: ${grey99};
 `;

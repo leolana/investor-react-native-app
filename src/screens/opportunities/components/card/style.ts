@@ -22,7 +22,7 @@ export const Header = styled.View`
 export const Text = styled.Text`
   font-size: 14px;
   color: ${white};
-  font-family: HelveticaNeue-Medium;
+  font-family: OpenSans-SemiBold;
 `;
 
 export const Flex5 = styled.Text`
@@ -41,25 +41,25 @@ export const Body = styled.View`
 export const Score = styled.Text`
   font-size: 14px;
   color: ${white};
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Title = styled.Text`
   font-size: 13px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Content = styled.Text`
     font-size: 12px;
     color: ${grey99}
     margin-top: 5px;
-    font-family: HelveticaNeue-Medium;
+    font-family: OpenSans-SemiBold;
 `;
 
 export const Bold = styled.Text`
   font-weight: bold;
   color: ${black};
-  font-family: HelveticaNeue-Medium;
+  font-family: OpenSans-SemiBold;
 `;
 
 export const Container = styled.View`
@@ -84,7 +84,7 @@ export const Center = styled.View`
 export const Subtitle = styled.Text`
   text-align: center;
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Buttom = styled(IButtom)``;

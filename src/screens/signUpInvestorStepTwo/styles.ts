@@ -21,7 +21,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   color: ${white};
 `;
 export const Label = styled.Text`

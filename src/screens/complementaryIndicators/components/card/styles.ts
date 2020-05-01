@@ -4,7 +4,7 @@ import { greyDD } from '../../../../assets/colors';
 
 import { IconBack } from '../../../../assets/icons';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const Arrow = styled(IconBack)`
   transform: scaleX(-1);
@@ -20,7 +20,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Row = styled.View`
@@ -39,13 +39,13 @@ export const Content = styled.View`
 
 export const ItemTitle = styled.Text`
   font-size: 11px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 

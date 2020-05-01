@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { Dimensions, Animated, Platform } from 'react-native';
 
@@ -99,7 +99,7 @@ export const Info = styled.Text`
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${receiptTextColor};
 `;

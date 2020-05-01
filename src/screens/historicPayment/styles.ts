@@ -49,7 +49,7 @@ export const Header = styled.View`
 `;
 
 export const TableText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   flex: ${(props) => props.flex || 1};
 `;

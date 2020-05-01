@@ -24,20 +24,20 @@ export const Item = styled.View`
 
 export const Title = styled.Text`
   font-size: 18px;
-  font-family: HelveticaNeue-Light;
+  font-family: OpenSans-Light;
   flex: 4;
 `;
 
 export const Score = styled.Text`
   margin-left: 10px;
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${greyTwo};
 `;
 
 export const Subtitle = styled.Text`
   font-size: 12px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${greyTwo};
   margin-bottom: 16px;
 `;
@@ -59,7 +59,7 @@ export const Buttom = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   color: ${white};
 `;

@@ -12,13 +12,13 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 24;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const Question = styled.Text`
   font-size: 16;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: justify;
   margin-bottom: 10;
   margin-top: 20;
@@ -52,6 +52,6 @@ export const Button = styled.TouchableOpacity`
 
 export const TextButton = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: white;
 `;

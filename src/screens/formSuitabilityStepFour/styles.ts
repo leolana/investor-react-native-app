@@ -14,7 +14,7 @@ export const Button = styled.TouchableOpacity`
 `;
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: white;
 `;
 export const SafeAreaView = styled.SafeAreaView`
@@ -37,7 +37,7 @@ export const Text = styled.Text`
 
 export const Gratters = styled.Text`
   font-size: 16;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: justify;
   color: ${tealish};
   margin: 10px;

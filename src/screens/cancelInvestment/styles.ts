@@ -21,7 +21,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   margin-top: 16px;
   color: ${redTwo};
@@ -46,6 +46,6 @@ export const Bottom = styled.TouchableOpacity`
 export const BottomText = styled.Text`
   text-align: center;
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${(props) => props.color || white};
 `;

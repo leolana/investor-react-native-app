@@ -27,14 +27,14 @@ export const Header = styled.View`
 
 export const Title = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-left: 5px;
   flex: 1;
 `;
 
 export const ItemTitle = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-bottom: 5px;
 `;
 
@@ -64,6 +64,6 @@ export const Buttom = styled.TouchableOpacity`
 export const ButtomText = styled.Text`
     padding: 0 20px
     font-size: 13px;
-    font-family: HelveticaNeue-Bold;
+    font-family: OpenSans-Bold;
     color: ${white}
 `;

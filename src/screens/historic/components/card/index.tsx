@@ -112,7 +112,7 @@ export const CardHistoryComponent = (props) => {
           <Title> ID #{data.SolicitacaoId.IdOportunidade} </Title>
 
           <HelperArea>
-            <Text fontFamily={'HelveticaNeue-Medium'} width="178px" color={getStatusColor(status)}>
+            <Text fontFamily={'OpenSans-SemiBold'} width="178px" color={getStatusColor(status)}>
               {status}
             </Text>
 

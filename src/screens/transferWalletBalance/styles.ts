@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { white, greenTwo, grey66, greyF7, grey99, black } from '../../assets/colors';
 
@@ -31,7 +31,7 @@ export const ScrollView = styled.ScrollView``;
 
 export const ButtomText = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;
 
@@ -60,7 +60,7 @@ export const HeaderTitle = styled.Text`
 
 export const HeaderText = styled.Text`
   font-size: 26px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
   text-align: center;
 `;
@@ -77,7 +77,7 @@ export const CardPage = styled.View`
 
 export const Title = styled(Animated.Text)`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 16px;
 `;
@@ -99,7 +99,7 @@ export const InfoTitle = styled.Text`
 
 export const InfoText = styled.Text`
   font-size: 10px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   color: ${black};
 `;
@@ -114,7 +114,7 @@ export const AccountCard = styled(Animated.View)`
 
 export const AccountCardTitle = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 export const Divisor = styled.View`
   background: ${grey66};
@@ -124,7 +124,7 @@ export const Divisor = styled.View`
 
 export const ItemTitle = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${black};
 `;
 

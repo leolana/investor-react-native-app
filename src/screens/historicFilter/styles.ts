@@ -36,7 +36,7 @@ export const Row = styled.View`
 
 export const Text = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${grey66};
 `;
 
@@ -58,6 +58,6 @@ export const Buttom = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   font-size: 13px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;

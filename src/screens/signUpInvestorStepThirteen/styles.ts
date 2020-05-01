@@ -4,7 +4,7 @@ import { white, tealish, greyDD, grey99, grey66 } from '../../assets/colors';
 
 export const Title = styled.Text`
   font-size: 22;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   marginbottom: 20px;
 `;
@@ -38,6 +38,6 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   color: ${white};
 `;

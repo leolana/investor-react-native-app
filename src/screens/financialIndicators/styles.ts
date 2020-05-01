@@ -10,11 +10,11 @@ export const ScrollView = styled.ScrollView`
 `;
 
 export const ItemText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 15px;
 `;
 export const InfoText = styled.Text`
   font-size: 10px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   margin-bottom: 32px;
 `;

@@ -22,13 +22,13 @@ export const ContentArea = styled.View`
 
 export const Title = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Text = styled.Text`
   font-size: 14px;
   color: ${(props) => props.color || grey66};
-  font-family: HelveticaNeue-Medium;
+  font-family: OpenSans-SemiBold;
 `;
 
 export const SafeAreaView = styled.SafeAreaView``;

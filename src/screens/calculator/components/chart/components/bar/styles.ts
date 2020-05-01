@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import { Animated } from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const ChartBar = styled(LinearGradient)`
   width: ${wp(35)};
@@ -23,12 +23,12 @@ export const BarContainer = styled(Animated.View)`
 
 export const ItemTitle = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
   font-size: 8px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;

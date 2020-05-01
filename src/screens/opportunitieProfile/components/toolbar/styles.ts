@@ -37,7 +37,7 @@ export const BottomToolbar = styled.View`
 
 export const ToolbarTitle = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const ToolbarText = styled.Text`
@@ -57,6 +57,6 @@ export const ToolbarButtom = styled.TouchableOpacity`
 
 export const ToolbarButtomText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;

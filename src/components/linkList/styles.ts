@@ -19,5 +19,5 @@ export const TouchableOpacity = styled.TouchableOpacity`
 
 export const LinkTitle = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;

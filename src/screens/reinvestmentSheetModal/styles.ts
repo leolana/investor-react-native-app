@@ -28,7 +28,7 @@ export const InfoText = styled.Text`
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${black};
 `;
 

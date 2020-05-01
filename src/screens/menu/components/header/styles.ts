@@ -31,7 +31,7 @@ export const Letter = styled.Text`
   text-align: center;
   font-size: 38px;
   color: ${white};
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Text = styled.Text`
@@ -42,5 +42,5 @@ export const Text = styled.Text`
   font-weight: ${(props) => props.fontWeight || 'normal'};
   font-size: ${(props) => props.fontSize || 16}px;
   color: ${white};
-  font-family: ${(props) => props.fontFamily || 'HelveticaNeue-Medium'};
+  font-family: ${(props) => props.fontFamily || 'OpenSans-SemiBold'};
 `;

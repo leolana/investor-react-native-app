@@ -25,7 +25,7 @@ export const Body = styled.View`
 
 export const Title = styled.Text`
   font-size: ${(props) => props.fontSize || '16'}px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${black55};
 `;
 
@@ -82,6 +82,6 @@ export const TouchableOpacity = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${(props) => props.color || white};
 `;

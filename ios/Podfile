@@ -37,7 +37,7 @@ target 'AppIouu' do
   pod 'Folly', :podspec => "#{rnPrefix}/third-party-podspecs/Folly.podspec"
 
     # Pods for AppIouu
-    pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+    pod 'BVLinearGradient', :path => '../node_modules/expo-linear-gradient'
     pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
     pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
     pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"

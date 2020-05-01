@@ -21,7 +21,7 @@ export const ScrollView = styled.ScrollView`
 `;
 
 export const ItemText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 15px;
 `;
 
@@ -61,7 +61,7 @@ export const TableText = styled.Text`
   ${(props) => {
     if (props.spotlight)
       return `
-                font-family: HelveticaNeue-Bold;
+                font-family: OpenSans-Bold;
                 width: 64px;
             
             `;
@@ -74,7 +74,7 @@ export const TableText = styled.Text`
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 16px;
 `;
 
@@ -99,6 +99,6 @@ export const Tabs = styled.View`
 
 export const TabText = styled.Text`
   font-size: 14px;
-  font-family: ${(props) => (props.selected ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.selected ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${(props) => (props.selected ? black : grey99)};
 `;

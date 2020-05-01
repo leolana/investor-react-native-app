@@ -10,14 +10,14 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 28px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 32px;
 `;
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   text-align: center;
 `;
 
@@ -33,6 +33,6 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   color: ${(props) => props.color || white};
 `;

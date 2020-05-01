@@ -20,19 +20,19 @@ export const IconArea = styled.View`
 `;
 
 export const TinyTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   margin-left: 16px;
 `;
 
 export const TinyText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 16px;
 `;
 

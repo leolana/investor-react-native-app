@@ -23,7 +23,7 @@ export const Touchable = styled.TouchableOpacity`
 `;
 
 export const Text = styled(Animated.Text)`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   margin-top: 5px;
 

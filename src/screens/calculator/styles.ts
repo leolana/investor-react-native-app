@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { grey70, greyF1, black, white } from '../../assets/colors';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const BackgroundGradiant = styled(LinearGradient)`
   height: 52px;
@@ -27,7 +27,7 @@ export const ScrollView = styled.ScrollView`
 
 export const Title = styled.Text`
   font-size: 22px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   margin-bottom: 16px;
 `;
 
@@ -39,7 +39,7 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
   font-size: 22px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${(props) => props.color || black};
   margin-bottom: 10px;
 `;

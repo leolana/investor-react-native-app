@@ -31,5 +31,5 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;

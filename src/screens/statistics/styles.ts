@@ -18,7 +18,7 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 22px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Card = styled.View`
@@ -30,12 +30,12 @@ export const Card = styled.View`
 export const ItemTitle = styled.Text`
   color: ${grey88};
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const ItemText = styled.Text`
   font-size: 20px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const Item = styled.View`

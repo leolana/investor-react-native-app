@@ -11,32 +11,32 @@ export const RetangleContent = styled.View`
 `;
 
 export const RetangleTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 17px;
   color: ${(props) => props.color || white};
 `;
 
 export const RetangleText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${(props) => props.color || white};
 `;
 
 export const RetangleTinyTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 12px;
   color: ${grey99};
 `;
 
 export const ItemDefaultText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 15px;
   color: ${black};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 export const ItemDefaultTitle = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   color: ${grey99};
 `;

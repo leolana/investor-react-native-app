@@ -19,7 +19,7 @@ export const SafeAreaView = styled.SafeAreaView`
 export const Title = styled.Text`
   margin: 32px 0;
   font-size: 20px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${grey66};
 `;
 
@@ -52,6 +52,6 @@ export const Bottom = styled.TouchableOpacity`
 export const BottomText = styled.Text`
   text-align: center;
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   color: ${(props) => props.color || grey66};
 `;

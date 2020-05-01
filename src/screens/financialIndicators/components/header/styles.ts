@@ -12,7 +12,7 @@ export const Item = styled.View`
 `;
 
 export const ItemTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${grey99};
   font-size: 10px;
 `;

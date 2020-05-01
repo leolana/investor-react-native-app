@@ -20,6 +20,6 @@ export const Buttom = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   color: ${white};
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 13px;
 `;

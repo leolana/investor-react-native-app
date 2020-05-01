@@ -15,14 +15,14 @@ export const Divisor = styled.View`
 `;
 
 export const ItemTitle = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${grey99};
   text-align: center;
 `;
 
 export const ItemText = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 22px;
   color: ${black};
   text-align: center;
@@ -36,7 +36,7 @@ export const Table = styled.View`
 `;
 
 export const TableText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   color: ${(props) => (props.bold ? black : grey99)};
 `;
@@ -51,7 +51,7 @@ export const TableRow = styled.View`
 `;
 
 export const TableSpotlightText = styled.Text`
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   font-size: 14px;
   color: ${lightBlue};
 `;

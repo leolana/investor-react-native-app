@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { white } from '../../assets/colors';
 

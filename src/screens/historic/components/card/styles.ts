@@ -31,7 +31,7 @@ export const Header = styled.View`
 
 export const Title = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
 `;
 
 export const HelperArea = styled.View`
@@ -47,7 +47,7 @@ export const ScoreArea = styled.View`
 export const Text = styled.Text`
   color: ${(props) => props.color || black};
   font-size: 14px;
-  font-family: ${(props) => props.fontFamily || 'HelveticaNeue-Bold'};
+  font-family: ${(props) => props.fontFamily || 'OpenSans-Bold'};
 `;
 
 export const Body = styled.View`

@@ -27,7 +27,7 @@ export const CardHeader = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 14px;
   flex: 1;
   margin-left: 5px;

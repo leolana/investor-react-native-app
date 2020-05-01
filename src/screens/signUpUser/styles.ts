@@ -22,7 +22,7 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   padding: 10px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${white};
 `;

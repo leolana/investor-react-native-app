@@ -15,7 +15,7 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   font-size: 16px;
 `;
 
@@ -27,14 +27,14 @@ export const ContentArea = styled.View`
 `;
 
 export const ItemDefaultText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 15px;
   color: ${black};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 export const ItemDefaultTitle = styled.Text`
-  font-family: ${(props) => (props.bold ? 'HelveticaNeue-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
   font-size: 12px;
   color: ${grey99};
 `;

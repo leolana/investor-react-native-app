@@ -8,12 +8,12 @@ export const Container = styled.View`
 
 export const ItemTitle = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;
 
 export const ItemText = styled.Text`
   font-size: 18px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;

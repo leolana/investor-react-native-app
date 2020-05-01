@@ -16,7 +16,7 @@ export const Text = styled.Text`
   font-weight: ${(props) => props.fontWeight || 'normal'};
   font-size: ${(props) => props.fontSize || 16}px;
   color: ${white};
-  font-family: ${(props) => props.fontFamily || 'HelveticaNeue-Medium'};
+  font-family: ${(props) => props.fontFamily || 'OpenSans-SemiBold'};
 `;
 
 export const NavigationItem = styled.TouchableOpacity`

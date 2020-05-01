@@ -4,7 +4,7 @@ import { grey88, greyDD } from '../../../../assets/colors';
 
 export const Title = styled.Text`
   font-size: 15px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   align-self: stretch;
 `;
 

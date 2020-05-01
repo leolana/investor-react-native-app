@@ -10,7 +10,7 @@ export const DatePickerStyled = styled(DatePickerIOS)`
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue-Medium;
+  font-family: OpenSans-SemiBold;
   text-align: right;
   padding: 10px;
 `;

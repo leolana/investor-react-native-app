@@ -26,7 +26,7 @@ export const WelcomeComponent = ( { navigation }) => {
 
   // states
 
-  const [ loading, setLoading ] = useState(true)
+  const [ loading, setLoading ] = useState(false)
 
   // vars
 
@@ -48,7 +48,7 @@ export const WelcomeComponent = ( { navigation }) => {
         
         <IButtom 
           title={'entrar'} 
-          onPress={ () => navigation.navigate('Login', { authenticated: false }) } 
+          onPress={ () => navigation.navigate('Login', { authenticated: true }) } 
         />
         <IButtom 
           title={'criar uma conta'} 

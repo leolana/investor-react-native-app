@@ -1,112 +1,100 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+
+import { ITextInput } from '../../components';
+
+import { Request, UrlLogin } from '../../services';
+
+import { storeData } from '../../utils';
 
 import {
-  ITextInput
-} from '../../components'
+	KeyboardAvoidingView,
+	Welcome,
+	Description,
+	Container,
+	Buttom,
+} from './style.js';
 
-import {
-  Request,
-  UrlLogin
-} from '../../services'
+import onInit from '../../store/reducers/init';
 
-import {
-  storeData
-} from '../../utils'
+export default (App = (props) => {
+	// props
 
-import { 
-  KeyboardAvoidingView, 
-  Welcome,
-  Description,
-  Container,
-  Buttom
-} from './style.js'
+	const { navigation } = props;
 
-import onInit from '../../store/reducers/init'
+	// states
 
-export default App = props => {
+	const [email, setEmail] = useState(null);
 
-  // props
+	const [password, setPassword] = useState(null);
 
-  const { navigation } = props
+	// vars
 
-  // states
+	const authenticated = navigation.getParam('authenticated', false);
 
-  const [email, setEmail] = useState(null)
+	// methods
 
-  const [password, setPassword] = useState(null)
+	const loginSuccessful = async (data) => {
+		await storeData('Authorization', data.Authorization);
 
-  // vars
+		const success = await onInit();
 
-  const authenticated = navigation.getParam('authenticated', false)
+		if (success) navigation.navigate('Opportunities');
+	};
 
-  // methods
+	const loginRequest = async (data) => {
+		const resp = await Request.POST({
+			url: UrlLogin,
+			data,
+			header: 'bearer',
+		});
 
-  const loginSuccessful = async data => {
+		if (resp.status === 200) loginSuccessful(resp.data);
+		else alert(resp.data.Msg);
+	};
 
-    await storeData('Authorization', data.Authorization)
+	const validateLogin = async () => {
+		if (email == null || password == null)
+			return alert('Email e senha não podem estar vazios.');
 
-    const success = await onInit()
+		const form = new FormData();
 
-    if(success) navigation.navigate('Opportunities')
+		form.append('email', email.trim());
 
-  }
+		form.append('password', password);
 
-  const loginRequest = async data => {
+		loginRequest(form);
+	};
 
-    const resp = await Request.POST( {url: UrlLogin, data, header: 'bearer'} )
-    
-    if (resp.status === 200) loginSuccessful(resp.data)
+	// effects
 
-    else alert(resp.data.Msg)
-  }
+	useEffect(() => {
+		if (!authenticated) return;
 
-  const validateLogin = async () => {
+		navigation.navigate('Opportunities');
+	}, [authenticated]);
 
-    if(email == null || password == null) return alert("Email e senha não podem estar vazios.")
+	// render
 
-    const form = new FormData()
+	return (
+		<KeyboardAvoidingView behavior="padding" enabled>
+			<Welcome> Boa tarde :) </Welcome>
 
-    form.append('email', email.trim())
+			<Description> Acesso sua conta </Description>
 
-    form.append('password', password)
+			<Container>
+				<ITextInput
+					title={'E-mail'}
+					onChangeText={(value) => setEmail(value)}
+				/>
 
-    loginRequest(form)
+				<ITextInput
+					title={'Senha'}
+					secureTextEntry={true}
+					onChangeText={(value) => setPassword(value)}
+				/>
 
-  }
-
-
-  // effects
-
-  useEffect( () => {
-
-    if(!authenticated) return
-
-    navigation.navigate('Opportunities')
-
-  }, [authenticated])
-
-  // render
-
-  
-  return ( 
-    <KeyboardAvoidingView behavior="padding" enabled>
-
-      <Welcome> Boa tarde :) </Welcome>
-
-      <Description> Acesso sua conta </Description>
-      
-      <Container>
-
-        <ITextInput title={ 'E-mail' } onChangeText={ value => setEmail(value) } />
-        
-        <ITextInput title={ 'Senha' } secureTextEntry={true} onChangeText={ value => setPassword(value) } />
-
-        <Buttom title="Entrar" onPress={ () => validateLogin() } />
-
-      </Container>
-      
-    </KeyboardAvoidingView>
-  )
-}
-
-
+				<Buttom title="Entrar" onPress={() => validateLogin()} />
+			</Container>
+		</KeyboardAvoidingView>
+	);
+});

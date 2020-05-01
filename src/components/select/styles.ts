@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 export const InputText = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;
 
 export const Text = styled.Text`
@@ -21,5 +21,5 @@ export const Text = styled.Text`
   margin-bottom: 5px;
   font-size: 12px;
   align-self: stretch;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;

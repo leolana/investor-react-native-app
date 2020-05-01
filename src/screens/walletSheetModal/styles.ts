@@ -32,7 +32,7 @@ export const Title = styled.Text`
 `;
 
 export const Text = styled.Text`
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   margin-bottom: ${(props) => props.marginBottom || 0}px;
   font-size: 12px;
 `;

@@ -32,7 +32,7 @@ export const Container = styled.View`
 
 export const Text = styled.Text`
     font-size: 14px
-    font-family: HelveticaNeue;
+    font-family: OpenSans;
     padding-left: 10px;
 
 `;

@@ -42,7 +42,7 @@ export const Table = styled.View`
 `;
 
 export const TableText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
   font-size: 12px;
   color: ${(props) => (props.bold ? black : grey99)};
 `;
@@ -77,7 +77,7 @@ export const Title = styled.Text`
 `;
 
 export const ItemText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
   font-size: 12px;
   width: ${(props) => props.width || 'auto'};
 `;
@@ -100,7 +100,7 @@ export const Item = styled.View`
 export const Text = styled.Text`
     font-size: 14px;
     color: ${grey99};
-    font-family: HelveticaNeue 
+    font-family: OpenSans 
     textDecorationLine: ${(props) => (props.underline ? 'underline' : 'none')};
 
 `;

@@ -37,6 +37,6 @@ export const Title = styled.Text`
 `;
 
 export const Text = styled.Text`
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   font-size: 16px;
 `;

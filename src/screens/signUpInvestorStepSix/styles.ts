@@ -29,7 +29,7 @@ export const Label = styled.Text`
   color: ${grey99};
   margin-bottom: 5px;
   font-size: 12px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;
 
 export const Container = styled.View`
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'HelveticaNeue',
+    fontFamily: 'OpenSans',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',

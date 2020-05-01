@@ -21,7 +21,7 @@ export const TextInput = styled(ITextInput)`
 
 export const InfoText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   color: ${grey99};
   margin-top: 16px;
 `;
@@ -48,6 +48,6 @@ export const Buttom = styled.TouchableOpacity`
 
 export const ButtomText = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   color: ${(props) => props.color || white};
 `;

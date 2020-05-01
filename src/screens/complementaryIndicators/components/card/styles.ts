@@ -60,7 +60,7 @@ export const Item = styled(LinearGradient)`
 export const InfoText = styled.Text`
   margin: 16px;
   font-size: 12px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;
 
 export const Circle = styled.View`

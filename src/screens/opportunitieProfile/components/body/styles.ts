@@ -115,7 +115,7 @@ export const ProgressArea = styled.View`
 `;
 
 export const ProgressTitle = styled.Text`
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   font-size: 14px;
   color: ${grey99};
 `;
@@ -166,7 +166,7 @@ export const ItemTitleInvestor = styled.Text`
 `;
 
 export const ItemTextInvestor = styled.Text`
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   font-size: 18px;
   color: ${black};
 `;

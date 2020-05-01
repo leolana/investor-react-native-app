@@ -21,7 +21,7 @@ export const Tab = styled.TouchableOpacity`
 
 export const Text = styled.Text`
   font-size: 12px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   color: ${(props) => (props.selected ? tealish : dusk)};
   text-align: center;
 `;

@@ -9,7 +9,7 @@ export const Text = styled.Text`
   margin-bottom: 5px;
   font-size: 12px;
   align-self: stretch;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;
 
 const focus = ({ focus, error }) => {
@@ -36,13 +36,13 @@ export const TextInput = styled.TextInput`
   padding-right: 10px;
   border-width: 1px;
   border-radius: 5px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   height: 40px;
   font-size: 16px;
   align-self: stretch;
 `;
 export const ErrorMessage = styled.Text`
-    font-family: HelveticaNeue;
+    font-family: OpenSans;
     font-size: 14px;
     color: ${redTwo}
     text-align: left;

@@ -16,7 +16,7 @@ export const Title = styled(Animated.Text)`
 
 export const Text = styled(Animated.Text)`
   font-size: 16px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   text-align: center;
   color: ${grey66};
   margin-bottom: 16px;

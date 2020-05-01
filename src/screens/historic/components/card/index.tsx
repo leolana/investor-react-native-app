@@ -126,40 +126,42 @@ export const CardHistoryComponent = (props) => {
         <Body>
           <Text>
             {' '}
-            Nome da empresa: <Text fontFamily={'HelveticaNeue'}> {data.SolicitacaoId.Empresa.NomeFantasia} </Text>{' '}
+            Nome da empresa: <Text fontFamily={'OpenSans'}> {data.SolicitacaoId.Empresa.NomeFantasia} </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Participação: <Text fontFamily={'HelveticaNeue'}> {formatMoney(data.Valor)} </Text>{' '}
+            Participação: <Text fontFamily={'OpenSans'}> {formatMoney(data.Valor)} </Text>{' '}
           </Text>
           <Text>
             {' '}
             Tipo de empréstimo:{' '}
-            <Text fontFamily={'HelveticaNeue'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </Text>{' '}
+            <Text fontFamily={'OpenSans'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </Text>{' '}
           </Text>
           <Text>
             {' '}
             Taxa de juros:{' '}
-            <Text fontFamily={'HelveticaNeue'}> {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m. </Text>{' '}
+            <Text fontFamily={'OpenSans'}> {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m. </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Retorno:{' '}
-            <Text fontFamily={'HelveticaNeue'}> {formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a. </Text>{' '}
+            Retorno: <Text fontFamily={'OpenSans'}>
+              {' '}
+              {formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a.{' '}
+            </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Duração: <Text fontFamily={'HelveticaNeue'}> {data.SolicitacaoId.Prazo} Meses </Text>{' '}
+            Duração: <Text fontFamily={'OpenSans'}> {data.SolicitacaoId.Prazo} Meses </Text>{' '}
           </Text>
         </Body>
 
         <Text>
           {' '}
-          Data da solicitação: <Text fontFamily={'HelveticaNeue'}> {formatDate(data.SolicitacaoId.Created)} </Text>{' '}
+          Data da solicitação: <Text fontFamily={'OpenSans'}> {formatDate(data.SolicitacaoId.Created)} </Text>{' '}
         </Text>
         <Text>
           {' '}
-          Data do investimento: <Text fontFamily={'HelveticaNeue'}> {formatDate(data.Created)} </Text>{' '}
+          Data do investimento: <Text fontFamily={'OpenSans'}> {formatDate(data.Created)} </Text>{' '}
         </Text>
       </Card>
     </TouchableWithoutFeedback>

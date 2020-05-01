@@ -17,7 +17,7 @@ export const Title = styled.Text`
 
 export const Text = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   text-align: center;
   color: ${grey66};
   margin-top: 16px;

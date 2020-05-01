@@ -15,6 +15,6 @@ export const ItemText = styled.Text`
 `;
 export const InfoText = styled.Text`
   font-size: 10px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
   margin-bottom: 32px;
 `;

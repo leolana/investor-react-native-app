@@ -42,7 +42,7 @@ export const Text = styled.Text`
 
 export const FieldText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   color: ${grey66};
 `;
 

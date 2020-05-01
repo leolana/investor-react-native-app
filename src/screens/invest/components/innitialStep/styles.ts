@@ -16,7 +16,7 @@ export const Retangle = styled.View`
 export const Text = styled.Text`
   flex: 0.96;
   font-size: 14px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
   color: ${(props) => props.color || black};
 `;
 
@@ -58,7 +58,7 @@ export const ProgressArea = styled.View`
 `;
 
 export const ProgressTitle = styled.Text`
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   font-size: 14px;
   color: ${grey99};
 `;
@@ -102,7 +102,7 @@ export const Progress = styled.View`
 
 export const TextInfo = styled.Text`
   font-size: 10px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'HelveticaNeue')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
   color: ${(props) => props.color || black};
   text-align: ${(props) => props.textAlign || 'left'};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
@@ -126,7 +126,7 @@ export const InputArea = styled.TouchableOpacity`
 
 export const InputValue = styled.Text`
   font-size: 16px;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   text-align: center;
   color: ${grey99};
 `;

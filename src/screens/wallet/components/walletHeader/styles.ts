@@ -9,7 +9,7 @@ export const Item = styled.View`
 
 export const ItemTitle = styled.Text`
     font-size: 14px;
-    font-family: HelveticaNeue;
+    font-family: OpenSans;
     color: ${white}
     text-align: center;
 `;

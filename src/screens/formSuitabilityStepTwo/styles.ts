@@ -26,7 +26,7 @@ export const Question = styled.Text`
 `;
 export const Ponderations = styled.Text`
   font-size: 14;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   margin-bottom: 5;
   color: ${grey33};
   width: 80%;
@@ -49,7 +49,7 @@ export const OptionsBox = styled.View`
 
 export const Options = styled.Text`
   font-size: 14;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
   text-align: justify;
   color: ${grey99};
   width: 90%;

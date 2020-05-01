@@ -26,7 +26,7 @@ export const Label = styled.Text`
   margin-bottom: 5px;
   font-size: 12px;
   align-self: stretch;
-  font-family: HelveticaNeue;
+  font-family: OpenSans;
 `;
 
 const styles = StyleSheet.create({
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'HelveticaNeue',
+    fontFamily: 'OpenSans',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',

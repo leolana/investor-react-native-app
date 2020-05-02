@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FlatList } from 'react-native';
 
@@ -35,7 +35,7 @@ export const HistoricComponent = (props) => {
     return list;
   };
 
-  const getHistoricList = useCallback(async () => {
+  const getHistoricList = async () => {
     if (loading) return;
 
     setLoading(true);
@@ -46,49 +46,37 @@ export const HistoricComponent = (props) => {
     else alert('Ocorreu um erro ao pegar o histórico de investimento. Tente novamente mais tarde.');
 
     setLoading(false);
-  }, [loading]);
+  };
 
-  const applyTypeFilter = useCallback(
-    (list) => {
-      const { type } = filter;
+  const applyTypeFilter = (list) => {
+    const { type } = filter;
 
-      return list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo == type.value);
-    },
-    [filter],
-  );
+    return list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo == type.value);
+  };
 
-  const applyDateFromFilter = useCallback(
-    (list) => {
-      const { dateFrom } = filter;
+  const applyDateFromFilter = (list) => {
+    const { dateFrom } = filter;
 
-      const date = dateFrom.toISOString();
+    const date = dateFrom.toISOString();
 
-      return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
-    },
-    [filter],
-  );
+    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+  };
 
-  const applyDateToFilter = useCallback(
-    (list) => {
-      const { dateTo } = filter;
+  const applyDateToFilter = (list) => {
+    const { dateTo } = filter;
 
-      const date = dateTo.toISOString();
+    const date = dateTo.toISOString();
 
-      return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
-    },
-    [filter],
-  );
+    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+  };
 
-  const applyScoreFilter = useCallback(
-    (list) => {
-      const { score } = filter;
+  const applyScoreFilter = (list) => {
+    const { score } = filter;
 
-      return (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score == score.value));
-    },
-    [filter],
-  );
+    return (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score == score.value));
+  };
 
-  const applyFilter = useCallback(async () => {
+  const applyFilter = async () => {
     if (loading) return;
 
     setLoading(true);
@@ -113,7 +101,7 @@ export const HistoricComponent = (props) => {
     if (score.value != '') list = applyScoreFilter(list);
 
     setHistoricList(list.reverse());
-  }, [applyDateFromFilter, applyDateToFilter, applyScoreFilter, applyTypeFilter, filter, loading]);
+  };
 
   const renderHistoryCard = (data) => <CardHistory data={data.item} />;
 
@@ -123,7 +111,7 @@ export const HistoricComponent = (props) => {
     if (filter === null) return;
 
     applyFilter();
-  }, [applyFilter, filter]);
+  }, [filter]);
 
   useEffect(() => {
     async function fetchData() {
@@ -131,7 +119,7 @@ export const HistoricComponent = (props) => {
     }
 
     fetchData();
-  }, [getHistoricList]);
+  }, []);
 
   // render
 

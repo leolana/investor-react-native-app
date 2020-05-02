@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Card, ContentArea, Title, Text, SafeAreaView } from './styles';
 
@@ -27,11 +27,11 @@ export const PageNotifications = (props) => {
     setNotifications(data);
   };
 
-  const loadNotifications = useCallback(() => {
+  const loadNotifications = () => {
     Request.GET({ url: UrlNotificacoesPegar(userId) }).then((resp) => getNotificationsWithoutLoans(resp.data));
-  }, [userId]);
+  };
 
-  useEffect(() => loadNotifications(), [loadNotifications]);
+  useEffect(() => loadNotifications(), []);
 
   const getIconChild = (type = 'null') => {
     const obj = {

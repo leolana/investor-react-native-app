@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Card, Header, IconArrowRight, Title, Text, Body, Circle, HelperArea, ScoreArea } from './styles';
 
@@ -25,7 +25,7 @@ export const CardHistoryComponent = (props) => {
 
   // methdos
 
-  const getStatus = useCallback(() => {
+  const getStatus = () => {
     const {
       Valor,
       ValorCaptado,
@@ -76,7 +76,7 @@ export const CardHistoryComponent = (props) => {
       (BoletosAtrasados == undefined || BoletosAtrasados == 0)
     )
       return 'Empréstimo Ativo';
-  }, [data.AssinouCCB, data.SolicitacaoId]);
+  };
 
   const getStatusColor = (status) => {
     const statusColors = {
@@ -98,7 +98,7 @@ export const CardHistoryComponent = (props) => {
     const status = getStatus();
 
     setStatus(status);
-  }, [getStatus]);
+  }, []);
 
   // render
 

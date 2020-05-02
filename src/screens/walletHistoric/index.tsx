@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -20,7 +20,7 @@ export const WalletHistoricPopup = (props) => {
 
   // Methods
 
-  const loadOperacoes = useCallback(async () => {
+  const loadOperacoes = async () => {
     if (loading) return;
 
     setLoading(true);
@@ -32,7 +32,7 @@ export const WalletHistoricPopup = (props) => {
     setLoading(false);
 
     if (resp.status === 200) setOperacoes([...operacoes, ...resp.data.Operacoes]);
-  }, [loading, operacoes, page]);
+  };
 
   const renderItem = ({ item }) => <WalletCard data={item} />;
 
@@ -54,7 +54,7 @@ export const WalletHistoricPopup = (props) => {
     }
 
     fetchData();
-  }, [loadOperacoes]);
+  }, []);
 
   // Render
 

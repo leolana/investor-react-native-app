@@ -68,7 +68,7 @@ export const ReinvestmentSheetModal = (props) => {
     }
 
     dispatch(setInputError(errorData));
-  }, [data.value, data.walletBalance, dispatch, onValueChange, reinvestmentValue]);
+  }, [data.value, data.walletBalance, onValueChange, reinvestmentValue]);
 
   // render
 

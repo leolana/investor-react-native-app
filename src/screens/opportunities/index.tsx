@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Request, UrlListaOportunidades } from '../../services';
 
@@ -10,7 +10,7 @@ import { OpportunitiesCard } from './components';
 
 import { MessageBox } from '../../components';
 
-export const PageOpportunities = (props) => {
+export const PageOpportunities: React.FC = (props) => {
   // props
 
   const { navigation } = props;
@@ -31,7 +31,7 @@ export const PageOpportunities = (props) => {
 
   // methods
 
-  const loadOpportunities = useCallback(async () => {
+  const loadOpportunities = async () => {
     if (page > pageTotal) return;
 
     if (loading) return;
@@ -53,7 +53,7 @@ export const PageOpportunities = (props) => {
     }
 
     setLoading(false);
-  }, [filter, loading, navigation, opportunities, page, pageTotal]);
+  };
 
   const renderItem = (item) => <OpportunitiesCard data={item} />;
 
@@ -76,10 +76,12 @@ export const PageOpportunities = (props) => {
   }, [filter]);
 
   useEffect(() => {
-    if (opportunities.length > 0) return;
+    if (opportunities.length > 0) return Promise.resolve(null);
 
-    loadOpportunities();
-  }, [loadOpportunities, opportunities]);
+    return async (): Promise<void> => {
+      await loadOpportunities();
+    };
+  }, [opportunities]);
 
   // render
 

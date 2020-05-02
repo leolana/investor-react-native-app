@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ButtomText } from '../../styles';
 
@@ -46,26 +46,23 @@ export const CardConfirmComponent = (props) => {
       useNativeDriver: true,
     });
 
-  const startAnimation = useCallback(
-    (toValue) => {
-      const title = createAnimation(translate.title, toValue, 300);
-      const text = createAnimation(translate.text, toValue, 400);
-      const content = createAnimation(translate.content, toValue, 500);
-      const info = createAnimation(translate.info, toValue, 600);
-      const input = createAnimation(translate.input, toValue, 700);
+  const startAnimation = (toValue) => {
+    const title = createAnimation(translate.title, toValue, 300);
+    const text = createAnimation(translate.text, toValue, 400);
+    const content = createAnimation(translate.content, toValue, 500);
+    const info = createAnimation(translate.info, toValue, 600);
+    const input = createAnimation(translate.input, toValue, 700);
 
-      const fade = Animated.timing(opacity, {
-        toValue: opacity._value === 0 ? 1 : 0,
-        duration: 1000,
-        delay: 100,
-        Easing: Easing.circle,
-        useNativeDriver: true,
-      });
+    const fade = Animated.timing(opacity, {
+      toValue: opacity._value === 0 ? 1 : 0,
+      duration: 1000,
+      delay: 100,
+      Easing: Easing.circle,
+      useNativeDriver: true,
+    });
 
-      Animated.parallel([title, text, content, info, input, fade]).start();
-    },
-    [opacity, translate.content, translate.info, translate.input, translate.text, translate.title],
-  );
+    Animated.parallel([title, text, content, info, input, fade]).start();
+  };
 
   const setAnimatedStyle = (target) => ({
     transform: [
@@ -77,7 +74,7 @@ export const CardConfirmComponent = (props) => {
 
   useEffect(() => {
     startAnimation(0.5);
-  }, [index, startAnimation]);
+  }, [index]);
 
   // Render
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { SafeAreaView } from './styles';
 
@@ -39,7 +39,7 @@ export const CCBsListComponent = (props) => {
     });
   };
 
-  const getCCBList = useCallback(async () => {
+  const getCCBList = async () => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
     if (resp.status === 200) {
@@ -49,7 +49,7 @@ export const CCBsListComponent = (props) => {
 
       setList(list);
     } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }, []);
+  };
 
   // effects
 
@@ -59,7 +59,7 @@ export const CCBsListComponent = (props) => {
     }
 
     fetchData();
-  }, [getCCBList]);
+  }, []);
 
   // render
 

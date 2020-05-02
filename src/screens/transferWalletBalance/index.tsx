@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -41,7 +41,7 @@ export const TransferWalletBalancePage = (props) => {
     }
   };
 
-  const getBankData = useCallback(async () => {
+  const getBankData = async () => {
     const resp = await Request.GET({ url: UrlInvPegar(accountData.Email), header: 'bearer' });
 
     if (resp.status === 200) {
@@ -50,9 +50,9 @@ export const TransferWalletBalancePage = (props) => {
         setInvestorId(resp.data._id);
       }
     }
-  }, [accountData.Email]);
+  };
 
-  const getBankName = useCallback(async () => {
+  const getBankName = async () => {
     const resp = await Request.GET({ url: UrlCarteiraBancoPegar(bankData.CodigoBanco) });
 
     if (resp.status === 200) {
@@ -62,7 +62,7 @@ export const TransferWalletBalancePage = (props) => {
 
       setBankData({ ...bankData, formattedCodigoBanco: name });
     }
-  }, [bankData]);
+  };
 
   const handleCard = () => {
     if (index === 0)
@@ -101,7 +101,7 @@ export const TransferWalletBalancePage = (props) => {
     }
 
     fetchData();
-  }, [getBankData]);
+  }, []);
 
   useEffect(() => {
     if (bankData === null || bankData.formattedCodigoBanco !== undefined) return;
@@ -111,7 +111,7 @@ export const TransferWalletBalancePage = (props) => {
     }
 
     fetchData();
-  }, [bankData, getBankName]);
+  }, [bankData]);
 
   useEffect(() => {
     if (bankData !== null && walletBalance !== null) setLoading(false);

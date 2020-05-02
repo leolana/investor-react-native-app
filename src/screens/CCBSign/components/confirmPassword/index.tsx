@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Bottom, BottomText, InfoText, TextInput } from './styles';
 
@@ -29,7 +29,7 @@ export const ConfirmPasswordComponent = (props) => {
 
   // methods
 
-  const notifyError = useCallback((id, message) => dispatch(setInputError({ id, message })), [dispatch]);
+  const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
   const signCCB = async () => {
     console.log(data);
@@ -61,7 +61,7 @@ export const ConfirmPasswordComponent = (props) => {
 
   useEffect(() => {
     if (password === null) notifyError('password', '');
-  }, [notifyError, password]);
+  }, [password]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import {
   SafeAreaView,
@@ -46,8 +46,7 @@ export const CalculatorComponent = (props) => {
 
   const tabs = ['IOUU', 'Poupança', 'CDB', 'Tesouro Direto'];
 
-  const loans = useRef();
-  const yearString = ['um', 'dois', 'três', 'quatro', 'cinco'];
+  const loans = useRef([]);
 
   const rendimento = useRef({
     Tesouro: [],
@@ -55,6 +54,8 @@ export const CalculatorComponent = (props) => {
     CDB: [],
     IOUU: [],
   });
+
+  const yearString = ['um', 'dois', 'três', 'quatro', 'cinco'];
 
   const getTaxes = async () => {
     const resp = await Request.GET({ url: UrlTaxasPegar });
@@ -126,7 +127,7 @@ export const CalculatorComponent = (props) => {
     return -result;
   };
 
-  const IPMT = useCallback((rate, period, periods, present, future, type) => {
+  const IPMT = (rate, period, periods, present, future, type) => {
     // Credits: algorithm inspired by Apache OpenOffice
 
     // Initialize type
@@ -166,21 +167,18 @@ export const CalculatorComponent = (props) => {
 
     // Return interest
     return interest * rate;
-  }, []);
+  };
 
-  const calcularJuros = useCallback(
-    (prazo, taxa) => {
-      let juros = 0;
+  const calcularJuros = (prazo, taxa) => {
+    let juros = 0;
 
-      for (let i = 0; i < loans.current.length; i++) {
-        juros += -IPMT(taxa / 100, loans.current[i].parcela, prazo, loans.current[i].valor);
-        loans.current[i].parcela++;
-      }
+    for (let i = 0; i < loans.current.length; i++) {
+      juros += -IPMT(taxa / 100, loans.current[i].parcela, prazo, loans.current[i].valor);
+      loans.current[i].parcela++;
+    }
 
-      return juros;
-    },
-    [IPMT, loans],
-  );
+    return juros;
+  };
 
   const onDataChange = (value, year) => {
     setValue(value);
@@ -188,46 +186,37 @@ export const CalculatorComponent = (props) => {
     setYear(year);
   };
 
-  const popularTesouro = useCallback(
-    (i) => {
-      const ultimoIndice = rendimento.current.Tesouro[rendimento.current.Tesouro.length - 1];
+  const popularTesouro = (i) => {
+    const ultimoIndice = rendimento.current.Tesouro[rendimento.current.Tesouro.length - 1];
 
-      const taxa = taxes[1].valores[i].valorTaxa;
+    const taxa = taxes[1].valores[i].valorTaxa;
 
-      const valorTesouro = calculoInvestimento(ultimoIndice, taxa, 1);
+    const valorTesouro = calculoInvestimento(ultimoIndice, taxa, 1);
 
-      rendimento.current.Tesouro.push(valorTesouro);
-    },
-    [taxes],
-  );
+    rendimento.current.Tesouro.push(valorTesouro);
+  };
 
-  const popularCDB = useCallback(
-    (i) => {
-      const ultimoIndice = rendimento.current.CDB[rendimento.current.CDB.length - 1];
+  const popularCDB = (i) => {
+    const ultimoIndice = rendimento.current.CDB[rendimento.current.CDB.length - 1];
 
-      const taxa = taxes[1].valores[i].valorTaxa;
+    const taxa = taxes[1].valores[i].valorTaxa;
 
-      const valorCDB = calculoInvestimento(ultimoIndice, taxa, 1.1);
+    const valorCDB = calculoInvestimento(ultimoIndice, taxa, 1.1);
 
-      rendimento.current.CDB.push(valorCDB);
-    },
-    [taxes],
-  );
+    rendimento.current.CDB.push(valorCDB);
+  };
 
-  const popularPoupanca = useCallback(
-    (i) => {
-      const ultimoIndice = rendimento.current.Poupanca[rendimento.current.Poupanca.length - 1];
+  const popularPoupanca = (i) => {
+    const ultimoIndice = rendimento.current.Poupanca[rendimento.current.Poupanca.length - 1];
 
-      const taxa = taxes[0].valores[i].valorTaxa;
+    const taxa = taxes[0].valores[i].valorTaxa;
 
-      console.log(taxa);
+    console.log(taxa);
 
-      const valorPoupanca = calculoInvestimento(ultimoIndice, taxa, 1);
+    const valorPoupanca = calculoInvestimento(ultimoIndice, taxa, 1);
 
-      rendimento.current.Poupanca.push(valorPoupanca);
-    },
-    [taxes],
-  );
+    rendimento.current.Poupanca.push(valorPoupanca);
+  };
 
   const getKey = (name) => {
     const obj = {
@@ -240,105 +229,90 @@ export const CalculatorComponent = (props) => {
     return obj[name];
   };
 
-  const getComparationValue = useCallback(
-    (key) => {
-      const values = data[key];
+  const getComparationValue = (key) => {
+    const values = data[key];
 
-      return values[values.length - 1];
-    },
-    [data],
-  );
+    return values[values.length - 1];
+  };
 
-  const calcComparationValue = useCallback(() => {
+  const calcComparationValue = () => {
     const key = getKey(tabName);
 
     const val = getComparationValue(key);
 
     setComparationValue(val);
-  }, [getComparationValue, tabName]);
+  };
 
-  const gerarRendimentoConcorrencia = useCallback(
-    (prazo) => {
-      for (let i = prazo - 2; i >= 0; i--) {
-        popularTesouro(i);
+  const gerarRendimentoConcorrencia = (prazo) => {
+    for (let i = prazo - 2; i >= 0; i--) {
+      popularTesouro(i);
 
-        popularCDB(i);
+      popularCDB(i);
 
-        popularPoupanca(i);
+      popularPoupanca(i);
+    }
+  };
+
+  const iniciarVetoresDeRendimentoConcorrencia = (valor, prazo) => {
+    rendimento.current = {
+      Tesouro: [],
+      Poupanca: [],
+      CDB: [],
+      IOUU: [],
+    };
+
+    loans.current = [{ valor: valor, parcela: 1 }];
+
+    const { valorTaxa } = taxes[1].valores[prazo];
+
+    rendimento.current.Tesouro.push(calculoInvestimento(valor, valorTaxa, 1));
+
+    rendimento.current.CDB.push(calculoInvestimento(valor, valorTaxa, 1.1));
+
+    rendimento.current.Poupanca.push(calculoInvestimento(valor, taxes[0].valores[prazo].valorTaxa, 1));
+
+    gerarRendimentoConcorrencia(prazo);
+  };
+
+  const gerarDadosIOUU = (prazo, value) => {
+    let jurosTotal = 0,
+      jurosA = 0,
+      total = parseFloat(value);
+
+    for (let i = 0; i < prazo; i++) {
+      const juros = calcularJuros(prazo + 1, taxes[2].ultimaTaxaMensal);
+
+      jurosTotal += juros;
+      jurosA += juros;
+
+      if (jurosA > 500) {
+        total += 500;
+        jurosA -= 500;
+        jurosTotal -= 500;
+
+        const inicio = {
+          valor: 500,
+          parcela: 1,
+        };
+
+        loans.current.push(inicio);
       }
-    },
-    [popularCDB, popularPoupanca, popularTesouro],
-  );
 
-  const iniciarVetoresDeRendimentoConcorrencia = useCallback(
-    (valor, prazo) => {
-      rendimento.current = {
-        Tesouro: [],
-        Poupanca: [],
-        CDB: [],
-        IOUU: [],
-      };
+      rendimento.IOUU = [...rendimento.current.IOUU, (total + jurosTotal).toFixed(2)];
+    }
+  };
 
-      loans.current = [{ valor: valor, parcela: 1 }];
+  const generateData = (valor, prazo) => {
+    iniciarVetoresDeRendimentoConcorrencia(valor, prazo);
 
-      const { valorTaxa } = taxes[1].valores[prazo];
+    gerarDadosIOUU(prazo, valor);
 
-      rendimento.current.Tesouro.push(calculoInvestimento(valor, valorTaxa, 1));
+    setIouuValue(rendimento.current.IOUU[rendimento.IOUU.length - 1]);
 
-      rendimento.current.CDB.push(calculoInvestimento(valor, valorTaxa, 1.1));
+    console.log(rendimento.current);
 
-      rendimento.current.Poupanca.push(calculoInvestimento(valor, taxes[0].valores[prazo].valorTaxa, 1));
-
-      gerarRendimentoConcorrencia(prazo);
-    },
-    [gerarRendimentoConcorrencia, taxes],
-  );
-
-  const gerarDadosIOUU = useCallback(
-    (prazo, value) => {
-      let jurosTotal = 0,
-        jurosA = 0,
-        total = parseFloat(value);
-
-      for (let i = 0; i < prazo; i++) {
-        const juros = calcularJuros(prazo + 1, taxes[2].ultimaTaxaMensal);
-
-        jurosTotal += juros;
-        jurosA += juros;
-
-        if (jurosA > 500) {
-          total += 500;
-          jurosA -= 500;
-          jurosTotal -= 500;
-
-          const inicio = {
-            valor: 500,
-            parcela: 1,
-          };
-
-          loans.current.push(inicio);
-        }
-
-        rendimento.IOUU = [...rendimento.current.IOUU, (total + jurosTotal).toFixed(2)];
-      }
-    },
-    [calcularJuros, loans, taxes],
-  );
-
-  const generateData = useCallback(
-    (valor, prazo) => {
-      iniciarVetoresDeRendimentoConcorrencia(valor, prazo);
-
-      gerarDadosIOUU(prazo, valor);
-
-      setIouuValue(rendimento.current.IOUU[rendimento.IOUU.length - 1]);
-
-      console.log(rendimento.current);
-
-      setData(rendimento.current);
-    },
-    [gerarDadosIOUU, iniciarVetoresDeRendimentoConcorrencia, rendimento],
-  );
+    setData(rendimento.current);
+  };
 
   const calculate = () => {
     setSimulate(true);
@@ -356,7 +330,7 @@ export const CalculatorComponent = (props) => {
 
   useEffect(() => {
     calcComparationValue();
-  }, [calcComparationValue, tabName]);
+  }, [tabName]);
 
   useEffect(() => {
     if (taxes === null) return;
@@ -364,7 +338,7 @@ export const CalculatorComponent = (props) => {
     generateData(value, year * 12 - 1);
 
     calcComparationValue();
-  }, [calcComparationValue, generateData, taxes, value, year]);
+  }, [taxes, value, year]);
 
   return (
     <SafeAreaView>

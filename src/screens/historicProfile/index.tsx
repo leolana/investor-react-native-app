@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   SafeAreaView,
@@ -61,12 +61,12 @@ export const HistoricProfileComponent = (props) => {
 
   // methods
 
-  const getInvestmentReservation = useCallback(async () => {
+  const getInvestmentReservation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
 
     if (resp.status === 200) setReserve(resp.data);
     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }, [data._id]);
+  };
 
   // useeffects
 
@@ -78,7 +78,7 @@ export const HistoricProfileComponent = (props) => {
     fetchData();
 
     navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` });
-  }, [data.SolicitacaoId.IdOportunidade, getInvestmentReservation, navigation]);
+  }, [data.SolicitacaoId.IdOportunidade, navigation]);
 
   // render
 

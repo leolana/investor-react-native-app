@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Container, Background, ReceiptArea, ReceiptBody, ReceiptBorder, SafeAreaView } from './styles';
 
@@ -21,7 +21,7 @@ export const WalletReceiptPage = (props) => {
 
   // Methods
 
-  const getDetails = useCallback(async () => {
+  const getDetails = async () => {
     const resp = await Request.GET({ url: UrlCarteiraPegarDetalhesOperacao(id), header: 'bearer' });
 
     console.log(resp, id);
@@ -29,7 +29,7 @@ export const WalletReceiptPage = (props) => {
     if (resp.status === 200) {
       setOperationsDetails(resp.data);
     }
-  }, [id]);
+  };
 
   // Effects
 
@@ -39,7 +39,7 @@ export const WalletReceiptPage = (props) => {
     }
 
     fetchData();
-  }, [getDetails]);
+  }, []);
 
   return (
     <Container>

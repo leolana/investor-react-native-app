@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Container, Text, SafeArea } from './styles';
 
@@ -89,19 +89,14 @@ export const ToastView = (props) => {
     );
   };
 
-  const baseAnimation = useCallback(
-    (toValue, duration, delay) => {
-      return Animated.timing(opacity, {
-        toValue,
-        duration,
-        delay,
-        ease: Easing.ease,
-      });
-    },
-    [opacity],
-  );
-
-  // Effects
+  const baseAnimation = (toValue, duration, delay) => {
+    return Animated.timing(opacity, {
+      toValue,
+      duration,
+      delay,
+      ease: Easing.ease,
+    });
+  };
 
   useEffect(() => {
     if (toastParams === undefined || toastParams === null) return;
@@ -114,7 +109,7 @@ export const ToastView = (props) => {
     const hide = baseAnimation(0, duration, 2000);
 
     Animated.sequence([show, hide]).start();
-  }, [baseAnimation, isVisible, toastParams]);
+  }, [isVisible, toastParams]);
 
   // render
 

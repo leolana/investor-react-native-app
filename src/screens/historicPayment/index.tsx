@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { SafeAreaView, Table, Row, Colunm, Circle, Text, Header, TableText, ScrollView } from './styles';
 
@@ -27,7 +27,7 @@ export const HistoricPaymentComponent = (props) => {
 
   // methods
 
-  const getAlongamento = useCallback(async () => {
+  const getAlongamento = async () => {
     const resp = await Request.GET({ url: UrlTabelaValoresInvestidores(data.SolicitacaoId._id, data._id) });
 
     if (resp.status === 200) {
@@ -35,30 +35,27 @@ export const HistoricPaymentComponent = (props) => {
 
       setFatura(arr);
     } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }, [data.SolicitacaoId._id, data._id]);
+  };
 
-  const getValorParcela = useCallback(
-    (item) => {
-      const { Alongamento } = data.SolicitacaoId;
+  const getValorParcela = (item) => {
+    const { Alongamento } = data.SolicitacaoId;
 
-      if (Alongamento) getAlongamento();
-      else {
-        const valorParcela = PMT(data.Valor, data.SolicitacaoId.RetornoBrutoMensal, data.SolicitacaoId.Prazo);
+    if (Alongamento) getAlongamento();
+    else {
+      const valorParcela = PMT(data.Valor, data.SolicitacaoId.RetornoBrutoMensal, data.SolicitacaoId.Prazo);
 
-        const arr = item.map((obj) => (obj = { ...obj, valorParcela }));
+      const arr = item.map((obj) => (obj = { ...obj, valorParcela }));
 
-        setFatura(arr);
-      }
-    },
-    [data.SolicitacaoId, data.Valor, getAlongamento],
-  );
+      setFatura(arr);
+    }
+  };
 
-  const getFaturas = useCallback(async () => {
+  const getFaturas = async () => {
     const resp = await Request.GET({ url: UrlTomadorFatura(data.SolicitacaoId._id) });
 
     if (resp.status === 200) getValorParcela(resp.data);
     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }, [data.SolicitacaoId._id, getValorParcela]);
+  };
 
   const handlerContent = () => {
     const { GerouBoletosPagamento } = data.SolicitacaoId;
@@ -68,15 +65,13 @@ export const HistoricPaymentComponent = (props) => {
       return faturas.map((item, index) => <Item showBorder={index !== faturas.length - 1} data={item} />);
   };
 
-  // useEffects
-
   useEffect(() => {
     async function fetchData() {
       await getFaturas();
     }
 
     fetchData();
-  }, [getFaturas]);
+  }, []);
 
   // render
 

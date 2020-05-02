@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { withNavigation } from 'react-navigation';
 
@@ -51,7 +51,7 @@ export const PaymentStepComponent = (props) => {
 
   // Methods
 
-  const getInvestorData = useCallback(async () => {
+  const getInvestorData = async () => {
     const resp = await Request.GET({ url: UrlInvPegar(email), header: 'bearer' });
 
     if (resp.status === 200) {
@@ -67,7 +67,7 @@ export const PaymentStepComponent = (props) => {
 
       setAddress(aux);
     }
-  }, [email]);
+  };
 
   // Effects
 
@@ -79,7 +79,7 @@ export const PaymentStepComponent = (props) => {
     fetchData();
 
     props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
-  }, [getInvestorData, props.navigation]);
+  }, [props.navigation]);
 
   // Render
 

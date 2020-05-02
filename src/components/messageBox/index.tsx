@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Title, Text, Container, Touchable, TouchableText, Margin } from './styles';
 
@@ -23,24 +23,24 @@ export const MessageBoxComponent = (props) => {
 
   // methods
 
-  const investorIsBlocked = useCallback(() => {
+  const investorIsBlocked = () => {
     if (accountData.Bloqueio === undefined || accountData.Bloqueio.FimBloqueio === undefined) return false;
 
     const { FimBloqueio } = accountData.Bloqueio;
 
     return new Date(FimBloqueio) > new Date();
-  }, [accountData]);
+  };
 
-  const investorIsApproved = useCallback(() => {
+  const investorIsApproved = () => {
     return accountData.Status === 'APROVADO';
-  }, [accountData]);
+  };
 
-  const handleMessage = useCallback(() => {
+  const handleMessage = () => {
     if (investorIsBlocked()) return `Perfil bloqueado, favor retornar após ${accountData.Bloqueio.Dias} dias.`;
     else if (!accountData.HasInvestor) return `Complete seu cadastro de investidor para investir.`;
     else if (!accountData.HasSuitability) return `Complete seu cadastro no suitability para investir.`;
     else if (!investorIsApproved) return `Agora estamos analisando suas informações e retornaremos em até 1 dia útil.`;
-  }, [investorIsBlocked, investorIsApproved, accountData]);
+  };
 
   const handleScreen = () => {
     if (!accountData.HasInvestor) return 'SignUpInvestorStepOne';
@@ -55,7 +55,7 @@ export const MessageBoxComponent = (props) => {
     const msg = handleMessage();
 
     setMessage(msg);
-  }, [accountData, handleMessage]);
+  }, [accountData]);
 
   // render
 

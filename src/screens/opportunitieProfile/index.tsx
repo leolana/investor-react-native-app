@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ScrollView, SafeAreaView, Img, Message, ImgContainer } from './styles';
 
@@ -28,13 +28,13 @@ export const OpportunitieProfileComponent = (props) => {
 
   // Methods
 
-  const itsFinished = useCallback(() => {
+  const itsFinished = () => {
     const { FimCaptacao, StatusAnalise } = data;
 
     return StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == 'encerrado';
-  }, [data]);
+  };
 
-  const getRemainingTime = useCallback(() => {
+  const getRemainingTime = () => {
     if (itsFinished()) return 0;
 
     const date = new Date(data.FimCaptacao);
@@ -43,9 +43,9 @@ export const OpportunitieProfileComponent = (props) => {
 
     if (miliSecs > 0) return Number.parseInt(miliSecs / 1000 / 60 / 60 / 24);
     else return 0;
-  }, [data.FimCaptacao, itsFinished]);
+  };
 
-  const investorHasInvestment = useCallback(() => {
+  const investorHasInvestment = () => {
     const statusDate = diffDaysForOpportunitie(solData.FimCaptacao);
 
     const status = solData.StatusAnalise;
@@ -57,9 +57,9 @@ export const OpportunitieProfileComponent = (props) => {
     if (isEnded && hasReserve) return true;
     else if (hasReserve) return true;
     else return false;
-  }, [reserveData, solData.FimCaptacao, solData.StatusAnalise]);
+  };
 
-  const investorIsAvailable = useCallback(() => {
+  const investorIsAvailable = () => {
     const hasInvestment = investorHasInvestment();
 
     const isAvailableToInvest = accountData.Status === 'APROVADO';
@@ -75,23 +75,23 @@ export const OpportunitieProfileComponent = (props) => {
 
       return false;
     }
-  }, [accountData.Status, getRemainingTime, investorHasInvestment]);
+  };
 
-  const getSolicitation = useCallback(async () => {
+  const getSolicitation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id) });
 
     if (resp.status === 200) {
       setSolData(resp.data);
     }
-  }, [data._id]);
+  };
 
-  const getInvestmentReserve = useCallback(async () => {
+  const getInvestmentReserve = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) });
 
     if (resp.status === 200) {
       setReverveData(resp.data);
     }
-  }, [data._id]);
+  };
 
   // Effects
 
@@ -102,7 +102,7 @@ export const OpportunitieProfileComponent = (props) => {
     }
 
     fetchData();
-  }, [getInvestmentReserve, getSolicitation]);
+  }, []);
 
   useEffect(() => {
     if (reserveData === 'null' && solData == null) return;
@@ -110,7 +110,7 @@ export const OpportunitieProfileComponent = (props) => {
     const available = investorIsAvailable();
 
     setIsAvailable(available);
-  }, [solData, reserveData, investorIsAvailable]);
+  }, [solData, reserveData]);
 
   useEffect(() => {
     if (reserveData === 'null' || solData === null) return;

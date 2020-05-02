@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { withNavigation } from 'react-navigation';
 
@@ -47,25 +47,22 @@ export const CardAddDateComponent = (props) => {
       useNativeDriver: true,
     });
 
-  const startAnimation = useCallback(
-    (toValue) => {
-      const title = createAnimation(translate.title, toValue, 300);
-      const text = createAnimation(translate.text, toValue, 400);
-      const input = createAnimation(translate.input, toValue, 500);
-      const info = createAnimation(translate.info, toValue, 600);
+  const startAnimation = (toValue) => {
+    const title = createAnimation(translate.title, toValue, 300);
+    const text = createAnimation(translate.text, toValue, 400);
+    const input = createAnimation(translate.input, toValue, 500);
+    const info = createAnimation(translate.info, toValue, 600);
 
-      const fade = Animated.timing(opacity, {
-        toValue: opacity._value === 0 ? 1 : 0,
-        duration: 1000,
-        delay: 100,
-        Easing: Easing.circle,
-        useNativeDriver: true,
-      });
+    const fade = Animated.timing(opacity, {
+      toValue: opacity._value === 0 ? 1 : 0,
+      duration: 1000,
+      delay: 100,
+      Easing: Easing.circle,
+      useNativeDriver: true,
+    });
 
-      Animated.parallel([title, text, input, info, fade]).start();
-    },
-    [opacity, translate.info, translate.input, translate.text, translate.title],
-  );
+    Animated.parallel([title, text, input, info, fade]).start();
+  };
 
   const setAnimatedStyle = (target) => ({
     transform: [
@@ -111,7 +108,7 @@ export const CardAddDateComponent = (props) => {
 
   useEffect(() => {
     startAnimation(0.5);
-  }, [index, startAnimation]);
+  }, [index]);
 
   useEffect(() => {
     if (new Date(date) > new Date()) setDateisValid(true);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { SafeAreaView, ScrollView, Content, Text } from './styles';
 
@@ -40,7 +40,7 @@ export const ConfigurationsComponent = () => {
     setConfig(obj);
   };
 
-  const saveConfig = useCallback(async () => {
+  const saveConfig = async () => {
     const data = {
       id: accountData.UsuarioId,
       options: config,
@@ -53,7 +53,7 @@ export const ConfigurationsComponent = () => {
 
       dispatch(setAccountData(accountData));
     } else alert('Ocorreu um erro ao tenatr salver as configurações. Tente novamente mais terde.');
-  }, [accountData, config, dispatch]);
+  };
 
   // effects
 
@@ -69,7 +69,7 @@ export const ConfigurationsComponent = () => {
     }
 
     updateData();
-  }, [saveConfig]);
+  }, []);
 
   // render
 

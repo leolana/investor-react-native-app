@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SafeAreaView, TextInput, Buttom, ButtomText } from './styles';
@@ -30,9 +30,9 @@ export const ChangePasswordComponent = (props) => {
 
   // methods
 
-  const notifyError = useCallback((id, message) => dispatch(setInputError({ id, message })), [dispatch]);
+  const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
-  const validatePassword = useCallback(() => {
+  const validatePassword = () => {
     notifyError('oldPassword', oldPassword !== '' || oldPassword.length < 6 ? '' : 'Esse campo não pode ser vazio');
 
     notifyError(
@@ -44,7 +44,7 @@ export const ChangePasswordComponent = (props) => {
       'confirmPassword',
       confirmPassword !== '' ? '' : 'Esse campo não pode ser vazio ou ter menos de 6 digitos',
     );
-  }, [confirmPassword, newPassword, notifyError, oldPassword]);
+  };
 
   const changePassword = async () => {
     if (newPassword !== confirmPassword) return alert('Os Campos não conferem.');
@@ -65,7 +65,7 @@ export const ChangePasswordComponent = (props) => {
 
   useEffect(() => {
     validatePassword();
-  }, [oldPassword, newPassword, confirmPassword, validatePassword]);
+  }, [oldPassword, newPassword, confirmPassword]);
 
   useEffect(() => {
     if (inputErrors === undefined || inputErrors === null) return;

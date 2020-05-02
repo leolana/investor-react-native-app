@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
@@ -77,9 +77,9 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     { text: 'Viúvo (a)', value: 4 },
   ];
 
-  const myAsyncEffect = useCallback(async () => {
+  const myAsyncEffect = async () => {
     await getStates();
-  }, []);
+  };
 
   const isOfAge = (year) => {
     const courentYear = new Date().getFullYear();
@@ -109,7 +109,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
 
   useEffect(() => {
     myAsyncEffect();
-  }, [myAsyncEffect]);
+  }, []);
 
   useEffect(() => {
     setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '' || maritalStatus === '');

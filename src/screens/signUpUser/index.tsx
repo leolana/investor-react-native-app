@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { SafeAreaView, TextInput, Button, ButtonText } from './styles';
 
@@ -35,16 +35,13 @@ export const SignUpUser = (props) => {
 
   // methods
 
-  const notifyError = useCallback((id, message) => dispatch(setInputError({ id, message })), [dispatch]);
+  const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
-  const handleEmptyMessage = useCallback(
-    (id, isEmpty) => {
-      const msg = isEmpty ? 'Você precisa preencher esse campo' : '';
+  const handleEmptyMessage = (id, isEmpty) => {
+    const msg = isEmpty ? 'Você precisa preencher esse campo' : '';
 
-      dispatch(notifyError(id, msg));
-    },
-    [dispatch, notifyError],
-  );
+    dispatch(notifyError(id, msg));
+  };
 
   const emailIsValid = (email) => {
     const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -95,13 +92,13 @@ export const SignUpUser = (props) => {
     if (email === null) notifyError('email', '');
 
     if (password === null) notifyError('password', '');
-  }, [email, name, notifyError, password]);
+  }, [email, name, password]);
 
   useEffect(() => {
     if (name === null) return;
 
     handleEmptyMessage('name', name.length === 0);
-  }, [handleEmptyMessage, name]);
+  }, [name]);
 
   useEffect(() => {
     if (email === null) return;
@@ -114,7 +111,7 @@ export const SignUpUser = (props) => {
 
     if (isValid) notifyError('email', '');
     else notifyError('email', 'Você deve fornecer um email ');
-  }, [email, handleEmptyMessage, notifyError]);
+  }, [email]);
 
   useEffect(() => {
     if (password === null) return;
@@ -123,7 +120,7 @@ export const SignUpUser = (props) => {
 
     if (password.length < 6) notifyError('password', 'A senha deve conter mais de 6 dígitos');
     else notifyError('password', '');
-  }, [handleEmptyMessage, notifyError, password]);
+  }, [password]);
 
   return (
     <SafeAreaView>

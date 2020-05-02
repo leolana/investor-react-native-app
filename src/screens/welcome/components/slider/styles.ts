@@ -30,7 +30,7 @@ export const FlatList = styled(Animated.FlatList)`
 
 export const Title = styled.Text`
   color: ${tealish};
-  font-family: Helvetica-Bold;
+  font-family: OpenSans-Bold;
   font-size: 30px;
   text-align: center;
   margin-bottom: 20px;
@@ -38,7 +38,7 @@ export const Title = styled.Text`
 
 export const Text = styled.Text`
   color: ${white};
-  font-family: Helvetica;
+  font-family: OpenSans-Regular;
   font-size: 16px;
   text-align: center;
 `;

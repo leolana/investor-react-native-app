@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { tealish } from '../../assets/colors.js';
+import { tealish } from '../../assets/colors';
 
 import { SafeAreaView, Title, Text, Note, Logo, Button, ButtonText } from './styles';
 

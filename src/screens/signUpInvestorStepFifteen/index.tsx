@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { TouchableOpacity } from 'react-native';
 
-import { tealish } from '../../assets/colors.js';
+import { tealish } from '../../assets/colors';
 
 import { SafeAreaView, Title, Text, Note, TextOpportunities, TextSuitability, Logo } from './styles';
 

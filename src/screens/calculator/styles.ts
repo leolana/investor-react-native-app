@@ -15,7 +15,7 @@ export const BackgroundGradiant = styled(LinearGradient)`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: Helveticaneue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;
 

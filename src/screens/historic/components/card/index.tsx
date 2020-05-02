@@ -126,42 +126,52 @@ export const CardHistoryComponent = (props) => {
         <Body>
           <Text>
             {' '}
-            Nome da empresa: <Text fontFamily={'OpenSans'}> {data.SolicitacaoId.Empresa.NomeFantasia} </Text>{' '}
+            Nome da empresa: <Text fontFamily={'OpenSans-Regular'}>
+              {' '}
+              {data.SolicitacaoId.Empresa.NomeFantasia}{' '}
+            </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Participação: <Text fontFamily={'OpenSans'}> {formatMoney(data.Valor)} </Text>{' '}
+            Participação: <Text fontFamily={'OpenSans-Regular'}> {formatMoney(data.Valor)} </Text>{' '}
           </Text>
           <Text>
             {' '}
             Tipo de empréstimo:{' '}
-            <Text fontFamily={'OpenSans'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </Text>{' '}
+            <Text fontFamily={'OpenSans-Regular'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </Text>{' '}
           </Text>
           <Text>
             {' '}
             Taxa de juros:{' '}
-            <Text fontFamily={'OpenSans'}> {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m. </Text>{' '}
+            <Text fontFamily={'OpenSans-Regular'}>
+              {' '}
+              {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m.{' '}
+            </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Retorno: <Text fontFamily={'OpenSans'}>
+            Retorno:{' '}
+            <Text fontFamily={'OpenSans-Regular'}>
               {' '}
               {formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a.{' '}
             </Text>{' '}
           </Text>
           <Text>
             {' '}
-            Duração: <Text fontFamily={'OpenSans'}> {data.SolicitacaoId.Prazo} Meses </Text>{' '}
+            Duração: <Text fontFamily={'OpenSans-Regular'}> {data.SolicitacaoId.Prazo} Meses </Text>{' '}
           </Text>
         </Body>
 
         <Text>
           {' '}
-          Data da solicitação: <Text fontFamily={'OpenSans'}> {formatDate(data.SolicitacaoId.Created)} </Text>{' '}
+          Data da solicitação: <Text fontFamily={'OpenSans-Regular'}>
+            {' '}
+            {formatDate(data.SolicitacaoId.Created)}{' '}
+          </Text>{' '}
         </Text>
         <Text>
           {' '}
-          Data do investimento: <Text fontFamily={'OpenSans'}> {formatDate(data.Created)} </Text>{' '}
+          Data do investimento: <Text fontFamily={'OpenSans-Regular'}> {formatDate(data.Created)} </Text>{' '}
         </Text>
       </Card>
     </TouchableWithoutFeedback>

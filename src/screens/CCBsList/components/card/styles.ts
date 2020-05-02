@@ -40,7 +40,7 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey99};
 `;
 

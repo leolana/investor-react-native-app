@@ -19,7 +19,7 @@ export const Title = styled.Text`
 
 export const Info = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey66};
   text-align: center;
   margin-bottom: 4px;
@@ -52,6 +52,6 @@ export const ButtomText = styled.Text`
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey66};
 `;

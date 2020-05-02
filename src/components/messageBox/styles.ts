@@ -27,7 +27,7 @@ export const Text = styled.Text`
 
 export const TouchableText = styled.Text`
   font-size: 13px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${white};
 `;
 

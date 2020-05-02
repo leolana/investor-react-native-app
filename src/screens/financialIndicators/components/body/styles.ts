@@ -67,7 +67,7 @@ export const TableText = styled.Text`
             `;
     else
       return `
-                font-family: OpenSans;
+                font-family: OpenSans-Regular;
                 color: ${grey99}
             `;
   }}
@@ -99,6 +99,6 @@ export const Tabs = styled.View`
 
 export const TabText = styled.Text`
   font-size: 14px;
-  font-family: ${(props) => (props.selected ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.selected ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => (props.selected ? black : grey99)};
 `;

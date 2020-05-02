@@ -26,7 +26,7 @@ export const Item = styled.View`
 export const ItemTitle = styled.Text`
   color: ${grey66};
   font-size: 10px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
 `;
 
 export const ItemText = styled.Text`

@@ -59,7 +59,7 @@ export const ReceiptBorder = styled.Image`
 `;
 
 export const Text = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 12px;
   color: ${receiptTextColor};
   text-align: center;
@@ -92,7 +92,7 @@ export const Divisor = styled.View`
 `;
 
 export const Info = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 10px;
   color: ${receiptTextColor};
   text-align: center;

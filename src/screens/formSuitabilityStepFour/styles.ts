@@ -23,14 +23,14 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 export const Title = styled.Text`
   font-size: 22;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: center;
   margin-bottom: 30px;
   color: ${grey99};
 `;
 export const Text = styled.Text`
   font-size: 24;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: center;
   margin-bottom: 30px;
 `;

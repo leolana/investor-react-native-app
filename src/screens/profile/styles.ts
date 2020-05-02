@@ -51,7 +51,7 @@ export const Email = styled.Text`
   text-align: center;
   font-size: 16px;
   color: ${grey99};
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   margin-bottom: 10px;
 `;
 

@@ -17,7 +17,7 @@ export const ItemTitle = styled.Text`
 `;
 
 export const ItemText = styled.Text`
-    font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+    font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
     font-size: 14px;
     color: ${grey99}
     margin-bottom: ${(props) => props.marginBottom || 0}px;

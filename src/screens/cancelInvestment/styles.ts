@@ -29,7 +29,7 @@ export const Title = styled.Text`
 
 export const Text = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: center;
   color: ${grey66};
   margin-top: 16px;
@@ -46,6 +46,6 @@ export const Bottom = styled.TouchableOpacity`
 export const BottomText = styled.Text`
   text-align: center;
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => props.color || white};
 `;

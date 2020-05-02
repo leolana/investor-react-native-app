@@ -33,7 +33,7 @@ export const Title = styled.Text`
 
 export const ItemTitle = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey70};
 `;
 
@@ -54,5 +54,5 @@ export const InfoCard = styled.View`
 
 export const InfoText = styled.Text`
   font-size: 8px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
 `;

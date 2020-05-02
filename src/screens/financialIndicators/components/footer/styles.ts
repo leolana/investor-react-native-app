@@ -45,7 +45,7 @@ export const Tabs = styled.View`
 
 export const TabText = styled.Text`
   font-size: 14px;
-  font-family: ${(props) => (props.selected ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.selected ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => (props.selected ? black : grey99)};
 `;
 
@@ -61,5 +61,5 @@ export const TableRow = styled.View`
 export const TableRowText = styled.Text`
   color: ${grey70};
   font-size: 13px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
 `;

@@ -27,7 +27,7 @@ export const Question = styled.Text`
 
 export const Options = styled.Text`
   font-size: 14;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: justify;
   color: ${grey99};
   width: 90%;

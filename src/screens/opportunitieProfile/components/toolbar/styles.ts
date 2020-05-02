@@ -42,7 +42,7 @@ export const ToolbarTitle = styled.Text`
 
 export const ToolbarText = styled.Text`
   font-size: 18px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey99};
 `;
 

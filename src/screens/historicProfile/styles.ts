@@ -36,18 +36,18 @@ export const Row = styled.View`
 
 export const Title = styled.Text`
   font-size: 18px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
 `;
 
 export const Subtitle = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
 `;
 
 export const LoanType = styled.Text` 
     font-size: 12px;
     color: ${grey99}
-    font-family: OpenSans;
+    font-family: OpenSans-Regular;
 `;
 
 export const Score = styled.Text`
@@ -82,7 +82,7 @@ export const Text = styled.Text`
     margin-left: 10px;
     flex: 1
     font-size: 12px;
-    font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+    font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
 `;
 
 export const Item = styled.View`

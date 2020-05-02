@@ -76,7 +76,7 @@ export const ContentArea = styled.View`
 `;
 
 export const Text = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 16px;
 `;
 
@@ -181,7 +181,7 @@ export const ItemText = styled.Text`
 `;
 
 export const ItemInfo = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 10px;
   color: ${(props) => props.color || grey99};
   text-align: ${(props) => (props.center ? 'center' : 'left')};
@@ -201,7 +201,7 @@ export const ProgressArea = styled.View`
 `;
 
 export const ProgressTitle = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 14px;
   color: ${grey99};
 `;
@@ -252,7 +252,7 @@ export const ItemTitleInvestor = styled.Text`
 `;
 
 export const ItemTextInvestor = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 18px;
   color: ${black};
 `;
@@ -284,14 +284,14 @@ export const RetangleTinyTitle = styled.Text`
 `;
 
 export const ItemDefaultText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   font-size: 15px;
   color: ${black};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 export const ItemDefaultTitle = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   font-size: 12px;
   color: ${grey99};
 `;

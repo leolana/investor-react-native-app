@@ -61,7 +61,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppIouu/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AppIouu/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AppIouu/main.m; sourceTree = "<group>"; };
-		15D9D5FC03CF43BEB9BD60B4 /* OpenSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSans.ttf; path = ../src/assets/fonts/helvetica_neue/OpenSans.ttf; sourceTree = "<group>"; };
 		1D255FAA4FF590D5FC923E40 /* libPods-AppIouuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C603650B13325707ACAA494 /* Pods-AppIouuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouuTests.debug.xcconfig"; path = "Target Support Files/Pods-AppIouuTests/Pods-AppIouuTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* AppIouu-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppIouu-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,7 +242,6 @@
 				5FEF1DA165314E9D9F100D76 /* OpenSans-SemiBold.woff */,
 				F4A639B0F2AF4FDD83CACFB8 /* OpenSans-Regular.ttf */,
 				3B9AF0423A454213B403D0C0 /* OpenSansRegular.ttf */,
-				15D9D5FC03CF43BEB9BD60B4 /* OpenSans.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

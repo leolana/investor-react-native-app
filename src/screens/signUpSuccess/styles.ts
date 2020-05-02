@@ -17,7 +17,7 @@ export const Title = styled.Text`
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   text-align: center;
 `;
 

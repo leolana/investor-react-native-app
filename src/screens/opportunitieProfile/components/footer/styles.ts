@@ -29,14 +29,14 @@ export const RetangleTinyTitle = styled.Text`
 `;
 
 export const ItemDefaultText = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   font-size: 15px;
   color: ${black};
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 export const ItemDefaultTitle = styled.Text`
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   font-size: 12px;
   color: ${grey99};
 `;

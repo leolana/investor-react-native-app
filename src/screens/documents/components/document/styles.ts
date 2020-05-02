@@ -11,7 +11,7 @@ export const Title = styled.Text`
 export const Text = styled.Text`
   margin-top: 2px;
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   align-self: stretch;
   color: ${grey88};
 `;

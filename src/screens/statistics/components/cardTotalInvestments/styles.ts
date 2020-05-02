@@ -59,7 +59,7 @@ export const ItemArea = styled.View`
 export const ItemText = styled.Text`
   color: ${black66};
   font-size: 14px;
-  font-family: ${(props) => props.fontSize || 'OpenSans'};
+  font-family: ${(props) => props.fontSize || 'OpenSans-Regular'};
 `;
 
 export const ScoreArea = styled.View`

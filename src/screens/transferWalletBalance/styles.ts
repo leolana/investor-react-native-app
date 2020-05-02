@@ -53,7 +53,7 @@ export const Header = styled(LinearGradient)`
 
 export const HeaderTitle = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${white};
   text-align: center;
 `;
@@ -84,7 +84,7 @@ export const Title = styled(Animated.Text)`
 
 export const Text = styled(Animated.Text)`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: center;
   color: ${grey66};
   margin-bottom: 2px;
@@ -92,7 +92,7 @@ export const Text = styled(Animated.Text)`
 
 export const InfoTitle = styled.Text`
   font-size: 10px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: center;
   color: ${grey99};
 `;
@@ -130,7 +130,7 @@ export const ItemTitle = styled.Text`
 
 export const ItemText = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey66};
 `;
 

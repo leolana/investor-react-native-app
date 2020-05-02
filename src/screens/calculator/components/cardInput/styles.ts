@@ -35,7 +35,7 @@ export const Item = styled.View`
 
 export const ItemTitle = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${white};
 `;
 
@@ -57,6 +57,6 @@ export const Circle = styled.TouchableOpacity`
 
 export const CircleText = styled.Text`
   font-size: 24px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${white};
 `;

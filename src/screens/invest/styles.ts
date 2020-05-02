@@ -37,14 +37,14 @@ export const Score = styled.Text`
 
 export const Subtitle = styled.Text`
   font-size: 12px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${greyTwo};
   margin-bottom: 16px;
 `;
 
 export const TextCNPJ = styled.Text`
   font-size: 15px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   margin: 2px 0;
 `;
 

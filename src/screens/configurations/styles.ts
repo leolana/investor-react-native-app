@@ -22,6 +22,6 @@ export const Content = styled.View`
 `;
 
 export const Text = styled.Text`
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   font-size: 14px;
 `;

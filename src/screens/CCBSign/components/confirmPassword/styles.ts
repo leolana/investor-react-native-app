@@ -15,7 +15,7 @@ export const TextInput = styled(ITextInput)`
 
 export const InfoText = styled.Text`
   font-size: 12px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   color: ${grey66};
   text-align: center;
   width: ${width - 64}px;
@@ -33,6 +33,6 @@ export const Bottom = styled.TouchableOpacity`
 export const BottomText = styled.Text`
   text-align: center;
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans')};
+  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => props.color || grey66};
 `;

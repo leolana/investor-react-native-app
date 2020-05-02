@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { View, Alert } from 'react-native';
 
@@ -6,8 +6,8 @@ import { RadioButton } from 'react-native-paper';
 
 import { SafeAreaView, ScrollView, Title, Question, Options, OptionsContainer, Button, TextButton } from './styles';
 
-import { useSelector } from 'react-redux';
-import { UrlUsuarioPegar } from '../../services';
+// import { useSelector } from 'react-redux';
+import { Request, UrlUsuarioPegar } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
   const [HorizonteInvestimento, setHorizonteInvestimento] = useState('');
@@ -15,6 +15,7 @@ export const FormSuitabilityOne = (props) => {
   const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('');
   const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
+  const [SuitabilityId, setSuitabilityId] = useState('');
 
   const FormularioCapacidade = {
     HorizonteInvestimento,
@@ -22,6 +23,11 @@ export const FormSuitabilityOne = (props) => {
     DistribuicaoInvestimento,
     SitucaoFinanceira,
     Patrimonio,
+  };
+
+  const SuitabilityOne = {
+    FormularioCapacidade,
+    stepType: 'next',
   };
 
   const avancaEtapa = () => {
@@ -34,15 +40,36 @@ export const FormSuitabilityOne = (props) => {
     ) {
       Alert.alert('Todas a opçoes devem ser preenchias');
     } else {
+      //chamada da api SuitabilitySalvar
+      console.log('vai nessa', SuitabilityOne);
       props.navigation.navigate('SuitabilityTwo');
     }
   };
-  const userId = useSelector(({ accountData }) => accountData.usuarioId);
+
+  const getSuitabilityId = async () => {
+    const resp = await Request.GET({ url: 'https://server-test.iouu.com.br/api/v1/suitability' });
+
+    console.log('aquele abraço meus queridos', resp.data.insertedIds[0]);
+    setSuitabilityId(resp.data.insertedIds[0]);
+
+    return resp;
+
+    // let resp = await Request.GET({
+    // 	url: 'https://server-test.iouu.com.br/api/v1/suitability',
+    // });
+
+    // setSuitabilityId(resp.data);
+    // console.log('aquele abraço', SuitabilityId);
+  };
+
+  useEffect(() => {
+    getSuitabilityId();
+  }, []);
 
   return (
     <SafeAreaView>
       <ScrollView>
-        <Title>1. Avaliação da capacidade de assumir riscos {userId}</Title>
+        <Title>1. Avaliação da capacidade de assumir riscos {SuitabilityId} </Title>
         <View>
           <Question>
             a. Horizonte de investimento: você pretende utilizar um percentual relevante dos seus investimentos no curto

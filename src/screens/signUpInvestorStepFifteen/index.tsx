@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { TouchableOpacity } from 'react-native';
 
-import { white } from '../../assets/colors';
+import { tealish } from '../../assets/colors.js';
 
 import { SafeAreaView, Title, Text, Note, TextOpportunities, TextSuitability, Logo } from './styles';
 
 export const SignUpInvestorStepFifteenComponent = (props) => {
+  const logoSize = 100;
+
   return (
     <SafeAreaView>
-      <Logo fill={white} width={120} height={120} />
+      <Logo fill={tealish} width={logoSize} height={logoSize} />
 
       <Title>Cadastro concluído com sucesso</Title>
 
@@ -17,10 +19,10 @@ export const SignUpInvestorStepFifteenComponent = (props) => {
 
       <Note>
         Ah, não esqueça de preencher o formulário de suitability, ele é muito importante para mapear o seu perfil de
-        investimetno e indicamos os produstos, serviçoes e operações mais adequadas às suas necessidades.
+        investimento e indicamos os produtos, serviços e operações mais adequadas às suas necessidades.
       </Note>
 
-      <TouchableOpacity onPress={() => props.navigation.navigate('SuitabilityOne')}>
+      <TouchableOpacity onPress={() => props.navigation.navigate('SuitabilityWelcome')}>
         <TextSuitability>PREENCHER O SUITABILITY</TextSuitability>
       </TouchableOpacity>
 

@@ -45,7 +45,7 @@ export const SignUpInvestorStepOneComponent = (props) => {
         value={nationality}
       />
 
-      <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
+      <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

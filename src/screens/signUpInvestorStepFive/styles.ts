@@ -1,11 +1,7 @@
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 
-import { ITextInput } from '../../components';
-
-export const TextInput = styled(ITextInput)``;
-
-import { white, tealish, grey99 } from '../../assets/colors';
+import { white, tealish, grey99, redTwo } from '../../assets/colors';
 
 export const SafeAreaView = styled.View`
   margin: 16px;
@@ -29,14 +25,17 @@ export const Label = styled.Text`
   color: ${grey99};
   margin-bottom: 5px;
   font-size: 12px;
-  font-family: OpenSans-Regular;
+  font-family: HelveticaNeue;
 `;
 
-export const Container = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30;
+export const Error = styled.Text`
+    font-family: HelveticaNeue;
+    font-size: 10px;
+    color: ${redTwo}
+    text-align: left;
+    align-self: stretch;
+    margin-top: 4px;
+    margin-bottom: 15px;
 `;
 
 const styles = StyleSheet.create({
@@ -46,12 +45,21 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'HelveticaNeue',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',
-    width: '80%',
-    marginBottom: 30,
+  },
+  inputMargin: {
+    borderColor: '#DDD',
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontFamily: 'HelveticaNeue',
+    height: 40,
+    fontSize: 16,
+    alignSelf: 'stretch',
   },
 });
 

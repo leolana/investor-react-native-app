@@ -1,107 +1,74 @@
-import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { KeyboardAvoidingView, Platform, View } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import { Select } from '../../components';
-
-import { Request, UrlLocalizacaoEstadosPegar } from '../../services';
-
-import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label } from './styles';
+import Styles, { SafeAreaView, Button, ButtonText, ScrollView, Label, Error } from './styles';
 
 export const SignUpInvestorStepFiveComponent = (props) => {
-  const [disabled, setDisabled] = useState('');
-  const [emissionDate, setEmissionDate] = useState('');
-  const [emissionState, setEmissionState] = useState('');
-  const [emissonOrgan, setEmissionOrgan] = useState('');
-  const [rg, setRg] = useState('');
-  const [apiState, setApiState] = useState([
-    {
-      id: '',
-      text: '',
-      value: '',
-    },
-  ]);
+  // states
 
-  async function getStates() {
-    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
+  const [disabled, setDisabled] = useState(false);
+  const [validCellPhone, setValidCellPhone] = useState(true);
+  const [validPhone, setValidPhone] = useState(true);
+  const [phone, setPhone] = useState('');
+  const [cellPhone, setCellPhone] = useState('');
 
-    if (resp.status === 200) setApiState(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }
+  // Validate funcitons
 
-  function mapApiState() {
-    getStates();
+  const isValidPhone = (phone) => {
+    const regex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+    const valid = regex.test(phone);
 
-    const optionsState = apiState.map((resp) => {
-      return {
-        text: resp.sigla,
-        value: resp.sigla,
-      };
-    });
-    return optionsState;
-  }
+    return valid;
+  };
 
-  const opcoesOrgaoEmissor = [
-    { text: 'SSP', value: 'SSP' },
-    { text: 'PM', value: 'PM' },
-    { text: 'PC', value: 'PC' },
-    { text: 'CNT', value: 'CNT' },
-    { text: 'DIC', value: 'DIC' },
-    { text: 'CTPS', value: 'CTPS' },
-    { text: 'FGTS', value: 'FGTS' },
-    { text: 'IFP', value: 'IFP' },
-    { text: 'IPF', value: 'IPF' },
-    { text: 'IML', value: 'IML' },
-    { text: 'MTE', value: 'MTE' },
-    { text: 'MMA', value: 'MMA' },
-    { text: 'MAE', value: 'MAE' },
-    { text: 'MEX', value: 'MEX' },
-    { text: 'POF', value: 'POF' },
-    { text: 'POM', value: 'POM' },
-    { text: 'SES', value: 'SES' },
-    { text: 'SJS', value: 'SJS' },
-    { text: 'SJTS', value: 'SJTS' },
-    { text: 'ZZZ', value: 'ZZZ' },
-  ];
+  //effect
 
-  // useEffect(() => {
-  //     setDisabled(CEP === '' || street === ''   || state === '' || city === '' || neighborhood === ''
-  //     )
-  // }, [CEP, street, state, city, neighborhood])
+  useEffect(() => {
+    const isValid: boolean = !validCellPhone || !validPhone || cellPhone === '' || cellPhone === '';
+    setDisabled(isValid);
+  }, [validCellPhone, validPhone, cellPhone]);
+
+  //render
 
   return (
     <KeyboardAvoidingView behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
       <SafeAreaView>
         <ScrollView>
-          <TextInput title={'RG'} onChangeText={(value) => setRg(value)} />
-
-          <Select
-            title="Orgão emissor"
-            options={opcoesOrgaoEmissor}
-            onValueChange={(obj) => setEmissionOrgan(obj.value)}
-            value={emissonOrgan}
-          />
-
-          <Select
-            title="Estado de emissão"
-            options={mapApiState()}
-            onValueChange={(obj) => setEmissionState(obj.value)}
-            value={emissionState}
-          />
-
-          <Label>Data de emissão</Label>
+          <Label>Celular</Label>
           <TextInputMask
-            type={'datetime'}
+            type={'cel-phone'}
             options={{
-              format: 'DD/MM/YYYY',
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
             }}
-            value={emissionDate}
-            onChangeText={(value) => setEmissionDate(value)}
-            style={Styles.input}
+            value={cellPhone}
+            onChangeText={(value) => setCellPhone(value)}
+            style={Styles.inputMargin}
+            onBlur={() => setValidCellPhone(isValidPhone(cellPhone))}
           />
 
-          <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
+          {!validCellPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
+
+          <Label>Telefone</Label>
+          <TextInputMask
+            type={'cel-phone'}
+            options={{
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
+            }}
+            value={phone}
+            onChangeText={(value) => setPhone(value)}
+            style={Styles.inputMargin}
+            onBlur={() => setValidPhone(isValidPhone(phone))}
+          />
+
+          {!validPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
+
+          <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
             <ButtonText>Continuar</ButtonText>
           </Button>
         </ScrollView>

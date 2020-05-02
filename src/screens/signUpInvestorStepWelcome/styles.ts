@@ -4,15 +4,14 @@ import { IconIouu } from '../../assets/icons';
 
 import { Dimensions } from 'react-native';
 
-import { tealish } from '../../assets/colors';
-
 const { width } = Dimensions.get('screen');
 
 export const Logo = styled(IconIouu)`
   position: relative;
-  bottom: 30px;
+  bottom: 30;
   left: ${width / 2 - 60};
 `;
+import { white, tealish, grey99, redTwo } from '../../assets/colors';
 
 export const SafeAreaView = styled.View`
   margin-horizontal: 16px;
@@ -37,14 +36,17 @@ export const Note = styled.Text`
   marginbottom: 30px;
   text-align: center;
 `;
-export const TextSuitability = styled.Text`
-  fontsize: 16;
-  marginbottom: 20px;
-  text-align: center;
-  color: ${tealish};
+
+export const Button = styled.TouchableOpacity`
+    background: ${(props) => (props.disabled ? grey99 : tealish)}
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 `;
 
-export const TextOpportunities = styled.Text`
-  fontsize: 16;
-  text-align: center;
+export const ButtonText = styled.Text`
+  font-size: 16px;
+  font-family: 'OpenSans-Bold';
+  color: ${white};
 `;

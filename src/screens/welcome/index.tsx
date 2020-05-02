@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Buttons, Logo, LoadingView } from './styles';
 
@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { Background, Slider } from './components';
 
-import { white } from '../../assets/colors';
+import { white } from '../../assets/colors.js';
 
 import { IButtom } from '../../components';
 
@@ -15,7 +15,7 @@ import { ActivityIndicator } from 'react-native';
 export const WelcomeComponent = ({ navigation }) => {
   // states
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // vars
 
@@ -34,7 +34,7 @@ export const WelcomeComponent = ({ navigation }) => {
       <Slider />
 
       <Buttons>
-        <IButtom title={'entrar'} onPress={() => navigation.navigate('Login', { authenticated: false })} />
+        <IButtom title={'entrar'} onPress={() => navigation.navigate('Login', { authenticated: true })} />
         <IButtom
           title={'criar uma conta'}
           onPress={() => navigation.navigate('SignUpUser')}

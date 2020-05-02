@@ -3,17 +3,17 @@ import { Linking, TouchableOpacity } from 'react-native';
 
 import { RadioButton, Text } from 'react-native-paper';
 
-import { SafeAreaView, Button, ButtonText, TextInput, ScrollView, ContainerLine, TextLine } from './styles';
+import { SafeAreaView, Button, ButtonText, TextInput, ContainerLine, TextLine } from './styles';
 
 export const SignUpInvestorStepEightComponent = (props) => {
+  //state
+
   const [disabled, setDisabled] = useState(true);
   const [radioButton, setRadioButton] = useState('');
   const [renda, setRenda] = useState('');
   const [patrimonio, setPatrimonio] = useState('');
 
-  useEffect(() => {
-    setDisabled(renda === '' || patrimonio === '');
-  }, [renda, patrimonio]);
+  //vars
 
   const checkButton = () => {
     if (radioButton === '1') {
@@ -29,36 +29,43 @@ export const SignUpInvestorStepEightComponent = (props) => {
     );
   };
 
+  //effect
+
+  useEffect(() => {
+    setDisabled(renda === '' || patrimonio === '');
+  }, [renda, patrimonio]);
+
+  //render
+
   return (
     <SafeAreaView>
-      <ScrollView>
-        <TextInput
-          title={'Rensa mensal aprox. (R$)'}
-          mask={'currency'}
-          onValueChange={({ unMasked }) => setRenda(unMasked)}
-          keyboardType={'numeric'}
-        />
+      <TextInput
+        title={'Rensa mensal aprox. (R$)'}
+        mask={'currency'}
+        onValueChange={({ unMasked }) => setRenda(unMasked)}
+        keyboardType={'numeric'}
+      />
 
-        <TextInput
-          title={'Patrimônio aprox. (R$)'}
-          mask={'currency'}
-          onValueChange={({ unMasked }) => setPatrimonio(unMasked)}
-          keyboardType={'numeric'}
-        />
-        <TouchableOpacity onPress={openLinkPPE}>
-          <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
-        </TouchableOpacity>
+      <TextInput
+        title={'Patrimônio aprox. (R$)'}
+        mask={'currency'}
+        onValueChange={({ unMasked }) => setPatrimonio(unMasked)}
+        keyboardType={'numeric'}
+      />
 
-        <ContainerLine>
-          <RadioButton value="1" status={radioButton === '1' ? 'checked' : 'unchecked'} onPress={checkButton} />
+      <TouchableOpacity onPress={openLinkPPE}>
+        <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
+      </TouchableOpacity>
 
-          <Text>Declaro ser PPE</Text>
-        </ContainerLine>
+      <ContainerLine>
+        <RadioButton value="1" status={radioButton === '1' ? 'checked' : 'unchecked'} onPress={checkButton} />
 
-        <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
-          <ButtonText>Continuar</ButtonText>
-        </Button>
-      </ScrollView>
+        <Text>Declaro ser PPE</Text>
+      </ContainerLine>
+
+      <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
+        <ButtonText>Continuar</ButtonText>
+      </Button>
     </SafeAreaView>
   );
 };

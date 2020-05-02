@@ -72,6 +72,8 @@ import { PhotoViewer } from '../../screens/photoViewer';
 
 import { VideoViewer } from '../../screens/videoViewer';
 
+import { SignUpInvestorStepWelcome } from '../../screens/signUpInvestorStepWelcome';
+
 import { SignUpInvestorStepOne } from '../../screens/signUpInvestorStepOne';
 
 import { SignUpInvestorStepTwo } from '../../screens/signUpInvestorStepTwo';
@@ -105,6 +107,8 @@ import { SignUpInvestorStepFifteen } from '../../screens/signUpInvestorStepFifte
 import { tealish, white } from '../../assets/colors';
 
 import { storeData } from '../../utils';
+
+import { SuitabilityWelcome } from '../../screens/formSuitabilityStepWelcome';
 
 import { SuitabilityOne } from '../../screens/formSuitabilityStepOne';
 
@@ -165,8 +169,6 @@ const modalScreenRoutesConfig = {
   transitionConfig: () => ({ screenInterpolator: translateAnim }),
 };
 
-// Routes
-
 export const ScreenRoutes = createStackNavigator(
   {
     Opportunities,
@@ -198,6 +200,7 @@ export const ScreenRoutes = createStackNavigator(
     PhotoViewer,
     VideoViewer,
     Menu,
+    SignUpInvestorStepWelcome,
     SignUpInvestorStepOne,
     SignUpInvestorStepTwo,
     SignUpInvestorStepThree,
@@ -213,6 +216,7 @@ export const ScreenRoutes = createStackNavigator(
     SignUpInvestorStepThirteen,
     SignUpInvestorStepFourteen,
     SignUpInvestorStepFifteen,
+    SuitabilityWelcome,
     SuitabilityOne,
     SuitabilityTwo,
     SuitabilityThree,

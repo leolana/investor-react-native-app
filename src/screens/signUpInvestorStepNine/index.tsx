@@ -8,15 +8,19 @@ import { SafeAreaView, Button, ButtonText, Title, Text, Container, ContainerTitl
 
 export const SignUpInvestorStepNineComponent = (props) => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
-  const [photo, setPhoto] = useState(null);
+  const [setPhoto] = useState(null);
+
+  const setOpenCamera = (value) => {
+    setIsCameraVisible(value);
+  };
 
   const onChangePhoto = (newPhoto) => {
     setPhoto(newPhoto);
-    setIsCameraVisible(false);
+    setOpenCamera(false);
   };
 
   const onCloseCamera = () => {
-    setIsCameraVisible(false);
+    setOpenCamera(false);
   };
 
   return (
@@ -30,7 +34,7 @@ export const SignUpInvestorStepNineComponent = (props) => {
 
         <Button
           onPress={() => {
-            setIsCameraVisible(true);
+            setOpenCamera(true);
           }}
         >
           <ButtonText>ABRIR CÂMERA</ButtonText>
@@ -40,8 +44,18 @@ export const SignUpInvestorStepNineComponent = (props) => {
       <TouchableOpacity>
         <Text onPress={() => props.navigation.navigate('SignUpInvestorStepTen')}> CONTINUAR DEPOIS </Text>
       </TouchableOpacity>
+      {/* <TouchableOpacity>
+                <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
+            </TouchableOpacity> */}
 
-      <Camera isVisible={isCameraVisible} onChangePhoto={onChangePhoto} onCloseCamera={onCloseCamera} />
+      <Camera
+        isVisible={isCameraVisible}
+        onChangePhoto={onChangePhoto}
+        onCloseCamera={onCloseCamera}
+        setOpenCamera={setOpenCamera}
+        props={props}
+        nextStep={'SignUpInvestorStepTen'}
+      />
     </SafeAreaView>
   );
 };

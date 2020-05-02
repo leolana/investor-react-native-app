@@ -9,10 +9,21 @@ const getAccountData = async () => {
 
   console.log(resp);
 
-  const { status, data } = resp;
+  // const { status, data } = resp;
 
-  return true;
-
+  return {
+    Bloqueio: {
+      Data: '0001-01-01T00:00:00Z',
+      FimBloqueio: '0001-01-01T00:00:00Z',
+    },
+    Email: 'ksantana@iouu.com.br',
+    HasInvestor: true,
+    HasSuitability: true,
+    Nome: 'Kaique Santana Pereira',
+    NotificacoesInvestidor: {},
+    Status: 'cadastro-concluido',
+    UsuarioId: '5c48c42bc14a4f0001d3a770',
+  };
   // if (status === 200) return data;
 
   // return null;

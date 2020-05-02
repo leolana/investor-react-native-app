@@ -12,12 +12,12 @@ export const SignUpInvestorStepElevenComponent = (props) => {
 
       <Note>O documento enviado está em processo de análise.</Note>
 
-      <Button>
+      <Button onPress={() => props.navigation.navigate('SignUpInvestorStepTwelve')}>
         <ButtonText>CONFIRMAR</ButtonText>
       </Button>
 
-      <TouchableOpacity>
-        <Text onPress={() => props.navigation.navigate('SignUpInvestorStepTwelve')}> CONTINUAR DEPOIS </Text>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Opportunities')}>
+        <Text> CONTINUAR DEPOIS </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

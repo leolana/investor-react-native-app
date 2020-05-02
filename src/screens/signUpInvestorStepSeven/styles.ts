@@ -29,4 +29,12 @@ export const ButtonText = styled.Text`
   font-family: 'OpenSans-Bold';
   color: ${white};
 `;
+
 export const ScrollView = styled.ScrollView``;
+
+export const Title = styled.Text`
+  font-size: 20;
+  font-family: OpenSans-Bold;
+  text-align: center;
+  marginbottom: 20px;
+`;

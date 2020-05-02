@@ -54,11 +54,11 @@ export const ProfileComponent = (props) => {
     },
     {
       title: 'Suitability',
-      onPress: () => navigation.navigate('SuitabilityOne'),
+      onPress: () => navigation.navigate('SuitabilityWelcome'),
     },
     {
       title: 'Cadastro',
-      onPress: () => navigation.navigate('SignUpInvestorStepOne'),
+      onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
     },
     {
       title: 'Sair',

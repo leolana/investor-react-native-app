@@ -29,7 +29,6 @@ export const ButtonText = styled.Text`
   font-family: 'OpenSans-Bold';
   color: ${white};
 `;
-export const ScrollView = styled.ScrollView``;
 
 export const TextLine = styled.Text`
   fontsize: 14;

@@ -6,7 +6,7 @@ import { Request, UrlLogin } from '../../services';
 
 import { storeData } from '../../utils';
 
-import { KeyboardAvoidingView, Welcome, Description, Container, Buttom } from './style';
+import { KeyboardAvoidingView, Welcome, Description, Container, Buttom } from './style.js';
 
 import onInit from '../../store/reducers/init';
 
@@ -36,7 +36,11 @@ export const Login = (props) => {
   };
 
   const loginRequest = async (data) => {
-    const resp = await Request.POST({ url: UrlLogin, data, header: 'bearer' });
+    const resp = await Request.POST({
+      url: UrlLogin,
+      data,
+      header: 'bearer',
+    });
 
     if (resp.status === 200) loginSuccessful(resp.data);
     else alert(resp.data.Msg);

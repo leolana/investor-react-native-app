@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
-import { DatePickerIOS } from 'react-native';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 import { black, white, grey99 } from '../../assets/colors';
 
-export const DatePickerStyled = styled(DatePickerIOS)`
+export const DatePickerStyled = styled(RNDateTimePicker)`
   margin: 10px;
 `;
 

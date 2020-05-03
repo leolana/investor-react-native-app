@@ -70,6 +70,6 @@ export const MenuComponent = (props) => {
 export const Menu = {
   screen: MenuComponent,
   navigationOptions: {
-    header: null,
+    headerShown: false,
   },
 };

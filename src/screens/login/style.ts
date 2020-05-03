@@ -35,7 +35,7 @@ export const Description = styled.Text`
 
 export const Container = styled.View`
   padding: 16px;
-  width: ${deviceWidth};
+  width: ${deviceWidth}px;
 `;
 
 export const ViewCheckbox = styled.View`

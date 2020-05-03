@@ -31,19 +31,19 @@ export const ButtonText = styled.Text`
 export const ScrollView = styled.ScrollView``;
 
 export const TextLine = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   margin-bottom: 15px;
   text-align: justify;
 `;
 export const TextLineBold = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   margin-bottom: 15px;
   text-align: justify;
   font-weight: bold;
 `;
 
 export const Title = styled.Text`
-  font-size: 22;
+  font-size: 22px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 20px;

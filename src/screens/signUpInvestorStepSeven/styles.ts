@@ -33,7 +33,7 @@ export const ButtonText = styled.Text`
 export const ScrollView = styled.ScrollView``;
 
 export const Title = styled.Text`
-  font-size: 20;
+  font-size: 20px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 20px;

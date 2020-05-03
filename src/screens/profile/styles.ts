@@ -56,6 +56,6 @@ export const Email = styled.Text`
 `;
 
 export const Background = styled(LinearGradient)`
-  width: ${screenWidth};
+  width: ${screenWidth}px;
   height: 162px;
 `;

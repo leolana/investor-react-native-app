@@ -17,7 +17,7 @@ export const Arrow = styled(IconBack)`
 `;
 
 export const Container = styled.View`
-  width: ${width};
+  width: ${width}px;
 `;
 
 export const Img = styled(Animated.Image)`

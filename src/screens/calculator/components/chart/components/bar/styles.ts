@@ -7,8 +7,8 @@ import { Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export const ChartBar = styled(LinearGradient)`
-  width: ${wp(35)};
-  height: ${hp(20)};
+  width: ${wp(35)}px;
+  height: ${hp(20)}px;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
   position: absolute;
@@ -16,8 +16,8 @@ export const ChartBar = styled(LinearGradient)`
 `;
 
 export const BarContainer = styled(Animated.View)`
-  width: ${wp(35)};
-  height: ${hp(25)};
+  width: ${wp(35)}px;
+  height: ${hp(25)}px;
   position: relative;
 `;
 

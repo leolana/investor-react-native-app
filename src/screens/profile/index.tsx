@@ -116,6 +116,6 @@ export const Profile = {
   screen: ProfileComponent,
   navigationOptions: {
     headerTitle: 'Perfil',
-    headerLeft: null,
+    headerLeft: () => null,
   },
 };

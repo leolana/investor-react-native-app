@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { white, tealish, greyDD, grey99, grey66 } from '../../assets/colors';
 
 export const Title = styled.Text`
-  font-size: 22;
+  font-size: 22px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 20px;
@@ -15,12 +15,12 @@ export const SafeAreaView = styled.View`
 `;
 
 export const Note = styled.Text`
-    fontSize: 14;
+    fontSize: 14px;
     fontWeight: bold,
     color: ${grey66};
 `;
 export const Text = styled.Text`
-    fontSize: 14;
+    fontSize: 14px;
     fontWeight: bold,
     color: ${grey66};
 `;

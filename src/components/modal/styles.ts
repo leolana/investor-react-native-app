@@ -7,8 +7,8 @@ import { Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('screen');
 
 export const Backdrop = styled.View`
-  width: ${width};
-  height: ${height};
+  width: ${width}px;
+  height: ${height}px;
   background: ${black};
   opacity: 0.55;
 `;

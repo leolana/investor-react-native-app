@@ -7,14 +7,14 @@ import { grey66, greyDD, grey99 } from '../../../../../../assets/colors';
 import { Animated } from 'react-native';
 
 export const LegendContainer = styled(Animated.View)`
-  width: ${wp(35)};
-  height: ${hp(6)};
+  width: ${wp(35)}px;
+  height: ${hp(6)}px;
   flex-direction: row;
   justify-content: center;
 `;
 
 export const Item = styled.View`
-  width: ${wp(35)};
+  width: ${wp(35)}px;
   justify-content: center;
   align-items: center;
   padding: 5px;

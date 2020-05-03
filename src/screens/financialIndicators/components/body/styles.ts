@@ -86,10 +86,10 @@ export const ContentArea = styled.View`
 `;
 
 export const Tab = styled.TouchableOpacity`
-    border-bottom-width: 1px;
-    border-bottom-color: ${(props) => (props.selected ? tealish : greyDD)};
-    width: ${(width - 32) / 3}
-    padding: 10px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${(props) => (props.selected ? tealish : greyDD)};
+  width: ${(width - 32) / 3}px;
+  padding: 10px;
 `;
 
 export const Tabs = styled.View`

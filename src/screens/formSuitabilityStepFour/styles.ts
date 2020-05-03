@@ -22,21 +22,21 @@ export const SafeAreaView = styled.SafeAreaView`
   align-items: center;
 `;
 export const Title = styled.Text`
-  font-size: 22;
+  font-size: 22px;
   font-family: OpenSans-Regular;
   text-align: center;
   margin-bottom: 30px;
   color: ${grey99};
 `;
 export const Text = styled.Text`
-  font-size: 24;
+  font-size: 24px;
   font-family: OpenSans-Regular;
   text-align: center;
   margin-bottom: 30px;
 `;
 
 export const Gratters = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   font-family: OpenSans-Bold;
   text-align: justify;
   color: ${tealish};

@@ -13,13 +13,13 @@ export const ImgContainer = styled.View`
 export const Img = styled.Image`
   flex: 1;
   margin-bottom: 32px;
-  width: ${width - 32};
+  width: ${width - 32}px;
   resize-mode: cover;
 `;
 
 export const Message = styled.Text`
   top: 40%;
-  width: ${width - 32};
+  width: ${width - 32}px;
   position: absolute;
   font-size: 15px;
   font-family: OpenSans-Bold;

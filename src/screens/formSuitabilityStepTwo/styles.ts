@@ -11,13 +11,13 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-size: 24;
+  font-size: 24px;
   font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const Question = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   font-family: OpenSans-Bold;
   text-align: justify;
   margin-bottom: 10;
@@ -25,21 +25,21 @@ export const Question = styled.Text`
   fontweight: bold;
 `;
 export const Ponderations = styled.Text`
-  font-size: 14;
+  font-size: 14px;
   font-family: OpenSans-Regular;
-  margin-bottom: 5;
+  margin-bottom: 5px;
   color: ${grey33};
   width: 80%;
 `;
 
 export const PonderationsContainer = styled.View`
-    align-items: center
-    margin-bottom: 20
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 export const OptionsBox = styled.View`
   flex-direction: row;
-  margin-bottom: 15;
+  margin-bottom: 15px;
   border-bottom-color: ${grey99};
   border-bottom-width: 1px;
   justify-content: space-between;
@@ -48,7 +48,7 @@ export const OptionsBox = styled.View`
 `;
 
 export const Options = styled.Text`
-  font-size: 14;
+  font-size: 14px;
   font-family: OpenSans-Regular;
   text-align: justify;
   color: ${grey99};
@@ -57,7 +57,7 @@ export const Options = styled.Text`
 export const OptionsContainer = styled.View`
   flex-direction: row;
   alignitems: center;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.TouchableOpacity`

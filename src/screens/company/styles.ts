@@ -40,12 +40,11 @@ export const ItemDefaultTitle = styled.Text`
 `;
 
 export const SocialMedia = styled.View`
-    margin-top: 5px;
-    width: ${width / 2}
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
+  margin-top: 5px;
+  width: ${width / 2}px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Touchable = styled.TouchableOpacity`

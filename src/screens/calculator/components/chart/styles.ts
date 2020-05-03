@@ -5,13 +5,13 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { white, grey99 } from '../../../../assets/colors';
 
 export const Container = styled.View`
-  height: ${hp(35)};
+  height: ${hp(35)}px;
   margin: 16px 0;
 `;
 
 export const ChartArea = styled.View`
   overflow: hidden;
-  height: ${hp(25)};
+  height: ${hp(25)}px;
   padding: 0 32px;
   flex-direction: row;
   align-items: flex-end;
@@ -22,7 +22,7 @@ export const ChartArea = styled.View`
 
 export const LegendArea = styled.View`
   overflow: hidden;
-  height: ${hp(8)};
+  height: ${hp(8)}px;
   padding: 0 32px;
   flex-direction: row;
   justify-content: space-between;

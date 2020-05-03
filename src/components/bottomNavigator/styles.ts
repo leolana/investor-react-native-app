@@ -17,9 +17,9 @@ export const Container = styled.View`
 `;
 
 export const Touchable = styled.TouchableOpacity`
-    width: ${width / 4}
-    align-items: center;
-    justify-content: center;
+  width: ${width / 4}px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Text = styled(Animated.Text)`

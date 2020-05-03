@@ -11,22 +11,22 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-size: 24;
+  font-size: 24px;
   font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const Question = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   font-family: OpenSans-Bold;
   text-align: justify;
-  margin-bottom: 10;
-  margin-top: 20;
+  margin-bottom: 10px;
+  margin-top: 20px;
   fontweight: bold;
 `;
 
 export const Options = styled.Text`
-  font-size: 14;
+  font-size: 14px;
   font-family: OpenSans-Regular;
   text-align: justify;
   color: ${grey99};
@@ -35,7 +35,7 @@ export const Options = styled.Text`
 export const OptionsContainer = styled.View`
   flex-direction: row;
   alignitems: center;
-  margin-bottom: 10;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.TouchableOpacity`

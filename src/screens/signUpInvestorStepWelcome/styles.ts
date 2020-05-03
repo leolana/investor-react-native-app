@@ -8,8 +8,8 @@ const { width } = Dimensions.get('screen');
 
 export const Logo = styled(IconIouu)`
   position: relative;
-  bottom: 30;
-  left: ${width / 2 - 60};
+  bottom: 30px;
+  left: ${width / 2 - 60}px;
 `;
 import { white, tealish, grey99, redTwo } from '../../assets/colors';
 
@@ -19,20 +19,20 @@ export const SafeAreaView = styled.View`
 `;
 
 export const Text = styled.Text`
-  font-size: 18;
+  font-size: 18px;
   margin-bottom: 30px;
   text-align: center;
 `;
 
 export const Title = styled.Text`
-  font-size: 22;
+  font-size: 22px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 40px;
 `;
 
 export const Note = styled.Text`
-  font-size: 16;
+  font-size: 16px;
   margin-bottom: 30px;
   text-align: center;
 `;

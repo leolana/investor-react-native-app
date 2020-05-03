@@ -56,6 +56,6 @@ export const Wallet = {
   screen: PageWallet,
   navigationOptions: {
     headerTitle: 'CARTEIRA',
-    headerLeft: null,
+    headerLeft: () => null,
   },
 };

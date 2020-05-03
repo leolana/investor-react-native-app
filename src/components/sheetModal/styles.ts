@@ -7,8 +7,8 @@ import { Dimensions, Animated } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 export const Backdrop = styled.View`
-  width: ${width};
-  height: ${height + height};
+  width: ${width}px;
+  height: ${height + height}px;
   background: ${black};
   opacity: 0.55;
 `;
@@ -37,5 +37,5 @@ export const Indicator = styled.View`
 `;
 
 export const SafeAreaView = styled.SafeAreaView`
-  width: ${width};
+  width: ${width}px;
 `;

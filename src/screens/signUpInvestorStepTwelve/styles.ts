@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { white, tealish, greyDD, grey99, grey66 } from '../../assets/colors';
 
 export const Title = styled.Text`
-  font-size: 24;
+  font-size: 24px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 20px;
@@ -24,7 +24,7 @@ export const Container = styled.View`
 `;
 
 export const ContainerTitle = styled.Text`
-    fontSize: 16;
+    fontSize: 16px;
     fontWeight: bold,
     color: ${grey99};
     alignSelf: center;
@@ -32,13 +32,13 @@ export const ContainerTitle = styled.Text`
 `;
 
 export const Note = styled.Text`
-    fontSize: 14;
+    fontSize: 14px;
     fontWeight: bold,
     color: ${grey66};
 `;
 
 export const Text = styled.Text`
-    fontSize: 14;
+    fontSize: 14px;
     fontWeight: bold,
     color: ${grey66};
 `;

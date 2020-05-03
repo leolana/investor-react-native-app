@@ -158,13 +158,13 @@ const translateAnim = (props) => {
 const modalScreenRoutesConfig = {
   mode: 'modal',
   headerMode: 'none',
-  transparentCard: true,
   defaultNavigationOptions: {
-    gesturesEnabled: false,
+    transparentCard: true,
+    gestureEnabled: false,
     gestureResponseDistance: { vertical: 1000 },
-  },
-  cardStyle: {
-    opacity: 1.0,
+    cardStyle: {
+      opacity: 1.0,
+    },
   },
   transitionConfig: () => ({ screenInterpolator: translateAnim }),
 };

@@ -34,7 +34,7 @@ export const PickerModal = (props) => {
 export const Picker = {
   screen: withNavigation(PickerModal),
   navigationOptions: {
-    gesturesEnabled: false,
+    gestureEnabled: false,
     gestureResponseDistance: { vertical: 0 },
   },
 };

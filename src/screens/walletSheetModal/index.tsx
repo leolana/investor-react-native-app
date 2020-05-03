@@ -42,5 +42,5 @@ export const WalletSheetModalComponent = (props) => {
 
 export const WalletSheetModal = {
   screen: WalletSheetModalComponent,
-  navigationOptions: { gesturesEnabled: false },
+  navigationOptions: { gestureEnabled: false },
 };

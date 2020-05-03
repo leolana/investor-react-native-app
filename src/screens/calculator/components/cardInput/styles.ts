@@ -22,7 +22,7 @@ export const Title = styled.Text`
 
 export const Container = styled.View`
   padding: 16px;
-  border-top-width: ${(props) => (props.divisor ? 1 : 0)};
+  border-top-width: ${(props) => (props.divisor ? 1 : 0)}px;
   border-top-color: ${white};
   flex-direction: row;
   align-items: center;

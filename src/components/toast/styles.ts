@@ -7,7 +7,7 @@ import { Dimensions, Animated } from 'react-native';
 const { width } = Dimensions.get('screen');
 
 export const SafeArea = styled(Animated.View)`
-  width: ${width};
+  width: ${width}px;
   align-items: flex-end;
   position: absolute;
   top: 72px;

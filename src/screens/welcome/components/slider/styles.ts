@@ -16,8 +16,8 @@ export const Dots = styled(Animated.View)`
 
 export const PageIndicator = styled.View`
   position: absolute;
-  top: ${height / 2};
-  left: ${(width - 50) / 2};
+  top: ${height / 2}px;
+  left: ${(width - 50) / 2}px;
   flex-direction: row;
   justify-content: space-between
   width: 50px;
@@ -25,7 +25,7 @@ export const PageIndicator = styled.View`
 `;
 
 export const FlatList = styled(Animated.FlatList)`
-  height: ${height};
+  height: ${height}px;
 `;
 
 export const Title = styled.Text`
@@ -44,9 +44,9 @@ export const Text = styled.Text`
 `;
 
 export const Container = styled.View`
-  width: ${width};
+  width: ${width}px;
   padding: 0 16px;
-  height: ${height / 1.3};
+  height: ${height / 1.3}px;
   justify-content: center;
   align-items: center;
 `;

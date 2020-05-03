@@ -52,7 +52,7 @@ export const ConfigurationsComponent = () => {
       accountData.NotificacoesInvestidor = config;
 
       dispatch(setAccountData(accountData));
-    } else alert('Ocorreu um erro ao tenatr salver as configurações. Tente novamente mais terde.');
+    } else alert('Ocorreu um erro ao tentar salvar as configurações. Tente novamente mais terde.');
   };
 
   // effects

@@ -20,8 +20,8 @@ export const SafeAreaView = styled.View`
 `;
 
 export const Text = styled.Text`
-  fontsize: 18;
-  marginbottom: 30px;
+  font-size: 18;
+  margin-bottom: 30px;
   text-align: center;
 `;
 
@@ -33,18 +33,18 @@ export const Title = styled.Text`
 `;
 
 export const Note = styled.Text`
-  fontsize: 16;
-  marginbottom: 30px;
+  font-size: 16;
+  margin-bottom: 30px;
   text-align: center;
 `;
 export const TextSuitability = styled.Text`
-  fontsize: 16;
-  marginbottom: 20px;
+  font-size: 16;
+  margin-bottom: 20px;
   text-align: center;
   color: ${tealish};
 `;
 
 export const TextOpportunities = styled.Text`
-  fontsize: 16;
+  font-size: 16;
   text-align: center;
 `;

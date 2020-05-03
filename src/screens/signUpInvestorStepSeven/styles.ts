@@ -36,5 +36,5 @@ export const Title = styled.Text`
   font-size: 20;
   font-family: OpenSans-Bold;
   text-align: center;
-  marginbottom: 20px;
+  margin-bottom: 20px;
 `;

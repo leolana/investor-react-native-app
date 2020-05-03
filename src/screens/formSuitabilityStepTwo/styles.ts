@@ -57,7 +57,7 @@ export const Options = styled.Text`
 export const OptionsContainer = styled.View`
   flex-direction: row;
   alignitems: center;
-  marginbottom: 10;
+  margin-bottom: 10;
 `;
 
 export const Button = styled.TouchableOpacity`

@@ -6,7 +6,7 @@ export const Title = styled.Text`
   font-size: 24;
   font-family: OpenSans-Bold;
   text-align: center;
-  marginbottom: 20px;
+  margin-bottom: 20px;
 `;
 export const SafeAreaView = styled.View`
   margin-horizontal: 16px;

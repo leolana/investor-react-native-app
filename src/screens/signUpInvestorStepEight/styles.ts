@@ -31,8 +31,8 @@ export const ButtonText = styled.Text`
 `;
 
 export const TextLine = styled.Text`
-  fontsize: 14;
+  font-size: 14;
   color: ${tealish};
   fontweight: bold;
-  marginbottom: 15px;
+  margin-bottom: 15px;
 `;

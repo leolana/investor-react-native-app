@@ -84,4 +84,6 @@ export const TextButton = styled.Text`
     font-family: HelveticaNeue-Bold;
     color: white
 `
-
+export const OptionTitle = styled.Text`
+    text-align: end;
+`

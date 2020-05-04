@@ -52,26 +52,29 @@ export const FormSuitabilityOne = (props) => {
 			Alert.alert('Todas a opçoes devem ser preenchias');
 		} else {
 			//chamada da api SuitabilitySalvar
-			console.log('vai nessa', SuitabilityOne);
+			saveSuitability(SuitabilityOne);
 			props.navigation.navigate('SuitabilityTwo');
 		}
 	};
 
+	const saveSuitability = async (data) => {
+		let resp = await Request.PUT({
+			url: `https://server-test.iouu.com.br/api/v1/suitability/${SuitabilityId}/investidor`,
+			data: data,
+		});
+
+		console.log(resp.data);
+	};
+
 	const getSuitabilityId = async () => {
-            let resp = await Request.GET({ url: 'https://server-test.iouu.com.br/api/v1/suitability'});
+		let resp = await Request.GET({
+			url: 'https://server-test.iouu.com.br/api/v1/suitability',
+		});
 
-            console.log("aquele abraço meus queridos", resp.data.insertedIds[0]);
-            setSuitabilityId(resp.data.insertedIds[0]);
+		setSuitabilityId(resp.data.insertedIds[0]);
 
-		    return resp;
-
-		// let resp = await Request.GET({
-		// 	url: 'https://server-test.iouu.com.br/api/v1/suitability',
-		// });
-
-		// setSuitabilityId(resp.data);
-		// console.log('aquele abraço', SuitabilityId);
-    };
+		return resp;
+	};
 
 	useEffect(() => {
 		getSuitabilityId();
@@ -80,7 +83,9 @@ export const FormSuitabilityOne = (props) => {
 	return (
 		<SafeAreaView>
 			<ScrollView>
-				<Title>1. Avaliação da capacidade de assumir riscos {SuitabilityId} </Title>
+				<Title>
+					1. Avaliação da capacidade de assumir riscos{' '}
+				</Title>
 				<View>
 					<Question>
 						a. Horizonte de investimento: você pretende utilizar um

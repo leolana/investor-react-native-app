@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Alert } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 
@@ -8,42 +8,39 @@ import { SafeAreaView, Title, Text, Box, Button, ButtonText } from './styles';
 
 export const FormSuitabilityThree = (props) => {
 	const [checked, setChecked] = useState(false);
-	const checkButton = () => {
-		if (test === 'true') {
-			setChecked(false);
-			setTest('false');
-			console.log(typeof checked);
-		} else {
-			setChecked(true);
-			setTest('true');
-			console.log(typeof checked);
-		}
-	};
-
-	const [test, setTest] = useState('');
+	const [disabled, setDisabled] = useState(true)
 
 	const SuitabilityThree = {
 		checked,
 		step_type: 'next',
 	};
 
-	const avancaEtapa = () => {
+	const checkButton = () => {
 		if (checked) {
-			saveSuitability(SuitabilityThree);
-			props.navigation.navigate('SuitabilityFour');
+			setChecked(false);
 		} else {
-            Alert.alert('Por favor confirme as informações fornecidas');
-        }
+			setChecked(true);
+		}
 	};
 
 	const saveSuitability = async (data) => {
 		let resp = await Request.PUT({
-			url: `https://server-test.iouu.com.br/api/v1/suitability/5eab1accf2ca13001a1ee7a9/investidor`,
+			url: `https://server-test.iouu.com.br/api/v1/suitability/5eb1b6ebf2ca13001a1ee8d4/investidor`,
 			data: data,
-        });
-        
-        console.log(resp.data);
-	};
+		});
+
+		console.log(resp.data);
+	};	
+	
+	const nextStep = () => {
+		saveSuitability(SuitabilityThree);
+		props.navigation.navigate('SuitabilityFour');
+	}
+
+	useEffect(() => {
+		setDisabled(!checked)
+	}, [checked])	
+
 
 	return (
 		<SafeAreaView>
@@ -69,17 +66,18 @@ export const FormSuitabilityThree = (props) => {
 						}}
 					>
 						<Checkbox
-							value="false"
-							status={test === 'true' ? 'checked' : 'unchecked'}
+							value={false}
+							status={checked ? 'checked' : 'unchecked'}
 							onPress={checkButton}
 						/>
 						<Text>ACEITAR</Text>
 					</View>
 				</Box>
 
-				<Button onPress={avancaEtapa}>
-					<ButtonText> SUBMETER RESPOSTAS </ButtonText>
+				<Button disabled={disabled} onPress={nextStep}>
+					<ButtonText>SUBMETER RESPOSTAS</ButtonText>
 				</Button>
+
 			</View>
 		</SafeAreaView>
 	);

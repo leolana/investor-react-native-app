@@ -2,7 +2,8 @@ import styled from 'styled-components/native'
 
 import {
     grey99,
-    tealish
+    tealish, 
+    white
 
 } from '../../assets/colors'
 
@@ -33,19 +34,17 @@ export const Box = styled.View`
 `
 
 export const Button = styled.TouchableOpacity`
-    background: ${tealish};
-    height: 50px;
-    width: 250px;
+    background: ${ props => props.disabled ?  grey99 : tealish }
     border-radius: 5px;
+    padding: 10px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: 28px;
+    margin-top: 30px
+    width: 70%
 `
+
 export const ButtonText = styled.Text`
     font-size: 14px;
     font-family: HelveticaNeue-Bold;
-    color: white
-
+    color: ${white};
 `
-

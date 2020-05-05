@@ -2,13 +2,13 @@ import styled from 'styled-components/native'
 
 import {
     tealish,
-    grey99
+    grey99,
+    white
 
 } from '../../assets/colors'
 
 export const ScrollView = styled.ScrollView`
     padding: 10px;
-
 `
 export const SafeAreaView = styled.SafeAreaView`
     margin: 12px;
@@ -36,7 +36,6 @@ export const Options = styled.Text`
     text-align: justify;
     color: ${grey99};
     width: 90%;
-
 `
 export const OptionsContainer = styled.View `
     flex-direction: row;
@@ -45,20 +44,17 @@ export const OptionsContainer = styled.View `
 `
 
 export const Button = styled.TouchableOpacity`
-    flex-direction: row;
-    background: ${tealish};
-    align-self: stretch;
-    height: 38px;
+    background: ${ props => props.disabled ?  grey99 : tealish }
     border-radius: 5px;
+    padding: 10px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: 28px;
+    margin-vertical: 20px
 `
 
-export const TextButton = styled.Text`
+export const ButtonText = styled.Text`
     font-size: 14px;
     font-family: HelveticaNeue-Bold;
-    color: white
+    color: ${white};
 `
 

@@ -12,18 +12,17 @@ import {
 	Options,
 	OptionsContainer,
 	Button,
-	TextButton,
+	ButtonText,
 } from './styles';
 
 // import { useSelector } from 'react-redux';
 import { Request, UrlUsuarioPegar } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
+	const [disabled, setDisabled] = useState(true)
 	const [HorizonteInvestimento, setHorizonteInvestimento] = useState('');
 	const [MomentoVida, setMomentoVida] = useState('');
-	const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState(
-		''
-	);
+	const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('');
 	const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
 	const [Patrimonio, setPatrimonio] = useState('');
 	const [SuitabilityId, setSuitabilityId] = useState('');
@@ -41,21 +40,11 @@ export const FormSuitabilityOne = (props) => {
 		step_type: 'next',
 	};
 
-	const avancaEtapa = () => {
-		if (
-			HorizonteInvestimento === '' ||
-			MomentoVida === '' ||
-			DistribuicaoInvestimento === '' ||
-			SitucaoFinanceira === '' ||
-			Patrimonio === ''
-		) {
-			Alert.alert('Todas a opçoes devem ser preenchias');
-		} else {
-			//chamada da api SuitabilitySalvar
-			saveSuitability(SuitabilityOne);
-			props.navigation.navigate('SuitabilityTwo');
-		}
-	};
+	const nextStep = () => {
+		saveSuitability(SuitabilityOne);
+		props.navigation.navigate('SuitabilityTwo');
+	}
+
 
 	const saveSuitability = async (data) => {
 		let resp = await Request.PUT({
@@ -77,6 +66,16 @@ export const FormSuitabilityOne = (props) => {
 	};
 
 	useEffect(() => {
+		setDisabled(
+			HorizonteInvestimento === '' ||
+			MomentoVida === '' ||
+			DistribuicaoInvestimento === '' ||
+			SitucaoFinanceira === '' ||
+			Patrimonio === ''
+		)
+	}, [HorizonteInvestimento, MomentoVida, DistribuicaoInvestimento, SitucaoFinanceira, Patrimonio]);
+
+	useEffect(() => {
 		getSuitabilityId();
 	}, []);
 
@@ -84,7 +83,7 @@ export const FormSuitabilityOne = (props) => {
 		<SafeAreaView>
 			<ScrollView>
 				<Title>
-					1. Avaliação da capacidade de assumir riscos{' '}
+					1. Avaliação da capacidade de assumir riscos
 				</Title>
 				<View>
 					<Question>
@@ -93,9 +92,7 @@ export const FormSuitabilityOne = (props) => {
 						médio prazo?
 					</Question>
 					<RadioButton.Group
-						onValueChange={(value) =>
-							setHorizonteInvestimento(value)
-						}
+						onValueChange={(value) => setHorizonteInvestimento(value)}
 						value={HorizonteInvestimento}
 					>
 						<View>
@@ -179,9 +176,7 @@ export const FormSuitabilityOne = (props) => {
 						investimentos na IOUU?
 					</Question>
 					<RadioButton.Group
-						onValueChange={(value) =>
-							setDistribuicaoInvestimento(value)
-						}
+						onValueChange={(value) => setDistribuicaoInvestimento(value)}
 						value={DistribuicaoInvestimento}
 					>
 						<View>
@@ -285,8 +280,8 @@ export const FormSuitabilityOne = (props) => {
 					</RadioButton.Group>
 				</View>
 
-				<Button onPress={avancaEtapa}>
-					<TextButton> Continuar </TextButton>
+				<Button disabled={disabled} onPress={nextStep}>
+					<ButtonText> CONTINUAR </ButtonText>
 				</Button>
 			</ScrollView>
 		</SafeAreaView>

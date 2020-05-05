@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { View, Alert } from 'react-native';
+import { View, Alert, Text } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
@@ -17,8 +17,10 @@ import {
 	TextButton,
 	Ponderations,
 	PonderationsContainer,
-    OptionsBox,
-    OptionTitle,
+	OptionsBox,
+	OptionsBoxTitle,
+	OptionsBoxTitleText,
+	Border
 } from './styles';
 
 export const FormSuitabilityTwo = (props) => {
@@ -112,7 +114,14 @@ export const FormSuitabilityTwo = (props) => {
 						</Ponderations>
 					</PonderationsContainer>
 
-                    <OptionTitle>Alto</OptionTitle>
+					<OptionsBoxTitle>
+						<OptionsBoxTitleText>Baixa</OptionsBoxTitleText>
+						<OptionsBoxTitleText>Média</OptionsBoxTitleText>
+						<OptionsBoxTitleText>Alta</OptionsBoxTitleText>
+					</OptionsBoxTitle>
+
+					<Border />
+
 					<OptionsBox>
 						<RadioButton.Group
 							onValueChange={(value) => setRendaFixa(value)}
@@ -127,6 +136,9 @@ export const FormSuitabilityTwo = (props) => {
 							<RadioButton value="3" />
 						</RadioButton.Group>
 					</OptionsBox>
+
+					<Border />
+
 
 					<OptionsBox>
 						<RadioButton.Group
@@ -145,6 +157,8 @@ export const FormSuitabilityTwo = (props) => {
 						</RadioButton.Group>
 					</OptionsBox>
 
+					<Border />
+
 					<OptionsBox>
 						<RadioButton.Group
 							onValueChange={(value) => setRendaVariavel(value)}
@@ -159,6 +173,8 @@ export const FormSuitabilityTwo = (props) => {
 							<RadioButton value="3" />
 						</RadioButton.Group>
 					</OptionsBox>
+
+					<Border />
 
 					<OptionsBox>
 						<RadioButton.Group
@@ -177,6 +193,8 @@ export const FormSuitabilityTwo = (props) => {
 						</RadioButton.Group>
 					</OptionsBox>
 
+					<Border />
+
 					<OptionsBox>
 						<RadioButton.Group
 							onValueChange={(value) => setDerivativos(value)}
@@ -191,6 +209,9 @@ export const FormSuitabilityTwo = (props) => {
 							<RadioButton value="3" />
 						</RadioButton.Group>
 					</OptionsBox>
+
+					<Border />
+
 				</View>
 
 				<View>

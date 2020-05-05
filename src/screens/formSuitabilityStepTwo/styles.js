@@ -3,7 +3,10 @@ import styled from 'styled-components/native'
 import {
     tealish,
     grey99,
-    grey33
+    grey33,
+    black55,
+    white,
+    greyDD
 
 } from '../../assets/colors'
 
@@ -45,26 +48,42 @@ export const PonderationsContainer = styled.View`
 
 export const OptionsBox = styled.View`
     flex-direction: row;
-    margin-bottom: 15;
-    border-bottom-color:  ${grey99};
-    border-bottom-width: 1px;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
 `
 
+export const Border = styled.View`
+    border-bottom-color:  ${greyDD};
+    border-bottom-width: 1;
+`
+
+export const OptionsBoxTitle = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 35%;
+    margin-bottom: 15;
+`
+
+export const OptionsBoxTitleText = styled.Text`
+    margin-left: 4%
+    font-size: 14;
+    font-weight: bold;
+    color: ${black55};
+`
+
 export const Options = styled.Text`
+    font-weight: bold;
     font-size: 14;
     font-family: HelveticaNeue;
     text-align: justify;
-    color: ${grey99};
+    color: ${black55};
     width: 90%;
 
 `
-export const OptionsContainer = styled.View `
+export const OptionsContainer = styled.View`
     flex-direction: row;
     alignItems: center;
-    marginBottom: 10;
 `
 
 export const Button = styled.TouchableOpacity`
@@ -82,8 +101,5 @@ export const Button = styled.TouchableOpacity`
 export const TextButton = styled.Text`
     font-size: 14px;
     font-family: HelveticaNeue-Bold;
-    color: white
-`
-export const OptionTitle = styled.Text`
-    text-align: end;
+    color: ${white}
 `

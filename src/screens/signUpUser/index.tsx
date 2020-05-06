@@ -10,8 +10,6 @@ import { Request, UrlCadastroUsuario } from '../../services';
 
 import { storeData } from '../../utils';
 
-import onInit from '../../store/reducers/init';
-
 export const SignUpUser = (props) => {
   // props
 

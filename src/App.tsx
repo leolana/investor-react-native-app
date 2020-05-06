@@ -24,12 +24,12 @@ class App extends React.Component {
     fontsLoaded: false,
   };
 
-  async _loadFontsAsync() {
+  async _loadFontsAsync(): Promise<void> {
     await Font.loadAsync(customFonts);
     this.setState({ fontsLoaded: true });
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this._loadFontsAsync();
     console.disableYellowBox = true;
   }
@@ -41,11 +41,8 @@ class App extends React.Component {
 
     return (
       <Provider store={Store}>
-        <>
-          <Routes />
-
-          <ToastView />
-        </>
+        <Routes />
+        <ToastView />
       </Provider>
     );
   }

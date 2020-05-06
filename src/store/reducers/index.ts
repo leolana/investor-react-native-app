@@ -1,6 +1,6 @@
 import * as Types from '../types';
 
-import onInit from './init';
+// import onInit from '../actions/getAccountData';
 
 const handleError = ({ inputError }, data) => {
   if (inputError === undefined) return [data];
@@ -13,7 +13,7 @@ const handleError = ({ inputError }, data) => {
 };
 
 export default (state = {}, action) => {
-  if (action.type.includes(Types.REDUX_INIT)) onInit();
+  // if (action.type.includes(Types.REDUX_INIT)) onInit();
 
   switch (action.type) {
     case Types.ACCOUNT_DATA:

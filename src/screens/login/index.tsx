@@ -8,7 +8,7 @@ import { storeData } from '../../utils';
 
 import { KeyboardAvoidingView, Welcome, Description, Container, Buttom } from './style';
 
-import onInit from '../../store/reducers/init';
+import onInit from '../../store/actions/getAccountData';
 
 export const Login = (props) => {
   // props

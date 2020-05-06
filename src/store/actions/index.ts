@@ -1,6 +1,6 @@
 import * as Types from '../types';
 
-const createBaseAction = (type, data) => ({ type, data });
+const createBaseAction = (type, data = null) => ({ type, data });
 
 export const setAccountData = (data) => createBaseAction(Types.ACCOUNT_DATA, data);
 

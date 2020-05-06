@@ -1,10 +1,49 @@
 import React, { useState } from 'react';
-import { View, CheckBox } from 'react-native';
+import { View, Alert } from 'react-native';
+import { Checkbox } from 'react-native-paper';
+
+import { Request } from '../../services';
 
 import { SafeAreaView, Title, Text, Box, Button, ButtonText } from './styles';
 
 export const FormSuitabilityThree = (props) => {
-  const [checked, setChecked] = useState('true');
+  const [checked, setChecked] = useState(false);
+  const [test, setTest] = useState('');
+
+  const checkButton = () => {
+    if (test === 'true') {
+      setChecked(false);
+      setTest('false');
+      console.log(typeof checked);
+    } else {
+      setChecked(true);
+      setTest('true');
+      console.log(typeof checked);
+    }
+  };
+
+  const SuitabilityThree = {
+    checked,
+    stepType: 'next',
+  };
+
+  const saveSuitability = async (data) => {
+    const resp = await Request.PUT({
+      url: `https://server-test.iouu.com.br/api/v1/suitability/5eab1accf2ca13001a1ee7a9/investidor`,
+      data: data,
+    });
+
+    console.log(resp.data);
+  };
+
+  const avancaEtapa = () => {
+    if (checked) {
+      saveSuitability(SuitabilityThree);
+      props.navigation.navigate('SuitabilityFour');
+    } else {
+      Alert.alert('Por favor confirme as informações fornecidas');
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -20,13 +59,19 @@ export const FormSuitabilityThree = (props) => {
             Confirmo que as informações fornecidas são verdadeiras e que devo atualiza-las caso haja alterações e sempre
             que for solicitado.
           </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-            <CheckBox />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Checkbox value="false" status={test === 'true' ? 'checked' : 'unchecked'} onPress={checkButton} />
             <Text>ACEITAR</Text>
           </View>
         </Box>
 
-        <Button onPress={() => props.navigation.navigate('SuitabilityFour')}>
+        <Button onPress={avancaEtapa}>
           <ButtonText> SUBMETER RESPOSTAS </ButtonText>
         </Button>
       </View>

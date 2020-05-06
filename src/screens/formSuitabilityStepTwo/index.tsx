@@ -4,6 +4,8 @@ import { View, Alert } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
+import { Request } from '../../services';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -16,6 +18,7 @@ import {
   Ponderations,
   PonderationsContainer,
   OptionsBox,
+  OptionTitle,
 } from './styles';
 
 export const FormSuitabilityTwo = (props) => {
@@ -42,6 +45,20 @@ export const FormSuitabilityTwo = (props) => {
     Formacao,
   };
 
+  const SuitabilityTwo = {
+    AvaliacaoRisco,
+    stepType: 'next',
+  };
+
+  const saveSuitability = async (data) => {
+    const resp = await Request.PUT({
+      url: `https://server-test.iouu.com.br/api/v1/suitability/5eab1accf2ca13001a1ee7a9/investidor`,
+      data: data,
+    });
+
+    console.log(resp.data);
+  };
+
   const avancaEtapa = () => {
     if (
       RendaFixa === '' ||
@@ -57,6 +74,7 @@ export const FormSuitabilityTwo = (props) => {
     ) {
       Alert.alert('Todas a opçoes devem ser preenchias');
     } else {
+      saveSuitability(SuitabilityTwo);
       props.navigation.navigate('SuitabilityThree');
     }
   };
@@ -86,6 +104,7 @@ export const FormSuitabilityTwo = (props) => {
             </Ponderations>
           </PonderationsContainer>
 
+          <OptionTitle>Alto</OptionTitle>
           <OptionsBox>
             <RadioButton.Group onValueChange={(value) => setRendaFixa(value)} value={RendaFixa}>
               <Options style={{ width: '30%' }}>Renda fixa</Options>

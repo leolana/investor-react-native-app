@@ -12,8 +12,28 @@ import {
     ButtonText
 } from './styles'
 
+import { setIdSuitability } from '../../store/actions'
+
+import Store from '../../store/index';
+
+import { Request, UrlUsuarioPegar } from '../../services';
+
 export const FormSuitabilityWelcome = props => {
     const logoSize = 100
+
+    const getSuitabilityId = async () => {
+		let resp = await Request.GET({
+			url: 'https://server-test.iouu.com.br/api/v1/suitability',
+		});
+
+		Store.dispatch(setIdSuitability(resp.data.insertedIds[0]))
+
+		return;
+    };
+    
+    useEffect(() => {
+		getSuitabilityId();
+	}, []);
 
     return (
         <SafeAreaView>

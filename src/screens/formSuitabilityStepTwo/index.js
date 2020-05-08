@@ -6,6 +6,8 @@ import { RadioButton } from 'react-native-paper';
 
 import { Request } from '../../services';
 
+import { useSelector } from 'react-redux'
+
 import {
 	SafeAreaView,
 	ScrollView,
@@ -36,6 +38,8 @@ export const FormSuitabilityTwo = (props) => {
 	const [Expectativa, setExpectativa] = useState('');
 	const [Formacao, setFormacao] = useState('');
 
+	const idSuitability = useSelector(({ idSuitability }) => idSuitability)
+
 	const AvaliacaoRisco = {
 		RendaFixa,
 		FundosMultimercados,
@@ -60,11 +64,9 @@ export const FormSuitabilityTwo = (props) => {
 
 	const saveSuitability = async (data) => {
 		let resp = await Request.PUT({
-			url: `https://server-test.iouu.com.br/api/v1/suitability/5eb1b6ebf2ca13001a1ee8d4/investidor`,
+			url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
 			data: data,
 		});
-
-		console.log(resp.data);
 	};
 
 	useEffect(() => {
@@ -79,7 +81,7 @@ export const FormSuitabilityTwo = (props) => {
 			Expectativa === '' ||
 			Formacao === ''
 		)
-	}, [RendaFixa, FundosMultimercados, RendaVariavel, FundosImobiliarios, Derivativos, ExpectativaAtrativos, Conforto, Expectativa, Formacao ]);
+	}, [RendaFixa, FundosMultimercados, RendaVariavel, FundosImobiliarios, Derivativos, ExpectativaAtrativos, Conforto, Expectativa, Formacao]);
 
 	return (
 		<SafeAreaView>

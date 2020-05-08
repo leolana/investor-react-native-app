@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
+import { TouchableOpacity } from 'react-native'
+
 import {
-    useSelector, 
+    useSelector,
     useDispatch
 } from 'react-redux'
 
@@ -14,7 +16,7 @@ import {
     white,
     greenishBlue,
     darkDusk,
-    
+
 } from '../../assets/colors'
 
 import {
@@ -35,14 +37,33 @@ import {
     CircleShadow,
     Email,
     ListArea,
-    
+
 } from './styles'
 
 import {
     removeData
 } from '../../utils'
 
+import {
+    Request,
+    UrlContaPegar
+} from '../../services'
+
+
 export const ProfileComponent = props => {
+
+    const getAccountData = async () => {
+
+        const resp = await Request.GET({ url: UrlContaPegar, header: 'bearer' })
+
+        const { data } = resp
+
+
+        console.log("DATAAAAAAaa",  data)
+        
+        atualiza(data)
+    }
+
 
     // props
 
@@ -50,13 +71,15 @@ export const ProfileComponent = props => {
 
     // states
 
-    const [ name, setName ] = useState('')
-    const [ nameLetter, setNameLetter ] = useState('')
-    const [ email, setEmail ] = useState('')
+    const [name, setName] = useState('')
+    const [nameLetter, setNameLetter] = useState('')
+    const [email, setEmail] = useState('')
+
+    const [accountData, setAccountData] = useState(undefined)
+
 
     // vars
 
-    const accountData = useSelector( ({accountData}) => accountData )
 
     const dispatch = useDispatch()
 
@@ -67,7 +90,7 @@ export const ProfileComponent = props => {
         },
         {
             title: 'Informações pessoais',
-            onPress: () => {}
+            onPress: () => { }
         },
         {
             title: 'Configurações',
@@ -85,7 +108,7 @@ export const ProfileComponent = props => {
             title: 'Suitability',
             onPress: () => navigation.navigate('SuitabilityWelcome')
         },
-        {   
+        {
             title: 'Cadastro',
             onPress: () => navigation.navigate('SignUpInvestorStepWelcome')
 
@@ -103,21 +126,28 @@ export const ProfileComponent = props => {
             }
         }
     ]
-
     // effects
 
     useEffect( () => {
+       
+        
+            getAccountData()
+            
 
-        if(accountData === undefined || accountData === null) return 
+        
+    }, [])
 
-        if(accountData.Nome !== undefined) {
+    const atualiza = (accountData) => {
+        if (accountData === undefined || accountData === null) return
+
+        if (accountData.Nome !== undefined) {
             setName(accountData.Nome || '')
             setNameLetter(accountData.Nome[0] || '')
-        } 
-        
-        if(accountData.Email !== undefined) setEmail(accountData.Email || '')
+        }
 
-    }, [])
+        if (accountData.Email !== undefined) setEmail(accountData.Email || '')
+
+    }
 
 
     // render
@@ -127,25 +157,27 @@ export const ProfileComponent = props => {
 
             <ScrollView>
 
-                <Header> 
+                <Header>
                     <Background colors={[tealish, greenishBlue]} />
+
 
                     <CircleShadow>
                         <Circle
-                            size={ 158 }
-                            borderSize={ 5 }
-                            borderColor={ white }
-                            background={[greenishBlue, darkDusk]} 
-                        > 
+                            size={158}
+                            borderSize={5}
+                            borderColor={white}
+                            background={[greenishBlue, darkDusk]}
+                        >
                             <Letter>{nameLetter}</Letter>
                         </Circle>
                     </CircleShadow>
-                    
+
                 </Header>
+<TouchableOpacity onPress={getAccountData}><Name>TECLE</Name></TouchableOpacity>
 
-                <Name> { name } </Name>
+                <Name> {name} </Name>
 
-                <Email> { email } </Email>
+                <Email> {email} </Email>
 
                 <ListArea>
 
@@ -156,7 +188,7 @@ export const ProfileComponent = props => {
 
 
             </ScrollView>
-        
+
         </SafeAreaView>
 
     )

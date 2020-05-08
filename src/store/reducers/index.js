@@ -46,7 +46,13 @@ export default (state = {}, action) => {
         case Types.INPUT_ERROR: return {
             ...state, 
             inputError: handleError(state, action.data)
-        }
+        };
+
+        case Types.ID_SUITABILITY: return { 
+            ...state, 
+            idSuitability: action.data
+        
+        };
 
 
         default: return state;

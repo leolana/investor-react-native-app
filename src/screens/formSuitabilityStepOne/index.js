@@ -4,6 +4,10 @@ import { View, Alert } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
+// import { setIdSuitability } from '../../store/actions'
+
+// import Store from '../../store/index';
+
 import {
 	SafeAreaView,
 	ScrollView,
@@ -15,7 +19,8 @@ import {
 	ButtonText,
 } from './styles';
 
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
+
 import { Request, UrlUsuarioPegar } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
@@ -25,7 +30,9 @@ export const FormSuitabilityOne = (props) => {
 	const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('');
 	const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
 	const [Patrimonio, setPatrimonio] = useState('');
-	const [SuitabilityId, setSuitabilityId] = useState('');
+	// const [SuitabilityId, setSuitabilityId] = useState('');
+
+	const idSuitability = useSelector(({ idSuitability }) => idSuitability)
 
 	const FormularioCapacidade = {
 		HorizonteInvestimento,
@@ -48,22 +55,27 @@ export const FormSuitabilityOne = (props) => {
 
 	const saveSuitability = async (data) => {
 		let resp = await Request.PUT({
-			url: `https://server-test.iouu.com.br/api/v1/suitability/${SuitabilityId}/investidor`,
+			url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
 			data: data,
 		});
 
-		console.log(resp.data);
 	};
 
-	const getSuitabilityId = async () => {
-		let resp = await Request.GET({
-			url: 'https://server-test.iouu.com.br/api/v1/suitability',
-		});
+	// const getSuitabilityId = async () => {
+	// 	let resp = await Request.GET({
+	// 		url: 'https://server-test.iouu.com.br/api/v1/suitability',
+	// 	});
 
-		setSuitabilityId(resp.data.insertedIds[0]);
+	// 	console.log("STEP ONE", resp.data)
 
-		return resp;
-	};
+	// 	setSuitabilityId(resp.data.insertedIds[0]);
+
+	// 	Store.dispatch(setIdSuitability(resp.data.insertedIds[0]))
+
+	// 	return;
+	// };
+
+	
 
 	useEffect(() => {
 		setDisabled(
@@ -75,9 +87,9 @@ export const FormSuitabilityOne = (props) => {
 		)
 	}, [HorizonteInvestimento, MomentoVida, DistribuicaoInvestimento, SitucaoFinanceira, Patrimonio]);
 
-	useEffect(() => {
-		getSuitabilityId();
-	}, []);
+	// useEffect(() => {
+	// 	getSuitabilityId();
+	// }, []);
 
 	return (
 		<SafeAreaView>

@@ -6,9 +6,13 @@ import { Request } from '../../services';
 
 import { SafeAreaView, Title, Text, Box, Button, ButtonText } from './styles';
 
+import { useSelector } from 'react-redux'
+
 export const FormSuitabilityThree = (props) => {
 	const [checked, setChecked] = useState(false);
 	const [disabled, setDisabled] = useState(true)
+
+	const idSuitability = useSelector(({ idSuitability }) => idSuitability)
 
 	const SuitabilityThree = {
 		checked,
@@ -25,11 +29,9 @@ export const FormSuitabilityThree = (props) => {
 
 	const saveSuitability = async (data) => {
 		let resp = await Request.PUT({
-			url: `https://server-test.iouu.com.br/api/v1/suitability/5eb1b6ebf2ca13001a1ee8d4/investidor`,
+			url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
 			data: data,
 		});
-
-		console.log(resp.data);
 	};	
 	
 	const nextStep = () => {

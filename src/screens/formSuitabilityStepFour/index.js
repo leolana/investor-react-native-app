@@ -9,26 +9,36 @@ import {
 	ButtonText,
 	Title,
 	Info,
-    Gratters,
-    Bold,
-    Name,
-    Faixa,
+	Gratters,
+	Bold,
+	Name,
+	Faixa,
 } from './styles';
+
+import { useSelector } from 'react-redux'
+
 
 export const FormSuitabilityFour = (props) => {
 	const [type, setType] = useState('');
 	const [name, setName] = useState('');
 	const [text, setText] = useState('');
 
+	const idSuitability = useSelector(({ idSuitability }) => idSuitability)
+
 	const getInfos = async () => {
 		let resp = await Request.GET({
 			url:
-				'https://hub-test.iouu.com.br/iouu/suitability/5eb1b6ebf2ca13001a1ee8d4',
+				`https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
 		});
+
 		setName(resp.data.Nome);
 		setType(resp.data.Tipo);
 		getText(resp.data.Tipo);
 	};
+
+	useEffect(() => {
+		getInfos();
+	}, []);
 
 	const getText = (tipo) => {
 		if (tipo == 'Conservador') {
@@ -68,15 +78,12 @@ export const FormSuitabilityFour = (props) => {
 		}
 	};
 
-	useEffect(() => {
-		getInfos();
-	}, []);
 
 	return (
 		<SafeAreaView>
 			<ScrollView>
 				<Title>Seu perfil de investimento é: <Bold>{type}</Bold> </Title>
-                <Faixa/>
+				<Faixa />
 				<Name>Parabéns, <Bold>{name}</Bold>. </Name>
 				<Info>{text}</Info>
 				<Gratters>

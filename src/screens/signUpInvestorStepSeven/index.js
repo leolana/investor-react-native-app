@@ -21,11 +21,21 @@ export const SignUpInvestorStepSevenComponent = props => {
     //states
 
     const [disabled, setDisabled] = useState(true)
-    const [bank, setBank] = useState('')
-    const [bankAccountType, setBankAccountType] = useState('')
-    const [bankAgency, setBankAgency] = useState('')
-    const [bankAccount, setBankAccount] = useState('')
+    const [CodigoBanco, setCodigoBanco] = useState('')
+    const [TipoConta, setTipoConta] = useState('')
+    const [Agencia, setAgencia] = useState('')
+    const [Conta, setConta] = useState('')
 
+
+    const Investidor = {
+        // NaoTemContaBancaria,
+        DadosBancarios: {
+            CodigoBanco,
+            Agencia,
+            Conta,
+            TipoConta,
+        },
+    }
 
     //vars 
 
@@ -50,8 +60,13 @@ export const SignUpInvestorStepSevenComponent = props => {
     //effect
 
     useEffect(() => {
-        setDisabled(bank === '' || bankAccountType === '' || bankAgency === '' || bankAccount === '')
-    }, [bank,bankAccountType, bankAgency, bankAccount])
+        setDisabled(
+            CodigoBanco === '' || 
+            TipoConta === '' || 
+            Agencia === '' || 
+            Conta === ''
+        )
+    }, [CodigoBanco,TipoConta, Agencia, Conta])
 
     //render
 
@@ -63,25 +78,25 @@ export const SignUpInvestorStepSevenComponent = props => {
                 <Select
                     title="Banco"
                     options={optionsBank}
-                    onValueChange={obj => setBank(obj.value)}
-                    value={bank}
+                    onValueChange={obj => setCodigoBanco(obj.value)}
+                    value={CodigoBanco}
                 />
 
                 <TextInput
                     title={'Agência'}
-                    onChangeText={value => setBankAgency(value)}
+                    onChangeText={value => setAgencia(value)}
                     keyboardType={'numeric'}
                 />
 
                 <TextInput
                     title={'Conta'}
-                    onChangeText={value => setBankAccount(value)}
+                    onChangeText={value => setConta(value)}
                     keyboardType={'numeric'}
                 />
 
                 <RadioButton.Group
-                    onValueChange={(value) => setBankAccountType(value)}
-                    value={bankAccountType}
+                    onValueChange={(value) => setTipoConta(value)}
+                    value={TipoConta}
                 >
                     <ContainerLine>
                         <RadioButton value="1" />
@@ -94,7 +109,7 @@ export const SignUpInvestorStepSevenComponent = props => {
                     </ContainerLine>
                 </RadioButton.Group>
 
-                <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
+                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
                     <ButtonText>Continuar</ButtonText>
                 </Button>
             </ScrollView>

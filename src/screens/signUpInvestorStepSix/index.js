@@ -35,7 +35,19 @@ export const SignUpInvestorStepSixComponent = props => {
     const [Complemento, setComplemento] = useState('')
     const [uf, setUf] = useState('')
     const [Cidade, setCidade] = useState('')
-    const [neighborhood, setNeighborhood] = useState('')
+    const [Bairro, setBairro] = useState('')
+
+    Investidor: {
+        Endereco: {
+            Cep,
+            Bairro,
+            Complemento,
+            Logradouro,
+            Numero,
+            Uf,
+            Cidade
+        }
+    }
 
     //async functions
 
@@ -63,7 +75,7 @@ export const SignUpInvestorStepSixComponent = props => {
         setLogradouro(value.logradouro)
         setUf(value.uf)
         setCidade(value.localidade)
-        setNeighborhood(value.bairro)
+        setBairro(value.bairro)
     }
 
     //validate functions
@@ -88,10 +100,10 @@ export const SignUpInvestorStepSixComponent = props => {
             Logradouro === '' || 
             uf === '' || 
             Cidade === '' || 
-            neighborhood === '' || 
+            Bairro === '' || 
             Numero === ''
         )
-    }, [CEP, Logradouro, uf, Cidade, neighborhood, Numero])
+    }, [CEP, Logradouro, uf, Cidade, Bairro, Numero])
 
     //render
 
@@ -138,8 +150,8 @@ export const SignUpInvestorStepSixComponent = props => {
 
                         <TextInput
                             title={'Bairro'}
-                            value={neighborhood}
-                            onChangeText={value => setNeighborhood(value)}
+                            value={Bairro}
+                            onChangeText={value => setBairro(value)}
                         />
                         <TextInput
                             title={'Estado'}

@@ -39,16 +39,16 @@ export const SignUpInvestorStepFourComponent = props => {
         value: ""
     }])
 
-    
+
 
     //vars
-    
+
     const Investidor = {
         Cpf,
         RgNumero,
         RgOrgaoEmissor,
         RgEstadoEmissor,
-        RgDataEmissao, 
+        RgDataEmissao,
     }
 
     const opcoesOrgaoEmissor = [
@@ -132,7 +132,7 @@ export const SignUpInvestorStepFourComponent = props => {
             CPF == "77777777777" ||
             CPF == "88888888888" ||
             CPF == "99999999999")
-        return false
+            return false
 
         // Valida 1o digito	
         let add = 0
@@ -162,10 +162,17 @@ export const SignUpInvestorStepFourComponent = props => {
 
     useEffect(() => {
 
-        setDisabled(!validCpf || !validDate || Cpf === '' || RgDataEmissao === ''||
-         RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '')
+        setDisabled(
+            !validCpf ||
+            !validDate ||
+            Cpf === '' ||
+            RgDataEmissao === '' ||
+            RgEstadoEmissor === '' ||
+            RgOrgaoEmissor === '' ||
+            RgNumero === ''
+        )
 
-    }, [validCpf, validDate, Cpf, RgDataEmissao, RgEstadoEmissor, RgOrgaoEmissor, RgNumero ])
+    }, [validCpf, validDate, Cpf, RgDataEmissao, RgEstadoEmissor, RgOrgaoEmissor, RgNumero])
 
     // render
 

@@ -17,17 +17,22 @@ export const SignUpInvestorStepEightComponent = props => {
     //state
 
     const [disabled, setDisabled] = useState(true)
-    const [radioButton, setRadioButton] = useState('')
-    const [renda, setRenda] = useState('')
-    const [patrimonio, setPatrimonio] = useState('')
+    const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState('')
+    const [RendaMensal, setRendaMensal] = useState('')
+    const [Patrimonio, setPatrimonio] = useState('')
 
     //vars
+    const Investidor = {
+        PessoaPoliticamenteExposta,
+        Patrimonio,
+        RendaMensal,
+    }
 
     const checkButton = () => {
-        if (radioButton === '1') {
-            setRadioButton('0')
+        if (PessoaPoliticamenteExposta === '1') {
+            setPessoaPoliticamenteExposta('0')
         } else {
-            setRadioButton('1')
+            setPessoaPoliticamenteExposta('1')
         }
     }
 
@@ -38,8 +43,8 @@ export const SignUpInvestorStepEightComponent = props => {
     //effect
 
     useEffect(() => {
-        setDisabled(renda === '' || patrimonio === '')
-    }, [renda, patrimonio])
+        setDisabled(RendaMensal === '' || Patrimonio === '')
+    }, [RendaMensal, Patrimonio])
 
     //render
 
@@ -48,7 +53,7 @@ export const SignUpInvestorStepEightComponent = props => {
             <TextInput
                 title={'Rensa mensal aprox. (R$)'}
                 mask={'currency'}
-                onValueChange={({ unMasked }) => setRenda(unMasked)}
+                onValueChange={({ unMasked }) => setRendaMensal(unMasked)}
                 keyboardType={'numeric'}
             />
 
@@ -66,14 +71,14 @@ export const SignUpInvestorStepEightComponent = props => {
             <ContainerLine>
                 <RadioButton
                     value='1'
-                    status={radioButton === '1' ? 'checked' : 'unchecked'}
+                    status={PessoaPoliticamenteExposta === '1' ? 'checked' : 'unchecked'}
                     onPress={checkButton}
                 />
 
                 <Text>Declaro ser PPE</Text>
             </ContainerLine>
 
-            <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
+            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
                 <ButtonText>Continuar</ButtonText>
             </Button>
 

@@ -22,6 +22,10 @@ export const SignUpInvestorStepFiveComponent = props => {
     const [TelefoneFixo, setTelefoneFixo] = useState('')
     const [Celular, setCelular] = useState('')
 
+    const Investidor = {
+        TelefoneFixo,
+        Celular
+    }
 
     // Validate funcitons
 

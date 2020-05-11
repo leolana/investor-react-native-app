@@ -19,8 +19,8 @@ export const SignUpInvestorStepFiveComponent = props => {
     const [disabled, setDisabled] = useState('')
     const [validCellPhone, setValidCellPhone] = useState(true)
     const [validPhone, setValidPhone] = useState(true)
-    const [phone, setPhone] = useState('')
-    const [cellPhone, setCellPhone] = useState('')
+    const [TelefoneFixo, setTelefoneFixo] = useState('')
+    const [Celular, setCelular] = useState('')
 
 
     // Validate funcitons
@@ -36,9 +36,9 @@ export const SignUpInvestorStepFiveComponent = props => {
 
     useEffect(() => {
 
-        setDisabled(!validCellPhone || !validPhone || cellPhone === '' || cellPhone === '')
+        setDisabled(!validCellPhone || !validPhone || TelefoneFixo === '' || Celular === '')
 
-    }, [validCellPhone, validPhone, cellPhone, cellPhone ])
+    }, [validCellPhone, validPhone, TelefoneFixo, Celular ])
 
     //render 
 
@@ -55,10 +55,10 @@ export const SignUpInvestorStepFiveComponent = props => {
                             withDDD: true,
                             dddMask: '(99) '
                         }}
-                        value={cellPhone}
-                        onChangeText={value => setCellPhone(value)}
+                        value={Celular}
+                        onChangeText={value => setCelular(value)}
                         style={Styles.inputMargin}
-                        onBlur={() => setValidCellPhone(isValidPhone(cellPhone))}
+                        onBlur={() => setValidCellPhone(isValidPhone(Celular))}
                     />
 
                     {
@@ -74,10 +74,10 @@ export const SignUpInvestorStepFiveComponent = props => {
                             withDDD: true,
                             dddMask: '(99) '
                         }}
-                        value={phone}
-                        onChangeText={value => setPhone(value)}
+                        value={TelefoneFixo}
+                        onChangeText={value => setTelefoneFixo(value)}
                         style={Styles.inputMargin}
-                        onBlur={() => setValidPhone(isValidPhone(phone))}
+                        onBlur={() => setValidPhone(isValidPhone(TelefoneFixo))}
                     />
 
                     {
@@ -85,7 +85,7 @@ export const SignUpInvestorStepFiveComponent = props => {
                             : <View style={{ marginBottom: 30 }}></View>
                     }
 
-                    <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
+                    <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
                         <ButtonText>Continuar</ButtonText>
                     </Button>
                 </ScrollView>

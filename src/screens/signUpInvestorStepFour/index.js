@@ -28,18 +28,28 @@ export const SignUpInvestorStepFourComponent = props => {
     const [disabled, setDisabled] = useState(true)
     const [validCpf, setValidCpf] = useState(true)
     const [validDate, setValidDate] = useState(true)
-    const [cpf, setCpf] = useState('')
-    const [emissionDate, setEmissionDate] = useState('')
-    const [emissionState, setEmissionState] = useState('')
-    const [emissonOrgan, setEmissionOrgan] = useState('')
-    const [rg, setRg] = useState('')
+    const [Cpf, setCpf] = useState('')
+    const [RgDataEmissao, setRgDataEmissao] = useState('')
+    const [RgEstadoEmissor, setRgEstadoEmissor] = useState('')
+    const [RgOrgaoEmissor, setRgOrgaoEmissor] = useState('')
+    const [RgNumero, setRgNumero] = useState('')
     const [apiState, setApiState] = useState([{
         id: "",
         text: "",
         value: ""
     }])
 
+    
+
     //vars
+    
+    const Investidor = {
+        Cpf,
+        RgNumero,
+        RgOrgaoEmissor,
+        RgEstadoEmissor,
+        RgDataEmissao, 
+    }
 
     const opcoesOrgaoEmissor = [
         { text: "SSP", value: "SSP" },
@@ -91,7 +101,7 @@ export const SignUpInvestorStepFourComponent = props => {
     const validateDate = () => {
         let valid = false
         let regex = new RegExp("^([0-9]{2})/([0-9]{2})/([0-9]{4})$")
-        let matches = regex.exec(emissionDate)
+        let matches = regex.exec(RgDataEmissao)
 
         if (matches != null) {
             let day = parseInt(matches[1], 10)
@@ -106,7 +116,7 @@ export const SignUpInvestorStepFourComponent = props => {
     }
 
     const validateCpf = () => {
-        const CPF = cpf.replace(/[^\d]+/g, '')
+        const CPF = Cpf.replace(/[^\d]+/g, '')
 
         if (CPF == '') return false
 
@@ -152,10 +162,10 @@ export const SignUpInvestorStepFourComponent = props => {
 
     useEffect(() => {
 
-        setDisabled(!validCpf || !validDate || cpf === '' || emissionDate === ''||
-         emissionState === '' || emissonOrgan === '' || rg === '')
+        setDisabled(!validCpf || !validDate || Cpf === '' || RgDataEmissao === ''||
+         RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '')
 
-    }, [validCpf, validDate, cpf, emissionDate, emissionState, emissonOrgan, rg ])
+    }, [validCpf, validDate, Cpf, RgDataEmissao, RgEstadoEmissor, RgOrgaoEmissor, RgNumero ])
 
     // render
 
@@ -165,7 +175,7 @@ export const SignUpInvestorStepFourComponent = props => {
                 <Label>CPF</Label>
                 <TextInputMask
                     type={'cpf'}
-                    value={cpf}
+                    value={Cpf}
                     onChangeText={value => setCpf(value)}
                     style={Styles.input}
                     onBlur={() => setValidCpf(validateCpf())}
@@ -178,8 +188,8 @@ export const SignUpInvestorStepFourComponent = props => {
 
                 <TextInput
                     title={'RG'}
-                    onChangeText={value => setRg(value)}
-                    value={rg}
+                    onChangeText={value => setRgNumero(value)}
+                    value={RgNumero}
                 />
 
                 <Label>Data de emissão</Label>
@@ -188,8 +198,8 @@ export const SignUpInvestorStepFourComponent = props => {
                     options={{
                         format: 'DD/MM/YYYY'
                     }}
-                    value={emissionDate}
-                    onChangeText={value => setEmissionDate(value)}
+                    value={RgDataEmissao}
+                    onChangeText={value => setRgDataEmissao(value)}
                     onBlur={validateDate}
                     style={Styles.input}
                 />
@@ -201,18 +211,18 @@ export const SignUpInvestorStepFourComponent = props => {
                 <Select
                     title='Orgão emissor'
                     options={opcoesOrgaoEmissor}
-                    onValueChange={obj => setEmissionOrgan(obj.value)}
-                    value={emissonOrgan}
+                    onValueChange={obj => setRgOrgaoEmissor(obj.value)}
+                    value={RgOrgaoEmissor}
                 />
 
                 <Select
                     title='Estado de emissão'
                     options={mapApiState()}
-                    onValueChange={obj => setEmissionState(obj.value)}
-                    value={emissionState}
+                    onValueChange={obj => setRgEstadoEmissor(obj.value)}
+                    value={RgEstadoEmissor}
                 />
 
-                <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
+                <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
                     <ButtonText>Continuar</ButtonText>
                 </Button>
 

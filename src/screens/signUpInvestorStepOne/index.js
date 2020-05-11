@@ -13,13 +13,18 @@ import {
 export const SignUpInvestorStepOneComponent = props => {
     // states
 
-    const [ gender, setGender ] = useState('')
+    const [ Sexo, setSexo ] = useState('')
 
-    const [ nationality, setNationality ] = useState('')
+    const [ Nacionalidade, setNationalidade ] = useState('')
 
     const [ disabled, setDisabled ] = useState(true)
 
     // vars
+
+    const Investidor = {
+        Sexo,
+        Nacionalidade
+    }
 
     const optionsGender = [
         { text: 'Masculino', value: 1 },
@@ -36,9 +41,9 @@ export const SignUpInvestorStepOneComponent = props => {
 
     useEffect(() => {
 
-        setDisabled(nationality === '' || gender === '')
+        setDisabled(Nacionalidade === '' || Sexo === '')
 
-    }, [gender, nationality])
+    }, [Nacionalidade, Sexo])
 
     // render
 
@@ -48,18 +53,18 @@ export const SignUpInvestorStepOneComponent = props => {
             <Select 
                 title="Sexo"
                 options={optionsGender}
-                onValueChange={ obj => setGender(obj.value)}
-                value={gender}
+                onValueChange={ obj => setSexo(obj.value)}
+                value={Sexo}
             />
 
             <Select 
                 title="Nacionalidade"
                 options={optionsNationality}
-                onValueChange={ obj => setNationality(obj.value)}
-                value={nationality}
+                onValueChange={ obj => setNationalidade(obj.value)}
+                value={Nacionalidade}
             />
 
-            <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
+            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
                 <ButtonText>Continuar</ButtonText>
             </Button>
 

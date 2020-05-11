@@ -28,10 +28,10 @@ export const SignUpInvestorStepTwoComponent = props => {
     
     const [disabled, setDisabled] = useState(true)
     const [valid, setValid] = useState(true)
-    const [maritalStatus, setMaritalStatus] = useState('')
-    const [birthday, setBirthday] = useState('')
-    const [birthState, setBirthState] = useState()
-    const [birthCity, setBirthCity] = useState('')
+    const [EstadoCivil, setEstadoCivil] = useState('')
+    const [DataNascimento, setDataNascimento] = useState('')
+    const [Naturalidade, setNaturalidade] = useState()
+    const [NaturalidadeCidade, setNaturalidadeCidade] = useState('')
     const [apiState, setApiState] = useState([{
         id: "",
         text: "",
@@ -45,6 +45,13 @@ export const SignUpInvestorStepTwoComponent = props => {
 
 
     //vars
+
+    const Investidor = {
+        DataNascimento, 
+        Naturalidade,
+        NaturalidadeCidade, 
+        EstadoCivil
+    }
 
     function mapApiState() {
 
@@ -94,7 +101,7 @@ export const SignUpInvestorStepTwoComponent = props => {
 
     async function getCities() {
 
-        const resp = await Request.GET({ url: UrlLocalizacaoCidadesPegar(birthState) })
+        const resp = await Request.GET({ url: UrlLocalizacaoCidadesPegar(Naturalidade) })
 
         if (resp.status === 200) setApiCity(resp.data)
 
@@ -114,7 +121,7 @@ export const SignUpInvestorStepTwoComponent = props => {
     const validateDate = () => {
         let valid = false
         let regex = new RegExp("^([0-9]{2})/([0-9]{2})/([0-9]{4})$")
-        let matches = regex.exec(birthday)
+        let matches = regex.exec(DataNascimento)
 
         if (matches != null) {
             let day = parseInt(matches[1], 10)
@@ -134,9 +141,15 @@ export const SignUpInvestorStepTwoComponent = props => {
     useEffect(() => { myAsyncEffect() }, [])
 
     useEffect(() => {
-        setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '' || maritalStatus === '')
+        setDisabled(
+            !valid || 
+            DataNascimento === '' || 
+            Naturalidade === '' || 
+            NaturalidadeCidade === '' || 
+            EstadoCivil === ''
+        )
 
-    }, [valid, birthday, birthState, birthCity, maritalStatus])
+    }, [valid, DataNascimento, Naturalidade, NaturalidadeCidade, EstadoCivil])
 
     //render
 
@@ -148,8 +161,8 @@ export const SignUpInvestorStepTwoComponent = props => {
                 options={{
                     format: 'DD/MM/YYYY'
                 }}
-                value={birthday}
-                onChangeText={value => setBirthday(value)}
+                value={DataNascimento}
+                onChangeText={value => setDataNascimento(value)}
                 style={Styles.input}
                 onBlur={validateDate}
             />
@@ -161,24 +174,24 @@ export const SignUpInvestorStepTwoComponent = props => {
             <Select
                 title={'Estado de nascimento'}
                 options={mapApiState()}
-                onValueChange={obj => setBirthState(obj.value)}
-                value={birthState}
+                onValueChange={obj => setNaturalidade(obj.value)}
+                value={Naturalidade}
             />
             <Select
                 title={'Cidade de nascimento'}
                 options={mapApiCity()}
-                onValueChange={obj => setBirthCity(obj.value)}
-                value={birthCity}
+                onValueChange={obj => setNaturalidadeCidade(obj.value)}
+                value={NaturalidadeCidade}
             />
 
             <Select
                 title="Estado civil"
                 options={optionsMaritalStatus}
-                onValueChange={obj => setMaritalStatus(obj.value)}
-                value={maritalStatus}
+                onValueChange={obj => setEstadoCivil(obj.value)}
+                value={EstadoCivil}
             />
 
-            <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepThree')} >
+            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThree')} >
                 <ButtonText>Continuar</ButtonText>
             </Button>
         </SafeAreaView>

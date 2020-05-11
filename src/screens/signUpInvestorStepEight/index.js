@@ -51,7 +51,7 @@ export const SignUpInvestorStepEightComponent = props => {
     return (
         <SafeAreaView>
             <TextInput
-                title={'Rensa mensal aprox. (R$)'}
+                title={'Renda mensal aprox. (R$)'}
                 mask={'currency'}
                 onValueChange={({ unMasked }) => setRendaMensal(unMasked)}
                 keyboardType={'numeric'}

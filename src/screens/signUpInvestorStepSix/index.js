@@ -29,11 +29,11 @@ export const SignUpInvestorStepSixComponent = props => {
     const [loading, setLoading] = useState(false)
     const [valid, setValid] = useState(true)
     const [disabled, setDisabled] = useState('')
-    const [CEP, setCEP] = useState('')
+    const [Cep, setCep] = useState('')
     const [Logradouro, setLogradouro] = useState('')
     const [Numero, setNumber] = useState('')
     const [Complemento, setComplemento] = useState('')
-    const [uf, setUf] = useState('')
+    const [Uf, setUf] = useState('')
     const [Cidade, setCidade] = useState('')
     const [Bairro, setBairro] = useState('')
 
@@ -56,7 +56,7 @@ export const SignUpInvestorStepSixComponent = props => {
 
         setLoading(true)
 
-        const resp = await Request.GET({ url: UrlLocalizacaoCEPPegar(CEP) })
+        const resp = await Request.GET({ url: UrlLocalizacaoCEPPegar(Cep) })
 
         if (resp.data.erro)
             setValid(false)
@@ -72,19 +72,19 @@ export const SignUpInvestorStepSixComponent = props => {
 
     //functions 
     function contentCep(value) {
-        setLogradouro(value.logradouro)
-        setUf(value.uf)
-        setCidade(value.localidade)
-        setBairro(value.bairro)
+        setLogradouro(value.Logradouro)
+        setUf(value.Uf)
+        setCidade(value.Localidade)
+        setBairro(value.Bairro)
     }
 
     //validate functions
 
     const validaCep = () => {
-        if (CEP != "") {
+        if (Cep != "") {
             let validar = /^[0-9]{5}-[0-9]{3}$/
 
-            if (validar.test(CEP)) {
+            if (validar.test(Cep)) {
                 setValid(true)
                 getCEP()
             }
@@ -96,14 +96,14 @@ export const SignUpInvestorStepSixComponent = props => {
     //effect
     
     useEffect(() => {
-        setDisabled(CEP === '' || 
+        setDisabled(Cep === '' || 
             Logradouro === '' || 
-            uf === '' || 
+            Uf === '' || 
             Cidade === '' || 
             Bairro === '' || 
             Numero === ''
         )
-    }, [CEP, Logradouro, uf, Cidade, Bairro, Numero])
+    }, [Cep, Logradouro, Uf, Cidade, Bairro, Numero])
 
     //render
 
@@ -114,7 +114,7 @@ export const SignUpInvestorStepSixComponent = props => {
                     <Label>CEP</Label>
                     <TextInputMask
                         type={'zip-code'}
-                        value={CEP}
+                        value={Cep}
                         onChangeText={value => setCEP(value)}
                         style={Styles.input}
                         onBlur={validaCep}
@@ -155,7 +155,7 @@ export const SignUpInvestorStepSixComponent = props => {
                         />
                         <TextInput
                             title={'Estado'}
-                            value={uf}
+                            value={Uf}
                             onChangeText={value => setUf(value)}
                         />
 

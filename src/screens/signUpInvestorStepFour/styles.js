@@ -52,6 +52,10 @@ export const Error = styled.Text`
     margin-bottom: 15px;
 `
 
+export const ScrollView = styled.ScrollView`
+
+`
+
 const styles = StyleSheet.create({
     input: {
         borderColor: '#DDD',

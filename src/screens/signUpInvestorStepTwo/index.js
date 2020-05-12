@@ -28,7 +28,6 @@ export const SignUpInvestorStepTwoComponent = props => {
     
     const [disabled, setDisabled] = useState(true)
     const [valid, setValid] = useState(true)
-    const [EstadoCivil, setEstadoCivil] = useState('')
     const [DataNascimento, setDataNascimento] = useState('')
     const [Naturalidade, setNaturalidade] = useState()
     const [NaturalidadeCidade, setNaturalidadeCidade] = useState('')
@@ -50,7 +49,6 @@ export const SignUpInvestorStepTwoComponent = props => {
         DataNascimento, 
         Naturalidade,
         NaturalidadeCidade, 
-        EstadoCivil
     }
 
     function mapApiState() {
@@ -76,13 +74,6 @@ export const SignUpInvestorStepTwoComponent = props => {
 
         return optionsCities
     }
-
-    const optionsMaritalStatus = [
-        { text: "Solteiro (a)", value: 1 },
-        { text: "Casado (a)", value: 2 },
-        { text: "Divorciado (a)", value: 3 },
-        { text: "Viúvo (a)", value: 4 }
-    ]
 
     //async functions
 
@@ -145,11 +136,10 @@ export const SignUpInvestorStepTwoComponent = props => {
             !valid || 
             DataNascimento === '' || 
             Naturalidade === '' || 
-            NaturalidadeCidade === '' || 
-            EstadoCivil === ''
+            NaturalidadeCidade === '' 
         )
 
-    }, [valid, DataNascimento, Naturalidade, NaturalidadeCidade, EstadoCivil])
+    }, [valid, DataNascimento, Naturalidade, NaturalidadeCidade])
 
     //render
 
@@ -182,13 +172,6 @@ export const SignUpInvestorStepTwoComponent = props => {
                 options={mapApiCity()}
                 onValueChange={obj => setNaturalidadeCidade(obj.value)}
                 value={NaturalidadeCidade}
-            />
-
-            <Select
-                title="Estado civil"
-                options={optionsMaritalStatus}
-                onValueChange={obj => setEstadoCivil(obj.value)}
-                value={EstadoCivil}
             />
 
             <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThree')} >

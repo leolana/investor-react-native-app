@@ -9,13 +9,6 @@ import {
 
 } from '../../assets/colors'
 
-import {
-    ITextInput
-} from '../../components'
-
-export const TextInput = styled(ITextInput)`
-`
-
 export const SafeAreaView = styled.View`
     margin: 16px;
 `
@@ -48,7 +41,6 @@ export const Error = styled.Text`
     color: ${ redTwo}
     text-align: left;
     align-self: stretch;
-    margin-top: 4px;
     margin-bottom: 15px;
 `
 
@@ -78,7 +70,6 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
         alignSelf: 'stretch',
-        marginBottom: 30
     }
 })
 

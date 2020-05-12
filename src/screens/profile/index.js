@@ -1,159 +1,168 @@
-import React, { useEffect, useState } from 'react';
-
-import { TouchableOpacity } from 'react-native';
-
-import { useSelector, useDispatch } from 'react-redux';
-
-import { setAccountData } from '../../store/actions';
-
-import { tealish, white, greenishBlue, darkDusk } from '../../assets/colors';
-
-import { LinkList } from '../../components';
-
-import { ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react'
 
 import {
-	Background,
-	Circle,
-	SafeAreaView,
-	Letter,
-	Name,
-	Header,
-	CircleShadow,
-	Email,
-	ListArea,
-} from './styles';
+    useSelector, 
+    useDispatch
+} from 'react-redux'
 
-import { removeData } from '../../utils';
+import {
+    setAccountData
+} from '../../store/actions'
 
-import { Request, UrlContaPegar } from '../../services';
+import {
+    tealish,
+    white,
+    greenishBlue,
+    darkDusk,
+    
+} from '../../assets/colors'
 
-export const ProfileComponent = (props) => {
-	const getAccountData = async () => {
-		const resp = await Request.GET({
-			url: UrlContaPegar,
-			header: 'bearer',
-		});
+import {
+    LinkList,
+} from '../../components'
 
-        const { data } = resp;
+import {
+    ScrollView
+} from 'react-native'
 
-        console.log('DATAAAAAAaa', data);
+import {
+    Background,
+    Circle,
+    SafeAreaView,
+    Letter,
+    Name,
+    Header,
+    CircleShadow,
+    Email,
+    ListArea,
+    
+} from './styles'
 
-		atualiza(data);
-	};
+import {
+    removeData
+} from '../../utils'
 
-	// props
+export const ProfileComponent = props => {
 
-	const { navigation } = props;
+    // props
 
-	// states
+    const { navigation } = props
 
-	const [name, setName] = useState('');
-	const [nameLetter, setNameLetter] = useState('');
-	const [email, setEmail] = useState('');
+    // states
 
-	const [accountData, setAccountData] = useState(undefined);
+    const [ name, setName ] = useState('')
+    const [ nameLetter, setNameLetter ] = useState('')
+    const [ email, setEmail ] = useState('')
 
-	// vars
+    // vars
 
-	const dispatch = useDispatch();
+    const accountData = useSelector( ({accountData}) => accountData )
 
-	const links = [
-		{
-			title: 'Alterar senha',
-			onPress: () => navigation.navigate('ChangePassword'),
-		},
-		{
-			title: 'Informações pessoais',
-			onPress: () => {},
-		},
-		{
-			title: 'Configurações',
-			onPress: () => navigation.navigate('Configurations'),
-		},
-		{
-			title: 'Documentos',
-			onPress: () => navigation.navigate('Documents'),
-		},
-		{
-			title: 'Formalizações',
-			onPress: () => navigation.navigate('CCBsList'),
-		},
-		{
-			title: 'Suitability',
-			onPress: () => navigation.navigate('SuitabilityWelcome'),
-		},
-		{
-			title: 'Cadastro',
-			onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
-		},
-		{
-			title: 'Sair',
-			onPress: async () => {
-				await removeData('Authorization');
+    const dispatch = useDispatch()
 
-				navigation.navigate('Welcome');
+    const links = [
+        {
+            title: 'Alterar senha',
+            onPress: () => navigation.navigate('ChangePassword')
+        },
+        {
+            title: 'Informações pessoais',
+            onPress: () => {}
+        },
+        {
+            title: 'Configurações',
+            onPress: () => navigation.navigate('Configurations')
+        },
+        {
+            title: 'Documentos',
+            onPress: () => navigation.navigate('Documents')
+        },
+        {
+            title: 'Formalizações',
+            onPress: () => navigation.navigate('CCBsList')
+        },
+        {
+            title: 'Suitability',
+            onPress: () => navigation.navigate('SuitabilityOne')
+        },
+        {
+            title: 'Sair',
+            onPress: async () => {
 
-				dispatch(setAccountData(null));
-			},
-		},
-	];
-	// effects
+                await removeData('Authorization')
 
-	useEffect(() => {
-		getAccountData();
-	}, []);
+                navigation.navigate('Welcome')
 
-	const atualiza = (accountData) => {
-		if (accountData === undefined || accountData === null) return;
+                dispatch(setAccountData(null))
 
-		if (accountData.Nome !== undefined) {
-			setName(accountData.Nome || '');
-			setNameLetter(accountData.Nome[0] || '');
-		}
+            }
+        }
+    ]
 
-		if (accountData.Email !== undefined) setEmail(accountData.Email || '');
-	};
+    // effects
 
-	// render
+    useEffect( () => {
 
-	return (
-		<SafeAreaView>
-			<ScrollView>
-				<Header>
-					<Background colors={[tealish, greenishBlue]} />
+        if(accountData === undefined || accountData === null) return 
 
-					<CircleShadow>
-						<Circle
-							size={158}
-							borderSize={5}
-							borderColor={white}
-							background={[greenishBlue, darkDusk]}
-						>
-							<Letter>{nameLetter}</Letter>
-						</Circle>
-					</CircleShadow>
-				</Header>
-				<TouchableOpacity onPress={getAccountData}>
-					<Name>TECLE</Name>
-				</TouchableOpacity>
+        if(accountData.Nome !== undefined) {
+            setName(accountData.Nome || '')
+            setNameLetter(accountData.Nome[0] || '')
+        } 
+        
+        if(accountData.Email !== undefined) setEmail(accountData.Email || '')
 
-				<Name> {name} </Name>
+    }, [])
 
-				<Email> {email} </Email>
 
-				<ListArea>
-					<LinkList data={links} />
-				</ListArea>
-			</ScrollView>
-		</SafeAreaView>
-	);
-};
+    // render
+
+    return (
+        <SafeAreaView>
+
+            <ScrollView>
+
+                <Header> 
+                    <Background colors={[tealish, greenishBlue]} />
+
+                    <CircleShadow>
+                        <Circle
+                            size={ 158 }
+                            borderSize={ 5 }
+                            borderColor={ white }
+                            background={[greenishBlue, darkDusk]} 
+                        > 
+                            <Letter>{nameLetter}</Letter>
+                        </Circle>
+                    </CircleShadow>
+                    
+                </Header>
+
+                <Name> { name } </Name>
+
+                <Email> { email } </Email>
+
+                <ListArea>
+
+                    <LinkList data={links} />
+
+                </ListArea>
+
+
+
+            </ScrollView>
+        
+        </SafeAreaView>
+
+    )
+
+
+}
 
 export const Profile = {
-	screen: ProfileComponent,
-	navigationOptions: {
-		headerTitle: 'Perfil',
-		headerLeft: null,
-	},
-};
+    screen: ProfileComponent,
+    navigationOptions: {
+        headerTitle: "Perfil",
+        headerLeft: null
+    }
+}

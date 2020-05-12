@@ -9,244 +9,184 @@ import Styles, {
 	ButtonText,
 	Label,
 	Error,
-	TextInput,
 	ScrollView,
 } from './styles';
 
 import { Select } from '../../components';
 
-import { Request, UrlLocalizacaoEstadosPegar } from '../../services';
-
 export const SignUpInvestorStepFourComponent = (props) => {
-	//states
 
-	const [disabled, setDisabled] = useState(true);
-	const [validCpf, setValidCpf] = useState(true);
-	const [validDate, setValidDate] = useState(true);
-	const [Cpf, setCpf] = useState('');
-	const [RgDataEmissao, setRgDataEmissao] = useState('');
-	const [RgEstadoEmissor, setRgEstadoEmissor] = useState('');
-	const [RgOrgaoEmissor, setRgOrgaoEmissor] = useState('');
-	const [RgNumero, setRgNumero] = useState('');
-	const [apiState, setApiState] = useState([
-		{
-			id: '',
-			text: '',
-			value: '',
-		},
-	]);
+    //states
 
-	//vars
+    const [disabled, setDisabled] = useState(true);
+    const [validCpf, setValidCpf] = useState(true);
+    const [Cpf, setCpf] = useState('');
+    const [validCellPhone, setValidCellPhone] = useState(true)
+    const [validPhone, setValidPhone] = useState(true)
+    const [TelefoneFixo, setTelefoneFixo] = useState('')
+    const [Celular, setCelular] = useState('')
+    const [EstadoCivil, setEstadoCivil] = useState('')
 
-	const Investidor = {
-		Cpf,
-		RgNumero,
-		RgOrgaoEmissor,
-		RgEstadoEmissor,
-		RgDataEmissao,
-	};
+    //vars
 
-	const opcoesOrgaoEmissor = [
-		{ text: 'SSP', value: 'SSP' },
-		{ text: 'PM', value: 'PM' },
-		{ text: 'PC', value: 'PC' },
-		{ text: 'CNT', value: 'CNT' },
-		{ text: 'DIC', value: 'DIC' },
-		{ text: 'CTPS', value: 'CTPS' },
-		{ text: 'FGTS', value: 'FGTS' },
-		{ text: 'IFP', value: 'IFP' },
-		{ text: 'IPF', value: 'IPF' },
-		{ text: 'IML', value: 'IML' },
-		{ text: 'MTE', value: 'MTE' },
-		{ text: 'MMA', value: 'MMA' },
-		{ text: 'MAE', value: 'MAE' },
-		{ text: 'MEX', value: 'MEX' },
-		{ text: 'POF', value: 'POF' },
-		{ text: 'POM', value: 'POM' },
-		{ text: 'SES', value: 'SES' },
-		{ text: 'SJS', value: 'SJS' },
-		{ text: 'SJTS', value: 'SJTS' },
-		{ text: 'ZZZ', value: 'ZZZ' },
-	];
+    const Investidor = {
+        Cpf,
+        TelefoneFixo,
+        Celular,
+        EstadoCivil
+    };
 
-	function mapApiState() {
-		getStates();
+    const optionsMaritalStatus = [
+        { text: "Solteiro (a)", value: 1 },
+        { text: "Casado (a)", value: 2 },
+        { text: "Divorciado (a)", value: 3 },
+        { text: "Viúvo (a)", value: 4 }
+    ]
 
-		const optionsState = apiState.map((resp) => {
-			return {
-				text: resp.sigla,
-				value: resp.sigla,
-			};
-		});
-		return optionsState;
-	}
+    //validate functions
+    const isValidPhone = (phone) => {
+        const regex = /^\(\d{2}\) \d{4,5}-\d{4}$/
+        const valid = regex.test(phone)
 
-	async function getStates() {
-		const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
+        return valid
+    }
 
-		if (resp.status === 200) setApiState(resp.data);
-		else
-			alert(
-				'Ocorreu um erro ao obter as informações. Por favor volte mais tarde.'
-			);
-	}
+    const validateCpf = () => {
+        const CPF = Cpf.replace(/[^\d]+/g, '');
 
-	//validate functions
+        if (CPF == '') return false;
 
-	const validateDate = () => {
-		let valid = false;
-		let regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
-		let matches = regex.exec(RgDataEmissao);
+        // Elimina CPFs invalidos conhecidos
+        if (
+            CPF.length != 11 ||
+            CPF == '00000000000' ||
+            CPF == '11111111111' ||
+            CPF == '22222222222' ||
+            CPF == '33333333333' ||
+            CPF == '44444444444' ||
+            CPF == '55555555555' ||
+            CPF == '66666666666' ||
+            CPF == '77777777777' ||
+            CPF == '88888888888' ||
+            CPF == '99999999999'
+        )
+            return false;
 
-		if (matches != null) {
-			let day = parseInt(matches[1], 10);
-			let month = parseInt(matches[2], 10) - 1;
-			let year = parseInt(matches[3], 10);
-			let date = new Date(year, month, day, 0, 0, 0, 0);
-			valid =
-				date.getFullYear() == year &&
-				date.getMonth() == month &&
-				date.getDate() == day;
-		}
+        // Valida 1o digito
+        let add = 0;
+        for (let i = 0; i < 9; i++) add += parseInt(CPF.charAt(i)) * (10 - i);
+        let result = 11 - (add % 11);
 
-		if (valid) setValidDate(true);
-		else setValidDate(false);
-	};
+        if (result == 10 || result == 11) result = 0;
 
-	const validateCpf = () => {
-		const CPF = Cpf.replace(/[^\d]+/g, '');
+        if (result != parseInt(CPF.charAt(9))) return false;
 
-		if (CPF == '') return false;
+        // Valida 2o digito
+        add = 0;
+        for (let i = 0; i < 10; i++) add += parseInt(CPF.charAt(i)) * (11 - i);
+        result = 11 - (add % 11);
 
-		// Elimina CPFs invalidos conhecidos
-		if (
-			CPF.length != 11 ||
-			CPF == '00000000000' ||
-			CPF == '11111111111' ||
-			CPF == '22222222222' ||
-			CPF == '33333333333' ||
-			CPF == '44444444444' ||
-			CPF == '55555555555' ||
-			CPF == '66666666666' ||
-			CPF == '77777777777' ||
-			CPF == '88888888888' ||
-			CPF == '99999999999'
-		)
-			return false;
+        if (result == 10 || result == 11) result = 0;
 
-		// Valida 1o digito
-		let add = 0;
-		for (let i = 0; i < 9; i++) add += parseInt(CPF.charAt(i)) * (10 - i);
-		let result = 11 - (add % 11);
+        if (result != parseInt(CPF.charAt(10))) return false;
 
-		if (result == 10 || result == 11) result = 0;
+        return true;
+    };
 
-		if (result != parseInt(CPF.charAt(9))) return false;
+    //effect
 
-		// Valida 2o digito
-		add = 0;
-		for (let i = 0; i < 10; i++) add += parseInt(CPF.charAt(i)) * (11 - i);
-		result = 11 - (add % 11);
+    useEffect(() => {
 
-		if (result == 10 || result == 11) result = 0;
+        setDisabled(
+            !validCellPhone ||
+            !validPhone ||
+            TelefoneFixo === '' ||
+            Celular === '' ||
+            !validCpf ||
+            Cpf === '' ||
+            EstadoCivil === ''
+        )
 
-		if (result != parseInt(CPF.charAt(10))) return false;
+    }, [validCellPhone, validPhone, TelefoneFixo, Celular, validCpf, Cpf, EstadoCivil])
 
-		return true;
-	};
+    // render
 
-	//effect
+    return (
+        <KeyboardAvoidingView
+            behavior={Platform.Os == 'ios' ? 'padding' : 'height'}
+        >
+            <ScrollView>
+                <SafeAreaView>
+                    <Label>CPF</Label>
+                    <TextInputMask
+                        type={'cpf'}
+                        value={Cpf}
+                        onChangeText={(value) => setCpf(value)}
+                        style={Styles.input}
+                        onBlur={() => setValidCpf(validateCpf())}
+                    />
+                    {!validCpf ? (
+                        <Error>Você deve inserir um CPF válido</Error>
+                    ) : (
+                            <View style={{ marginBottom: 30 }} />
+                        )}
 
-	useEffect(() => {
-		setDisabled(
-			!validCpf ||
-				!validDate ||
-				Cpf === '' ||
-				RgDataEmissao === '' ||
-				RgEstadoEmissor === '' ||
-				RgOrgaoEmissor === '' ||
-				RgNumero === ''
-		);
-	}, [
-		validCpf,
-		validDate,
-		Cpf,
-		RgDataEmissao,
-		RgEstadoEmissor,
-		RgOrgaoEmissor,
-		RgNumero,
-	]);
+                    <Label>Celular</Label>
+                    <TextInputMask
+                        type={'cel-phone'}
+                        options={{
+                            maskType: 'BRL',
+                            withDDD: true,
+                            dddMask: '(99) '
+                        }}
+                        value={Celular}
+                        onChangeText={value => setCelular(value)}
+                        style={Styles.inputMargin}
+                        onBlur={() => setValidCellPhone(isValidPhone(Celular))}
+                    />
 
-	// render
+                    {
+                        !validCellPhone ? <Error>Você deve inserir um número válido</Error>
+                            : <View style={{ marginBottom: 30 }}></View>
+                    }
 
-	return (
-		<KeyboardAvoidingView
-			behavior={Platform.Os == 'ios' ? 'padding' : 'height'}
-		>
-			<ScrollView>
-				<SafeAreaView>
-					<Label>CPF</Label>
-					<TextInputMask
-						type={'cpf'}
-						value={Cpf}
-						onChangeText={(value) => setCpf(value)}
-						style={Styles.input}
-						onBlur={() => setValidCpf(validateCpf())}
-					/>
-					{!validCpf ? (
-						<Error>Você deve inserir um CPF válido</Error>
-					) : (
-						<View style={{ marginBottom: 30 }} />
-					)}
+                    <Label>Telefone</Label>
+                    <TextInputMask
+                        type={'cel-phone'}
+                        options={{
+                            maskType: 'BRL',
+                            withDDD: true,
+                            dddMask: '(99) '
+                        }}
+                        value={TelefoneFixo}
+                        onChangeText={value => setTelefoneFixo(value)}
+                        style={Styles.inputMargin}
+                        onBlur={() => setValidPhone(isValidPhone(TelefoneFixo))}
+                    />
 
-					<TextInput
-						title={'RG'}
-						onChangeText={(value) => setRgNumero(value)}
-						value={RgNumero}
-					/>
+                    {
+                        !validPhone ? <Error>Você deve inserir um número válido</Error>
+                            : <View style={{ marginBottom: 30 }}></View>
+                    }
 
-					<Label>Data de emissão</Label>
-					<TextInputMask
-						type={'datetime'}
-						options={{
-							format: 'DD/MM/YYYY',
-						}}
-						value={RgDataEmissao}
-						onChangeText={(value) => setRgDataEmissao(value)}
-						onBlur={validateDate}
-						style={Styles.input}
-					/>
-					{!validDate ? (
-						<Error>Você deve inserir uma data válida</Error>
-					) : (
-						<View style={{ marginBottom: 30 }} />
-					)}
+                    <Select
+                        title="Estado civil"
+                        options={optionsMaritalStatus}
+                        onValueChange={obj => setEstadoCivil(obj.value)}
+                        value={EstadoCivil}
+                    />
 
-					<Select
-						title="Orgão emissor"
-						options={opcoesOrgaoEmissor}
-						onValueChange={(obj) => setRgOrgaoEmissor(obj.value)}
-						value={RgOrgaoEmissor}
-					/>
-
-					<Select
-						title="Estado de emissão"
-						options={mapApiState()}
-						onValueChange={(obj) => setRgEstadoEmissor(obj.value)}
-						value={RgEstadoEmissor}
-					/>
-
-					<Button
-						/*disabled={disabled}*/ onPress={() =>
-							props.navigation.navigate('SignUpInvestorStepFive')
-						}
-					>
-						<ButtonText>Continuar</ButtonText>
-					</Button>
-				</SafeAreaView>
-			</ScrollView>
-		</KeyboardAvoidingView>
-	);
+                    <Button
+                    /*disabled={disabled}*/ onPress={() =>
+                            props.navigation.navigate('SignUpInvestorStepFive')
+                        }
+                    >
+                        <ButtonText>Continuar</ButtonText>
+                    </Button>
+                </SafeAreaView>
+            </ScrollView>
+        </KeyboardAvoidingView>
+    );
 };
 
 export const SignUpInvestorStepFour = {

@@ -30,7 +30,6 @@ export const FormSuitabilityOne = (props) => {
 	const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('');
 	const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
 	const [Patrimonio, setPatrimonio] = useState('');
-	// const [SuitabilityId, setSuitabilityId] = useState('');
 
 	const idSuitability = useSelector(({ idSuitability }) => idSuitability)
 
@@ -59,23 +58,7 @@ export const FormSuitabilityOne = (props) => {
 			data: data,
 		});
 
-	};
-
-	// const getSuitabilityId = async () => {
-	// 	let resp = await Request.GET({
-	// 		url: 'https://server-test.iouu.com.br/api/v1/suitability',
-	// 	});
-
-	// 	console.log("STEP ONE", resp.data)
-
-	// 	setSuitabilityId(resp.data.insertedIds[0]);
-
-	// 	Store.dispatch(setIdSuitability(resp.data.insertedIds[0]))
-
-	// 	return;
-	// };
-
-	
+	};	
 
 	useEffect(() => {
 		setDisabled(
@@ -86,10 +69,6 @@ export const FormSuitabilityOne = (props) => {
 			Patrimonio === ''
 		)
 	}, [HorizonteInvestimento, MomentoVida, DistribuicaoInvestimento, SitucaoFinanceira, Patrimonio]);
-
-	// useEffect(() => {
-	// 	getSuitabilityId();
-	// }, []);
 
 	return (
 		<SafeAreaView>

@@ -10,32 +10,57 @@ import {
     Select
 } from '../../components'
 
+import { useSelector } from 'react-redux'
+
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services'
+
+
 export const SignUpInvestorStepOneComponent = props => {
     // states
 
-    const [ Sexo, setSexo ] = useState('')
+    const [Sexo, setSexo] = useState('')
 
-    const [ Nacionalidade, setNationalidade ] = useState('')
+    const [Nacionalidade, setNacionalidade] = useState('')
 
-    const [ disabled, setDisabled ] = useState(true)
+    const [disabled, setDisabled] = useState(true)
+
+    const idInvestidor = useSelector(({ idInvestidor }) => idInvestidor)
 
     // vars
 
     const Investidor = {
         Sexo,
-        Nacionalidade
+        Nacionalidade,
+        _id: idInvestidor
     }
 
     const optionsGender = [
         { text: 'Masculino', value: 1 },
-        { text: 'Feminino',  value: 2 },
+        { text: 'Feminino', value: 2 },
     ]
 
     const optionsNationality = [
         { text: 'Brasileiro (a) Nato (a)', value: 1 },
-        { text: 'Brasileiro (a) Naturalizado (a)',  value: 2 },
-        { text: 'Estrangeiro (a)',  value: 3 },
+        { text: 'Brasileiro (a) Naturalizado (a)', value: 2 },
+        { text: 'Estrangeiro (a)', value: 3 },
     ]
+
+    const atualizarDadosInvestidor = async () => {
+        console.log('investidor', Investidor)
+
+        const resp = await Request.PUT({
+            url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
+            dados: Investidor,
+            header: 'bearer'
+        });
+
+        console.log("aaaaa", resp)
+    }
+
+    const nextStep = () => {
+        atualizarDadosInvestidor()
+        props.navigation.navigate('SignUpInvestorStepTwo')
+    }
 
     // effect
 
@@ -50,24 +75,23 @@ export const SignUpInvestorStepOneComponent = props => {
     return (
         <SafeAreaView>
 
-            <Select 
+            <Select
                 title="Sexo"
                 options={optionsGender}
-                onValueChange={ obj => setSexo(obj.value)}
+                onValueChange={obj => setSexo(obj.value)}
                 value={Sexo}
             />
 
-            <Select 
+            <Select
                 title="Nacionalidade"
                 options={optionsNationality}
-                onValueChange={ obj => setNationalidade(obj.value)}
+                onValueChange={obj => setNacionalidade(obj.value)}
                 value={Nacionalidade}
             />
 
-            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
+            <Button /*disabled={disabled}*/ onPress={nextStep}>
                 <ButtonText>Continuar</ButtonText>
             </Button>
-
 
         </SafeAreaView>
     )

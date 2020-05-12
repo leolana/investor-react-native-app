@@ -38,13 +38,9 @@ export const ButtonText = styled.Text`
     color: ${ white }
 `
 
-export const ScrollView = styled.ScrollView`
-
-`
-
-export const Title = styled.Text`
-    font-size: 20;
-    font-family: HelveticaNeue-Bold;
-    text-align: center;
-    marginBottom: 20px;
+export const TextLine = styled.Text`
+    fontSize: 14;
+    color: ${tealish};
+    fontWeight: bold;
+    marginBottom: 15px;
 `

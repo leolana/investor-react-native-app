@@ -16,7 +16,7 @@ import {
     Title
 } from './styles'
 
-export const SignUpInvestorStepSevenComponent = props => {
+export const SignUpInvestorStepEightComponent = props => {
 
     //states
 
@@ -119,7 +119,7 @@ export const SignUpInvestorStepSevenComponent = props => {
 }
 
 export const SignUpInvestorStepEight = {
-    screen: SignUpInvestorStepSevenComponent,
+    screen: SignUpInvestorStepEightComponent,
     navigationOptions: {
         headerTitle: "Cadastro de Investidor"
     }

@@ -10,9 +10,9 @@ import {
     TextInput,
     ContainerLine,
     TextLine
-} from '../signUpInvestorStepEight/styles'
+} from './styles'
 
-export const SignUpInvestorStepEightComponent = props => {
+export const SignUpInvestorStepSevenComponent = props => {
 
     //state
 
@@ -87,7 +87,7 @@ export const SignUpInvestorStepEightComponent = props => {
 }
 
 export const SignUpInvestorStepSeven = {
-    screen: SignUpInvestorStepEightComponent,
+    screen: SignUpInvestorStepSevenComponent,
     navigationOptions: {
         headerTitle: "Cadastro de Investidor"
     }

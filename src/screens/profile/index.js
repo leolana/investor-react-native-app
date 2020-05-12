@@ -86,6 +86,10 @@ export const ProfileComponent = props => {
             onPress: () => navigation.navigate('SuitabilityOne')
         },
         {
+			title: 'Cadastro',
+			onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
+		},
+        {
             title: 'Sair',
             onPress: async () => {
 

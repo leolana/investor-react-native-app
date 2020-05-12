@@ -13,10 +13,29 @@ import {
     ButtonText
 } from './styles'
 
+import { setIdInvestidor } from '../../store/actions'
+
+import Store from '../../store/index';
+
+import { Request, UrlInvPegar, UrlContaPegar } from '../../services';
 
 export const SignUpInvestorStepWelcomeComponent = props => {
-
     const logoSize = 100
+
+    const getInvestidor = async () => {
+        const resp = await Request.GET({
+            url: UrlInvPegar('guatvo3@gmail.com'),
+            header: 'bearer'
+        });
+        
+        console.log("resp", resp.data._id);
+
+        Store.dispatch(setIdInvestidor(resp.data._id))
+    }
+
+    useEffect(() => {
+        getInvestidor()
+    }, [])
 
     return (
         <SafeAreaView>
@@ -45,7 +64,4 @@ export const SignUpInvestorStepWelcomeComponent = props => {
 
 export const SignUpInvestorStepWelcome = {
     screen: SignUpInvestorStepWelcomeComponent,
-    // navigationOptions: {
-    //     headerTitle: "Iniciar cadastro"
-    // }
 }

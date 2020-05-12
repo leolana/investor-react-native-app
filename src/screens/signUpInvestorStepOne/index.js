@@ -46,21 +46,20 @@ export const SignUpInvestorStepOneComponent = props => {
     ]
 
     const atualizarDadosInvestidor = async () => {
-        console.log('investidor', Investidor)
 
         const resp = await Request.PUT({
             url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
-            dados: Investidor,
+            Investidor,
             header: 'bearer'
-        });
+        });  
+                
+        if (resp.status === 200) props.navigation.navigate('SignUpInvestorStepTwo')
 
-        console.log("aaaaa", resp)
+        else console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa", resp.data)
     }
 
-    const nextStep = () => {
         atualizarDadosInvestidor()
-        props.navigation.navigate('SignUpInvestorStepTwo')
-    }
+
 
     // effect
 
@@ -89,7 +88,7 @@ export const SignUpInvestorStepOneComponent = props => {
                 value={Nacionalidade}
             />
 
-            <Button /*disabled={disabled}*/ onPress={nextStep}>
+            <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
                 <ButtonText>Continuar</ButtonText>
             </Button>
 

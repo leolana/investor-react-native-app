@@ -1,4 +1,4 @@
-import * as Types from '../types';
+import * as Types from '../ActionTypes';
 
 const createBaseAction = (type, data = null) => ({ type, data });
 

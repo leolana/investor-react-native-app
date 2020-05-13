@@ -4,7 +4,7 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
 import Routes from './routes';
-import Store from './store';
+import store from './store';
 import { ToastView } from './components';
 
 const customFonts = {
@@ -40,7 +40,7 @@ class App extends React.Component {
     }
 
     return (
-      <Provider store={Store}>
+      <Provider store={store}>
         <Routes />
         <ToastView />
       </Provider>

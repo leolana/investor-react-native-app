@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { Container, Text, SafeArea } from './styles';
+import { Container, Text, SafeArea } from "./styles";
 
-import { useSelector } from 'react-redux';
-import { Animated, Easing, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { useSelector } from "react-redux";
+import {
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+  Dimensions,
+} from "react-native";
 
-import store from '../../store';
+import store from "../../store";
 
-import { showToast, destroyToast } from '../../store/actions';
+import { showToast, destroyToast } from "../../store/actions";
 
-import { IconClose, IconCheckAll, IconNoItem } from '../../assets/icons';
+import { IconClose, IconCheckAll, IconNoItem } from "../../assets/icons";
 
-import { toastError, toastSuccess, toastInfo } from '../../assets/colors';
+import { toastError, toastSuccess, toastInfo } from "../../assets/colors";
 
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get("screen");
 
 export const ToastView = (props) => {
   // States
@@ -39,7 +44,8 @@ export const ToastView = (props) => {
 
   // methods
 
-  const destroy = () => {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const destroy = async () => {
     if (!isVisible) return;
 
     store.dispatch(destroyToast());
@@ -48,7 +54,7 @@ export const ToastView = (props) => {
   };
 
   opacity.addListener(({ value }) => {
-    if (value != 0) return setIsVisible(true);
+    if (value !== 0) return setIsVisible(true);
 
     destroy();
   });
@@ -117,6 +123,6 @@ export const ToastView = (props) => {
 };
 
 export const Toast = {
-  showSuccess: (text) => store.dispatch(showToast({ type: 'success', text })),
-  showError: (text) => store.dispatch(showToast({ type: 'error', text })),
+  showSuccess: (text) => store.dispatch(showToast({ type: "success", text })),
+  showError: (text) => store.dispatch(showToast({ type: "error", text })),
 };

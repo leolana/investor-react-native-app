@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { Background, Slider } from './components';
 
-import { white } from '../../assets/colors.js';
+import { white } from '../../assets/colors';
 
 import { IButtom } from '../../components';
 

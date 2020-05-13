@@ -1,6 +1,12 @@
 # Investidor - App React Native 2.0
 
-## ❯ Getting Started
+## About Project
+
+## Tech Stack
+
+## Prerequisites
+
+## Getting Started
 
 * Verify node version `v12x`
 * Verify and install expo cli `npm install -g expo-cli`
@@ -16,6 +22,16 @@ npm i                        # install all dependencies
 ```bash
 npm start                    # serve app with typescript been transpiled in runtime and watches changes in ./src
 ```
+
+## Directory Layout
+
+## Related Projects
+
+## Contributors
+
+## Contributing
+
+## Versioning
 
 ---
 Made with ♥ by IOUU (https://www.iouu.com.br)

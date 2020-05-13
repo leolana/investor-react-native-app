@@ -4,18 +4,25 @@ import { View, Alert } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
-import { SafeAreaView, ScrollView, Title, Question, Options, OptionsContainer, Button, TextButton } from './styles';
+// import { setIdSuitability } from '../../store/actions'
 
-// import { useSelector } from 'react-redux';
+// import Store from '../../store/index';
+
+import { SafeAreaView, ScrollView, Title, Question, Options, OptionsContainer, Button, ButtonText } from './styles';
+
+import { useSelector } from 'react-redux';
+
 import { Request, UrlUsuarioPegar } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
+  const [disabled, setDisabled] = useState(true);
   const [HorizonteInvestimento, setHorizonteInvestimento] = useState('');
   const [MomentoVida, setMomentoVida] = useState('');
   const [DistribuicaoInvestimento, setDistribuicaoInvestimento] = useState('');
   const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
-  const [SuitabilityId, setSuitabilityId] = useState('');
+
+  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
 
   const FormularioCapacidade = {
     HorizonteInvestimento,
@@ -32,47 +39,30 @@ export const FormSuitabilityOne = (props) => {
 
   const saveSuitability = async (data) => {
     const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/${SuitabilityId}/investidor`,
+      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
-
-    console.log(resp.data);
   };
 
-  const avancaEtapa = () => {
-    if (
-      HorizonteInvestimento === '' ||
-      MomentoVida === '' ||
-      DistribuicaoInvestimento === '' ||
-      SitucaoFinanceira === '' ||
-      Patrimonio === ''
-    ) {
-      Alert.alert('Todas a opçoes devem ser preenchias');
-    } else {
-      //chamada da api SuitabilitySalvar
-      saveSuitability(SuitabilityOne);
-      props.navigation.navigate('SuitabilityTwo');
-    }
-  };
-
-  const getSuitabilityId = async () => {
-    const resp = await Request.GET({
-      url: 'https://server-test.iouu.com.br/api/v1/suitability',
-    });
-
-    setSuitabilityId(resp.data.insertedIds[0]);
-
-    return resp;
+  const nextStep = () => {
+    saveSuitability(SuitabilityOne);
+    props.navigation.navigate('SuitabilityTwo');
   };
 
   useEffect(() => {
-    getSuitabilityId();
-  }, []);
+    setDisabled(
+      HorizonteInvestimento === '' ||
+        MomentoVida === '' ||
+        DistribuicaoInvestimento === '' ||
+        SitucaoFinanceira === '' ||
+        Patrimonio === '',
+    );
+  }, [HorizonteInvestimento, MomentoVida, DistribuicaoInvestimento, SitucaoFinanceira, Patrimonio]);
 
   return (
     <SafeAreaView>
       <ScrollView>
-        <Title>1. Avaliação da capacidade de assumir riscos </Title>
+        <Title>1. Avaliação da capacidade de assumir riscos</Title>
         <View>
           <Question>
             a. Horizonte de investimento: você pretende utilizar um percentual relevante dos seus investimentos no curto
@@ -223,8 +213,8 @@ export const FormSuitabilityOne = (props) => {
           </RadioButton.Group>
         </View>
 
-        <Button onPress={avancaEtapa}>
-          <TextButton> Continuar </TextButton>
+        <Button disabled={disabled} onPress={nextStep}>
+          <ButtonText> CONTINUAR </ButtonText>
         </Button>
       </ScrollView>
     </SafeAreaView>

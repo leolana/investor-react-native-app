@@ -10,19 +10,19 @@ import { UrlTermosCondicoes, UrlPoliticaPrivacidade } from '../../services';
 
 export const SignUpInvestorStepFourteenComponent = (props) => {
   const [disabled, setDisabled] = useState(true);
-  const [radioButton, setRadioButton] = useState('0');
+  const [AceitaContratoConfidencialidade, setAceitaContratoConfidencialidade] = useState(false);
 
   const checkButton = () => {
-    if (radioButton === '1') {
-      setRadioButton('0');
+    if (AceitaContratoConfidencialidade) {
+      setAceitaContratoConfidencialidade(false);
     } else {
-      setRadioButton('1');
+      setAceitaContratoConfidencialidade(true);
     }
   };
 
   useEffect(() => {
-    setDisabled(radioButton == '0');
-  }, [radioButton]);
+    setDisabled(AceitaContratoConfidencialidade == '0');
+  }, [AceitaContratoConfidencialidade]);
 
   return (
     <SafeAreaView>
@@ -44,7 +44,11 @@ export const SignUpInvestorStepFourteenComponent = (props) => {
         </TextLine>
 
         <ContainerLine>
-          <RadioButton value="1" status={radioButton === '1' ? 'checked' : 'unchecked'} onPress={checkButton} />
+          <RadioButton
+            value={false}
+            status={AceitaContratoConfidencialidade ? 'checked' : 'unchecked'}
+            onPress={checkButton}
+          />
 
           <Text>CONFIRMO E CONCORDO</Text>
         </ContainerLine>

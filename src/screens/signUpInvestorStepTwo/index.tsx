@@ -6,7 +6,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import { Request, UrlLocalizacaoEstadosPegar, UrlLocalizacaoCidadesPegar } from '../../services';
 
 import Styles, { SafeAreaView, Button, ButtonText, Label, Error } from './styles';
-'';
+
 import { Select } from '../../components';
 
 export const SignUpInvestorStepTwoComponent = (props) => {
@@ -14,10 +14,9 @@ export const SignUpInvestorStepTwoComponent = (props) => {
 
   const [disabled, setDisabled] = useState(true);
   const [valid, setValid] = useState(true);
-  const [maritalStatus, setMaritalStatus] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [birthState, setBirthState] = useState();
-  const [birthCity, setBirthCity] = useState('');
+  const [DataNascimento, setDataNascimento] = useState('');
+  const [Naturalidade, setNaturalidade] = useState();
+  const [NaturalidadeCidade, setNaturalidadeCidade] = useState('');
   const [apiState, setApiState] = useState([
     {
       id: '',
@@ -33,18 +32,10 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     },
   ]);
 
-  const getStates = async () => {
-    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
-
-    if (resp.status === 200) setApiState(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  };
-
-  const getCities = async () => {
-    const resp = await Request.GET({ url: UrlLocalizacaoCidadesPegar(birthState) });
-
-    if (resp.status === 200) setApiCity(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+  const Investidor = {
+    DataNascimento,
+    Naturalidade,
+    NaturalidadeCidade,
   };
 
   function mapApiState() {
@@ -55,6 +46,22 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       };
     });
     return optionsState;
+  }
+
+  async function getStates() {
+    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
+
+    if (resp.status === 200) setApiState(resp.data);
+    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+  }
+
+  async function getCities() {
+    const resp = await Request.GET({
+      url: UrlLocalizacaoCidadesPegar(Naturalidade),
+    });
+
+    if (resp.status === 200) setApiCity(resp.data);
+    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   }
 
   function mapApiCity() {
@@ -70,16 +77,9 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     return optionsCities;
   }
 
-  const optionsMaritalStatus = [
-    { text: 'Solteiro (a)', value: 1 },
-    { text: 'Casado (a)', value: 2 },
-    { text: 'Divorciado (a)', value: 3 },
-    { text: 'Viúvo (a)', value: 4 },
-  ];
-
-  const myAsyncEffect = async () => {
+  async function myAsyncEffect() {
     await getStates();
-  };
+  }
 
   const isOfAge = (year) => {
     const courentYear = new Date().getFullYear();
@@ -92,7 +92,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   const validateDate = () => {
     let valid = false;
     const regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
-    const matches = regex.exec(birthday);
+    const matches = regex.exec(DataNascimento);
 
     if (matches != null) {
       const day = parseInt(matches[1], 10);
@@ -112,8 +112,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   }, []);
 
   useEffect(() => {
-    setDisabled(!valid || birthday === '' || birthState === '' || birthCity === '' || maritalStatus === '');
-  }, [valid, birthday, birthState, birthCity, maritalStatus]);
+    setDisabled(!valid || DataNascimento === '' || Naturalidade === '' || NaturalidadeCidade === '');
+  }, [valid, DataNascimento, Naturalidade, NaturalidadeCidade]);
 
   return (
     <SafeAreaView>
@@ -123,8 +123,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
         options={{
           format: 'DD/MM/YYYY',
         }}
-        value={birthday}
-        onChangeText={(value) => setBirthday(value)}
+        value={DataNascimento}
+        onChangeText={(value) => setDataNascimento(value)}
         style={Styles.input}
         onBlur={validateDate}
       />
@@ -137,24 +137,17 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       <Select
         title={'Estado de nascimento'}
         options={mapApiState()}
-        onValueChange={(obj) => setBirthState(obj.value)}
-        value={birthState}
+        onValueChange={(obj) => setNaturalidade(obj.value)}
+        value={Naturalidade}
       />
       <Select
         title={'Cidade de nascimento'}
         options={mapApiCity()}
-        onValueChange={(obj) => setBirthCity(obj.value)}
-        value={birthCity}
+        onValueChange={(obj) => setNaturalidadeCidade(obj.value)}
+        value={NaturalidadeCidade}
       />
 
-      <Select
-        title="Estado civil"
-        options={optionsMaritalStatus}
-        onValueChange={(obj) => setMaritalStatus(obj.value)}
-        value={maritalStatus}
-      />
-
-      <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepThree')}>
+      <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThree')}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

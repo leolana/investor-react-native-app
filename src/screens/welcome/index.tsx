@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import { Background, Slider } from './components';
 
-import { white } from '../../assets/colors';
+import { white } from '../../assets/colors.js';
 
 import { IButtom } from '../../components';
 
@@ -34,7 +34,7 @@ export const WelcomeComponent = ({ navigation }) => {
       <Slider />
 
       <Buttons>
-        <IButtom title={'entrar'} onPress={() => navigation.navigate('Login', { authenticated: true })} />
+        <IButtom title={'entrar'} onPress={() => navigation.navigate('Login', { authenticated: false })} />
         <IButtom
           title={'criar uma conta'}
           onPress={() => navigation.navigate('SignUpUser')}
@@ -52,8 +52,8 @@ export const WelcomeComponent = ({ navigation }) => {
     if (accountData === undefined) return;
 
     if (accountData === null) setLoading(false);
-    else navigation.navigate('Login', { authenticated: true });
-  }, [accountData, navigation]);
+    else navigation.navigate('Login', { authenticated: false });
+  }, [accountData]);
 
   // render
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Alert } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 
@@ -6,44 +6,42 @@ import { Request } from '../../services';
 
 import { SafeAreaView, Title, Text, Box, Button, ButtonText } from './styles';
 
+import { useSelector } from 'react-redux';
+
 export const FormSuitabilityThree = (props) => {
   const [checked, setChecked] = useState(false);
-  const [test, setTest] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
-  const checkButton = () => {
-    if (test === 'true') {
-      setChecked(false);
-      setTest('false');
-      console.log(typeof checked);
-    } else {
-      setChecked(true);
-      setTest('true');
-      console.log(typeof checked);
-    }
-  };
+  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
 
   const SuitabilityThree = {
     checked,
     stepType: 'next',
   };
 
-  const saveSuitability = async (data) => {
-    const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/5eab1accf2ca13001a1ee7a9/investidor`,
-      data: data,
-    });
-
-    console.log(resp.data);
-  };
-
-  const avancaEtapa = () => {
+  const checkButton = () => {
     if (checked) {
-      saveSuitability(SuitabilityThree);
-      props.navigation.navigate('SuitabilityFour');
+      setChecked(false);
     } else {
-      Alert.alert('Por favor confirme as informações fornecidas');
+      setChecked(true);
     }
   };
+
+  const saveSuitability = async (data) => {
+    const resp = await Request.PUT({
+      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
+      data: data,
+    });
+  };
+
+  const nextStep = () => {
+    saveSuitability(SuitabilityThree);
+    props.navigation.navigate('SuitabilityFour');
+  };
+
+  useEffect(() => {
+    setDisabled(!checked);
+  }, [checked]);
 
   return (
     <SafeAreaView>
@@ -66,13 +64,13 @@ export const FormSuitabilityThree = (props) => {
               justifyContent: 'center',
             }}
           >
-            <Checkbox value="false" status={test === 'true' ? 'checked' : 'unchecked'} onPress={checkButton} />
+            <Checkbox value={false} status={checked ? 'checked' : 'unchecked'} onPress={checkButton} />
             <Text>ACEITAR</Text>
           </View>
         </Box>
 
-        <Button onPress={avancaEtapa}>
-          <ButtonText> SUBMETER RESPOSTAS </ButtonText>
+        <Button disabled={disabled} onPress={nextStep}>
+          <ButtonText>SUBMETER RESPOSTAS</ButtonText>
         </Button>
       </View>
     </SafeAreaView>

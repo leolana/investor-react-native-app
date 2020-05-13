@@ -3,6 +3,10 @@ import { StyleSheet } from 'react-native';
 
 import { white, tealish, grey99, redTwo } from '../../assets/colors';
 
+import { ITextInput } from '../../components';
+
+export const TextInput = styled(ITextInput)``;
+
 export const SafeAreaView = styled.View`
   margin: 16px;
 `;
@@ -17,19 +21,19 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'OpenSans-Bold';
+  font-family: 'HelveticaNeue-Bold';
   color: ${white};
 `;
-export const ScrollView = styled.ScrollView``;
+
 export const Label = styled.Text`
   color: ${grey99};
   margin-bottom: 5px;
   font-size: 12px;
-  font-family: OpenSans-Regular;
+  align-self: stretch;
+  font-family: HelveticaNeue;
 `;
-
 export const Error = styled.Text`
-    font-family: OpenSans-Regular;
+    font-family: HelveticaNeue;
     font-size: 10px;
     color: ${redTwo}
     text-align: left;
@@ -38,6 +42,8 @@ export const Error = styled.Text`
     margin-bottom: 15px;
 `;
 
+export const ScrollView = styled.ScrollView``;
+
 const styles = StyleSheet.create({
   input: {
     borderColor: '#DDD',
@@ -45,7 +51,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'HelveticaNeue',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',
@@ -56,10 +62,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: 'HelveticaNeue',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',
+    marginBottom: 30,
   },
 });
 

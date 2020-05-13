@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { View, Alert } from 'react-native';
 
@@ -6,32 +6,39 @@ import { RadioButton } from 'react-native-paper';
 
 import { Request } from '../../services';
 
+import { useSelector } from 'react-redux';
+
 import {
   SafeAreaView,
   ScrollView,
   Title,
   Question,
   Options,
+  OptionsTable,
   OptionsContainer,
+  OptionsButton,
   Button,
-  TextButton,
+  ButtonText,
   Ponderations,
   PonderationsContainer,
-  OptionsBox,
-  OptionTitle,
+  OptionsTableTitle,
+  OptionsTableTitleText,
+  Border,
 } from './styles';
 
 export const FormSuitabilityTwo = (props) => {
+  const [disabled, setDisabled] = useState(true);
   const [RendaFixa, setRendaFixa] = useState('');
   const [FundosMultimercados, setFundosMultimercados] = useState('');
   const [RendaVariavel, setRendaVariavel] = useState('');
   const [FundosImobiliarios, setFundosImobiliarios] = useState('');
   const [Derivativos, setDerivativos] = useState('');
-
   const [ExpectativaAtrativos, setExpectativaAtrativos] = useState('');
   const [Conforto, setConforto] = useState('');
   const [Expectativa, setExpectativa] = useState('');
   const [Formacao, setFormacao] = useState('');
+
+  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
 
   const AvaliacaoRisco = {
     RendaFixa,
@@ -52,32 +59,39 @@ export const FormSuitabilityTwo = (props) => {
 
   const saveSuitability = async (data) => {
     const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/5eab1accf2ca13001a1ee7a9/investidor`,
+      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
-
-    console.log(resp.data);
   };
 
-  const avancaEtapa = () => {
-    if (
+  const nextStep = () => {
+    saveSuitability(SuitabilityTwo);
+    props.navigation.navigate('SuitabilityThree');
+  };
+
+  useEffect(() => {
+    setDisabled(
       RendaFixa === '' ||
-      FundosMultimercados === '' ||
-      RendaVariavel === '' ||
-      FundosImobiliarios === '' ||
-      Derivativos === '' ||
-      Derivativos === '' ||
-      ExpectativaAtrativos === '' ||
-      Conforto === '' ||
-      Expectativa === '' ||
-      Formacao === ''
-    ) {
-      Alert.alert('Todas a opçoes devem ser preenchias');
-    } else {
-      saveSuitability(SuitabilityTwo);
-      props.navigation.navigate('SuitabilityThree');
-    }
-  };
+        FundosMultimercados === '' ||
+        RendaVariavel === '' ||
+        FundosImobiliarios === '' ||
+        Derivativos === '' ||
+        ExpectativaAtrativos === '' ||
+        Conforto === '' ||
+        Expectativa === '' ||
+        Formacao === '',
+    );
+  }, [
+    RendaFixa,
+    FundosMultimercados,
+    RendaVariavel,
+    FundosImobiliarios,
+    Derivativos,
+    ExpectativaAtrativos,
+    Conforto,
+    Expectativa,
+    Formacao,
+  ]);
 
   return (
     <SafeAreaView>
@@ -104,56 +118,73 @@ export const FormSuitabilityTwo = (props) => {
             </Ponderations>
           </PonderationsContainer>
 
-          <OptionTitle>Alto</OptionTitle>
-          <OptionsBox>
+          <OptionsTableTitle>
+            <OptionsTableTitleText>Baixa</OptionsTableTitleText>
+            <OptionsTableTitleText>Média</OptionsTableTitleText>
+            <OptionsTableTitleText>Alta</OptionsTableTitleText>
+          </OptionsTableTitle>
+
+          <Border />
+
+          <OptionsButton>
             <RadioButton.Group onValueChange={(value) => setRendaFixa(value)} value={RendaFixa}>
-              <Options style={{ width: '30%' }}>Renda fixa</Options>
+              <OptionsTable style={{ width: '30%' }}>Renda fixa</OptionsTable>
 
               <RadioButton value="1" />
               <RadioButton value="2" />
               <RadioButton value="3" />
             </RadioButton.Group>
-          </OptionsBox>
+          </OptionsButton>
 
-          <OptionsBox>
+          <Border />
+
+          <OptionsButton>
             <RadioButton.Group onValueChange={(value) => setFundosMultimercados(value)} value={FundosMultimercados}>
-              <Options style={{ width: '30%' }}>Fundos multimercados e estruturados</Options>
+              <OptionsTable style={{ width: '30%' }}>Fundos multimercados e estruturados</OptionsTable>
 
               <RadioButton value="1" />
               <RadioButton value="2" />
               <RadioButton value="3" />
             </RadioButton.Group>
-          </OptionsBox>
+          </OptionsButton>
 
-          <OptionsBox>
+          <Border />
+
+          <OptionsButton>
             <RadioButton.Group onValueChange={(value) => setRendaVariavel(value)} value={RendaVariavel}>
-              <Options style={{ width: '30%' }}>Renda variável</Options>
+              <OptionsTable style={{ width: '30%' }}>Renda variável</OptionsTable>
 
               <RadioButton value="1" />
               <RadioButton value="2" />
               <RadioButton value="3" />
             </RadioButton.Group>
-          </OptionsBox>
+          </OptionsButton>
 
-          <OptionsBox>
+          <Border />
+
+          <OptionsButton>
             <RadioButton.Group onValueChange={(value) => setFundosImobiliarios(value)} value={FundosImobiliarios}>
-              <Options style={{ width: '30%' }}>Fundos imobiliários</Options>
+              <OptionsTable style={{ width: '30%' }}>Fundos imobiliários</OptionsTable>
 
               <RadioButton value="1" />
               <RadioButton value="2" />
               <RadioButton value="3" />
             </RadioButton.Group>
-          </OptionsBox>
+          </OptionsButton>
 
-          <OptionsBox>
+          <Border />
+
+          <OptionsButton>
             <RadioButton.Group onValueChange={(value) => setDerivativos(value)} value={Derivativos}>
-              <Options style={{ width: '30%' }}>Derivativos, COE e Private Equity</Options>
+              <OptionsTable style={{ width: '30%' }}>Derivativos, COE e Private Equity</OptionsTable>
 
               <RadioButton value="1" />
               <RadioButton value="2" />
               <RadioButton value="3" />
             </RadioButton.Group>
-          </OptionsBox>
+          </OptionsButton>
+
+          <Border />
         </View>
 
         <View>
@@ -223,7 +254,7 @@ export const FormSuitabilityTwo = (props) => {
                 <RadioButton value="2" />
                 <Options>
                   Não admito perder nada do capital investido, no entanto, posso arriscar uma parte do capital para
-                  alcan.ar resultados melhores que a renda fixa tradicional.
+                  alcançar resultados melhores que a renda fixa tradicional.
                 </Options>
               </OptionsContainer>
 
@@ -282,8 +313,8 @@ export const FormSuitabilityTwo = (props) => {
           </RadioButton.Group>
         </View>
 
-        <Button onPress={avancaEtapa}>
-          <TextButton> Continuar </TextButton>
+        <Button disabled={disabled} onPress={nextStep}>
+          <ButtonText> CONTINUAR </ButtonText>
         </Button>
       </ScrollView>
     </SafeAreaView>

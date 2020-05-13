@@ -26,13 +26,15 @@ export const ContainerLine = styled.View`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'OpenSans-Bold';
+  font-family: 'HelveticaNeue-Bold';
   color: ${white};
 `;
 
-export const TextLine = styled.Text`
-  font-size: 14px;
-  color: ${tealish};
-  fontweight: bold;
-  margin-bottom: 15px;
+export const ScrollView = styled.ScrollView``;
+
+export const Title = styled.Text`
+  font-size: 20;
+  font-family: HelveticaNeue-Bold;
+  text-align: center;
+  marginbottom: 20px;
 `;

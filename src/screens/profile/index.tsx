@@ -54,7 +54,7 @@ export const ProfileComponent = (props) => {
     },
     {
       title: 'Suitability',
-      onPress: () => navigation.navigate('SuitabilityWelcome'),
+      onPress: () => navigation.navigate('SuitabilityOne'),
     },
     {
       title: 'Cadastro',
@@ -83,7 +83,7 @@ export const ProfileComponent = (props) => {
     }
 
     if (accountData.Email !== undefined) setEmail(accountData.Email || '');
-  }, [accountData]);
+  }, []);
 
   // render
 
@@ -116,6 +116,6 @@ export const Profile = {
   screen: ProfileComponent,
   navigationOptions: {
     headerTitle: 'Perfil',
-    headerLeft: () => null,
+    headerLeft: null,
   },
 };

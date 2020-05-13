@@ -1,11 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
-import { tealish } from '../../assets/colors';
+import { tealish } from '../../assets/colors.js';
 
 import { SafeAreaView, Title, Text, Note, Logo, Button, ButtonText } from './styles';
 
+import { setIdSuitability } from '../../store/actions';
+
+import Store from '../../store/index';
+
+import { Request, UrlUsuarioPegar } from '../../services';
+
 export const FormSuitabilityWelcome = (props) => {
   const logoSize = 100;
+
+  const getSuitabilityId = async () => {
+    const resp = await Request.GET({
+      url: 'https://server-test.iouu.com.br/api/v1/suitability',
+    });
+
+    Store.dispatch(setIdSuitability(resp.data.insertedIds[0]));
+
+    return;
+  };
+
+  useEffect(() => {
+    getSuitabilityId();
+  }, []);
 
   return (
     <SafeAreaView>

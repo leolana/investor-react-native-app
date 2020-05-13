@@ -4,16 +4,28 @@ import { SafeAreaView, Button, ButtonText } from './styles';
 
 import { Select } from '../../components';
 
+import { useSelector } from 'react-redux';
+
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services';
+
 export const SignUpInvestorStepOneComponent = (props) => {
   // states
 
-  const [gender, setGender] = useState('');
+  const [Sexo, setSexo] = useState('');
 
-  const [nationality, setNationality] = useState('');
+  const [Nacionalidade, setNacionalidade] = useState('');
 
   const [disabled, setDisabled] = useState(true);
 
+  const idInvestidor = useSelector(({ idInvestidor }) => idInvestidor);
+
   // vars
+
+  const Investidor = {
+    Sexo,
+    Nacionalidade,
+    _id: idInvestidor,
+  };
 
   const optionsGender = [
     { text: 'Masculino', value: 1 },
@@ -26,26 +38,39 @@ export const SignUpInvestorStepOneComponent = (props) => {
     { text: 'Estrangeiro (a)', value: 3 },
   ];
 
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
+      Investidor,
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) props.navigation.navigate('SignUpInvestorStepTwo');
+    else console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa', resp.data);
+  };
+
+  atualizarDadosInvestidor();
+
   // effect
 
   useEffect(() => {
-    setDisabled(nationality === '' || gender === '');
-  }, [gender, nationality]);
+    setDisabled(Nacionalidade === '' || Sexo === '');
+  }, [Nacionalidade, Sexo]);
 
   // render
 
   return (
     <SafeAreaView>
-      <Select title="Sexo" options={optionsGender} onValueChange={(obj) => setGender(obj.value)} value={gender} />
+      <Select title="Sexo" options={optionsGender} onValueChange={(obj) => setSexo(obj.value)} value={Sexo} />
 
       <Select
         title="Nacionalidade"
         options={optionsNationality}
-        onValueChange={(obj) => setNationality(obj.value)}
-        value={nationality}
+        onValueChange={(obj) => setNacionalidade(obj.value)}
+        value={Nacionalidade}
       />
 
-      <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepTwo')}>
+      <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

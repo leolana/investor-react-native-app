@@ -1,71 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { Linking, TouchableOpacity } from 'react-native';
 
 import { RadioButton, Text } from 'react-native-paper';
 
-import { SafeAreaView, Button, ButtonText, TextInput, ContainerLine, TextLine } from './styles';
+import { Select } from '../../components';
+
+import { SafeAreaView, Button, ButtonText, TextInput, ScrollView, ContainerLine, Title } from './styles';
 
 export const SignUpInvestorStepEightComponent = (props) => {
-  //state
+  //states
 
   const [disabled, setDisabled] = useState(true);
-  const [radioButton, setRadioButton] = useState('');
-  const [renda, setRenda] = useState('');
-  const [patrimonio, setPatrimonio] = useState('');
+  const [CodigoBanco, setCodigoBanco] = useState('');
+  const [TipoConta, setTipoConta] = useState('');
+  const [Agencia, setAgencia] = useState('');
+  const [Conta, setConta] = useState('');
+
+  const Investidor = {
+    // NaoTemContaBancaria,
+    DadosBancarios: {
+      CodigoBanco,
+      Agencia,
+      Conta,
+      TipoConta,
+    },
+  };
 
   //vars
 
-  const checkButton = () => {
-    if (radioButton === '1') {
-      setRadioButton('0');
-    } else {
-      setRadioButton('1');
-    }
-  };
-
-  const openLinkPPE = () => {
-    Linking.openURL('http://fazenda.gov.br/orgaos/coaf').catch((err) =>
-      console.error('Impossível carregar página', err),
-    );
-  };
+  const optionsBank = [
+    { value: '001', text: 'Banco do Brasil S.A.' },
+    { value: '033', text: 'Banco Santander (Brasil) S.A.' },
+    { value: '104', text: 'Caixa Econômica Federal' },
+    { value: '237', text: 'Banco Bradesco S.A.' },
+    { value: '341', text: 'Itaú Unibanco S.A.' },
+    { value: '041', text: 'Banco Banrisul' },
+    { value: '748', text: 'Sicredi' },
+    { value: '756', text: 'Sicoob' },
+    { value: '077', text: 'Banco Intermedium S.A.' },
+    { value: '070', text: 'BRB' },
+    { value: '085', text: 'Via Credi' },
+    { value: '655', text: 'Banco Neon' },
+    { value: '260', text: 'NuBank' },
+    { value: '290', text: 'PagSeguro' },
+    { value: '212', text: 'Banco Original' },
+  ];
 
   //effect
 
   useEffect(() => {
-    setDisabled(renda === '' || patrimonio === '');
-  }, [renda, patrimonio]);
+    setDisabled(CodigoBanco === '' || TipoConta === '' || Agencia === '' || Conta === '');
+  }, [CodigoBanco, TipoConta, Agencia, Conta]);
 
   //render
 
   return (
     <SafeAreaView>
-      <TextInput
-        title={'Rensa mensal aprox. (R$)'}
-        mask={'currency'}
-        onValueChange={({ unMasked }) => setRenda(unMasked)}
-        keyboardType={'numeric'}
-      />
+      <ScrollView>
+        <Title>Os dados informados devem ser do titular da conta</Title>
 
-      <TextInput
-        title={'Patrimônio aprox. (R$)'}
-        mask={'currency'}
-        onValueChange={({ unMasked }) => setPatrimonio(unMasked)}
-        keyboardType={'numeric'}
-      />
+        <Select
+          title="Banco"
+          options={optionsBank}
+          onValueChange={(obj) => setCodigoBanco(obj.value)}
+          value={CodigoBanco}
+        />
 
-      <TouchableOpacity onPress={openLinkPPE}>
-        <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
-      </TouchableOpacity>
+        <TextInput title={'Agência'} onChangeText={(value) => setAgencia(value)} keyboardType={'numeric'} />
 
-      <ContainerLine>
-        <RadioButton value="1" status={radioButton === '1' ? 'checked' : 'unchecked'} onPress={checkButton} />
+        <TextInput title={'Conta'} onChangeText={(value) => setConta(value)} keyboardType={'numeric'} />
 
-        <Text>Declaro ser PPE</Text>
-      </ContainerLine>
+        <RadioButton.Group onValueChange={(value) => setTipoConta(value)} value={TipoConta}>
+          <ContainerLine>
+            <RadioButton value="1" />
+            <Text>Conta poupança</Text>
+          </ContainerLine>
 
-      <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
-        <ButtonText>Continuar</ButtonText>
-      </Button>
+          <ContainerLine>
+            <RadioButton value="2" />
+            <Text>Conta corrente</Text>
+          </ContainerLine>
+        </RadioButton.Group>
+
+        <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
+          <ButtonText>Continuar</ButtonText>
+        </Button>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -4,13 +4,20 @@ import { SafeAreaView, Button, ButtonText, TextInput } from './styles';
 
 export const SignUpInvestorStepThreeComponent = (props) => {
   //states
-  const [motherName, setMotherName] = useState('');
-  const [fatherName, setFatherName] = useState('');
+  const [NomeMae, setNomeMae] = useState('');
+  const [NomePai, setFatherName] = useState('');
+
+  //vars
+
+  const Investidor = {
+    NomeMae,
+    NomePai,
+  };
 
   //render
   return (
     <SafeAreaView>
-      <TextInput title={'Nome da mãe'} onChangeText={(value) => setMotherName(value)} />
+      <TextInput title={'Nome da mãe'} onChangeText={(value) => setNomeMae(value)} />
 
       <TextInput title={'Nome do pai'} onChangeText={(value) => setFatherName(value)} />
 

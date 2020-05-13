@@ -3,96 +3,48 @@ import { KeyboardAvoidingView, Platform, View } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import Styles, { SafeAreaView, Button, ButtonText, Label, Error, TextInput } from './styles';
+import Styles, { SafeAreaView, Button, ButtonText, Label, Error, ScrollView } from './styles';
 
 import { Select } from '../../components';
-
-import { Request, UrlLocalizacaoEstadosPegar } from '../../services';
 
 export const SignUpInvestorStepFourComponent = (props) => {
   //states
 
   const [disabled, setDisabled] = useState(true);
   const [validCpf, setValidCpf] = useState(true);
-  const [validDate, setValidDate] = useState(true);
-  const [cpf, setCpf] = useState('');
-  const [emissionDate, setEmissionDate] = useState('');
-  const [emissionState, setEmissionState] = useState('');
-  const [emissonOrgan, setEmissionOrgan] = useState('');
-  const [rg, setRg] = useState('');
-  const [apiState, setApiState] = useState([
-    {
-      id: '',
-      text: '',
-      value: '',
-    },
-  ]);
+  const [Cpf, setCpf] = useState('');
+  const [validCellPhone, setValidCellPhone] = useState(true);
+  const [validPhone, setValidPhone] = useState(true);
+  const [TelefoneFixo, setTelefoneFixo] = useState('');
+  const [Celular, setCelular] = useState('');
+  const [EstadoCivil, setEstadoCivil] = useState('');
 
   //vars
 
-  const opcoesOrgaoEmissor = [
-    { text: 'SSP', value: 'SSP' },
-    { text: 'PM', value: 'PM' },
-    { text: 'PC', value: 'PC' },
-    { text: 'CNT', value: 'CNT' },
-    { text: 'DIC', value: 'DIC' },
-    { text: 'CTPS', value: 'CTPS' },
-    { text: 'FGTS', value: 'FGTS' },
-    { text: 'IFP', value: 'IFP' },
-    { text: 'IPF', value: 'IPF' },
-    { text: 'IML', value: 'IML' },
-    { text: 'MTE', value: 'MTE' },
-    { text: 'MMA', value: 'MMA' },
-    { text: 'MAE', value: 'MAE' },
-    { text: 'MEX', value: 'MEX' },
-    { text: 'POF', value: 'POF' },
-    { text: 'POM', value: 'POM' },
-    { text: 'SES', value: 'SES' },
-    { text: 'SJS', value: 'SJS' },
-    { text: 'SJTS', value: 'SJTS' },
-    { text: 'ZZZ', value: 'ZZZ' },
+  const Investidor = {
+    Cpf,
+    TelefoneFixo,
+    Celular,
+    EstadoCivil,
+  };
+
+  const optionsMaritalStatus = [
+    { text: 'Solteiro (a)', value: 1 },
+    { text: 'Casado (a)', value: 2 },
+    { text: 'Divorciado (a)', value: 3 },
+    { text: 'Viúvo (a)', value: 4 },
   ];
 
-  async function getStates(): Promise<void> {
-    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
-
-    if (resp.status === 200) setApiState(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
-  }
-
-  function mapApiState() {
-    getStates();
-
-    const optionsState = apiState.map((resp) => {
-      return {
-        text: resp.sigla,
-        value: resp.sigla,
-      };
-    });
-    return optionsState;
-  }
-
   //validate functions
+  const isValidPhone = (phone) => {
+    const regex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+    const valid = regex.test(phone);
 
-  const validateDate = () => {
-    let valid = false;
-    const regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
-    const matches = regex.exec(emissionDate);
-
-    if (matches != null) {
-      const day = parseInt(matches[1], 10);
-      const month = parseInt(matches[2], 10) - 1;
-      const year = parseInt(matches[3], 10);
-      const date = new Date(year, month, day, 0, 0, 0, 0);
-      valid = date.getFullYear() == year && date.getMonth() == month && date.getDate() == day;
-    }
-
-    if (valid) setValidDate(true);
-    else setValidDate(false);
+    return valid;
   };
 
   const validateCpf = () => {
-    const CPF = cpf.replace(/[^\d]+/g, '');
+    const CPF = Cpf.replace(/[^\d]+/g, '');
 
     if (CPF == '') return false;
 
@@ -137,64 +89,76 @@ export const SignUpInvestorStepFourComponent = (props) => {
 
   useEffect(() => {
     setDisabled(
-      !validCpf ||
-        !validDate ||
-        cpf === '' ||
-        emissionDate === '' ||
-        emissionState === '' ||
-        emissonOrgan === '' ||
-        rg === '',
+      !validCellPhone ||
+        !validPhone ||
+        TelefoneFixo === '' ||
+        Celular === '' ||
+        !validCpf ||
+        Cpf === '' ||
+        EstadoCivil === '',
     );
-  }, [validCpf, validDate, cpf, emissionDate, emissionState, emissonOrgan, rg]);
+  }, [validCellPhone, validPhone, TelefoneFixo, Celular, validCpf, Cpf, EstadoCivil]);
 
   // render
 
   return (
     <KeyboardAvoidingView behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
-      <SafeAreaView>
-        <Label>CPF</Label>
-        <TextInputMask
-          type={'cpf'}
-          value={cpf}
-          onChangeText={(value) => setCpf(value)}
-          style={Styles.input}
-          onBlur={() => setValidCpf(validateCpf())}
-        />
-        {!validCpf ? <Error>Você deve inserir um CPF válido</Error> : <View style={{ marginBottom: 30 }} />}
+      <ScrollView>
+        <SafeAreaView>
+          <Label>CPF</Label>
+          <TextInputMask
+            type={'cpf'}
+            value={Cpf}
+            onChangeText={(value) => setCpf(value)}
+            style={Styles.input}
+            onBlur={() => setValidCpf(validateCpf())}
+          />
+          {!validCpf ? <Error>Você deve inserir um CPF válido</Error> : <View style={{ marginBottom: 30 }} />}
 
-        <TextInput title={'RG'} onChangeText={(value) => setRg(value)} value={rg} />
+          <Label>Celular</Label>
+          <TextInputMask
+            type={'cel-phone'}
+            options={{
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
+            }}
+            value={Celular}
+            onChangeText={(value) => setCelular(value)}
+            style={Styles.inputMargin}
+            onBlur={() => setValidCellPhone(isValidPhone(Celular))}
+          />
 
-        <Label>Data de emissão</Label>
-        <TextInputMask
-          type={'datetime'}
-          options={{
-            format: 'DD/MM/YYYY',
-          }}
-          value={emissionDate}
-          onChangeText={(value) => setEmissionDate(value)}
-          onBlur={validateDate}
-          style={Styles.input}
-        />
-        {!validDate ? <Error>Você deve inserir uma data válida</Error> : <View style={{ marginBottom: 30 }} />}
+          {!validCellPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
 
-        <Select
-          title="Orgão emissor"
-          options={opcoesOrgaoEmissor}
-          onValueChange={(obj) => setEmissionOrgan(obj.value)}
-          value={emissonOrgan}
-        />
+          <Label>Telefone</Label>
+          <TextInputMask
+            type={'cel-phone'}
+            options={{
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
+            }}
+            value={TelefoneFixo}
+            onChangeText={(value) => setTelefoneFixo(value)}
+            style={Styles.inputMargin}
+            onBlur={() => setValidPhone(isValidPhone(TelefoneFixo))}
+          />
 
-        <Select
-          title="Estado de emissão"
-          options={mapApiState()}
-          onValueChange={(obj) => setEmissionState(obj.value)}
-          value={emissionState}
-        />
+          {!validPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
 
-        <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
-          <ButtonText>Continuar</ButtonText>
-        </Button>
-      </SafeAreaView>
+          <Select
+            title="Estado civil"
+            options={optionsMaritalStatus}
+            onValueChange={(obj) => setEstadoCivil(obj.value)}
+            value={EstadoCivil}
+          />
+
+          <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
+            <ButtonText>Continuar</ButtonText>
+          </Button>
+        </SafeAreaView>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

@@ -1,6 +1,6 @@
-import * as Types from '../ActionTypes';
+import * as Types from '../types';
 
-const createBaseAction = (type, data = null) => ({ type, data });
+const createBaseAction = (type, data) => ({ type, data });
 
 export const setAccountData = (data) => createBaseAction(Types.ACCOUNT_DATA, data);
 
@@ -11,3 +11,7 @@ export const showToast = (data) => createBaseAction(Types.TOAST_SHOW, data);
 export const destroyToast = () => createBaseAction(Types.TOAST_DESTROY);
 
 export const setInputError = (data) => createBaseAction(Types.INPUT_ERROR, data);
+
+export const setIdSuitability = (data) => createBaseAction(Types.ID_SUITABILITY, data);
+
+export const setIdInvestidor = (data) => createBaseAction(Types.ID_INVESTIDOR, data);

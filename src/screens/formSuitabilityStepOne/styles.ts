@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { tealish, grey99 } from '../../assets/colors';
+import { tealish, grey99, white } from '../../assets/colors';
 
 export const ScrollView = styled.ScrollView`
   padding: 10px;
@@ -11,23 +11,23 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-size: 24px;
-  font-family: OpenSans-Bold;
+  font-size: 24;
+  font-family: HelveticaNeue-Bold;
   text-align: center;
 `;
 
 export const Question = styled.Text`
-  font-size: 16px;
-  font-family: OpenSans-Bold;
+  font-size: 16;
+  font-family: HelveticaNeue-Bold;
   text-align: justify;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-bottom: 10;
+  margin-top: 20;
   fontweight: bold;
 `;
 
 export const Options = styled.Text`
-  font-size: 14px;
-  font-family: OpenSans-Regular;
+  font-size: 14;
+  font-family: HelveticaNeue;
   text-align: justify;
   color: ${grey99};
   width: 90%;
@@ -35,23 +35,20 @@ export const Options = styled.Text`
 export const OptionsContainer = styled.View`
   flex-direction: row;
   alignitems: center;
-  margin-bottom: 10px;
+  marginbottom: 10;
 `;
 
 export const Button = styled.TouchableOpacity`
-  flex-direction: row;
-  background: ${tealish};
-  align-self: stretch;
-  height: 38px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-  margin-top: 28px;
+    background: ${(props) => (props.disabled ? grey99 : tealish)}
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-vertical: 20px
 `;
 
-export const TextButton = styled.Text`
+export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Bold;
-  color: white;
+  font-family: HelveticaNeue-Bold;
+  color: ${white};
 `;

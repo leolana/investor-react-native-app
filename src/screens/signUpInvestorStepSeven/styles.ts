@@ -26,12 +26,12 @@ export const ContainerLine = styled.View`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'HelveticaNeue-Bold';
+  font-family: 'OpenSans-Bold';
   color: ${white};
 `;
 
 export const TextLine = styled.Text`
-  fontsize: 14;
+  fontsize: 14px;
   color: ${tealish};
   fontweight: bold;
   marginbottom: 15px;

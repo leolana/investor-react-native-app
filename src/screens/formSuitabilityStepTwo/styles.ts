@@ -12,22 +12,22 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 
 export const Title = styled.Text`
-  font-size: 24;
-  font-family: HelveticaNeue-Bold;
+  font-size: 24px;
+  font-family: OpenSans-Bold;
   text-align: center;
 `;
 
 export const Question = styled.Text`
-  font-size: 16;
-  font-family: HelveticaNeue-Bold;
+  font-size: 16px;
+  font-family: OpenSans-Bold;
   text-align: justify;
   margin-bottom: 10;
   margin-top: 20;
   fontweight: bold;
 `;
 export const Ponderations = styled.Text`
-  font-size: 14;
-  font-family: HelveticaNeue;
+  font-size: 14px;
+  font-family: OpenSans;
   margin-bottom: 5;
   color: ${grey33};
   width: 80%;
@@ -45,8 +45,8 @@ export const Border = styled.View`
 
 export const OptionsTable = styled.Text`
   font-weight: bold;
-  font-size: 14;
-  font-family: HelveticaNeue;
+  font-size: 14px;
+  font-family: OpenSans;
   text-align: justify;
   color: ${black55};
   width: 90%;
@@ -61,7 +61,7 @@ export const OptionsTableTitle = styled.View`
 
 export const OptionsTableTitleText = styled.Text`
     margin-left: 4%
-    font-size: 14;
+    font-size: 14px;
     font-weight: bold;
     color: ${black55};
 `;
@@ -73,8 +73,8 @@ export const OptionsContainer = styled.View`
 `;
 
 export const Options = styled.Text`
-  font-size: 14;
-  font-family: HelveticaNeue;
+  font-size: 14px;
+  font-family: OpenSans;
   text-align: justify;
   color: ${grey99};
   width: 90%;
@@ -98,6 +98,6 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: ${white};
 `;

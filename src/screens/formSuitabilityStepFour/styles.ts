@@ -14,7 +14,7 @@ export const Button = styled.TouchableOpacity`
 `;
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: HelveticaNeue-Bold;
+  font-family: OpenSans-Bold;
   color: white;
   text-align: center;
 `;
@@ -23,30 +23,30 @@ export const SafeAreaView = styled.SafeAreaView`
   align-items: center;
 `;
 export const Title = styled.Text`
-  font-size: 22;
-  font-family: HelveticaNeue;
+  font-size: 22px;
+  font-family: OpenSans;
   text-align: center;
   color: ${grey99};
 `;
 export const Name = styled.Text`
-  font-size: 24;
-  font-family: HelveticaNeue;
+  font-size: 24px;
+  font-family: OpenSans;
   text-align: center;
   margin-bottom: 30px;
   color: ${grey66};
 `;
 
 export const Info = styled.Text`
-  font-size: 16;
-  font-family: HelveticaNeue;
+  font-size: 16px;
+  font-family: OpenSans;
   text-align: justify;
   margin-bottom: 30px;
   color: ${grey66};
 `;
 
 export const Gratters = styled.Text`
-  font-size: 16;
-  font-family: HelveticaNeue-Bold;
+  font-size: 16px;
+  font-family: OpenSans-Bold;
   text-align: center;
   color: ${tealish};
   margin: 10px;
@@ -63,7 +63,7 @@ export const Bold = styled.Text`
 `;
 
 export const Faixa = styled.View`
-  border-bottom-width: 3;
+  border-bottom-width: 3px;
   border-bottom-color: ${tealish};
   width: 60%;
   align-self: center;

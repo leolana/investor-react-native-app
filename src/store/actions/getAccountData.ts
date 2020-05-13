@@ -1,8 +1,8 @@
-import { Request, UrlContaPegar } from '../../../services';
+import { Request, UrlContaPegar } from '../../services';
 
-import { setAccountData } from '../../actions';
+import { setAccountData } from '../actions';
 
-import Store from '../../index';
+import Store from '../index';
 
 const getAccountData = async () => {
   const resp = await Request.GET({ url: UrlContaPegar, header: 'bearer' });

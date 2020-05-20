@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Request, UrlListaOportunidades } from "../../services";
+import { Request, UrlListaOportunidades } from '../../services';
 
-import { ActivityIndicator, TouchableOpacity, FlatList } from "react-native";
+import { ActivityIndicator, TouchableOpacity, FlatList } from 'react-native';
 
-import { LoadingContainer, SafeAreaView, Filter } from "./styles";
+import { LoadingContainer, SafeAreaView, Filter } from './styles';
 
-import { OpportunitiesCard } from "./components";
+import { OpportunitiesCard } from './components';
 
-import { MessageBox } from "../../components";
+import { MessageBox } from '../../components';
 
 export const PageOpportunities: React.FC = (props) => {
   // props
@@ -27,7 +27,7 @@ export const PageOpportunities: React.FC = (props) => {
 
   // vars
 
-  const filter = navigation.getParam("filter", { value: "A-B-C-D-E-HR" }).value;
+  const filter = navigation.getParam('filter', { value: 'A-B-C-D-E-HR' }).value;
 
   // methods
 
@@ -40,22 +40,19 @@ export const PageOpportunities: React.FC = (props) => {
 
     const resp = await Request.GET({
       url: UrlListaOportunidades(page, filter),
-      header: "bearer",
+      header: 'bearer',
     });
 
     if (resp.status === 200) {
       setPageTotal(resp.data.Paginas);
 
-      setOpportunities([
-        ...opportunities,
-        ...resp.data.ItemListagemSolicitacoes,
-      ]);
+      setOpportunities([...opportunities, ...resp.data.ItemListagemSolicitacoes]);
 
       setPage(page + 1);
     } else {
-      navigation.setParams({ filter: "A-B-C-D-E-HR" });
+      navigation.setParams({ filter: 'A-B-C-D-E-HR' });
 
-      alert("Nenhuma oportunidade foi encontrada.");
+      alert('Nenhuma oportunidade foi encontrada.');
     }
 
     setLoading(false);
@@ -82,11 +79,13 @@ export const PageOpportunities: React.FC = (props) => {
   }, [filter]);
 
   useEffect(() => {
-    if (opportunities.length > 0) return Promise.resolve(null);
+    if (opportunities.length > 0) return;
 
-    return async (): Promise<void> => {
+    const fetchOpportunities = async () => {
       await loadOpportunities();
     };
+
+    fetchOpportunities();
   }, [opportunities]);
 
   // render
@@ -112,23 +111,23 @@ export const Opportunities = {
   navigationOptions: ({ navigation }) => {
     const params = {
       options: [
-        { text: "AA", value: "AA" },
-        { text: "A", value: "A" },
-        { text: "B", value: "B" },
-        { text: "C", value: "C" },
-        { text: "D", value: "D" },
-        { text: "E", value: "E" },
-        { text: "HR", value: "HR" },
-        { text: "Todos", value: "A-B-C-D-E-HR" },
+        { text: 'AA', value: 'AA' },
+        { text: 'A', value: 'A' },
+        { text: 'B', value: 'B' },
+        { text: 'C', value: 'C' },
+        { text: 'D', value: 'D' },
+        { text: 'E', value: 'E' },
+        { text: 'HR', value: 'HR' },
+        { text: 'Todos', value: 'A-B-C-D-E-HR' },
       ],
       onValueChange: (value) => navigation.setParams({ filter: value }),
-      data: navigation.getParam("filter", "A-B-C-D-E-HR"),
+      data: navigation.getParam('filter', 'A-B-C-D-E-HR'),
     };
 
     return {
-      headerTitle: "Oportunidades",
+      headerTitle: 'Oportunidades',
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate("Picker", params)}>
+        <TouchableOpacity onPress={() => navigation.navigate('Picker', params)}>
           <Filter />
         </TouchableOpacity>
       ),

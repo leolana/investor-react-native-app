@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 export const InvestWaitingListSuccessModal = (props) => {
   // vars
 
-  const name = useSelector(({ accountData }) => accountData.Nome);
+  const name = useSelector((store) => store.account.accountData.Nome);
 
   // effects
 

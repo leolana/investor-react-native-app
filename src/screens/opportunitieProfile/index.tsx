@@ -22,7 +22,7 @@ export const OpportunitieProfileComponent = (props) => {
 
   // Vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   const data = props.navigation.getParam('data', null);
 

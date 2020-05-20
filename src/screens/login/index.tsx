@@ -32,7 +32,7 @@ export const Login = (props) => {
 
     const success = await onInit();
 
-    if (success) navigation.navigate('Opportunities');
+    if (success) navigation.navigate('Opportunities', { authenticated: true });
   };
 
   const loginRequest = async (data) => {

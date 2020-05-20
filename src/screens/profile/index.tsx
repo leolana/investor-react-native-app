@@ -27,7 +27,12 @@ export const ProfileComponent = (props) => {
 
   // vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  // const accountData = useSelector(( accountData ) => accountData);
+
+  const accountData = useSelector((store) => {
+    console.log('ta aqui', store.account.accountData);
+    return store.account.accountData;
+  });
 
   const dispatch = useDispatch();
 

@@ -29,7 +29,7 @@ export const CCBSignComponent = (props) => {
 
   const data = navigation.getParam('data', null);
 
-  const name = useSelector(({ accountData }) => accountData.Nome);
+  const name = useSelector((store) => store.account.accountData.Nome);
 
   // methods
 

@@ -19,7 +19,7 @@ export const WelcomeComponent = ({ navigation }) => {
 
   // vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   // methods
 
@@ -52,7 +52,7 @@ export const WelcomeComponent = ({ navigation }) => {
     if (accountData === undefined) return;
 
     if (accountData === null) setLoading(false);
-    else navigation.navigate('Login', { authenticated: false });
+    else navigation.navigate('Login', { authenticated: true });
   }, [accountData]);
 
   // render

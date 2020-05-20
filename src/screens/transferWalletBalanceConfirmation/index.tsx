@@ -21,7 +21,7 @@ export const TransferWalletBalanceConfirmationComponent = (props) => {
 
   // Vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   // Methods
 

@@ -26,7 +26,7 @@ export const ChangePasswordComponent = (props) => {
 
   const inputErrors = useSelector(({ inputError }) => inputError);
 
-  const userId = useSelector(({ accountData }) => accountData.UsuarioId);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   // methods
 

@@ -24,7 +24,7 @@ import { UrlIouuAjuda } from '../../services';
 export const MenuComponent = (props) => {
   // vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   // methods
 

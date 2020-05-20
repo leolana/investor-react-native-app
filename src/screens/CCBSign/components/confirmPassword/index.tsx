@@ -25,7 +25,7 @@ export const ConfirmPasswordComponent = (props) => {
 
   const dispatch = useDispatch();
 
-  const userId = useSelector(({ accountData }) => accountData.UsuarioId);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   // methods
 

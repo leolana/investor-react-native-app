@@ -17,7 +17,7 @@ import { FlatList } from 'react-native';
 import { formatDate, diffDays } from '../../utils';
 
 export const PageNotifications = (props) => {
-  const userId = useSelector(({ accountData }) => accountData.UsuarioId);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   const [notifications, setNotifications] = useState([]);
 

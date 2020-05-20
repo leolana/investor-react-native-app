@@ -29,7 +29,7 @@ export const TransferWalletBalancePage = (props) => {
 
   const [loading, setLoading] = useState(true);
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   // Methods
 

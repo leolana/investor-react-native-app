@@ -19,7 +19,7 @@ export const MessageBoxComponent = (props) => {
 
   // vars
 
-  const accountData = useSelector(({ accountData }) => accountData);
+  const accountData = useSelector((store) => store.account.accountData);
 
   // methods
 

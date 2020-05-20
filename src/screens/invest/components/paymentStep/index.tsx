@@ -47,7 +47,7 @@ export const PaymentStepComponent = (props) => {
 
   // Vars
 
-  const email = useSelector(({ accountData }) => accountData.Email);
+  const email = useSelector((store) => store.account.accountData.Email);
 
   // Methods
 

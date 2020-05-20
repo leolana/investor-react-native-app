@@ -11,7 +11,7 @@ import { greenTwo } from '../../assets/colors';
 import { useSelector } from 'react-redux';
 
 export const CCBSignSuccessComponent = (props) => {
-  const name = useSelector(({ accountData }) => accountData.Nome);
+  const name = useSelector((store) => store.account.accountData.Nome);
 
   useEffect(() => {
     setTimeout(() => props.navigation.goBack(), 2200);

@@ -4,6 +4,8 @@ import * as Types from '../ActionTypes';
 
 export default (state = {}, action) => {
   // if (action.type.includes(Types.REDUX_INIT)) onInit();
+  console.log('E CAO', action);
+  console.log('STATE CARA', state);
 
   switch (action.type) {
     case Types.ID_SUITABILITY:

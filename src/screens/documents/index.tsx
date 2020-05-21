@@ -18,9 +18,10 @@ export const DocumentsComponent = (props) => {
   const [residenceDocument, setResidenceDocument] = useState(null);
 
   const getDocuments = async () => {
-    const resp = await Request.GET({ url: 'http://192.168.15.91:9090/api/v1/investidor/documento', header: 'bearer' });
-
-    console.log(resp);
+    const resp = await Request.GET({
+      url: 'http://192.168.0.17:9090/api/v1/5aac0f9ca1c4b20010e4f1b0/documento',
+      header: 'bearer',
+    });
 
     if (resp.status === 200) {
       setIdentityDocument(resp.data.ArquivosIdentidade.pop());

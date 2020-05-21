@@ -18,6 +18,8 @@ export const PageWallet = (props) => {
   const getWallet = async () => {
     const resp = await Request.GET({ url: UrlCarteiraExtratoPaginado(1), header: 'bearer' });
 
+    console.log('ISTO È A WALLET', resp.data);
+
     SetWalletData(resp.data);
   };
 

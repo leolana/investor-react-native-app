@@ -17,7 +17,7 @@ export const SignUpInvestorStepOneComponent = (props) => {
 
   const [disabled, setDisabled] = useState(true);
 
-  const idInvestidor = useSelector(({ idInvestidor }) => idInvestidor);
+  const idInvestidor = useSelector((store) => store);
 
   // vars
 
@@ -49,9 +49,9 @@ export const SignUpInvestorStepOneComponent = (props) => {
     else console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa', resp.data);
   };
 
-  atualizarDadosInvestidor();
-
   // effect
+
+  console.log('um investidor', Investidor);
 
   useEffect(() => {
     setDisabled(Nacionalidade === '' || Sexo === '');

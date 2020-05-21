@@ -29,7 +29,7 @@ export const SignUpUser = (props) => {
 
   const dispatch = useDispatch();
 
-  const inputErrors = useRef(useSelector(({ inputError }) => inputError));
+  const inputErrors = useSelector((inputError) => inputError);
 
   // methods
 
@@ -71,18 +71,12 @@ export const SignUpUser = (props) => {
   // effstcs
 
   useEffect(() => {
-    if (inputErrors === undefined || inputErrors === null) return;
-
-    inputErrors.current = Array.from(inputErrors.current);
-
-    if (name === null || email === null || password === null) return;
-
-    if (inputErrors[0].message === '' && inputErrors[1].message === '' && inputErrors[2].message === '') {
-      setDisabled(false);
-    } else {
+    if (name === null || email === null || password === null) {
       setDisabled(true);
+      return;
     }
-  }, [email, inputErrors, name, password]);
+    setDisabled(false);
+  }, [email, name, password]);
 
   useEffect(() => {
     if (name === null) notifyError('name', '');

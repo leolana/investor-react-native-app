@@ -11,22 +11,14 @@ import Store from '../../store/index';
 
 import { Request, UrlInvPegar, UrlContaPegar } from '../../services';
 
+import { getIdInvestidor } from '../../store/actions/walletRequest';
+
 export const SignUpInvestorStepWelcomeComponent = (props) => {
   const logoSize = 100;
 
-  const getInvestidor = async () => {
-    const resp = await Request.GET({
-      url: UrlInvPegar('guatvo3@gmail.com'),
-      header: 'bearer',
-    });
-
-    console.log('resp', resp.data._id);
-
-    Store.dispatch(setIdInvestidor(resp.data._id));
-  };
-
-  useEffect(() => {
-    getInvestidor();
+  useEffect(async () => {
+    const investidor = await getIdInvestidor();
+    console.log(investidor);
   }, []);
 
   return (

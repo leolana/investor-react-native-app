@@ -3,11 +3,17 @@ import { View } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import { Request, UrlLocalizacaoEstadosPegar, UrlLocalizacaoCidadesPegar } from '../../services';
+import {
+  Request,
+  UrlLocalizacaoEstadosPegar,
+  UrlLocalizacaoCidadesPegar,
+  UrlCadastroInvestidorAtualizar,
+} from '../../services';
 
 import Styles, { SafeAreaView, Button, ButtonText, Label, Error } from './styles';
 
 import { Select } from '../../components';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepTwoComponent = (props) => {
   // states
@@ -32,6 +38,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     },
   ]);
 
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
+
   const Investidor = {
     DataNascimento,
     Naturalidade,
@@ -47,6 +55,19 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     });
     return optionsState;
   }
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 1),
+      Investidor,
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) {
+      props.navigation.navigate('SignUpInvestorStepThree');
+      console.log('passo 2', resp.data);
+    }
+  };
 
   async function getStates() {
     const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
@@ -147,7 +168,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
         value={NaturalidadeCidade}
       />
 
-      <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepThree')}>
+      <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

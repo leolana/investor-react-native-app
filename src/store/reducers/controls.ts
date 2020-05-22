@@ -1,4 +1,4 @@
-import * as Types from '../ActionTypes';
+import * as Types from '../types';
 
 const handleError = ({ inputError }, data) => {
   if (inputError === undefined) return [data];

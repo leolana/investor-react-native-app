@@ -17,7 +17,7 @@ export const SignUpInvestorStepOneComponent = (props) => {
 
   const [disabled, setDisabled] = useState(true);
 
-  const idInvestidor = useSelector((store) => store);
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   // vars
 
@@ -45,13 +45,13 @@ export const SignUpInvestorStepOneComponent = (props) => {
       header: 'bearer',
     });
 
-    if (resp.status === 200) props.navigation.navigate('SignUpInvestorStepTwo');
-    else console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa', resp.data);
+    if (resp.status === 200) {
+      console.log(resp.data);
+      props.navigation.navigate('SignUpInvestorStepTwo');
+    } else console.log('Erro', resp.data);
   };
 
   // effect
-
-  console.log('um investidor', Investidor);
 
   useEffect(() => {
     setDisabled(Nacionalidade === '' || Sexo === '');

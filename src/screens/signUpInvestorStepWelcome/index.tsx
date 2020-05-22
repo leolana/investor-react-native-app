@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { View } from 'react-native';
 
+import { useSelector } from 'react-redux';
+
 import { tealish } from '../../assets/colors';
 import { SafeAreaView, Title, Text, Note, Logo, Button, ButtonText } from './styles';
 
@@ -14,11 +16,11 @@ import { Request, UrlInvPegar, UrlContaPegar } from '../../services';
 import { getIdInvestidor } from '../../store/actions/walletRequest';
 
 export const SignUpInvestorStepWelcomeComponent = (props) => {
+  const email = useSelector((store) => store.account.accountData.Email);
   const logoSize = 100;
 
-  useEffect(async () => {
-    const investidor = await getIdInvestidor();
-    console.log(investidor);
+  useEffect(() => {
+    getIdInvestidor(email);
   }, []);
 
   return (

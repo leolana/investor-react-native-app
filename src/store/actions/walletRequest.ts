@@ -11,12 +11,10 @@ export const getIdInvestidor = async (email) => {
 
   const resp = await Request.GET({ url, header: 'bearer' });
 
-  if (typeof resp.data === 'undefined') {
-    resp.data = { ...resp.data, erro: 'Resposta vazia' };
-    return resp.data;
+  if (typeof resp.data !== 'undefined') {
+    Store.dispatch(actions.setIdInvestidor(resp.data));
+    console.log('SOTER', Store.getState());
+  } else {
+    console.log('deu ruim');
   }
-
-  Store.dispatch(actions.setIdInvestidor(resp.data));
-  resp.data = { ...resp.data, erro: '' };
-  return resp.data;
 };

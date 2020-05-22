@@ -1,4 +1,4 @@
-import * as Types from '../ActionTypes';
+import * as Types from '../types';
 
 // import onInit from '../actions/getAccountData';
 

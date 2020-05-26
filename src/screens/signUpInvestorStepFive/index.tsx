@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 
@@ -7,7 +8,8 @@ import Styles, { SafeAreaView, Button, ButtonText, ScrollView, Label, Error, Tex
 
 import { Select } from '../../components';
 
-import { Request, UrlLocalizacaoEstadosPegar } from '../../services';
+import { Request, UrlLocalizacaoEstadosPegar, UrlCadastroInvestidorAtualizar } from '../../services';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepFiveComponent = (props) => {
   //states
@@ -25,6 +27,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
       value: '',
     },
   ]);
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
 
   //vars
 
@@ -34,6 +37,19 @@ export const SignUpInvestorStepFiveComponent = (props) => {
     RgEstadoEmissor,
     RgDataEmissao,
   };
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 4),
+      Investidor,
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) {
+      console.log('passo 5', resp.data);
+      props.navigation.navigate('SignUpInvestorStepSix');
+    }
+  }
 
   const opcoesOrgaoEmissor = [
     { text: 'SSP', value: 'SSP' },
@@ -139,7 +155,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
             value={RgEstadoEmissor}
           />
 
-          <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSix')}>
+          <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
             <ButtonText>Continuar</ButtonText>
           </Button>
         </SafeAreaView>

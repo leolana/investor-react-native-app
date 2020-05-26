@@ -4,6 +4,8 @@ import { Linking, TouchableOpacity } from 'react-native';
 import { RadioButton, Text } from 'react-native-paper';
 
 import { SafeAreaView, Button, ButtonText, TextInput, ContainerLine, TextLine } from './styles';
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepSevenComponent = (props) => {
   //state
@@ -12,6 +14,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState('');
   const [RendaMensal, setRendaMensal] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   //vars
   const Investidor = {
@@ -25,6 +28,19 @@ export const SignUpInvestorStepSevenComponent = (props) => {
       setPessoaPoliticamenteExposta('0');
     } else {
       setPessoaPoliticamenteExposta('1');
+    }
+  };
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 6),
+      Investidor,
+      header: 'bearer',
+    });
+
+    console.log('passo 7', resp.data);
+    if (resp.status === 200) {
+      props.navigation.navigate('SignUpInvestorStepEight');
     }
   };
 
@@ -72,7 +88,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
         <Text>Declaro ser PPE</Text>
       </ContainerLine>
 
-      <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepEight')}>
+      <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

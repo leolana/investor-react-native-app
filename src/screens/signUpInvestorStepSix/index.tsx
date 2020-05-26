@@ -5,9 +5,10 @@ import { TextInputMask } from 'react-native-masked-text';
 
 import { Loading } from '../../components';
 
-import { Request, UrlLocalizacaoCEPPegar } from '../../services';
+import { Request, UrlLocalizacaoCEPPegar, UrlCadastroInvestidorAtualizar } from '../../services';
 
 import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label, Error } from './styles';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepSixComponent = (props) => {
   //states
@@ -22,12 +23,33 @@ export const SignUpInvestorStepSixComponent = (props) => {
   const [Uf, setUf] = useState('');
   const [Cidade, setCidade] = useState('');
   const [Bairro, setBairro] = useState('');
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
-  Investidor: {
+  const Investidor = {
     Endereco: {
-      Cep, Bairro, Complemento, Logradouro, Numero, Uf, Cidade;
+      Cep,
+      Bairro,
+      Complemento,
+      Logradouro,
+      Numero,
+      Uf,
+      Cidade,
+    },
+  };
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 5),
+      Investidor,
+      header: 'bearer',
+    });
+
+    console.log('passo 6', resp.data);
+
+    if (resp.status === 200) {
+      props.navigation.navigate('SignUpInvestorStepSeven');
     }
-  }
+  };
 
   function contentCep(value) {
     setLogradouro(value.Logradouro);
@@ -95,7 +117,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
             <TextInput title={'Bairro'} value={Bairro} onChangeText={(value) => setBairro(value)} />
             <TextInput title={'Estado'} value={Uf} onChangeText={(value) => setUf(value)} />
 
-            <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepSeven')}>
+            <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
               <ButtonText>Continuar</ButtonText>
             </Button>
           </Loading>

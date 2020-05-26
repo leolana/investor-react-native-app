@@ -16,12 +16,12 @@ export const Button = styled.TouchableOpacity`
     padding: 10px;
     justify-content: center;
     align-items: center;
-    marginTop: 30px;
+    margin-top: 30px;
 `;
 
 export const ContainerLine = styled.View`
-  flexdirection: row;
-  alignitems: center;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const ButtonText = styled.Text`
@@ -36,5 +36,5 @@ export const Title = styled.Text`
   font-size: 20px;
   font-family: OpenSans-Bold;
   text-align: center;
-  marginbottom: 20px;
+  margin-bottom: 20px;
 `;

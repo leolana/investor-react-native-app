@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SafeAreaView, TextInput, Buttom, ButtomText, Error } from './styles';
@@ -46,42 +47,43 @@ export const ChangePasswordComponent = () => {
     console.log(typeof item);
 
     if (item === 'oldPassword') {
-      if (oldPassword !== '' || oldPassword.length < 6) {
-        console.log('OLD PASS', oldPassword, oldPassword.length);
+      if (oldPassword.length < 6) {
         setIsValidOldPassword(false);
+      } else {
+        setIsValidOldPassword(true);
       }
     } else if (item === 'newPassword') {
-      if (newPassword !== '' || newPassword.length < 6) {
-        console.log('NEW PASS', newPassword, newPassword.length);
+      if (newPassword.length < 6) {
         setIsValidNewPassword(false);
+      } else {
+        setIsValidNewPassword(true);
       }
     } else if (item === 'confirmPassword') {
-      if (confirmPassword !== '' || confirmPassword.length < 6) {
-        console.log('CONFIRM PASS', confirmPassword, confirmPassword.length);
+      if (confirmPassword.length < 6 || confirmPassword !== newPassword) {
         setIsValidConfirmPassword(false);
+      } else {
+        setIsValidConfirmPassword(true);
       }
     }
   };
 
-  // const changePassword = async () => {
-  //   if (newPassword !== confirmPassword) return alert('Os Campos não conferem.');
+  const changePassword = async () => {
+    const data = {
+      senha: newPassword,
+      senhaAtual: oldPassword,
+      id: userId,
+    };
 
-  //   const data = {
-  //     senha: newPassword,
-  //     senhaAtual: oldPassword,
-  //     id: userId,
-  //   };
+    const resp = await Request.POST({ url: UrlPerfilSenhaAlterar, data });
 
-  //   const resp = await Request.POST({ url: UrlPerfilSenhaAlterar, data });
-
-  //   if (resp.status === 200) alert('Senha alterada com sucesso.');
-  //   else alert('Os Campos não conferem.');
-  // };
+    if (resp.status === 200) Alert.alert('Senha alterada com sucesso.');
+    else Alert.alert('Os Campos não conferem.');
+  };
 
   // effects
 
   useEffect(() => {
-    setDisabled(isValidConfirmPassword || isValidNewPassword || isValidOldPassword);
+    setDisabled(!isValidConfirmPassword || !isValidNewPassword || !isValidOldPassword);
   }, [isValidConfirmPassword, isValidNewPassword, isValidOldPassword]);
 
   // render
@@ -95,7 +97,7 @@ export const ChangePasswordComponent = () => {
         onChangeText={(value) => setOldPassword(value)}
         onBlur={() => validatePassword('oldPassword')}
       />
-      {!isValidOldPassword ? <Error>Esse campo não pode ser vazio</Error> : undefined}
+      {!isValidOldPassword ? <Error>Esse campo não pode ser vazio ou ter menos de 6 digitos</Error> : undefined}
 
       <TextInput
         id="newPassword"
@@ -113,9 +115,9 @@ export const ChangePasswordComponent = () => {
         onChangeText={(value) => setConfirmPassword(value)}
         onBlur={() => validatePassword('confirmPassword')}
       />
-      {!isValidConfirmPassword ? <Error>Esse campo não pode ser vazio ou ter menos de 6 digitos</Error> : undefined}
+      {!isValidConfirmPassword ? <Error>Os campos não conferem</Error> : undefined}
 
-      <Buttom disabled={disabled}>
+      <Buttom disabled={disabled} onPress={changePassword}>
         <ButtomText>ALTERAR SENHA</ButtomText>
       </Buttom>
     </SafeAreaView>

@@ -30,6 +30,6 @@ export const Error = styled.Text`
     color: ${redTwo}
     text-align: left;
     align-self: stretch;
-    margin-top: 4px;
-    margin-bottom: 15px;
+    margin-top: -30px;
+    margin-bottom: 30px;
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { grey99, grey33, tealish } from '../../assets/colors';
+import { grey99, grey33, tealish, redTwo } from '../../assets/colors';
 
 import { IButtom } from '../../components';
 
@@ -53,4 +53,13 @@ export const Text = styled.Text`
 
 export const Switch = styled.Switch`
   transform: scale(0.8);
+`;
+export const Error = styled.Text`
+    font-family: OpenSans-Regular;
+    font-size: 10px;
+    color: ${redTwo}
+    text-align: left;
+    align-self: stretch;
+    margin-top: -30px;
+    margin-bottom: 30px;
 `;

@@ -1,27 +1,23 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 
 import { TouchableOpacity } from 'react-native';
 
-import Camera from '../../components/camera';
-
 import { SafeAreaView, Button, ButtonText, Title, Text, Container, ContainerTitle, Note } from './styles';
+
+import { ExpoCamera } from '../../components/camera';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepNineComponent = (props) => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [setPhoto] = useState(null);
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
 
   const setOpenCamera = (value) => {
     setIsCameraVisible(value);
   };
 
-  const onChangePhoto = (newPhoto) => {
-    setPhoto(newPhoto);
-    setOpenCamera(false);
-  };
-
-  const onCloseCamera = () => {
-    setOpenCamera(false);
-  };
+  console.log('toma esse id', idInvestidor);
 
   return (
     <SafeAreaView>
@@ -32,11 +28,7 @@ export const SignUpInvestorStepNineComponent = (props) => {
       <Container>
         <ContainerTitle>Enviar Frente</ContainerTitle>
 
-        <Button
-          onPress={() => {
-            setOpenCamera(true);
-          }}
-        >
+        <Button onPress={() => setOpenCamera(true)}>
           <ButtonText>ABRIR CÂMERA</ButtonText>
         </Button>
       </Container>
@@ -47,14 +39,12 @@ export const SignUpInvestorStepNineComponent = (props) => {
       {/* <TouchableOpacity>
                 <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
             </TouchableOpacity> */}
-
-      <Camera
+      <ExpoCamera
         isVisible={isCameraVisible}
-        onChangePhoto={onChangePhoto}
-        onCloseCamera={onCloseCamera}
-        setOpenCamera={setOpenCamera}
-        props={props}
-        nextStep={'SignUpInvestorStepTen'}
+        navigation={props.navigation}
+        step={'SignUpInvestorStepEleven'}
+        setOpenCamera={(value) => setOpenCamera(value)}
+        idInvestidor={idInvestidor}
       />
     </SafeAreaView>
   );

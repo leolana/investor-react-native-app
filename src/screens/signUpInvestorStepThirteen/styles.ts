@@ -11,17 +11,17 @@ export const Title = styled.Text`
 export const SafeAreaView = styled.View`
   margin-horizontal: 16px;
   margin-vertical: 50px;
-  alignitems: center;
+  align-items: center;
 `;
 
 export const Note = styled.Text`
-    fontSize: 14px;
-    fontWeight: bold,
+    font-size: 14px;
+    font-weight: bold,
     color: ${grey66};
 `;
 export const Text = styled.Text`
-    fontSize: 14px;
-    fontWeight: bold,
+    font-size: 14px;
+    font-weight: bold,
     color: ${grey66};
 `;
 
@@ -29,8 +29,8 @@ export const Button = styled.TouchableOpacity`
     background: ${(props) => (props.disabled ? grey99 : tealish)}
     border-radius: 5px;
     padding: 10px;
-    marginTop: 30px;
-    marginBottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     justify-content: center;
     align-items: center;
     width: 80%

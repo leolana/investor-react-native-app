@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 
-import { StyleSheet } from 'react-native';
-
 import { white, tealish, grey99 } from '../../assets/colors';
 
 export const SafeAreaView = styled.View`
@@ -36,34 +34,3 @@ export const Title = styled.Text`
   text-align: center;
   margin-bottom: 20px;
 `;
-
-const Styles = StyleSheet.create({
-  buttonTakePicture: {
-    flex: 0,
-    alignSelf: 'center',
-    position: 'absolute',
-    bottom: 20,
-    color: white,
-  },
-  buttonCloseCamera: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    color: white,
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#121212',
-    margin: 20,
-    borderRadius: 10,
-    height: 50,
-  },
-});
-
-export default Styles;
-

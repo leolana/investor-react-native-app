@@ -14,7 +14,6 @@ export const Button = styled.TouchableOpacity`
 `;
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Bold;
   color: white;
   text-align: center;
 `;
@@ -24,13 +23,11 @@ export const SafeAreaView = styled.SafeAreaView`
 `;
 export const Title = styled.Text`
   font-size: 22px;
-  font-family: OpenSans;
   text-align: center;
   color: ${grey99};
 `;
 export const Name = styled.Text`
   font-size: 24px;
-  font-family: OpenSans;
   text-align: center;
   margin-bottom: 30px;
   color: ${grey66};
@@ -38,7 +35,6 @@ export const Name = styled.Text`
 
 export const Info = styled.Text`
   font-size: 16px;
-  font-family: OpenSans;
   text-align: justify;
   margin-bottom: 30px;
   color: ${grey66};
@@ -46,11 +42,10 @@ export const Info = styled.Text`
 
 export const Gratters = styled.Text`
   font-size: 16px;
-  font-family: OpenSans-Bold;
   text-align: center;
   color: ${tealish};
   margin: 10px;
-  fontweight: bold;
+  font-weight: bold;
 `;
 
 export const ScrollView = styled.ScrollView`

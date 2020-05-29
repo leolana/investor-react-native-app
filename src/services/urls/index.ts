@@ -5,7 +5,7 @@ const PROD = {
 };
 
 const TEST = {
-  BASE_URL_GO: 'http://192.168.56.209:9090/',
+  BASE_URL_GO: 'http://192.168.0.17:9090/',
   BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };

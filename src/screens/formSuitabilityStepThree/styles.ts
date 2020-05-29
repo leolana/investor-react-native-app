@@ -9,13 +9,11 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 24px;
-  font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 30px;
 `;
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   text-align: justify;
   color: ${grey99};
   margin: 10px;
@@ -40,6 +38,5 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Bold;
   color: ${white};
 `;

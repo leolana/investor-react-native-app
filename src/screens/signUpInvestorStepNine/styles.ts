@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import styled from 'styled-components/native';
 
 import { white, tealish, greyDD, grey99, grey66 } from '../../assets/colors';
@@ -27,16 +28,16 @@ export const ContainerTitle = styled.Text`
     font-size: 16px;
     font-weight: bold,
     color: ${grey99};
-    alig-self: center;
+    align-self: center;
 `;
 
 export const Note = styled.Text`
-    fon-size: 14px
+    font-size: 14px
     font-weight: bold,
     color: ${grey66};
 `;
 export const Text = styled.Text`
-    fon-size: 14px;
+    font-size: 14px;
     font-weight: bold,
     color: ${grey66};
 `;

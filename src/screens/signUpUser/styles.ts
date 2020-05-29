@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { ITextInput } from '../../components';
 
-import { tealish, grey99, white } from '../../assets/colors';
+import { tealish, grey99, white, redTwo } from '../../assets/colors';
 
 export const SafeAreaView = styled.SafeAreaView`
   margin: 16px;
@@ -25,4 +25,14 @@ export const ButtonText = styled.Text`
   font-family: OpenSans-Bold;
   font-size: 18px;
   color: ${white};
+`;
+
+export const Error = styled.Text`
+    font-family: OpenSans-Regular;
+    font-size: 10px;
+    color: ${redTwo}
+    text-align: left;
+    align-self: stretch;
+    margin-top: -30px;
+    margin-bottom: 30px;
 `;

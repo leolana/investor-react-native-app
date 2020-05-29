@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { SafeAreaView, TextInput, Button, ButtonText } from './styles';
+import { Alert } from 'react-native';
 
-import { useDispatch, useSelector, useRef } from 'react-redux';
-
-import { setInputError } from '../../store/actions';
+import { SafeAreaView, TextInput, Button, ButtonText, Error } from './styles';
 
 import { Request, UrlCadastroUsuario } from '../../services';
 
@@ -25,26 +23,23 @@ export const SignUpUser = (props) => {
 
   const [disabled, setDisabled] = useState(true);
 
-  // vars
+  const [isValidEmail, setIsValidEmail] = useState(true);
 
-  const dispatch = useDispatch();
-
-  const inputErrors = useSelector((inputError) => inputError);
+  const [isValidPassword, setIsValidPassword] = useState(true);
 
   // methods
+  const validatePassword = () => {
+    console.log('password', password);
 
-  const notifyError = (id, message) => dispatch(setInputError({ id, message }));
-
-  const handleEmptyMessage = (id, isEmpty) => {
-    const msg = isEmpty ? 'Você precisa preencher esse campo' : '';
-
-    dispatch(notifyError(id, msg));
+    if (password === null) setIsValidPassword(false);
+    else if (password.length < 6) setIsValidPassword(false);
+    else setIsValidPassword(true);
   };
 
-  const emailIsValid = (email) => {
+  const validateEmail = () => {
     const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    return regex.test(email);
+    setIsValidEmail(regex.test(email));
   };
 
   const signUpSuccess = async (data) => {
@@ -54,6 +49,10 @@ export const SignUpUser = (props) => {
   };
 
   const signUp = async () => {
+    if (name === null || email === null || password === null) return Alert.alert('Preencha todos os campos');
+
+    if (!isValidEmail || !isValidPassword) return Alert.alert('Preencha os campos corretamente');
+
     const data = {
       name,
       email,
@@ -68,61 +67,25 @@ export const SignUpUser = (props) => {
     else alert(resp.data.Msg);
   };
 
-  // effstcs
-
-  useEffect(() => {
-    if (name === null || email === null || password === null) {
-      setDisabled(true);
-      return;
-    }
-    setDisabled(false);
-  }, [email, name, password]);
-
-  useEffect(() => {
-    if (name === null) notifyError('name', '');
-
-    if (email === null) notifyError('email', '');
-
-    if (password === null) notifyError('password', '');
-  }, [email, name, password]);
-
-  useEffect(() => {
-    if (name === null) return;
-
-    handleEmptyMessage('name', name.length === 0);
-  }, [name]);
-
-  useEffect(() => {
-    if (email === null) return;
-
-    handleEmptyMessage('email', email.length === 0);
-
-    if (email.length === 0) return;
-
-    const isValid = emailIsValid(email);
-
-    if (isValid) notifyError('email', '');
-    else notifyError('email', 'Você deve fornecer um email ');
-  }, [email]);
-
-  useEffect(() => {
-    if (password === null) return;
-
-    handleEmptyMessage('password', password.length === 0);
-
-    if (password.length < 6) notifyError('password', 'A senha deve conter mais de 6 dígitos');
-    else notifyError('password', '');
-  }, [password]);
-
   return (
     <SafeAreaView>
       <TextInput id="name" title="Nome Completo" onChangeText={(value) => setName(value)} />
 
-      <TextInput id="email" title="Email" onChangeText={(value) => setEmail(value)} />
+      <TextInput id="email" title="Email" onChangeText={(value) => setEmail(value)} onBlur={() => validateEmail()} />
 
-      <TextInput id="password" title="Senha" secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
+      {!isValidEmail ? <Error>Email inválido</Error> : undefined}
 
-      <Button disabled={disabled} onPress={() => signUp()}>
+      <TextInput
+        id="password"
+        title="Senha"
+        secureTextEntry={true}
+        onChangeText={(value) => setPassword(value)}
+        onBlur={() => validatePassword()}
+      />
+
+      {!isValidPassword ? <Error>Esse campo não pode ter menos de 6 digitos</Error> : undefined}
+
+      <Button onPress={() => signUp()}>
         <ButtonText>Cadastrar</ButtonText>
       </Button>
     </SafeAreaView>

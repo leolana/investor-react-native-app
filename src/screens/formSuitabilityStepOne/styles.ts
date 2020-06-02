@@ -20,22 +20,22 @@ export const Question = styled.Text`
   font-size: 16px;
   font-family: OpenSans-Bold;
   text-align: justify;
-  margin-bottom: 10;
-  margin-top: 20;
-  fontweight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: bold;
 `;
 
 export const Options = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: justify;
   color: ${grey99};
   width: 90%;
 `;
 export const OptionsContainer = styled.View`
   flex-direction: row;
-  alignitems: center;
-  marginbottom: 10;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -44,7 +44,7 @@ export const Button = styled.TouchableOpacity`
     padding: 10px;
     justify-content: center;
     align-items: center;
-    margin-vertical: 20px
+    margin-vertical: 20px;
 `;
 
 export const ButtonText = styled.Text`

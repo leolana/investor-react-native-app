@@ -13,40 +13,41 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 24px;
-  font-family: OpenSans-Bold;
   text-align: center;
+  font-family: OpenSans-Bold;
 `;
 
 export const Question = styled.Text`
   font-size: 16px;
   font-family: OpenSans-Bold;
+
   text-align: justify;
-  margin-bottom: 10;
-  margin-top: 20;
-  fontweight: bold;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  font-weight: bold;
 `;
 export const Ponderations = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
-  margin-bottom: 5;
+  font-family: OpenSans-Regular;
+  margin-bottom: 5px;
   color: ${grey33};
   width: 80%;
 `;
 
 export const PonderationsContainer = styled.View`
-    align-items: center
-    margin-bottom: 20
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 export const Border = styled.View`
   border-bottom-color: ${greyDD};
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
 `;
 
 export const OptionsTable = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
   text-align: justify;
   color: ${black55};
   width: 90%;
@@ -56,7 +57,7 @@ export const OptionsTableTitle = styled.View`
   flex-direction: row;
   justify-content: space-around;
   margin-left: 35%;
-  margin-bottom: 15;
+  margin-bottom: 15px;
 `;
 
 export const OptionsTableTitleText = styled.Text`
@@ -68,13 +69,14 @@ export const OptionsTableTitleText = styled.Text`
 
 export const OptionsContainer = styled.View`
   flex-direction: row;
-  alignitems: center;
-  margin-bottom: 5;
+  align-items: center;
+  margin-bottom: 5px;
 `;
 
 export const Options = styled.Text`
   font-size: 14px;
-  font-family: OpenSans;
+  font-family: OpenSans-Regular;
+
   text-align: justify;
   color: ${grey99};
   width: 90%;

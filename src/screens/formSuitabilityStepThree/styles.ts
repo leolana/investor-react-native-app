@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 import { grey99, tealish, white } from '../../assets/colors';
+import { Container } from '../opportunities/components/card/style';
 
 export const SafeAreaView = styled.SafeAreaView`
   margin: 14px;
@@ -9,7 +10,6 @@ export const SafeAreaView = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 24px;
-  font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 30px;
 `;
@@ -34,12 +34,19 @@ export const Button = styled.TouchableOpacity`
     padding: 10px;
     justify-content: center;
     align-items: center;
-    margin-top: 30px
-    width: 70%
+    margin-top: 30px;
+    width: 70%;
+`;
+
+export const ContainerCheckBox = styled.View`
+  flex-direction: row,
+  align-items: center,
+  justify-content: center,
 `;
 
 export const ButtonText = styled.Text`
   font-size: 14px;
   font-family: OpenSans-Bold;
+
   color: ${white};
 `;

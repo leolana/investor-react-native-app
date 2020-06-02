@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { tealish } from '../../assets/colors';
 
 import { SafeAreaView, Title, Text, Note, Logo, Button, ButtonText } from './styles';
 
-import { setIdSuitability } from '../../store/actions';
-
-import Store from '../../store/index';
-
-import { Request, UrlUsuarioPegar } from '../../services';
+import { getSuitabilityId } from '../../store/actions/walletRequest';
+import { useSelector } from 'react-redux';
 
 export const FormSuitabilityWelcome = (props) => {
   const logoSize = 100;
 
-  const getSuitabilityId = async () => {
-    const resp = await Request.GET({
-      url: 'https://server-test.iouu.com.br/api/v1/suitability',
-    });
+  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
-    Store.dispatch(setIdSuitability(resp.data.insertedIds[0]));
-
-    return;
-  };
+  console.log('id welcome', idSuitability);
 
   useEffect(() => {
     getSuitabilityId();
@@ -48,4 +39,7 @@ export const FormSuitabilityWelcome = (props) => {
 
 export const SuitabilityWelcome = {
   screen: FormSuitabilityWelcome,
+  navigationOptions: {
+    headerTitle: '',
+  },
 };

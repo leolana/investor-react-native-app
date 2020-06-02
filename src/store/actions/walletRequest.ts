@@ -13,8 +13,18 @@ export const getIdInvestidor = async (email) => {
 
   if (typeof resp.data !== 'undefined') {
     Store.dispatch(actions.setIdInvestidor(resp.data));
-    console.log('SOTER', Store.getState());
+    // console.log('SOTER', Store.getState());
   } else {
-    console.log('deu ruim');
+    // console.log('deu ruim');
   }
+};
+
+export const getSuitabilityId = async () => {
+  const resp = await Request.GET({
+    url: 'https://server-test.iouu.com.br/api/v1/suitability',
+  });
+
+  if (resp.status === 200) Store.dispatch(actions.setIdSuitability(resp.data.insertedIds[0]));
+
+  return;
 };

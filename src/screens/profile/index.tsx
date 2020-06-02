@@ -38,10 +38,10 @@ export const ProfileComponent = (props) => {
       title: 'Alterar senha',
       onPress: () => navigation.navigate('ChangePassword'),
     },
-    {
-      title: 'Informações pessoais',
-      onPress: () => null,
-    },
+    // {
+    //   title: 'Editar informações',
+    //   onPress: () => navigation.navigate('ProfileEdit'),
+    // },
     {
       title: 'Configurações',
       onPress: () => navigation.navigate('Configurations'),
@@ -56,7 +56,7 @@ export const ProfileComponent = (props) => {
     },
     {
       title: 'Suitability',
-      onPress: () => navigation.navigate('SuitabilityOne'),
+      onPress: () => navigation.navigate('SuitabilityWelcome'),
     },
     {
       title: 'Cadastro',

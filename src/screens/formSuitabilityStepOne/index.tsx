@@ -4,15 +4,11 @@ import { View, Alert } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
-// import { setIdSuitability } from '../../store/actions'
-
-// import Store from '../../store/index';
-
 import { SafeAreaView, ScrollView, Title, Question, Options, OptionsContainer, Button, ButtonText } from './styles';
 
 import { useSelector } from 'react-redux';
 
-import { Request, UrlUsuarioPegar } from '../../services';
+import { Request } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
   const [disabled, setDisabled] = useState(true);
@@ -22,7 +18,7 @@ export const FormSuitabilityOne = (props) => {
   const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
 
-  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
+  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
   const FormularioCapacidade = {
     HorizonteInvestimento,
@@ -42,6 +38,8 @@ export const FormSuitabilityOne = (props) => {
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
+
+    console.log('RESP', resp.status);
   };
 
   const nextStep = () => {

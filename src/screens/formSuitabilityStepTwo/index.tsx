@@ -38,7 +38,7 @@ export const FormSuitabilityTwo = (props) => {
   const [Expectativa, setExpectativa] = useState('');
   const [Formacao, setFormacao] = useState('');
 
-  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
+  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
   const AvaliacaoRisco = {
     RendaFixa,
@@ -62,6 +62,8 @@ export const FormSuitabilityTwo = (props) => {
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
+
+    console.log('RESP', resp.data);
   };
 
   const nextStep = () => {

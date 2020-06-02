@@ -11,7 +11,7 @@ export const FormSuitabilityFour = (props) => {
   const [name, setName] = useState('');
   const [text, setText] = useState('');
 
-  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
+  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
   const getText = (tipo) => {
     if (tipo == 'Conservador') {
@@ -49,6 +49,8 @@ export const FormSuitabilityFour = (props) => {
     const resp = await Request.GET({
       url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
     });
+
+    console.log('RESP', resp.data);
 
     setName(resp.data.Nome);
     setType(resp.data.Tipo);

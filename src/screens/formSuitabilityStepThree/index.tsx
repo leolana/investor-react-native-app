@@ -4,7 +4,7 @@ import { Checkbox } from 'react-native-paper';
 
 import { Request } from '../../services';
 
-import { SafeAreaView, Title, Text, Box, Button, ButtonText } from './styles';
+import { SafeAreaView, Title, Text, Box, Button, ButtonText, ContainerCheckBox } from './styles';
 
 import { useSelector } from 'react-redux';
 
@@ -12,7 +12,7 @@ export const FormSuitabilityThree = (props) => {
   const [checked, setChecked] = useState(false);
   const [disabled, setDisabled] = useState(true);
 
-  const idSuitability = useSelector(({ idSuitability }) => idSuitability);
+  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
   const SuitabilityThree = {
     checked,
@@ -32,6 +32,8 @@ export const FormSuitabilityThree = (props) => {
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
+
+    console.log('RESP', resp.data);
   };
 
   const nextStep = () => {
@@ -57,16 +59,10 @@ export const FormSuitabilityThree = (props) => {
             Confirmo que as informações fornecidas são verdadeiras e que devo atualiza-las caso haja alterações e sempre
             que for solicitado.
           </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
+          <ContainerCheckBox>
             <Checkbox value={false} status={checked ? 'checked' : 'unchecked'} onPress={checkButton} />
             <Text>ACEITAR</Text>
-          </View>
+          </ContainerCheckBox>
         </Box>
 
         <Button disabled={disabled} onPress={nextStep}>

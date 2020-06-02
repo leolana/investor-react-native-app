@@ -18,8 +18,6 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   const [foto2, setFoto2] = useState(null);
   const [photo, setPhoto] = useState(null);
 
-  var arquivo = new FormData();
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -36,11 +34,10 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   }
 
   const atualizarDadosInvestidor = async () => {
-    arquivo.append('file', foto1);
+    let data = {file:foto1}
     const resp = await Request.POST({
       url: UrlCadastroInvestidorDocs(idInvestidor, 'identidade'),
-      arquivo,
-      header: 'bearer',
+      data,
     });
     
     console.log(resp);
@@ -50,9 +47,9 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   const nextStep = () => {
     if (flag) {
       setFoto2(capturedPhoto);
-      setCapturedPhoto(null);
       setOpenCamera(false);
       atualizarDadosInvestidor();
+      setCapturedPhoto(null);
     } else {
       setFoto1(photo);
       setFlag(true);

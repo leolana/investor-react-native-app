@@ -7,6 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { SafeAreaView, Button, ButtonText, ContainerLine } from './styles';
 import { useSelector } from 'react-redux';
 import { Request, UrlCadastroInvestidorDocs } from '../../services';
+import { createReadStream } from 'fs';
 
 export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInvestidor }) => {
   const camRef = useRef(null);
@@ -33,25 +34,26 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
     return <Text>Acesso negado</Text>;
   }
 
-  const atualizarDadosInvestidor = async () => {
-    let data = {file:foto1}
+  const atualizarDadosInvestidor = async (picture) => {
+    const data = { file: picture };
     const resp = await Request.POST({
       url: UrlCadastroInvestidorDocs(idInvestidor, 'identidade'),
       data,
     });
-    
-    console.log(resp);
-    navigation.navigate('SignUpInvestorStepEleven');
-  };
 
+    console.log('resposta legal', resp.data);
+  };
+  
   const nextStep = () => {
     if (flag) {
       setFoto2(capturedPhoto);
       setOpenCamera(false);
-      atualizarDadosInvestidor();
+      atualizarDadosInvestidor(photo);
       setCapturedPhoto(null);
+      navigation.navigate('SignUpInvestorStepEleven');
     } else {
       setFoto1(photo);
+      atualizarDadosInvestidor(photo);
       setFlag(true);
       setCapturedPhoto(null);
     }
@@ -60,8 +62,9 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   async function takePicture() {
     if (camRef) {
       const data = await camRef.current.takePictureAsync({ base64: true });
+      let newstr = data.base64.replace('data:image/jpg;base64,', '');
       setCapturedPhoto(data.uri);
-      setPhoto(data.base64);
+      setPhoto(newstr);
       setOpenCamera(true);
     }
   }
@@ -73,7 +76,6 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
           <TouchableOpacity style={styles.button} onPress={takePicture}>
             <FontAwesome name="camera" size={23} color="#fff" />
           </TouchableOpacity>
-
           {capturedPhoto && (
             <Modal animationType="slide" transparent={false}>
               <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20 }}>

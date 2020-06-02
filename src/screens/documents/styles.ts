@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 import { greyDD } from '../../assets/colors';
+import { ScrollView } from '../invest/styles';
 
 export const SafeAreaView = styled.SafeAreaView`
   margin: 16px;
@@ -16,4 +17,8 @@ export const Divisor = styled.View`
   height: 1px;
   align-self: stretch;
   margin: 16px 0;
+`;
+
+export const ScrollView = styled.ScrollView`
+
 `;

@@ -5,6 +5,8 @@ import { RadioButton, Text } from 'react-native-paper';
 import { Select } from '../../components';
 
 import { SafeAreaView, Button, ButtonText, TextInput, ScrollView, ContainerLine, Title } from './styles';
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepEightComponent = (props) => {
   //states
@@ -14,6 +16,7 @@ export const SignUpInvestorStepEightComponent = (props) => {
   const [TipoConta, setTipoConta] = useState('');
   const [Agencia, setAgencia] = useState('');
   const [Conta, setConta] = useState('');
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   const Investidor = {
     // NaoTemContaBancaria,
@@ -23,6 +26,19 @@ export const SignUpInvestorStepEightComponent = (props) => {
       Conta,
       TipoConta,
     },
+  };
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 7),
+      Investidor,
+      header: 'bearer',
+    });
+
+    console.log('passo 8', resp.data);
+    if (resp.status === 200) {
+      props.navigation.navigate('SignUpInvestorStepNine');
+    }
   };
 
   //vars
@@ -81,7 +97,7 @@ export const SignUpInvestorStepEightComponent = (props) => {
           </ContainerLine>
         </RadioButton.Group>
 
-        <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
+        <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
           <ButtonText>Continuar</ButtonText>
         </Button>
       </ScrollView>

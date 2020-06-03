@@ -1,11 +1,17 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, Platform, View } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import Styles, { SafeAreaView, Button, ButtonText, Label, Error, ScrollView } from './styles';
+import  { SafeAreaView, Button, ButtonText, Label, Error, ScrollView } from './styles';
 
 import { Select } from '../../components';
+import { useSelector } from 'react-redux';
+
+import Styles from './styles'
+
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services'
 
 export const SignUpInvestorStepFourComponent = (props) => {
   //states
@@ -18,6 +24,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
   const [TelefoneFixo, setTelefoneFixo] = useState('');
   const [Celular, setCelular] = useState('');
   const [EstadoCivil, setEstadoCivil] = useState('');
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
 
   //vars
 
@@ -27,6 +34,20 @@ export const SignUpInvestorStepFourComponent = (props) => {
     Celular,
     EstadoCivil,
   };
+
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 3),
+      Investidor,
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) {
+      console.log('passo 4', resp.data);
+      props.navigation.navigate('SignUpInvestorStepFive');
+    }
+  };
+  
 
   const optionsMaritalStatus = [
     { text: 'Solteiro (a)', value: 1 },
@@ -110,7 +131,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
             type={'cpf'}
             value={Cpf}
             onChangeText={(value) => setCpf(value)}
-            style={Styles.input}
+            // style={Styles.input}
             onBlur={() => setValidCpf(validateCpf())}
           />
           {!validCpf ? <Error>Você deve inserir um CPF válido</Error> : <View style={{ marginBottom: 30 }} />}
@@ -154,7 +175,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
             value={EstadoCivil}
           />
 
-          <Button /*disabled={disabled}*/ onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
+          <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
             <ButtonText>Continuar</ButtonText>
           </Button>
         </SafeAreaView>

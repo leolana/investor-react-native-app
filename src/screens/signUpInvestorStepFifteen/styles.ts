@@ -48,3 +48,6 @@ export const TextOpportunities = styled.Text`
   font-size: 16px;
   text-align: center;
 `;
+
+export const ScrollView = styled.ScrollView`
+`

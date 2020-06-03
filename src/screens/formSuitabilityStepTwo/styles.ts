@@ -19,24 +19,21 @@ export const Title = styled.Text`
 
 export const Question = styled.Text`
   font-size: 16px;
-  font-family: OpenSans-Bold;
-
   text-align: justify;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-bottom: 10;
+  margin-top: 20;
   font-weight: bold;
 `;
 export const Ponderations = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Regular;
-  margin-bottom: 5px;
+  margin-bottom: 5;
   color: ${grey33};
   width: 80%;
 `;
 
 export const PonderationsContainer = styled.View`
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 20;
 `;
 
 export const Border = styled.View`
@@ -47,7 +44,6 @@ export const Border = styled.View`
 export const OptionsTable = styled.Text`
   font-weight: bold;
   font-size: 14px;
-  font-family: OpenSans-Regular;
   text-align: justify;
   color: ${black55};
   width: 90%;
@@ -70,13 +66,11 @@ export const OptionsTableTitleText = styled.Text`
 export const OptionsContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 5;
 `;
 
 export const Options = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Regular;
-
   text-align: justify;
   color: ${grey99};
   width: 90%;
@@ -100,6 +94,5 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Bold;
   color: ${white};
 `;

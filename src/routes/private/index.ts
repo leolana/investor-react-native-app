@@ -120,6 +120,8 @@ import { SuitabilityFour } from '../../screens/formSuitabilityStepFour';
 
 import { ProfileEdit } from '../../screens/profileEditInfos';
 
+import { ExpoCamera } from '../../screens/camera';
+
 // Vars
 
 const mainScreenRoutesConfig = {
@@ -224,6 +226,7 @@ export const ScreenRoutes = createStackNavigator(
     SuitabilityThree,
     SuitabilityFour,
     ProfileEdit,
+    ExpoCamera,
   },
   mainScreenRoutesConfig,
 );

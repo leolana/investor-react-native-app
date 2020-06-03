@@ -25,7 +25,7 @@ export const Text = styled.Text`
 `;
 
 export const Title = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-family: OpenSans-Bold;
   text-align: center;
   margin-bottom: 40px;

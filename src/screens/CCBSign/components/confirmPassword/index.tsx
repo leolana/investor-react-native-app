@@ -48,7 +48,7 @@ export const ConfirmPasswordComponent = (props) => {
   const checkPassword = async () => {
     const data = { password, id: userId };
 
-    const resp = await Request.POST({ url: UrlSenhaVerificar, data });
+    const resp = await ({ url: UrlSenhaVerificar, data });
 
     if (resp.status === 200) {
       signCCB();

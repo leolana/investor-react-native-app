@@ -21,7 +21,6 @@ export const Button = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-size: 16px;
-  font-family: 'OpenSans-Bold';
   color: ${white};
 `;
 
@@ -30,10 +29,8 @@ export const Label = styled.Text`
   margin-bottom: 5px;
   font-size: 12px;
   align-self: stretch;
-  font-family: OpenSans;
 `;
 export const Error = styled.Text`
-    font-family: OpenSans;
     font-size: 10px;
     color: ${redTwo}
     text-align: left;
@@ -51,7 +48,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'OpenSans-Regular',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',
@@ -62,7 +58,6 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderWidth: 1,
     borderRadius: 5,
-    fontFamily: 'OpenSans-Regular',
     height: 40,
     fontSize: 16,
     alignSelf: 'stretch',

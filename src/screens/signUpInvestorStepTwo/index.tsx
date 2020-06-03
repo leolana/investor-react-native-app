@@ -64,8 +64,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     });
 
     if (resp.status === 200) {
-      props.navigation.navigate('SignUpInvestorStepThree');
       console.log('passo 2', resp.data);
+      props.navigation.navigate('SignUpInvestorStepThree');
     }
   };
 

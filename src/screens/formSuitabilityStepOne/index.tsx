@@ -52,8 +52,6 @@ export const FormSuitabilityOne = (props) => {
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
-
-    console.log('RESP step 1', resp);
   };
 
   const nextStep = () => {

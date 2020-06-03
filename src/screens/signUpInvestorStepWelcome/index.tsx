@@ -34,7 +34,7 @@ export const SignUpInvestorStepWelcomeComponent = (props) => {
 
         <Note>Esse formulário pode levar entre 10 e 15 minutos para ser preenchido e consiste em 14 etapas.</Note>
 
-        <Button onPress={() => props.navigation.navigate('SignUpInvestorStepOne')}>
+        <Button onPress={() => props.navigation.navigate('SignUpInvestorStepNine')}>
           <ButtonText>CONTINUAR CADASTRO</ButtonText>
         </Button>
       </View>

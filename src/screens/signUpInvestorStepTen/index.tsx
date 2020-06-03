@@ -49,7 +49,7 @@ export const SignUpInvestorStepTenComponent = (props) => {
             </TouchableOpacity> */}
 
       <Camera
-        isVisible={isCameraVisible}
+        isVisible={true}
         onChangePhoto={onChangePhoto}
         onCloseCamera={onCloseCamera}
         setOpenCamera={setOpenCamera}

@@ -5,19 +5,15 @@ import { camera, Camera } from 'expo-camera';
 
 import { FontAwesome } from '@expo/vector-icons';
 import { SafeAreaView, Button, ButtonText, ContainerLine } from './styles';
-import { useSelector } from 'react-redux';
-import { Request, UrlCadastroInvestidorDocs } from '../../services';
-import { createReadStream } from 'fs';
 
-export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInvestidor }) => {
+export const ExpoCameraComponent = (props) => {
   const camRef = useRef(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [hasPermission, setHaspermision] = useState(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [openCamera, setOpenCamera] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [flag, setFlag] = useState(false);
-  const [foto1, setFoto1] = useState(null);
-  const [foto2, setFoto2] = useState(null);
-  const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -25,6 +21,10 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
       setHaspermision(status === 'granted');
     })();
   }, []);
+
+  const Investidor = {
+    capturedPhoto,
+  };
 
   if (hasPermission === null) {
     return <View />;
@@ -34,37 +34,27 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
     return <Text>Acesso negado</Text>;
   }
 
-  const atualizarDadosInvestidor = async (picture) => {
-    const data = { file: picture };
-    const resp = await Request.POST({
-      url: UrlCadastroInvestidorDocs(idInvestidor, 'identidade'),
-      data,
-    });
-
-    console.log('resposta legal', resp.data);
-  };
-  
   const nextStep = () => {
+    const arquivo = new FormData();
     if (flag) {
-      setFoto2(capturedPhoto);
-      setOpenCamera(false);
-      atualizarDadosInvestidor(photo);
       setCapturedPhoto(null);
-      navigation.navigate('SignUpInvestorStepEleven');
+      setIsVisible(false);
+      arquivo.set('file 2', capturedPhoto);
+      console.log('Flag True', arquivo);
+      props.navigation.navigate('SignUpInvestorStepEleven');
     } else {
-      setFoto1(photo);
-      atualizarDadosInvestidor(photo);
       setFlag(true);
+      arquivo.set('file', capturedPhoto);
+      console.log('Flag False', arquivo);
       setCapturedPhoto(null);
+      console.log(flag);
     }
   };
 
   async function takePicture() {
     if (camRef) {
-      const data = await camRef.current.takePictureAsync({ base64: true });
-      let newstr = data.base64.replace('data:image/jpg;base64,', '');
+      const data = await camRef.current.takePictureAsync();
       setCapturedPhoto(data.uri);
-      setPhoto(newstr);
       setOpenCamera(true);
     }
   }
@@ -76,6 +66,7 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
           <TouchableOpacity style={styles.button} onPress={takePicture}>
             <FontAwesome name="camera" size={23} color="#fff" />
           </TouchableOpacity>
+
           {capturedPhoto && (
             <Modal animationType="slide" transparent={false}>
               <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20 }}>
@@ -111,3 +102,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
+
+export const ExpoCamera = {
+  screen: ExpoCameraComponent,
+};

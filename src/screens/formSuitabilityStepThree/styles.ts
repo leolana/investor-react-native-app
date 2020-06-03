@@ -15,7 +15,6 @@ export const Title = styled.Text`
 
 export const Text = styled.Text`
   font-size: 16px;
-  font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   text-align: justify;
   color: ${grey99};
 `;
@@ -47,7 +46,5 @@ export const ContainerCheckBox = styled.View`
 
 export const ButtonText = styled.Text`
   font-size: 14px;
-  font-family: OpenSans-Bold;
-
   color: ${white};
 `;

@@ -51,14 +51,14 @@ export const SignUpInvestorStepTwelveComponent = (props) => {
                 <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
             </TouchableOpacity> */}
 
-      <Camera
+      {/* <Camera
         isVisible={isCameraVisible}
         onChangePhoto={onChangePhoto}
         onCloseCamera={onCloseCamera}
         setOpenCamera={setOpenCamera}
         props={props}
         nextStep={'SignUpInvestorStepThirteen'}
-      />
+      /> */}
     </SafeAreaView>
   );
 };

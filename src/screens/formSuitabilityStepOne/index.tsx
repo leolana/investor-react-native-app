@@ -28,21 +28,36 @@ export const FormSuitabilityOne = (props) => {
     Patrimonio,
   };
 
+  // {"FormularioCapacidade":
+  //   {
+  //     "HorizonteInvestimento":"3",
+  //     "MomentoVida":"3",
+  //     "DistribuicaoInvestimento":"3",
+  //     "SitucaoFinanceira":"4",
+  //     "Patrimonio":"5"
+  // },
+
+  //   "step_type":"next"
+  // }
+
   const SuitabilityOne = {
     FormularioCapacidade,
-    stepType: 'next',
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    step_type: 'next',
   };
 
   const saveSuitability = async (data) => {
+    console.log('entrouu');
     const resp = await Request.PUT({
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
 
-    console.log('RESP', resp.status);
+    console.log('RESP step 1', resp);
   };
 
   const nextStep = () => {
+    console.log('aqui', SuitabilityOne);
     saveSuitability(SuitabilityOne);
     props.navigation.navigate('SuitabilityTwo');
   };
@@ -211,7 +226,7 @@ export const FormSuitabilityOne = (props) => {
           </RadioButton.Group>
         </View>
 
-        <Button disabled={disabled} onPress={nextStep}>
+        <Button disabled={disabled} onPress={() => nextStep()}>
           <ButtonText> CONTINUAR </ButtonText>
         </Button>
       </ScrollView>

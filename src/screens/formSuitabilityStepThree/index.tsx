@@ -15,8 +15,8 @@ export const FormSuitabilityThree = (props) => {
   const idSuitability = useSelector((store) => store.investor.dadosSuitability);
 
   const SuitabilityThree = {
-    checked,
-    stepType: 'next',
+    Aceite: checked,
+    step_type: 'next',
   };
 
   const checkButton = () => {
@@ -27,17 +27,28 @@ export const FormSuitabilityThree = (props) => {
     }
   };
 
+  const getInfos = async () => {
+    const resp = await Request.GET({
+      url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
+    });
+
+    console.log('RESP Infos', resp.data);
+
+    saveSuitability(SuitabilityThree);
+  };
+
   const saveSuitability = async (data) => {
     const resp = await Request.PUT({
       url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
       data: data,
     });
 
-    console.log('RESP', resp.data);
+    console.log('RESP step 3', resp);
   };
 
   const nextStep = () => {
-    saveSuitability(SuitabilityThree);
+    console.log('teste', SuitabilityThree);
+    getInfos();
     props.navigation.navigate('SuitabilityFour');
   };
 
@@ -65,7 +76,7 @@ export const FormSuitabilityThree = (props) => {
           </ContainerCheckBox>
         </Box>
 
-        <Button disabled={disabled} onPress={nextStep}>
+        <Button disabled={disabled} onPress={() => nextStep()}>
           <ButtonText>SUBMETER RESPOSTAS</ButtonText>
         </Button>
       </View>

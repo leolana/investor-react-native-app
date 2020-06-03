@@ -50,7 +50,7 @@ export const FormSuitabilityFour = (props) => {
       url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
     });
 
-    console.log('RESP', resp.data);
+    console.log('RESP Infos', resp.data);
 
     setName(resp.data.Nome);
     setType(resp.data.Tipo);
@@ -59,7 +59,7 @@ export const FormSuitabilityFour = (props) => {
 
   useEffect(() => {
     getInfos();
-  }, []);
+  });
 
   return (
     <SafeAreaView>

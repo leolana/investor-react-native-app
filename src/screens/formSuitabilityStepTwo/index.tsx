@@ -54,7 +54,7 @@ export const FormSuitabilityTwo = (props) => {
 
   const SuitabilityTwo = {
     AvaliacaoRisco,
-    stepType: 'next',
+    step_type: 'next',
   };
 
   const saveSuitability = async (data) => {
@@ -63,7 +63,7 @@ export const FormSuitabilityTwo = (props) => {
       data: data,
     });
 
-    console.log('RESP', resp.data);
+    console.log('RESP step 2', resp);
   };
 
   const nextStep = () => {
@@ -315,7 +315,7 @@ export const FormSuitabilityTwo = (props) => {
           </RadioButton.Group>
         </View>
 
-        <Button disabled={disabled} onPress={nextStep}>
+        <Button disabled={disabled} onPress={() => nextStep()}>
           <ButtonText> CONTINUAR </ButtonText>
         </Button>
       </ScrollView>

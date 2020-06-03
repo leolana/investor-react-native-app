@@ -13,7 +13,8 @@ export const SignUpInvestorStepEightComponent = (props) => {
 
   const [disabled, setDisabled] = useState(true);
   const [CodigoBanco, setCodigoBanco] = useState('');
-  const [TipoConta, setTipoConta] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [TipoConta, setTipoConta] = useState(0);
   const [Agencia, setAgencia] = useState('');
   const [Conta, setConta] = useState('');
   const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
@@ -29,11 +30,14 @@ export const SignUpInvestorStepEightComponent = (props) => {
   };
 
   const atualizarDadosInvestidor = async () => {
+    Investidor.DadosBancarios.TipoConta = parseInt(tipo);
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 7),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
+
+    console.log(Investidor)
 
     console.log('passo 8', resp.data);
     if (resp.status === 200) {
@@ -64,8 +68,8 @@ export const SignUpInvestorStepEightComponent = (props) => {
   //effect
 
   useEffect(() => {
-    setDisabled(CodigoBanco === '' || TipoConta === '' || Agencia === '' || Conta === '');
-  }, [CodigoBanco, TipoConta, Agencia, Conta]);
+    setDisabled(CodigoBanco === '' || tipo === '' || Agencia === '' || Conta === '');
+  }, [CodigoBanco, tipo, Agencia, Conta]);
 
   //render
 
@@ -85,7 +89,7 @@ export const SignUpInvestorStepEightComponent = (props) => {
 
         <TextInput title={'Conta'} onChangeText={(value) => setConta(value)} keyboardType={'numeric'} />
 
-        <RadioButton.Group onValueChange={(value) => setTipoConta(value)} value={TipoConta}>
+        <RadioButton.Group onValueChange={(value) => setTipo(value)} value={tipo}>
           <ContainerLine>
             <RadioButton value="1" />
             <Text>Conta poupança</Text>

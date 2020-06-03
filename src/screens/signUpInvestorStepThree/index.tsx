@@ -21,7 +21,7 @@ export const SignUpInvestorStepThreeComponent = (props) => {
   const atualizarDadosInvestidor = async () => {
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 2),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 

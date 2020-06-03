@@ -38,7 +38,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
   const atualizarDadosInvestidor = async () => {
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 3),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 
@@ -131,7 +131,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
             type={'cpf'}
             value={Cpf}
             onChangeText={(value) => setCpf(value)}
-            // style={Styles.input}
+            style={Styles.input}
             onBlur={() => setValidCpf(validateCpf())}
           />
           {!validCpf ? <Error>Você deve inserir um CPF válido</Error> : <View style={{ marginBottom: 30 }} />}

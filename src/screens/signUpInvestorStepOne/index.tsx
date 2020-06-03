@@ -17,7 +17,7 @@ export const SignUpInvestorStepOneComponent = (props) => {
 
   const [disabled, setDisabled] = useState(true);
 
-  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
 
   // vars
 
@@ -26,6 +26,8 @@ export const SignUpInvestorStepOneComponent = (props) => {
     Nacionalidade,
     _id: idInvestidor,
   };
+
+  console.log('AQUI ESTA O ID PORA', idInvestidor)
 
   const optionsGender = [
     { text: 'Masculino', value: 1 },
@@ -39,9 +41,10 @@ export const SignUpInvestorStepOneComponent = (props) => {
   ];
 
   const atualizarDadosInvestidor = async () => {
+    console.log(Investidor)
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 

@@ -21,6 +21,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [valid, setValid] = useState(true);
   const [DataNascimento, setDataNascimento] = useState('');
+  const [dataNasc, setDataNasc] = useState('');
   const [Naturalidade, setNaturalidade] = useState();
   const [NaturalidadeCidade, setNaturalidadeCidade] = useState('');
   const [apiState, setApiState] = useState([
@@ -38,7 +39,18 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     },
   ]);
 
-  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
+
+  const formatDate = () => {
+    let data = dataNasc;
+    if (!data.includes('/')) return '--/--/----';
+
+    data = data.split('/');
+
+    data = `${data[2]}/${data[1]}/${data[0]}`;
+
+    return new Date(data).toISOString();
+  };
 
   const Investidor = {
     DataNascimento,
@@ -57,14 +69,15 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   }
 
   const atualizarDadosInvestidor = async () => {
+    console.log(DataNascimento);
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 1),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 
+    console.log('passo 2', resp.data);
     if (resp.status === 200) {
-      console.log('passo 2', resp.data);
       props.navigation.navigate('SignUpInvestorStepThree');
     }
   };
@@ -113,7 +126,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   const validateDate = () => {
     let valid = false;
     const regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
-    const matches = regex.exec(DataNascimento);
+    const matches = regex.exec(dataNasc);
 
     if (matches != null) {
       const day = parseInt(matches[1], 10);
@@ -124,8 +137,10 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       valid = isOfAge(year);
     }
 
-    if (valid) setValid(true);
-    else setValid(false);
+    if (valid) {
+      setValid(true);
+      setDataNascimento(formatDate());
+    } else setValid(false);
   };
 
   useEffect(() => {
@@ -133,8 +148,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   }, []);
 
   useEffect(() => {
-    setDisabled(!valid || DataNascimento === '' || Naturalidade === '' || NaturalidadeCidade === '');
-  }, [valid, DataNascimento, Naturalidade, NaturalidadeCidade]);
+    setDisabled(!valid || dataNasc === '' || Naturalidade === '' || NaturalidadeCidade === '');
+  }, [valid, dataNasc, Naturalidade, NaturalidadeCidade]);
 
   return (
     <SafeAreaView>
@@ -144,8 +159,8 @@ export const SignUpInvestorStepTwoComponent = (props) => {
         options={{
           format: 'DD/MM/YYYY',
         }}
-        value={DataNascimento}
-        onChangeText={(value) => setDataNascimento(value)}
+        value={dataNasc}
+        onChangeText={(value) => setDataNasc(value)}
         style={Styles.input}
         onBlur={validateDate}
       />

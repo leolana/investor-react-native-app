@@ -11,7 +11,7 @@ class Api {
     return { authorization: auth };
   };
 
-  request = async (method, url, data, type = 'bearer') => {
+  request = async (method, url, data, type) => {
     const axios = Axios.create({ timeout: 30000, headers: await this.getHeader(type) });
 
     return axios({ method, url, data })

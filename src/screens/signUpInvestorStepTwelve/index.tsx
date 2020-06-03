@@ -1,27 +1,23 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 
 import { TouchableOpacity } from 'react-native';
 
-import Camera from '../../components/camera';
+import { ExpoCameraComprovante } from '../../components/cameraComprovante';
 
 import { SafeAreaView, Button, ButtonText, Title, Text, Container, ContainerTitle, Note } from './styles';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepTwelveComponent = (props) => {
   const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [setPhoto] = useState(null);
+  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
 
   const setOpenCamera = (value) => {
     setIsCameraVisible(value);
   };
 
-  const onChangePhoto = (newPhoto) => {
-    setPhoto(newPhoto);
-    setOpenCamera(false);
-  };
-
-  const onCloseCamera = () => {
-    setOpenCamera(false);
-  };
+  console.log("id que tu que", idInvestidor);
 
   return (
     <SafeAreaView>
@@ -48,17 +44,16 @@ export const SignUpInvestorStepTwelveComponent = (props) => {
       </TouchableOpacity>
 
       {/* <TouchableOpacity>
-                <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
-            </TouchableOpacity> */}
+        <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
+      </TouchableOpacity> */}
 
-      {/* <Camera
+      <ExpoCameraComprovante
         isVisible={isCameraVisible}
-        onChangePhoto={onChangePhoto}
-        onCloseCamera={onCloseCamera}
-        setOpenCamera={setOpenCamera}
-        props={props}
-        nextStep={'SignUpInvestorStepThirteen'}
-      /> */}
+        navigation={props.navigation}
+        step={'SignUpInvestorStepThirteen'}
+        setOpenCamera={(value) => setOpenCamera(value)}
+        idInvestidor={idInvestidor}
+      />
     </SafeAreaView>
   );
 };

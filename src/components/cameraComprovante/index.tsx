@@ -4,19 +4,17 @@ import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Modal, Image } 
 import { camera, Camera } from 'expo-camera';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { SafeAreaView, Button, ButtonText, ContainerLine } from './styles';
+import { Button, ButtonText, ContainerLine } from './styles';
 import { useSelector } from 'react-redux';
 import { Request, UrlCadastroInvestidorDocs } from '../../services';
 import { createReadStream } from 'fs';
 
-export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInvestidor }) => {
+export const ExpoCameraComprovante = ({ isVisible, navigation, step, setOpenCamera, idInvestidor }) => {
   const camRef = useRef(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [hasPermission, setHaspermision] = useState(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [flag, setFlag] = useState(false);
-  const [foto1, setFoto1] = useState(null);
-  const [foto2, setFoto2] = useState(null);
   const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
@@ -37,29 +35,19 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   const atualizarDadosInvestidor = async (picture) => {
     const data = { file: picture };
     const resp = await Request.POST({
-      url: UrlCadastroInvestidorDocs(idInvestidor, 'identidade'),
+      url: UrlCadastroInvestidorDocs(idInvestidor, 'comprovanteendereco'),
       data,
       header: 'bearer'
     });
 
-    console.log('UM CONSOLE LOG SÓ PRA MOSTRAR');
-
     console.log('resposta legal', resp.data);
   };
-  
+
   const nextStep = () => {
-    if (flag) {
-      setFoto2(capturedPhoto);
-      setOpenCamera(false);
-      atualizarDadosInvestidor(photo);
-      setCapturedPhoto(null);
-      navigation.navigate('SignUpInvestorStepEleven');
-    } else {
-      setFoto1(photo);
-      atualizarDadosInvestidor(photo);
-      setFlag(true);
-      setCapturedPhoto(null);
-    }
+    setOpenCamera(false);
+    atualizarDadosInvestidor(photo);
+    setCapturedPhoto(null);
+    navigation.navigate('SignUpInvestorStepThirteen');
   };
 
   async function takePicture() {

@@ -17,6 +17,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [validDate, setValidDate] = useState(true);
   const [RgDataEmissao, setRgDataEmissao] = useState('');
+  const [rgData, setRgData] = useState('');
   const [RgEstadoEmissor, setRgEstadoEmissor] = useState('');
   const [RgOrgaoEmissor, setRgOrgaoEmissor] = useState('');
   const [RgNumero, setRgNumero] = useState('');
@@ -38,10 +39,22 @@ export const SignUpInvestorStepFiveComponent = (props) => {
     RgDataEmissao,
   };
 
+  const formatDate = () => {
+    let data = rgData;
+    if (!data.includes('/')) return '--/--/----';
+
+    data = data.split('/');
+
+    data = `${data[2]}/${data[1]}/${data[0]}`;
+
+    return new Date(data).toISOString();
+  };
+
   const atualizarDadosInvestidor = async () => {
+    console.log('RG BEM AQUI', RgDataEmissao);
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 4),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 
@@ -49,7 +62,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
       console.log('passo 5', resp.data);
       props.navigation.navigate('SignUpInvestorStepSix');
     }
-  }
+  };
 
   const opcoesOrgaoEmissor = [
     { text: 'SSP', value: 'SSP' },
@@ -98,7 +111,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
   const validateDate = () => {
     let valid = false;
     const regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
-    const matches = regex.exec(RgDataEmissao);
+    const matches = regex.exec(rgData);
 
     if (matches != null) {
       const day = parseInt(matches[1], 10);
@@ -108,17 +121,19 @@ export const SignUpInvestorStepFiveComponent = (props) => {
       valid = date.getFullYear() == year && date.getMonth() == month && date.getDate() == day;
     }
 
-    if (valid) setValidDate(true);
-    else setValidDate(false);
+    if (valid) {
+      setValidDate(true);
+      setRgDataEmissao(formatDate());
+    } else setValidDate(false);
   };
 
   //effect
 
   useEffect(() => {
     setDisabled(
-      !validDate || RgDataEmissao === '' || RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '',
+      !validDate || rgData === '' || RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '',
     );
-  }, [validDate, RgDataEmissao, RgEstadoEmissor, RgOrgaoEmissor, RgNumero]);
+  }, [validDate, rgData, RgEstadoEmissor, RgOrgaoEmissor, RgNumero]);
 
   // render
 
@@ -134,8 +149,8 @@ export const SignUpInvestorStepFiveComponent = (props) => {
             options={{
               format: 'DD/MM/YYYY',
             }}
-            value={RgDataEmissao}
-            onChangeText={(value) => setRgDataEmissao(value)}
+            value={rgData}
+            onChangeText={(value) => setRgData(value)}
             onBlur={validateDate}
             style={Styles.input}
           />

@@ -5,10 +5,11 @@ import { TextInputMask } from 'react-native-masked-text';
 
 import { Loading } from '../../components';
 
-import { Request, UrlLocalizacaoCEPPegar, UrlCadastroInvestidorAtualizar } from '../../services';
+import { Request, UrlLocalizacaoCEPPegar, UrlCadastroInvestidorAtualizar, UrlCadastroInvestidorDocs } from '../../services';
 
 import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label, Error } from './styles';
 import { useSelector } from 'react-redux';
+import investor from '../../store/reducers/investor';
 
 export const SignUpInvestorStepSixComponent = (props) => {
   //states
@@ -18,7 +19,8 @@ export const SignUpInvestorStepSixComponent = (props) => {
   const [disabled, setDisabled] = useState('');
   const [Cep, setCep] = useState('');
   const [Logradouro, setLogradouro] = useState('');
-  const [Numero, setNumber] = useState('');
+  const [Numero, setNumber] = useState(0);
+  const [num, setNum] = useState('');
   const [Complemento, setComplemento] = useState('');
   const [Uf, setUf] = useState('');
   const [Cidade, setCidade] = useState('');
@@ -38,9 +40,11 @@ export const SignUpInvestorStepSixComponent = (props) => {
   };
 
   const atualizarDadosInvestidor = async () => {
+    Investidor.Endereco.Numero = parseInt(num);
+    console.log(typeof(Investidor.Endereco.Numero))
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 5),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 
@@ -52,10 +56,10 @@ export const SignUpInvestorStepSixComponent = (props) => {
   };
 
   function contentCep(value) {
-    setLogradouro(value.Logradouro);
-    setUf(value.Uf);
-    setCidade(value.Localidade);
-    setBairro(value.Bairro);
+    setLogradouro(value.logradouro);
+    setUf(value.uf);
+    setCidade(value.localidade);
+    setBairro(value.bairro);
   }
 
   const getCEP = async () => {
@@ -88,8 +92,8 @@ export const SignUpInvestorStepSixComponent = (props) => {
   //effect
 
   useEffect(() => {
-    setDisabled(Cep === '' || Logradouro === '' || Uf === '' || Cidade === '' || Bairro === '' || Numero === '');
-  }, [Cep, Logradouro, Uf, Cidade, Bairro, Numero]);
+    setDisabled(Cep === '' || Logradouro === '' || Uf === '' || Cidade === '' || Bairro === '' || num === '');
+  }, [Cep, Logradouro, Uf, Cidade, Bairro, num]);
 
   //render
 
@@ -109,7 +113,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
           <Loading loading={loading}>
             <TextInput title={'Logradouro'} value={Logradouro} onChangeText={(value) => setLogradouro(value)} />
 
-            <TextInput title={'Número'} onChangeText={(value) => setNumber(value)} keyboardType={'numeric'} />
+            <TextInput title={'Número'} onChangeText={(value) => setNum(value)} keyboardType={'numeric'} />
 
             <TextInput title={'Complemento'} value={Complemento} onChangeText={(value) => setComplemento(value)} />
             <TextInput title={'Cidade'} value={Cidade} onChangeText={(value) => setCidade(value)} />

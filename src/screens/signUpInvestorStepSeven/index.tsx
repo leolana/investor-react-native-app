@@ -11,7 +11,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   //state
 
   const [disabled, setDisabled] = useState(true);
-  const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState('');
+  const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState(true);
   const [RendaMensal, setRendaMensal] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
   const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
@@ -24,17 +24,17 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   };
 
   const checkButton = () => {
-    if (PessoaPoliticamenteExposta === '1') {
-      setPessoaPoliticamenteExposta('0');
+    if (PessoaPoliticamenteExposta === true) {
+      setPessoaPoliticamenteExposta(false);
     } else {
-      setPessoaPoliticamenteExposta('1');
+      setPessoaPoliticamenteExposta(true);
     }
   };
 
   const atualizarDadosInvestidor = async () => {
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 6),
-      Investidor,
+      data: Investidor,
       header: 'bearer',
     });
 
@@ -80,8 +80,8 @@ export const SignUpInvestorStepSevenComponent = (props) => {
 
       <ContainerLine>
         <RadioButton
-          value="1"
-          status={PessoaPoliticamenteExposta === '1' ? 'checked' : 'unchecked'}
+          value={true}
+          status={PessoaPoliticamenteExposta === true ? 'checked' : 'unchecked'}
           onPress={checkButton}
         />
 

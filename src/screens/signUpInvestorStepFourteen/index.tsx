@@ -7,10 +7,13 @@ import { RadioButton, Text } from 'react-native-paper';
 import { SafeAreaView, Button, ButtonText, ScrollView, ContainerLine, TextLine, Title, TextLineBold } from './styles';
 
 import { UrlTermosCondicoes, UrlPoliticaPrivacidade } from '../../services';
+import { Request, UrlCadastroInvestidorAtualizar } from '../../services';
+import { useSelector } from 'react-redux';
 
 export const SignUpInvestorStepFourteenComponent = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [AceitaContratoConfidencialidade, setAceitaContratoConfidencialidade] = useState(false);
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   const checkButton = () => {
     if (AceitaContratoConfidencialidade) {
@@ -20,8 +23,21 @@ export const SignUpInvestorStepFourteenComponent = (props) => {
     }
   };
 
+  const atualizarDadosInvestidor = async () => {
+    const resp = await Request.PUT({
+      url: UrlCadastroInvestidorAtualizar(idInvestidor, 8),
+      data: { AceitaContratoCofidencialidade: true },
+      header: 'bearer',
+    });
+
+    console.log(resp.data);
+    if (resp.status === 200) {
+      props.navigation.navigate('SignUpInvestorStepFifteen');
+    }
+  };
+
   useEffect(() => {
-    setDisabled(AceitaContratoConfidencialidade == '0');
+    setDisabled(AceitaContratoConfidencialidade == false);
   }, [AceitaContratoConfidencialidade]);
 
   return (
@@ -53,7 +69,7 @@ export const SignUpInvestorStepFourteenComponent = (props) => {
           <Text>CONFIRMO E CONCORDO</Text>
         </ContainerLine>
 
-        <Button disabled={disabled} onPress={() => props.navigation.navigate('SignUpInvestorStepFifteen')}>
+        <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
           <ButtonText>CONTINUAR</ButtonText>
         </Button>
       </ScrollView>

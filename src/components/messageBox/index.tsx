@@ -43,7 +43,7 @@ export const MessageBoxComponent = (props) => {
   };
 
   const handleScreen = () => {
-    if (!accountData.HasInvestor) return 'SignUpInvestorStepOne';
+    if (!accountData.HasInvestor) return 'SignUpInvestorStepWelcome';
     else if (!accountData.HasSuitability) return 'SignUpSuitability';
 
     return null;

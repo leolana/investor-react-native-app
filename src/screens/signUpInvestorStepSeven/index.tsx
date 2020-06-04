@@ -11,7 +11,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   //state
 
   const [disabled, setDisabled] = useState(true);
-  const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState(true);
+  const [PessoaPoliticamenteExposta, setPessoaPoliticamenteExposta] = useState(false);
   const [RendaMensal, setRendaMensal] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
   const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
@@ -51,7 +51,6 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   };
 
   //effect
-
   useEffect(() => {
     setDisabled(RendaMensal === '' || Patrimonio === '');
   }, [RendaMensal, Patrimonio]);
@@ -80,7 +79,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
 
       <ContainerLine>
         <RadioButton
-          value={true}
+          value={false}
           status={PessoaPoliticamenteExposta === true ? 'checked' : 'unchecked'}
           onPress={checkButton}
         />
@@ -88,7 +87,7 @@ export const SignUpInvestorStepSevenComponent = (props) => {
         <Text>Declaro ser PPE</Text>
       </ContainerLine>
 
-      <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
+      <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

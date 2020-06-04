@@ -13,6 +13,8 @@ export const Logo = styled(IconIouu)`
 `;
 import { white, tealish, grey99, redTwo } from '../../assets/colors';
 
+export const ScrollView = styled.ScrollView``;
+
 export const SafeAreaView = styled.View`
   margin-horizontal: 16px;
   margin-vertical: 50px;

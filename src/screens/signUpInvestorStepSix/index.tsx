@@ -5,7 +5,12 @@ import { TextInputMask } from 'react-native-masked-text';
 
 import { Loading } from '../../components';
 
-import { Request, UrlLocalizacaoCEPPegar, UrlCadastroInvestidorAtualizar, UrlCadastroInvestidorDocs } from '../../services';
+import {
+  Request,
+  UrlLocalizacaoCEPPegar,
+  UrlCadastroInvestidorAtualizar,
+  UrlCadastroInvestidorDocs,
+} from '../../services';
 
 import Styles, { SafeAreaView, Button, ButtonText, TextInput, ScrollView, Label, Error } from './styles';
 import { useSelector } from 'react-redux';
@@ -41,7 +46,6 @@ export const SignUpInvestorStepSixComponent = (props) => {
 
   const atualizarDadosInvestidor = async () => {
     Investidor.Endereco.Numero = parseInt(num);
-    console.log(typeof(Investidor.Endereco.Numero))
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 5),
       data: Investidor,
@@ -121,7 +125,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
             <TextInput title={'Bairro'} value={Bairro} onChangeText={(value) => setBairro(value)} />
             <TextInput title={'Estado'} value={Uf} onChangeText={(value) => setUf(value)} />
 
-            <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
+            <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
               <ButtonText>Continuar</ButtonText>
             </Button>
           </Loading>

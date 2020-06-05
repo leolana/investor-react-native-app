@@ -93,8 +93,10 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       url: UrlLocalizacaoCidadesPegar(Naturalidade),
     });
 
-    if (resp.status === 200) setApiCity(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    if (resp.status === 200) {
+      setApiCity(resp.data);
+      console.log('ai as cidade', apiCity);
+    } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   }
 
   function mapApiCity() {

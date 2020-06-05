@@ -17,11 +17,11 @@ export const SignUpSuccess = (props) => {
         plataforma.
       </Text>
 
-      <Button marginTop="32" onPress={() => navigation.navigate('SignUpInvestorStepOne')}>
+      <Button marginTop="32" onPress={() => navigation.navigate('SignUpInvestorStepWelcome')}>
         <ButtonText>Quero completar meu cadastro</ButtonText>
       </Button>
 
-      <Button background="transparent" onPress={() => navigation.navigate('Opportunities')}>
+      <Button background="transparent" onPress={() => navigation.navigate('Opportunities', { authenticated: true })}>
         <ButtonText color={black}>Quero ver as oportunidades</ButtonText>
       </Button>
     </SafeAreaView>

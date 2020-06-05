@@ -55,21 +55,11 @@ export const ProfileComponent = (props) => {
       onPress: () => navigation.navigate('CCBsList'),
     },
     {
-      title: 'Suitability',
-      onPress: () => navigation.navigate('SuitabilityWelcome'),
-    },
-    {
-      title: 'Cadastro',
-      onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
-    },
-    {
       title: 'Sair',
       onPress: async () => {
         await removeData('Authorization');
         navigation.navigate('Welcome');
-
         // await dispatch(setAccountData(null));
-        console.log('ESSE AQUI É O ACCOUNT TA', accountData);
       },
     },
   ];

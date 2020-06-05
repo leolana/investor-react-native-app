@@ -45,9 +45,9 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   };
 
   const openLinkPPE = () => {
-    Linking.openURL('http://fazenda.gov.br/orgaos/coaf').catch((err) =>
-      console.error('Impossível carregar página', err),
-    );
+    Linking.openURL(
+      'https://www.fazenda.gov.br/orgaos/coaf/legislacao-e-normas/normas-coaf/resolucao-no-29-de-7-de-dezembro-de-2017-1',
+    ).catch((err) => console.error('Impossível carregar página', err));
   };
 
   //effect

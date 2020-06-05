@@ -9,6 +9,7 @@ import { IconArrow2Right } from '../../assets/icons';
 import { white } from '../../assets/colors';
 
 import { withNavigation } from 'react-navigation';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 export const MessageBoxComponent = (props) => {
   const { navigation } = props;
@@ -44,7 +45,7 @@ export const MessageBoxComponent = (props) => {
 
   const handleScreen = () => {
     if (!accountData.HasInvestor) return 'SignUpInvestorStepWelcome';
-    else if (!accountData.HasSuitability) return 'SignUpSuitability';
+    else if (!accountData.HasSuitability) return 'SuitabilityWelcome';
 
     return null;
   };
@@ -64,15 +65,17 @@ export const MessageBoxComponent = (props) => {
       {!message ? null : (
         <Margin>
           <Title>Importante</Title>
-          <Container>
-            <Text>{message}</Text>
-            {handleScreen() === null ? null : (
-              <Touchable onPress={() => navigation.navigate(handleScreen())}>
-                <TouchableText>Vamos lá </TouchableText>
-                <IconArrow2Right fill={white} />
-              </Touchable>
-            )}
-          </Container>
+          {handleScreen() === null ? null : (
+            <TouchableNativeFeedback onPress={() => navigation.navigate(handleScreen())}>
+              <Container>
+                <Text>{message}</Text>
+                <Touchable>
+                  <TouchableText>Vamos lá </TouchableText>
+                  <IconArrow2Right fill={white} />
+                </Touchable>
+              </Container>
+            </TouchableNativeFeedback>
+          )}
         </Margin>
       )}
     </>

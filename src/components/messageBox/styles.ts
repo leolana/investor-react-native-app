@@ -31,7 +31,7 @@ export const TouchableText = styled.Text`
   color: ${white};
 `;
 
-export const Touchable = styled.TouchableOpacity`
+export const Touchable = styled.View`
   flex-direction: row;
   align-items: center;
   margin-top: 16px;

@@ -52,8 +52,6 @@ export const ProfileComponent = (props) => {
       title: 'Formalizações',
       onPress: () => navigation.navigate('CCBsList'),
     },
-<<<<<<< HEAD
-=======
     // {
     //   title: 'Suitability',
     //   onPress: () => navigation.navigate('SuitabilityWelcome'),
@@ -62,7 +60,6 @@ export const ProfileComponent = (props) => {
     //   title: 'Cadastro',
     //   onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
     // },
->>>>>>> 1f6e21a2b8f281e30e997022863b2d022ed8dc4e
     {
       title: 'Sair',
       onPress: async () => {

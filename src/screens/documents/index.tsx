@@ -79,7 +79,7 @@ export const DocumentsComponent = (props) => {
         {residenceDocument.map((item, index) => (
           <Document
             key={index}
-            title={'Documento de identidade'}
+            title={'Comprovante de residência'}
             name={`Arquivo: ${item.Nome}`}
             date={`Enviado em: ${formatDate(item.DataEnvio)}`}
             status={item.Status}

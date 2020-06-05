@@ -23,7 +23,7 @@ export const Login = (props) => {
 
   const [password, setPassword] = useState('');
 
-  const [greeting, setGreeting] = useState('Olá =]');
+  const [greeting, setGreeting] = useState('Olá :)');
 
   const [isValidEmail, setIsValidEmail] = useState(true);
 
@@ -51,9 +51,9 @@ export const Login = (props) => {
   const newGreetings = () => {
     const hour = new Date().getHours();
 
-    if (hour >= 6 && hour < 12) setGreeting('Bom dia =]');
-    else if (hour >= 12 && hour < 18) setGreeting('Boa tarde =]');
-    else if (hour >= 18 && hour < 0) setGreeting('Boa noite =]');
+    if (hour >= 6 && hour < 12) setGreeting('Bom dia :)');
+    else if (hour >= 12 && hour < 18) setGreeting('Boa tarde :)');
+    else if (hour >= 18 && hour < 0) setGreeting('Boa noite :)');
 
     return;
   };

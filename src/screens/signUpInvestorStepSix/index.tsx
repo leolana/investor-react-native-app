@@ -105,7 +105,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
     <KeyboardAvoidingView behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
       <SafeAreaView>
         <ScrollView>
-          <Label>CEP</Label>
+          <Label>CEP *</Label>
           <TextInputMask
             type={'zip-code'}
             value={Cep}
@@ -115,15 +115,15 @@ export const SignUpInvestorStepSixComponent = (props) => {
           />
           {!valid ? <Error>Insira um CEP válido</Error> : <View style={{ marginBottom: 30 }} />}
           <Loading loading={loading}>
-            <TextInput title={'Logradouro'} value={Logradouro} onChangeText={(value) => setLogradouro(value)} />
+            <TextInput title={'Logradouro *'} value={Logradouro} onChangeText={(value) => setLogradouro(value)} />
 
-            <TextInput title={'Número'} onChangeText={(value) => setNum(value)} keyboardType={'numeric'} />
+            <TextInput title={'Número *'} onChangeText={(value) => setNum(value)} keyboardType={'numeric'} />
 
             <TextInput title={'Complemento'} value={Complemento} onChangeText={(value) => setComplemento(value)} />
-            <TextInput title={'Cidade'} value={Cidade} onChangeText={(value) => setCidade(value)} />
+            <TextInput title={'Cidade *'} value={Cidade} onChangeText={(value) => setCidade(value)} />
 
-            <TextInput title={'Bairro'} value={Bairro} onChangeText={(value) => setBairro(value)} />
-            <TextInput title={'Estado'} value={Uf} onChangeText={(value) => setUf(value)} />
+            <TextInput title={'Bairro *'} value={Bairro} onChangeText={(value) => setBairro(value)} />
+            <TextInput title={'Estado *'} value={Uf} onChangeText={(value) => setUf(value)} />
 
             <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
               <ButtonText>Continuar</ButtonText>

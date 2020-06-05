@@ -60,21 +60,21 @@ export const SignUpInvestorStepSevenComponent = (props) => {
   return (
     <SafeAreaView>
       <TextInput
-        title={'Renda mensal aprox. (R$)'}
+        title={'Renda mensal aprox. (R$) *'}
         mask={'currency'}
         onValueChange={({ unMasked }) => setRendaMensal(unMasked)}
         keyboardType={'numeric'}
       />
 
       <TextInput
-        title={'Patrimônio aprox. (R$)'}
+        title={'Patrimônio aprox. (R$) *'}
         mask={'currency'}
         onValueChange={({ unMasked }) => setPatrimonio(unMasked)}
         keyboardType={'numeric'}
       />
 
       <TouchableOpacity onPress={openLinkPPE}>
-        <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")?</TextLine>
+        <TextLine>Você é uma Pessoa Politicamente Exposta ("PPE")? *</TextLine>
       </TouchableOpacity>
 
       <ContainerLine>

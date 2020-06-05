@@ -26,7 +26,7 @@ export const SignUpInvestorStepTwelveComponent = (props) => {
       <Note>É necessário estar em seu nome ou em nome de seus pais</Note>
 
       <Container>
-        <ContainerTitle>Enviar Frente</ContainerTitle>
+        <ContainerTitle>Enviar</ContainerTitle>
 
         <Note>Conta de luz, água, telefone, fatura do cartão, tv a cabo e plano de saúde dos últimos 3 meses.</Note>
 

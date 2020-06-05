@@ -1,51 +1,44 @@
 import React, { useState, useEffect } from 'react';
 
-import { SafeAreaView, Title, Divisor, Text, View, ScrollView } from './styles';
+import { SafeAreaView, Title, Divisor, ScrollView } from './styles';
 
 import { Document } from './components';
 
 import { IconPdf, IconJpg } from '../../assets/icons';
 
-import { Linking, FlatList } from 'react-native';
+import { Linking, FlatList, Image, Alert, Modal, TouchableOpacity, Text } from 'react-native';
 
-import { UrlTermosCondicoes, UrlPoliticaPrivacidade, Request } from '../../services';
+import { UrlTermosCondicoes, UrlPoliticaPrivacidade, UrlInvPegar, Request } from '../../services';
 
 import { formatDate } from '../../utils';
-import { Text } from '../welcome/components/slider/styles';
+import { useSelector } from 'react-redux';
 
 export const DocumentsComponent = (props) => {
-  const [identityDocument, setIdentityDocument] = useState('');
+  const [identityDocument, setIdentityDocument] = useState([]);
 
-  const [residenceDocument, setResidenceDocument] = useState('');
+  const [residenceDocument, setResidenceDocument] = useState([]);
+
+  const [photo, setPhoto] = useState('');
+
+  const [open, setOpen] = useState(false);
+
+  const email = useSelector((store) => store.account.accountData.Email);
 
   const getDocuments = async () => {
     const resp = await Request.GET({
-      url: 'http://192.168.0.17:9090/api/v1/investidor/5aac0f9ca1c4b20010e4f1b0',
+      url: UrlInvPegar(email),
       header: 'bearer',
     });
 
-    console.log('uma resposta diferente', resp.data.ArquivosIdentidade[0]);
-
     if (resp.status === 200) {
-      setIdentityDocument(resp.data.ArquivosIdentidade[0]);
-
-      setResidenceDocument(resp.data.ArquivosComprovanteResidencia[0]);
-    } else alert('Error');
+      setIdentityDocument([...resp.data.ArquivosIdentidade]);
+      setResidenceDocument([...resp.data.ArquivosComprovanteResidencia]);
+    } else Alert.alert('Error');
   };
 
-  const renderItem = (item, title) => {
-    // if (item === null) return item, title;
-    console.log('DENTRO DO COMPONENT', item.Status);
-    return (
-      <Document
-        title={title}
-        name={`Arquivo: ${item.Nome}`}
-        date={`Enviado em: ${formatDate(item.DataEnvio)}`}
-        status={item.Status}
-      >
-        <IconJpg />
-      </Document>
-    );
+  const showPhoto = (foto) => {
+    setPhoto(foto);
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -69,9 +62,43 @@ export const DocumentsComponent = (props) => {
         <Title>Documentos enviados por você</Title>
         <Divisor />
 
-        {renderItem(identityDocument, 'Documento de Identidade')}
+        {identityDocument.map((item, index) => (
+          <TouchableOpacity onPress={() => showPhoto(item.Nome)}>
+            <Document
+              key={index}
+              title={'Documento de identidade'}
+              name={`Arquivo: ${item.Nome}`}
+              date={`Enviado em: ${formatDate(item.DataEnvio)}`}
+              status={item.Status}
+            >
+              <IconJpg />
+            </Document>
+          </TouchableOpacity>
+        ))}
 
-        {renderItem(residenceDocument, 'Comprovante de residência')}
+        {residenceDocument.map((item, index) => (
+          <Document
+            key={index}
+            title={'Documento de identidade'}
+            name={`Arquivo: ${item.Nome}`}
+            date={`Enviado em: ${formatDate(item.DataEnvio)}`}
+            status={item.Status}
+          >
+            <IconJpg />
+          </Document>
+        ))}
+
+        <Modal animationType="slide" transparent={false} visible={open}>
+          <TouchableOpacity style={{ margin: 10 }} onPress={() => setOpen(false)}>
+            <Text> FECHAR </Text>
+          </TouchableOpacity>
+          <Image
+            style={{ width: '100%', height: 300, borderRadius: 15 }}
+            source={{
+              uri: `https://hub-app.iouu.com.br/file/${photo}`,
+            }}
+          />
+        </Modal>
       </SafeAreaView>
     </ScrollView>
   );

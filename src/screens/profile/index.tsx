@@ -64,10 +64,10 @@ export const ProfileComponent = (props) => {
       title: 'Sair',
       onPress: async () => {
         await removeData('Authorization');
-
         navigation.navigate('Welcome');
 
-        dispatch(setAccountData(null));
+        // await dispatch(setAccountData(null));
+        console.log('ESSE AQUI É O ACCOUNT TA', accountData);
       },
     },
   ];

@@ -175,7 +175,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
             value={EstadoCivil}
           />
 
-          <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
+          <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
             <ButtonText>Continuar</ButtonText>
           </Button>
         </SafeAreaView>

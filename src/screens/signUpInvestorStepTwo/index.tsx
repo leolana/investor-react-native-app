@@ -39,7 +39,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
     },
   ]);
 
-  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   const formatDate = () => {
     let data = dataNasc;
@@ -69,7 +69,6 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   }
 
   const atualizarDadosInvestidor = async () => {
-    console.log(DataNascimento);
     const resp = await Request.PUT({
       url: UrlCadastroInvestidorAtualizar(idInvestidor, 1),
       data: Investidor,
@@ -183,7 +182,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
         value={NaturalidadeCidade}
       />
 
-      <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
+      <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
         <ButtonText>Continuar</ButtonText>
       </Button>
     </SafeAreaView>

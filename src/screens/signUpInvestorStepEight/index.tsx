@@ -37,7 +37,7 @@ export const SignUpInvestorStepEightComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log(Investidor)
+    console.log(Investidor);
 
     console.log('passo 8', resp.data);
     if (resp.status === 200) {
@@ -101,7 +101,7 @@ export const SignUpInvestorStepEightComponent = (props) => {
           </ContainerLine>
         </RadioButton.Group>
 
-        <Button /*disabled={disabled}*/ onPress={atualizarDadosInvestidor}>
+        <Button disabled={disabled} onPress={atualizarDadosInvestidor}>
           <ButtonText>Continuar</ButtonText>
         </Button>
       </ScrollView>

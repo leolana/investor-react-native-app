@@ -20,10 +20,11 @@ export const View = styled.View`
   align-items: center;
   flex: 1;
   margin-left: 16px;
+  padding: 30px;
 `;
 
 export const Container = styled.TouchableOpacity`
-  height: 80px;
+  height: 90px;
   border: 1px solid ${greyDD};
   border-radius: 5px;
   padding: 16px;

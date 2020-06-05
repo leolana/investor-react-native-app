@@ -27,8 +27,6 @@ export const ProfileComponent = (props) => {
 
   // vars
 
-  // const accountData = useSelector(( accountData ) => accountData);
-
   const accountData = useSelector((store) => store.account.accountData);
 
   const dispatch = useDispatch();
@@ -54,14 +52,14 @@ export const ProfileComponent = (props) => {
       title: 'Formalizações',
       onPress: () => navigation.navigate('CCBsList'),
     },
-    {
-      title: 'Suitability',
-      onPress: () => navigation.navigate('SuitabilityWelcome'),
-    },
-    {
-      title: 'Cadastro',
-      onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
-    },
+    // {
+    //   title: 'Suitability',
+    //   onPress: () => navigation.navigate('SuitabilityWelcome'),
+    // },
+    // {
+    //   title: 'Cadastro',
+    //   onPress: () => navigation.navigate('SignUpInvestorStepWelcome'),
+    // },
     {
       title: 'Sair',
       onPress: async () => {

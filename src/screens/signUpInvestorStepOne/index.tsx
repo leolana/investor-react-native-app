@@ -6,7 +6,9 @@ import { Select } from '../../components';
 
 import { useSelector } from 'react-redux';
 
-import { Request, UrlCadastroInvestidorAtualizar } from '../../services';
+import { Request, UrlCadastroInvestidorAtualizar, UrlCadastroInvestidor } from '../../services';
+
+import { getIdInvestidor } from '../../store/actions/walletRequest';
 
 export const SignUpInvestorStepOneComponent = (props) => {
   // states
@@ -19,12 +21,15 @@ export const SignUpInvestorStepOneComponent = (props) => {
 
   const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
+  const Email = useSelector((store) => store.account.accountData.Email);
+
+  const NomeCompleto = useSelector((store) => store.account.accountData.Nome);
+
   // vars
 
   const Investidor = {
     Sexo,
     Nacionalidade,
-    _id: idInvestidor,
   };
 
   const optionsGender = [
@@ -39,21 +44,40 @@ export const SignUpInvestorStepOneComponent = (props) => {
   ];
 
   const atualizarDadosInvestidor = async () => {
-    const resp = await Request.PUT({
-      url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
-      data: Investidor,
-      header: 'bearer',
-    });
+    if (idInvestidor === undefined) {
+      const dados = { NomeCompleto, Email, ...Investidor };
+      console.log('tem dado?', dados);
 
-    if (resp.status === 200) {
-      console.log(resp.data);
-      props.navigation.navigate('SignUpInvestorStepTwo');
-    } else console.log('Erro', resp.data);
+      const resp = await Request.POST({
+        url: UrlCadastroInvestidor,
+        data: dados,
+        header: 'bearer',
+      });
+
+      console.log('RESPOSTA', resp);
+      if (resp.status === 200) {
+        getIdInvestidor(Email);
+        props.navigation.navigate('SignUpInvestorStepTwo');
+      }
+    } else {
+      const resp = await Request.PUT({
+        url: UrlCadastroInvestidorAtualizar(idInvestidor, 0),
+        data: Investidor,
+        header: 'bearer',
+      });
+
+      console.log('id pra você', idInvestidor);
+      if (resp.status === 200) {
+        console.log(resp.data);
+        props.navigation.navigate('SignUpInvestorStepTwo');
+      } else console.log('Erro', resp.data);
+    }
   };
 
   // effect
 
   useEffect(() => {
+    console.log(idInvestidor);
     setDisabled(Nacionalidade === '' || Sexo === '');
   }, [Nacionalidade, Sexo]);
 

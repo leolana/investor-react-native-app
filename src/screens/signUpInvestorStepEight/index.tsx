@@ -79,15 +79,15 @@ export const SignUpInvestorStepEightComponent = (props) => {
         <Title>Os dados informados devem ser do titular da conta</Title>
 
         <Select
-          title="Banco"
+          title="Banco *"
           options={optionsBank}
           onValueChange={(obj) => setCodigoBanco(obj.value)}
           value={CodigoBanco}
         />
 
-        <TextInput title={'Agência'} onChangeText={(value) => setAgencia(value)} keyboardType={'numeric'} />
+        <TextInput title={'Agência *'} onChangeText={(value) => setAgencia(value)} keyboardType={'numeric'} />
 
-        <TextInput title={'Conta'} onChangeText={(value) => setConta(value)} keyboardType={'numeric'} />
+        <TextInput title={'Conta *'} onChangeText={(value) => setConta(value)} keyboardType={'numeric'} />
 
         <RadioButton.Group onValueChange={(value) => setTipo(value)} value={tipo}>
           <ContainerLine>

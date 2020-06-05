@@ -34,7 +34,7 @@ export const Title = styled.Text`
 `;
 
 export const Note = styled.Text`
-  font-size: 16px;
+  font-size: 12px;
   margin-bottom: 30px;
   text-align: center;
 `;

@@ -141,9 +141,9 @@ export const SignUpInvestorStepFiveComponent = (props) => {
     <KeyboardAvoidingView behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
       <ScrollView>
         <SafeAreaView>
-          <TextInput title={'RG'} onChangeText={(value) => setRgNumero(value)} value={RgNumero} />
+          <TextInput title={'RG *'} onChangeText={(value) => setRgNumero(value)} value={RgNumero} />
 
-          <Label>Data de emissão</Label>
+          <Label>Data de emissão *</Label>
           <TextInputMask
             type={'datetime'}
             options={{
@@ -157,14 +157,14 @@ export const SignUpInvestorStepFiveComponent = (props) => {
           {!validDate ? <Error>Você deve inserir uma data válida</Error> : <View style={{ marginBottom: 30 }} />}
 
           <Select
-            title="Orgão emissor"
+            title="Orgão emissor *"
             options={opcoesOrgaoEmissor}
             onValueChange={(obj) => setRgOrgaoEmissor(obj.value)}
             value={RgOrgaoEmissor}
           />
 
           <Select
-            title="Estado de emissão"
+            title="Estado de emissão *"
             options={mapApiState()}
             onValueChange={(obj) => setRgEstadoEmissor(obj.value)}
             value={RgEstadoEmissor}

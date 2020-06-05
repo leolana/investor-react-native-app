@@ -153,7 +153,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
 
   return (
     <SafeAreaView>
-      <Label>Data de nascimento</Label>
+      <Label>Data de nascimento *</Label>
       <TextInputMask
         type={'datetime'}
         options={{
@@ -171,13 +171,13 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       )}
 
       <Select
-        title={'Estado de nascimento'}
+        title={'Estado de nascimento *'}
         options={mapApiState()}
         onValueChange={(obj) => setNaturalidade(obj.value)}
         value={Naturalidade}
       />
       <Select
-        title={'Cidade de nascimento'}
+        title={'Cidade de nascimento *'}
         options={mapApiCity()}
         onValueChange={(obj) => setNaturalidadeCidade(obj.value)}
         value={NaturalidadeCidade}

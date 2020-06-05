@@ -85,10 +85,10 @@ export const SignUpInvestorStepOneComponent = (props) => {
 
   return (
     <SafeAreaView>
-      <Select title="Sexo" options={optionsGender} onValueChange={(obj) => setSexo(obj.value)} value={Sexo} />
+      <Select title="Sexo *" options={optionsGender} onValueChange={(obj) => setSexo(obj.value)} value={Sexo} />
 
       <Select
-        title="Nacionalidade"
+        title="Nacionalidade *"
         options={optionsNationality}
         onValueChange={(obj) => setNacionalidade(obj.value)}
         value={Nacionalidade}

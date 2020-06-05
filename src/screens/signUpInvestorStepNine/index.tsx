@@ -26,7 +26,7 @@ export const SignUpInvestorStepNineComponent = (props) => {
       <Note>É necessário estar em seu nome (RG ou CNH)</Note>
 
       <Container>
-        <ContainerTitle>Enviar Frente</ContainerTitle>
+        <ContainerTitle>Enviar frente e verso</ContainerTitle>
 
         <Button onPress={() => setOpenCamera(true)}>
           <ButtonText>ABRIR CÂMERA</ButtonText>

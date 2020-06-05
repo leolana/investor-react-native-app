@@ -126,7 +126,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
     <KeyboardAvoidingView behavior={Platform.Os == 'ios' ? 'padding' : 'height'}>
       <ScrollView>
         <SafeAreaView>
-          <Label>CPF</Label>
+          <Label>CPF *</Label>
           <TextInputMask
             type={'cpf'}
             value={Cpf}
@@ -136,7 +136,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
           />
           {!validCpf ? <Error>Você deve inserir um CPF válido</Error> : <View style={{ marginBottom: 30 }} />}
 
-          <Label>Celular</Label>
+          <Label>Celular *</Label>
           <TextInputMask
             type={'cel-phone'}
             options={{
@@ -152,7 +152,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
 
           {!validCellPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
 
-          <Label>Telefone</Label>
+          <Label>Telefone *</Label>
           <TextInputMask
             type={'cel-phone'}
             options={{
@@ -169,7 +169,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
           {!validPhone ? <Error>Você deve inserir um número válido</Error> : <View style={{ marginBottom: 30 }} />}
 
           <Select
-            title="Estado civil"
+            title="Estado civil *"
             options={optionsMaritalStatus}
             onValueChange={(obj) => setEstadoCivil(obj.value)}
             value={EstadoCivil}

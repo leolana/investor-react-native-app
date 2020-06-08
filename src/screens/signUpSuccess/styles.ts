@@ -22,13 +22,12 @@ export const Text = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-    margin-top: ${(props) => props.marginTop || 0}px;
+    margin-top: ${(props) => props.marginTop || 10}px;
     background: ${(props) => props.background || tealish}
     border-radius: 5px;
     padding: 10px;
     align-items: center;
     justify-content: center;
-
 `;
 
 export const ButtonText = styled.Text`

@@ -8,6 +8,7 @@ import { tealish } from '../../assets/colors';
 import { SafeAreaView, Title, Text, Note, Logo, Button, ButtonText, ScrollView } from './styles';
 
 import { getIdInvestidor } from '../../store/actions/walletRequest';
+import onInit from '../../store/actions/getAccountData';
 
 export const SignUpInvestorStepWelcomeComponent = (props) => {
   const email = useSelector((store) => store.account.accountData.Email);

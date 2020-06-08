@@ -1,11 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { SafeAreaView, Title, Text, Button, ButtonText } from './styles';
 
-import { black } from '../../assets/colors';
+import { white } from '../../assets/colors';
 
-export const SignUpSuccess = (props) => {
+import getAccountData from '../../store/actions/getAccountData';
+import { setAccountData } from '../../store/actions';
+import { Request, UrlContaPegar } from '../../services';
+import Store from '../../store';
+
+export const SignUpSuccessComponent = (props) => {
   const { navigation } = props;
+
+  // const avancarCadastro = async () => {
+  //   const resp = await Request.GET({
+  //     url: UrlContaPegar,
+  //     header: 'bearer',
+  //   });
+
+  //   if (resp.status === 200) {
+  //     console.log('account data aqui', resp.data);
+  //     navigation.navigate('SignUpInvestorStepWelcome');
+  //     // Store.dispatch(setAccountData(resp.data));
+  //   }
+  // };
+
+  // const avancarCadastro = async () => {
+  //   const data = await getAccountData();
+  //   console.log('account data aqui', data);
+
+  //   if (data) {
+  //     // Store.dispatch(setAccountData(data));
+  //     navigation.navigate('SignUpInvestorStepWelcome');
+  //   }
+  // };
 
   return (
     <SafeAreaView>
@@ -17,13 +45,20 @@ export const SignUpSuccess = (props) => {
         plataforma.
       </Text>
 
-      <Button marginTop="32" onPress={() => navigation.navigate('SignUpInvestorStepWelcome')}>
+      {/* <Button marginTop="32" onPress={avancarCadastro}>
         <ButtonText>Quero completar meu cadastro</ButtonText>
-      </Button>
+      </Button> */}
 
-      <Button background="transparent" onPress={() => navigation.navigate('Opportunities', { authenticated: true })}>
-        <ButtonText color={black}>Quero ver as oportunidades</ButtonText>
+      <Button onPress={() => navigation.navigate('Opportunities', { authenticated: true })}>
+        <ButtonText color={white}>Quero ver as oportunidades</ButtonText>
       </Button>
     </SafeAreaView>
   );
+};
+
+export const SignUpSuccess = {
+  screen: SignUpSuccessComponent,
+  navigationOptions: {
+    headerTitle: '',
+  },
 };

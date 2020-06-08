@@ -8,7 +8,7 @@ import { Request, UrlCadastroUsuario } from '../../services';
 
 import { storeData } from '../../utils';
 
-export const SignUpUser = (props) => {
+export const SignUpUserComponent = (props) => {
   // props
 
   const { navigation } = props;
@@ -90,4 +90,11 @@ export const SignUpUser = (props) => {
       </Button>
     </SafeAreaView>
   );
+};
+
+export const SignUpUser = {
+  screen: SignUpUserComponent,
+  navigationOptions: {
+    headerTitle: 'Cadastro de Usuário',
+  },
 };

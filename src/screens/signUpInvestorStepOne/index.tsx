@@ -46,7 +46,6 @@ export const SignUpInvestorStepOneComponent = (props) => {
   const atualizarDadosInvestidor = async () => {
     if (idInvestidor === undefined) {
       const dados = { NomeCompleto, Email, ...Investidor };
-      console.log('tem dado?', dados);
 
       const resp = await Request.POST({
         url: UrlCadastroInvestidor,
@@ -54,7 +53,6 @@ export const SignUpInvestorStepOneComponent = (props) => {
         header: 'bearer',
       });
 
-      console.log('RESPOSTA', resp);
       if (resp.status === 200) {
         getIdInvestidor(Email);
         props.navigation.navigate('SignUpInvestorStepTwo');

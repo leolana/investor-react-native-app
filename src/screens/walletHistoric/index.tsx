@@ -75,6 +75,6 @@ export const WalletHistoricPopup = (props) => {
 export const WalletHistoric = {
   screen: WalletHistoricPopup,
   navigationOptions: {
-    headerTitle: 'HISTÓRICOS',
+    headerTitle: 'HISTÓRICO',
   },
 };

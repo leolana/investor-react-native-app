@@ -18,7 +18,7 @@ export const OpportunitieProfileComponent = (props) => {
   const [reserveData, setReverveData] = useState('null');
   const [loading, setLoading] = useState(true);
   const [isAvailable, setIsAvailable] = useState(false);
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState('');
 
   // Vars
 
@@ -31,7 +31,7 @@ export const OpportunitieProfileComponent = (props) => {
   const itsFinished = () => {
     const { FimCaptacao, StatusAnalise } = data;
 
-    return StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == 'encerrado';
+    return StatusAnalise === 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) === 'encerrado';
   };
 
   const getRemainingTime = () => {
@@ -50,7 +50,7 @@ export const OpportunitieProfileComponent = (props) => {
 
     const status = solData.StatusAnalise;
 
-    const isEnded = status == 'ENCERRADO' || statusDate == 'encerrado';
+    const isEnded = status === 'ENCERRADO' || statusDate === 'encerrado';
 
     const hasReserve = reserveData != null;
 
@@ -93,19 +93,15 @@ export const OpportunitieProfileComponent = (props) => {
     }
   };
 
+  useEffect(() => {
+    getSolicitation();
+    getInvestmentReserve();
+  });
+
   // Effects
 
   useEffect(() => {
-    async function fetchData() {
-      await getSolicitation();
-      await getInvestmentReserve();
-    }
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (reserveData === 'null' && solData == null) return;
+    if (reserveData === 'null' || solData == null) return;
 
     const available = investorIsAvailable();
 
@@ -149,9 +145,7 @@ export const OpportunitieProfileComponent = (props) => {
 
 export const OpportunitieProfile = {
   screen: OpportunitieProfileComponent,
-  navigationOptions: ({ navigation }) => {
-    return {
-      headerTitle: navigation.getParam('headerTitle', 'Oportunidade'),
-    };
+  navigationOptions: {
+    headerTitle: 'Oportunidade',
   },
 };

@@ -61,7 +61,7 @@ export const HeaderComponent = (props) => {
         <TinyText>{getVideo() === null ? 0 : 1} vídeos</TinyText>
       </Retangle>
 
-      <Title>Descrição breve sobre a empresa</Title>
+      <Title>Sobre a empresa</Title>
 
       <ContentArea>
         <HTML html={data.Empresa.InformacaoInstitucional} />

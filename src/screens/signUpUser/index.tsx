@@ -59,7 +59,7 @@ export const SignUpUserComponent = (props) => {
       password,
     };
 
-    const resp = await Request.POST({ url: UrlCadastroUsuario, data });
+    const resp = await Request.POST({ url: UrlCadastroUsuario, data: data });
 
     console.log(resp);
 

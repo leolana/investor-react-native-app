@@ -4,10 +4,7 @@ import { SafeAreaView, Title, Text, Button, ButtonText } from './styles';
 
 import { white } from '../../assets/colors';
 
-import getAccountData from '../../store/actions/getAccountData';
-import { setAccountData } from '../../store/actions';
-import { Request, UrlContaPegar } from '../../services';
-import Store from '../../store';
+import onInit from '../../store/actions/getAccountData';
 
 export const SignUpSuccessComponent = (props) => {
   const { navigation } = props;
@@ -26,12 +23,10 @@ export const SignUpSuccessComponent = (props) => {
   // };
 
   const pegarDadosConta = async () => {
-    const data = await getAccountData();
-    console.log('account data aqui', data);
+    const success = await onInit();
 
-    if (data) {
-      Store.dispatch(setAccountData(data));
-    }
+    console.log('account data aqui', success);
+    if (success) navigation.navigate('Opportunities', { authenticated: true });
   };
 
   return (

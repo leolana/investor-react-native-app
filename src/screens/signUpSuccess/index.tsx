@@ -25,15 +25,14 @@ export const SignUpSuccessComponent = (props) => {
   //   }
   // };
 
-  // const avancarCadastro = async () => {
-  //   const data = await getAccountData();
-  //   console.log('account data aqui', data);
+  const pegarDadosConta = async () => {
+    const data = await getAccountData();
+    console.log('account data aqui', data);
 
-  //   if (data) {
-  //     // Store.dispatch(setAccountData(data));
-  //     navigation.navigate('SignUpInvestorStepWelcome');
-  //   }
-  // };
+    if (data) {
+      Store.dispatch(setAccountData(data));
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -49,7 +48,7 @@ export const SignUpSuccessComponent = (props) => {
         <ButtonText>Quero completar meu cadastro</ButtonText>
       </Button> */}
 
-      <Button onPress={() => navigation.navigate('Opportunities', { authenticated: true })}>
+      <Button onPress={pegarDadosConta}>
         <ButtonText color={white}>Quero ver as oportunidades</ButtonText>
       </Button>
     </SafeAreaView>

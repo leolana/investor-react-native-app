@@ -79,7 +79,6 @@ export const OpportunitieProfileComponent = (props) => {
 
   const getSolicitation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id) });
-
     if (resp.status === 200) {
       setSolData(resp.data);
     }
@@ -87,7 +86,6 @@ export const OpportunitieProfileComponent = (props) => {
 
   const getInvestmentReserve = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) });
-
     if (resp.status === 200) {
       setReverveData(resp.data);
     }
@@ -98,7 +96,7 @@ export const OpportunitieProfileComponent = (props) => {
     getInvestmentReserve();
   });
 
-  // Effects
+  // // Effects
 
   useEffect(() => {
     if (reserveData === 'null' || solData == null) return;
@@ -111,14 +109,13 @@ export const OpportunitieProfileComponent = (props) => {
   useEffect(() => {
     if (reserveData === 'null' || solData === null) return;
 
-    props.navigation.setParams({ headerTitle: `ID #${formatCode(solData.IdOportunidade)}` });
-
     setLoading(false);
-  }, [props.navigation, reserveData, solData]);
+  }, [reserveData, solData]);
 
   // Render
 
   return (
+    // <Text>Oi</Text>
     <Loading loading={loading}>
       <SafeAreaView marginBottom={isAvailable ? '76' : '0'}>
         <ScrollView>

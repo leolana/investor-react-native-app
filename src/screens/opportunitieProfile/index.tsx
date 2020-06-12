@@ -6,7 +6,7 @@ import { Loading } from '../../components';
 
 import { Header, Body, Footer, Toolbar } from './components';
 
-import { Request, UrlSolicitacaoPegar, UrlSolicitacaoReservaInvPegar } from '../../services';
+import { Request, UrlSolicitacaoPegar, UrlSolicitacaoReservaInvPegar, UrlInvPegar } from '../../services';
 
 import { formatCode, diffDaysForOpportunitie } from '../../utils';
 
@@ -21,8 +21,9 @@ export const OpportunitieProfileComponent = (props) => {
   const [message, setMessage] = useState('');
 
   // Vars
-
   const accountData = useSelector((store) => store.account.accountData);
+
+  const email = accountData.Email;
 
   const data = props.navigation.getParam('data', null);
 
@@ -59,13 +60,25 @@ export const OpportunitieProfileComponent = (props) => {
     else return false;
   };
 
-  const investorIsAvailable = () => {
+  const getStatusInvestor = async () => {
+    const resp = await Request.GET({
+      url: UrlInvPegar(email),
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) return resp.data.Status;
+    return null;
+  };
+
+  const investorIsAvailable = async () => {
+    const status = await getStatusInvestor();
+
     const hasInvestment = investorHasInvestment();
 
-    const isAvailableToInvest = accountData.Status === 'APROVADO';
+    const isAvailableToInvest = status === 'APROVADO';
 
-    if (getRemainingTime() <= 0 && hasInvestment) return true;
-    else if (getRemainingTime() > 0 && isAvailableToInvest) return true;
+    if (getRemainingTime() > 0 && isAvailableToInvest) return true;
+    else if (getRemainingTime() <= 0 && hasInvestment) return true;
     else if (!isAvailableToInvest) {
       setMessage('Seu cadastro possui uma aprovação pendente Aguarde a confirmação de nosso pessoal para o acesso.');
 
@@ -92,18 +105,26 @@ export const OpportunitieProfileComponent = (props) => {
   };
 
   useEffect(() => {
-    getSolicitation();
-    getInvestmentReserve();
-  });
+    async function fetchData() {
+      await getSolicitation();
+      await getInvestmentReserve();
+    }
+
+    fetchData();
+  }, []);
 
   // // Effects
 
   useEffect(() => {
     if (reserveData === 'null' || solData == null) return;
 
-    const available = investorIsAvailable();
+    async function getAvailable() {
+      const available = await investorIsAvailable();
 
-    setIsAvailable(available);
+      setIsAvailable(available);
+    }
+
+    getAvailable();
   }, [solData, reserveData]);
 
   useEffect(() => {
@@ -115,7 +136,6 @@ export const OpportunitieProfileComponent = (props) => {
   // Render
 
   return (
-    // <Text>Oi</Text>
     <Loading loading={loading}>
       <SafeAreaView marginBottom={isAvailable ? '76' : '0'}>
         <ScrollView>

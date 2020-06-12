@@ -37,6 +37,7 @@ export const InnitialStepComponent = (props) => {
   const { data } = props;
 
   // States
+  const [dateTo, setDateTo] = useState(null);
 
   const [value, setValue] = useState(0);
 
@@ -87,9 +88,11 @@ export const InnitialStepComponent = (props) => {
   };
 
   const openPicker = () => {
-    const onValueChange = (value) => setValue(value);
-
-    const params = { data: generateRangeValues(), value, onValueChange };
+    const params = {
+      options: generateRangeValues(),
+      onValueChange: (value) => setValue(value.value),
+      data: dateTo,
+    };
 
     props.navigation.navigate('Picker', params);
   };
@@ -142,7 +145,7 @@ export const InnitialStepComponent = (props) => {
         </ItemWithDivisor>
 
         <ItemWithoutDivisor>
-          <ItemTitle>Valor total do emprêstimo</ItemTitle>
+          <ItemTitle>Valor total do empréstimo</ItemTitle>
           <ItemText>{formatMoney(data.Valor)}</ItemText>
         </ItemWithoutDivisor>
       </Divisor>

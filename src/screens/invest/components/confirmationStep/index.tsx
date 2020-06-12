@@ -58,12 +58,6 @@ export const ConfirmationStepComponent = (props) => {
     }
   };
 
-  // Effects
-
-  useEffect(() => {
-    props.navigation.setParams({ HeaderTitle: 'CONFIRMAR' });
-  }, [props.navigation]);
-
   // Render
 
   return (

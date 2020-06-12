@@ -98,7 +98,7 @@ export const ReinvestmentSheetModal = (props) => {
         </Buttom>
 
         <Buttom background={'transparent'} onPress={() => props.navigation.goBack()}>
-          <ButtomText color={grey99}>CANCELAR</ButtomText>
+          <ButtomText color={grey99}>INVESTIR SEM SALDO</ButtomText>
         </Buttom>
       </Container>
     </SheetModal>

@@ -13,7 +13,7 @@ export const Header = (props) => {
 
   // Methods
 
-  const formatEndividamento = (value) => (value != 0 || value != undefined ? formatMoney(value) : 'Nada Consta');
+  const formatEndividamento = (value) => (value !== 0 || value !== undefined ? formatMoney(value) : 'Nada Consta');
 
   // Render
 

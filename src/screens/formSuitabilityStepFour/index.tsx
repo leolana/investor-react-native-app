@@ -6,6 +6,8 @@ import { SafeAreaView, ScrollView, Button, ButtonText, Title, Info, Gratters, Bo
 
 import { useSelector } from 'react-redux';
 
+import onInit from '../../store/actions/getAccountData'
+
 export const FormSuitabilityFour = (props) => {
   const [type, setType] = useState('');
   const [name, setName] = useState('');
@@ -45,6 +47,12 @@ export const FormSuitabilityFour = (props) => {
     }
   };
 
+  const avancarTelaInicial = async () => {
+    const success = await onInit();
+    if (success) props.navigation.navigate('Opportunities', { authenticated: true });
+    // else alert('Ocorreu um erro. Por favor tente mais tarde.');
+  };
+
   const getInfos = async () => {
     const resp = await Request.GET({
       url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
@@ -76,7 +84,7 @@ export const FormSuitabilityFour = (props) => {
           Juntos vamos reinventar o sistema bancário ultrapassado e garantir um melhor negócio para todos!{' '}
         </Gratters>
 
-        <Button onPress={() => props.navigation.navigate('Opportunities')}>
+        <Button onPress={avancarTelaInicial}>
           <ButtonText> OPORTUNIDADES ABERTAS </ButtonText>
         </Button>
       </ScrollView>

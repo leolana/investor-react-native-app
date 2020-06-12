@@ -38,6 +38,7 @@ export const Login = (props) => {
   const validatePassword = () => {
     if (password.length < 6) {
       setIsValidPassword(false);
+      Alert.alert('A senha deve ter mais de 6 caracteres');
     } else {
       setIsValidPassword(true);
     }
@@ -72,6 +73,8 @@ export const Login = (props) => {
       data,
       header: 'bearer',
     });
+
+    console.log('pro login', resp);
 
     if (resp.status === 200) loginSuccessful(resp.data);
     else Alert.alert(resp.data.Msg);

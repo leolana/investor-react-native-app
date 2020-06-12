@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Modal, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Modal, Image, Alert } from 'react-native';
 
 import { camera, Camera } from 'expo-camera';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { SafeAreaView, Button, ButtonText, ContainerLine } from './styles';
+import { SafeAreaView, Button, ButtonText, ContainerLine, Title } from './styles';
 import { useSelector } from 'react-redux';
 import { Request, UrlCadastroInvestidorDocs } from '../../services';
 import { createReadStream } from 'fs';
@@ -15,8 +15,6 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
   const [hasPermission, setHaspermision] = useState(null);
   const [capturedPhoto, setCapturedPhoto] = useState(null);
   const [flag, setFlag] = useState(false);
-  const [foto1, setFoto1] = useState(null);
-  const [foto2, setFoto2] = useState(null);
   const [photo, setPhoto] = useState(null);
 
   useEffect(() => {
@@ -39,32 +37,41 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
     const resp = await Request.POST({
       url: UrlCadastroInvestidorDocs(idInvestidor, 'identidade'),
       data,
-      header: 'bearer'
+      header: 'bearer',
     });
 
-    console.log('UM CONSOLE LOG SÓ PRA MOSTRAR');
-
-    console.log('resposta legal', resp.data);
+    console.log('O DATA', resp.data);
+    console.log('O STATUS', resp.status);
+    // if (resp.status === 200) {
+    //   navigation.navigate('SignUpInvestorStepEleven');
+    // } else {
+    //   Alert.alert('Ocorreu um erro', 'Não foi possível enviar a imagem');
+    // }
+    return resp.status;
   };
-  
-  const nextStep = () => {
+
+  const nextStep = async () => {
     if (flag) {
-      setFoto2(capturedPhoto);
-      setOpenCamera(false);
-      atualizarDadosInvestidor(photo);
-      setCapturedPhoto(null);
-      navigation.navigate('SignUpInvestorStepEleven');
+      let status = await atualizarDadosInvestidor(photo);
+      if (status === 200) {
+        console.log('deu bom 2');
+        setOpenCamera(false);
+        setCapturedPhoto(null);
+        navigation.navigate('SignUpInvestorStepEleven');
+      } else Alert.alert('Ocorreu um erro', 'Não foi possível enviar a foto');
     } else {
-      setFoto1(photo);
-      atualizarDadosInvestidor(photo);
-      setFlag(true);
-      setCapturedPhoto(null);
+      let status = await atualizarDadosInvestidor(photo);
+      if (status === 200) {
+        console.log('deu bom 1');
+        setFlag(true);
+        setCapturedPhoto(null);
+      } else Alert.alert('Ocorreu um erro', 'Não foi possível enviar a foto');
     }
   };
 
   async function takePicture() {
     if (camRef) {
-      const data = await camRef.current.takePictureAsync({ base64: true });
+      const data = await camRef.current.takePictureAsync({ base64: true, quality: 0.3 });
       let newstr = data.base64.replace('data:image/jpg;base64,', '');
       setCapturedPhoto(data.uri);
       setPhoto(newstr);
@@ -74,6 +81,8 @@ export const ExpoCamera = ({ isVisible, navigation, step, setOpenCamera, idInves
 
   return (
     <Modal transparent={false} animationType="slide" visible={isVisible}>
+      {!flag && <Title>FRENTE</Title>}
+      {flag && <Title>VERSO</Title>}
       <SafeAreaView style={styles.container}>
         <Camera style={{ flex: 1, justifyContent: 'flex-end' }} type={type} ref={camRef}>
           <TouchableOpacity style={styles.button} onPress={takePicture}>

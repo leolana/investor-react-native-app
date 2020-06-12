@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Modal, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Modal, Image, Alert } from 'react-native';
 
 import { camera, Camera } from 'expo-camera';
 
 import { FontAwesome } from '@expo/vector-icons';
-import { Button, ButtonText, ContainerLine } from './styles';
+import { Button, ButtonText, ContainerLine, Title } from './styles';
 import { useSelector } from 'react-redux';
 import { Request, UrlCadastroInvestidorDocs } from '../../services';
 import { createReadStream } from 'fs';
@@ -37,22 +37,26 @@ export const ExpoCameraComprovante = ({ isVisible, navigation, step, setOpenCame
     const resp = await Request.POST({
       url: UrlCadastroInvestidorDocs(idInvestidor, 'comprovanteendereco'),
       data,
-      header: 'bearer'
+      header: 'bearer',
     });
 
     console.log('resposta legal', resp.data);
+
+    return resp.status;
   };
 
-  const nextStep = () => {
-    setOpenCamera(false);
-    atualizarDadosInvestidor(photo);
-    setCapturedPhoto(null);
-    navigation.navigate('SignUpInvestorStepThirteen');
+  const nextStep = async () => {
+    let status = await atualizarDadosInvestidor(photo);
+    if (status === 200) {
+      navigation.navigate('SignUpInvestorStepThirteen');
+      setCapturedPhoto(null);
+      setOpenCamera(false);
+    } else Alert.alert('Ocorreu um erro', 'Não foi possível enviar a foto');
   };
 
   async function takePicture() {
     if (camRef) {
-      const data = await camRef.current.takePictureAsync({ base64: true });
+      const data = await camRef.current.takePictureAsync({ base64: true, quality: 0.3 });
       let newstr = data.base64.replace('data:image/jpg;base64,', '');
       setCapturedPhoto(data.uri);
       setPhoto(newstr);
@@ -62,6 +66,7 @@ export const ExpoCameraComprovante = ({ isVisible, navigation, step, setOpenCame
 
   return (
     <Modal transparent={false} animationType="slide" visible={isVisible}>
+      <Title>COMPROVANTE</Title>
       <SafeAreaView style={styles.container}>
         <Camera style={{ flex: 1, justifyContent: 'flex-end' }} type={type} ref={camRef}>
           <TouchableOpacity style={styles.button} onPress={takePicture}>

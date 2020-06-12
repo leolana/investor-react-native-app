@@ -61,7 +61,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   function mapApiState() {
     const optionsState = apiState.map((resp) => {
       return {
-        text: resp.nome,
+        text: resp.sigla,
         value: resp.sigla,
       };
     });
@@ -100,15 +100,16 @@ export const SignUpInvestorStepTwoComponent = (props) => {
 
   function mapApiCity() {
     getCities();
-
     const optionsCities = apiCity.map((resp) => {
       return {
         text: resp.nome,
         value: resp.nome,
       };
     });
-
-    return optionsCities;
+    const sortCities = optionsCities.sort((a, b) => {
+      return a.value > b.value ? 1 : b.value > a.value ? -1 : 0;
+    });
+    return sortCities;
   }
 
   async function myAsyncEffect() {

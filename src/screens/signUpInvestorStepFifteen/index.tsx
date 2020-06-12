@@ -6,8 +6,16 @@ import { tealish } from '../../assets/colors';
 
 import { SafeAreaView, Title, Text, Note, TextOpportunities, TextSuitability, Logo, ScrollView } from './styles';
 
+import onInit from '../../store/actions/getAccountData';
+
 export const SignUpInvestorStepFifteenComponent = (props) => {
   const logoSize = 100;
+
+  const avancarTelaInicial = async () => {
+    const success = await onInit();
+    if (success) props.navigation.navigate('Opportunities', { authenticated: true });
+    // else alert('Ocorreu um erro. Por favor tente mais tarde.');
+  };
 
   return (
     <ScrollView>
@@ -27,7 +35,7 @@ export const SignUpInvestorStepFifteenComponent = (props) => {
           <TextSuitability>PREENCHER O SUITABILITY</TextSuitability>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => props.navigation.navigate('Opportunities')}>
+        <TouchableOpacity onPress={avancarTelaInicial}>
           <TextOpportunities>VER OPORTUNIDADES</TextOpportunities>
         </TouchableOpacity>
       </SafeAreaView>

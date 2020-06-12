@@ -15,7 +15,7 @@ export const Button = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-
+    margin-left: 15px;
 `;
 export const ButtonText = styled.Text`
   font-size: 16px;
@@ -29,12 +29,13 @@ export const ContainerLine = styled.View`
   justify-content: center;
 `;
 
-
+ 
 export const Title = styled.Text`
-  font-size: 20px;
+  font-size: 24px;
   font-family: OpenSans-Bold;
   text-align: center;
-  margin-bottom: 20px;
+  color: ${white};
+  background-color: ${tealish};
 `;
 
 const Styles = StyleSheet.create({

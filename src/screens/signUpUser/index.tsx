@@ -32,8 +32,10 @@ export const SignUpUserComponent = (props) => {
     console.log('password', password);
 
     if (password === null) setIsValidPassword(false);
-    else if (password.length < 6) setIsValidPassword(false);
-    else setIsValidPassword(true);
+    else if (password.length < 6) {
+      setIsValidPassword(false);
+      Alert.alert('A senha deve ter mais de 6 digitos');
+    } else setIsValidPassword(true);
   };
 
   const validateEmail = () => {
@@ -64,7 +66,7 @@ export const SignUpUserComponent = (props) => {
     console.log(resp);
 
     if (resp.status === 200) signUpSuccess(resp.data);
-    else alert(resp.data.Msg);
+    else Alert.alert(resp.data.Msg);
   };
 
   return (

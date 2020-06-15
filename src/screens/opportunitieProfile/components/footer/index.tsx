@@ -65,8 +65,8 @@ export const FooterComponent = (props) => {
         <LinkList data={companyLink} />
 
         <RetangleContent background={convertScoreByColor(data.Score)} marginTop={16}>
-          <RetangleTitle>{data.Empresa.Porte ? data.Empresa.Porte : 'Outros'}</RetangleTitle>
           <RetangleText>Porte da empresa</RetangleText>
+          <RetangleTitle>{data.Empresa.Porte ? data.Empresa.Porte : 'Outros'}</RetangleTitle>
         </RetangleContent>
 
         <RetangleContent background={greyE3}>
@@ -77,18 +77,18 @@ export const FooterComponent = (props) => {
         <RetangleContent marginBottom={1} background={greyF3F5}>
           <RetangleTinyTitle>Risco de crédito do setor*</RetangleTinyTitle>
           <ItemDefaultText>
-            Pontuaão do setor: <ItemDefaultText bold={true}>{data.Empresa.PontuacaoSetor}</ItemDefaultText>
+            Pontuação do setor: <ItemDefaultText bold={true}>{data.Empresa.PontuacaoSetor}</ItemDefaultText>
           </ItemDefaultText>
           <ItemDefaultText>
-            Probabilidade Média deInadimplência:{' '}
+            Probabilidade Média de Inadimplência:{' '}
             <ItemDefaultText bold={true}>{formatPercent(data.Empresa.ProbabilidadeMediaInadimplencia)}</ItemDefaultText>
           </ItemDefaultText>
         </RetangleContent>
 
         <ItemInfo color={black}>
           * A probabilidade média associada a classe de risco de crédito para esse segmento é de: 40,00%. Para cada 100
-          empresas situadas na mesma classe de risco decrédito desse segmento, 40,00 poderão apresentar um dos eventos
-          que caracterizam inadimplência para o modelo.
+          empresas situadas na mesma classe de risco de crédito desse segmento, 40 poderão apresentar um dos eventos que
+          caracterizam inadimplência para o modelo.
         </ItemInfo>
 
         <LinkList data={linkData} />

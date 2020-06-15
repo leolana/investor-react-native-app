@@ -41,7 +41,7 @@ export const CompanyComponent = (props) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Title>Descrição breve sobre a empresa</Title>
+        <Title>Sobre a empresa</Title>
 
         <ContentArea>
           <HTML html={data.Empresa.InformacaoInstitucional} />

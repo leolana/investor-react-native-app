@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Card,
@@ -84,6 +84,12 @@ export const Body = (props) => {
     return progress.toFixed(2);
   };
 
+  const getMessage = () => {
+    if (getRemainingTime() <= 0) return 'Finalizado';
+    else if (getRemainingTime() === 1) return `Finaliza em 1 dia*`;
+    else return `Finaliza em ${getRemainingTime()} dias*`;
+  };
+
   // Render
 
   return (
@@ -144,9 +150,7 @@ export const Body = (props) => {
 
         <Item horizontal={true}>
           <IconClock />
-          <ItemTextTime>
-            {getRemainingTime() <= 0 ? 'Finalizado' : `Finaliza em ${getRemainingTime()} dias*`}
-          </ItemTextTime>
+          <ItemTextTime>{getMessage()}</ItemTextTime>
         </Item>
 
         <ProgressArea>
@@ -169,7 +173,7 @@ export const Body = (props) => {
           <ItemTitleInvestor>
             {data.QuantidadeReservasInvestimento}
             <ItemTextInvestor>
-              {data.QuantidadeReservasInvestimento > 1 ? ' investidores' : ' investidor'}{' '}
+              {data.QuantidadeReservasInvestimento > 1 ? ' investidores' : ' investidor'}
             </ItemTextInvestor>
           </ItemTitleInvestor>
         </Item>

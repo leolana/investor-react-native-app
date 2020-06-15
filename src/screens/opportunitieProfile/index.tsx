@@ -6,7 +6,7 @@ import { Loading } from '../../components';
 
 import { Header, Body, Footer, Toolbar } from './components';
 
-import { Request, UrlSolicitacaoPegar, UrlSolicitacaoReservaInvPegar } from '../../services';
+import { Request, UrlSolicitacaoPegar, UrlSolicitacaoReservaInvPegar, UrlInvPegar } from '../../services';
 
 import { formatCode, diffDaysForOpportunitie } from '../../utils';
 
@@ -18,11 +18,12 @@ export const OpportunitieProfileComponent = (props) => {
   const [reserveData, setReverveData] = useState('null');
   const [loading, setLoading] = useState(true);
   const [isAvailable, setIsAvailable] = useState(false);
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState('');
 
   // Vars
-
   const accountData = useSelector((store) => store.account.accountData);
+
+  const email = accountData.Email;
 
   const data = props.navigation.getParam('data', null);
 
@@ -31,7 +32,7 @@ export const OpportunitieProfileComponent = (props) => {
   const itsFinished = () => {
     const { FimCaptacao, StatusAnalise } = data;
 
-    return StatusAnalise == 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) == 'encerrado';
+    return StatusAnalise === 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) === 'encerrado';
   };
 
   const getRemainingTime = () => {
@@ -50,7 +51,7 @@ export const OpportunitieProfileComponent = (props) => {
 
     const status = solData.StatusAnalise;
 
-    const isEnded = status == 'ENCERRADO' || statusDate == 'encerrado';
+    const isEnded = status === 'ENCERRADO' || statusDate === 'encerrado';
 
     const hasReserve = reserveData != null;
 
@@ -59,13 +60,25 @@ export const OpportunitieProfileComponent = (props) => {
     else return false;
   };
 
-  const investorIsAvailable = () => {
+  const getStatusInvestor = async () => {
+    const resp = await Request.GET({
+      url: UrlInvPegar(email),
+      header: 'bearer',
+    });
+
+    if (resp.status === 200) return resp.data.Status;
+    return null;
+  };
+
+  const investorIsAvailable = async () => {
+    const status = await getStatusInvestor();
+
     const hasInvestment = investorHasInvestment();
 
-    const isAvailableToInvest = accountData.Status === 'APROVADO';
+    const isAvailableToInvest = status === 'APROVADO';
 
-    if (getRemainingTime() <= 0 && hasInvestment) return true;
-    else if (getRemainingTime() > 0 && isAvailableToInvest) return true;
+    if (getRemainingTime() > 0 && isAvailableToInvest) return true;
+    else if (getRemainingTime() <= 0 && hasInvestment) return true;
     else if (!isAvailableToInvest) {
       setMessage('Seu cadastro possui uma aprovação pendente Aguarde a confirmação de nosso pessoal para o acesso.');
 
@@ -79,7 +92,6 @@ export const OpportunitieProfileComponent = (props) => {
 
   const getSolicitation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id) });
-
     if (resp.status === 200) {
       setSolData(resp.data);
     }
@@ -87,13 +99,10 @@ export const OpportunitieProfileComponent = (props) => {
 
   const getInvestmentReserve = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) });
-
     if (resp.status === 200) {
       setReverveData(resp.data);
     }
   };
-
-  // Effects
 
   useEffect(() => {
     async function fetchData() {
@@ -104,21 +113,25 @@ export const OpportunitieProfileComponent = (props) => {
     fetchData();
   }, []);
 
+  // // Effects
+
   useEffect(() => {
-    if (reserveData === 'null' && solData == null) return;
+    if (reserveData === 'null' || solData == null) return;
 
-    const available = investorIsAvailable();
+    async function getAvailable() {
+      const available = await investorIsAvailable();
 
-    setIsAvailable(available);
+      setIsAvailable(available);
+    }
+
+    getAvailable();
   }, [solData, reserveData]);
 
   useEffect(() => {
     if (reserveData === 'null' || solData === null) return;
 
-    props.navigation.setParams({ headerTitle: `ID #${formatCode(solData.IdOportunidade)}` });
-
     setLoading(false);
-  }, [props.navigation, reserveData, solData]);
+  }, [reserveData, solData]);
 
   // Render
 
@@ -149,9 +162,7 @@ export const OpportunitieProfileComponent = (props) => {
 
 export const OpportunitieProfile = {
   screen: OpportunitieProfileComponent,
-  navigationOptions: ({ navigation }) => {
-    return {
-      headerTitle: navigation.getParam('headerTitle', 'Oportunidade'),
-    };
+  navigationOptions: {
+    headerTitle: 'Oportunidade',
   },
 };

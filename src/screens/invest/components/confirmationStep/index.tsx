@@ -7,10 +7,9 @@ import { Buttom, ButtomText } from '../../styles';
 import { formatPercent, formatMoney } from '../../../../utils';
 
 import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
-
-import { Toast } from '../../../../components';
-
 import { withNavigation } from 'react-navigation';
+
+import { Alert } from 'react-native';
 
 export const ConfirmationStepComponent = (props) => {
   // Props
@@ -24,8 +23,10 @@ export const ConfirmationStepComponent = (props) => {
 
     console.log(resp);
 
-    if (resp.status === 200) return resp.data.Boleto.secure_url;
-    else return null;
+    if (resp.status === 200) {
+      props.navigation.navigate('Opportunities');
+      return resp.data.Boleto.secure_url;
+    } else return null;
   };
 
   const invest = async () => {
@@ -40,15 +41,17 @@ export const ConfirmationStepComponent = (props) => {
       data: config,
       header: 'bearer',
     });
-
     console.log(resp);
 
-    if (resp.status !== 200) Toast.showError(resp.data.Error);
+    if (resp.status !== 200) {
+      Alert.alert(resp.data.Error);
+      props.navigation.navigate('OpportunitieProfile');
+    }
 
     if (data.waitingList) {
-      props.navigation.navigate('OpportunitieProfile', { data });
-
       props.navigation.navigate('InvestWaitingListSuccessModal');
+
+      props.navigation.navigate('OpportunitieProfile', { data });
     } else {
       const url = await getBankSlipUrl(resp.data.$__._id);
 

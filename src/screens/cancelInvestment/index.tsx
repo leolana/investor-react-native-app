@@ -10,7 +10,8 @@ import { useDispatch } from 'react-redux';
 
 import { setInputError } from '../../store/actions';
 
-import { Request, UrlSolicitacaoReservaInvCancelar } from '../../services';
+import { Request, UrlReservationDelete } from '../../services';
+import { Alert } from 'react-native';
 
 export const CancelInvestmentComponent = (props) => {
   // props
@@ -58,17 +59,18 @@ export const CancelInvestmentComponent = (props) => {
 
     if (!isValidToCancel) return;
 
-    const resp = await Request.POST({
-      url: UrlSolicitacaoReservaInvCancelar(data._id),
+    const resp = await Request.DELETE({
+      url: UrlReservationDelete(data._id),
       data: { Motivo: text },
+      header: 'bearer',
     });
 
     console.log(resp);
 
     if (resp.status === 200) {
-      navigation.navigate('OpportunitieProfile', { updatePage: true });
+      props.navigation.navigate('Opportunities');
 
-      alert('O seu investimento foi cancelado.');
+      Alert.alert('O seu investimento foi cancelado.');
     }
   };
 

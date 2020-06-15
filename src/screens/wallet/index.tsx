@@ -19,8 +19,9 @@ export const PageWallet = (props) => {
     const resp = await Request.GET({ url: UrlCarteiraExtratoPaginado(1), header: 'bearer' });
 
     console.log('ISTO È A WALLET', resp.data);
+    console.log('status', resp.status);
 
-    SetWalletData(resp.data);
+    if (resp.status === 200) SetWalletData(resp.data);
   };
 
   // Effect
@@ -45,7 +46,7 @@ export const PageWallet = (props) => {
             <WalletHeader walletData={walletData} />
           </Header>
 
-          <WalletBody />
+          {/* <WalletBody /> */}
         </SafeAreaHeader>
 
         <WalletFooter walletData={walletData} />

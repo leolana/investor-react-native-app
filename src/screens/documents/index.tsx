@@ -67,7 +67,7 @@ export const DocumentsComponent = (props) => {
             <Document
               key={index}
               title={'Documento de identidade'}
-              name={`Arquivo: ${item.Nome}`}
+              // name={`Arquivo: ${item.Nome}`}
               date={`Enviado em: ${formatDate(item.DataEnvio)}`}
               status={item.Status}
             >
@@ -80,7 +80,7 @@ export const DocumentsComponent = (props) => {
           <Document
             key={index}
             title={'Comprovante de residência'}
-            name={`Arquivo: ${item.Nome}`}
+            // name={`Arquivo: ${item.Nome}`}
             date={`Enviado em: ${formatDate(item.DataEnvio)}`}
             status={item.Status}
           >

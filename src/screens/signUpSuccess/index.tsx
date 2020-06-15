@@ -44,7 +44,7 @@ export const SignUpSuccessComponent = (props) => {
       </Button> */}
 
       <Button onPress={pegarDadosConta}>
-        <ButtonText color={white}>Quero ver as oportunidades</ButtonText>
+        <ButtonText color={white}>Ver as oportunidades</ButtonText>
       </Button>
     </SafeAreaView>
   );

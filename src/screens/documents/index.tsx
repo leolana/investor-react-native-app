@@ -10,6 +10,8 @@ import { Linking, FlatList, Image, Alert, Modal, TouchableOpacity, Text } from '
 
 import { UrlTermosCondicoes, UrlPoliticaPrivacidade, UrlInvPegar, Request } from '../../services';
 
+import PhotoViewer from './../photoViewer';
+
 import { formatDate } from '../../utils';
 import { useSelector } from 'react-redux';
 
@@ -39,6 +41,7 @@ export const DocumentsComponent = (props) => {
   const showPhoto = (foto) => {
     setPhoto(foto);
     setOpen(true);
+    console.log(open);
   };
 
   useEffect(() => {
@@ -63,13 +66,14 @@ export const DocumentsComponent = (props) => {
         <Divisor />
 
         {identityDocument.map((item, index) => (
-          <TouchableOpacity onPress={() => showPhoto(item.Nome)}>
+          <TouchableOpacity>
             <Document
               key={index}
               title={'Documento de identidade'}
               // name={`Arquivo: ${item.Nome}`}
               date={`Enviado em: ${formatDate(item.DataEnvio)}`}
               status={item.Status}
+              onPress={() => showPhoto(item.Nome)}
             >
               <IconJpg />
             </Document>
@@ -77,25 +81,28 @@ export const DocumentsComponent = (props) => {
         ))}
 
         {residenceDocument.map((item, index) => (
-          <Document
-            key={index}
-            title={'Comprovante de residência'}
-            // name={`Arquivo: ${item.Nome}`}
-            date={`Enviado em: ${formatDate(item.DataEnvio)}`}
-            status={item.Status}
-          >
-            <IconJpg />
-          </Document>
+          <TouchableOpacity>
+            <Document
+              key={index}
+              title={'Comprovante de residência'}
+              // name={`Arquivo: ${item.Nome}`}
+              date={`Enviado em: ${formatDate(item.DataEnvio)}`}
+              status={item.Status}
+              onPress={() => showPhoto(item.Nome)}
+            >
+              <IconJpg />
+            </Document>
+          </TouchableOpacity>
         ))}
 
         <Modal animationType="slide" transparent={false} visible={open}>
-          <TouchableOpacity style={{ margin: 10 }} onPress={() => setOpen(false)}>
+          <TouchableOpacity style={{ margin: 10, alignItems: 'center' }} onPress={() => setOpen(false)}>
             <Text> FECHAR </Text>
           </TouchableOpacity>
           <Image
-            style={{ width: '100%', height: 300, borderRadius: 15 }}
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20, borderRadius: 15 }}
             source={{
-              uri: `https://hub-app.iouu.com.br/file/${photo}`,
+              uri: `https://hub-test.iouu.com.br/file/${photo}`,
             }}
           />
         </Modal>

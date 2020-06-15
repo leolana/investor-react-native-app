@@ -11,6 +11,10 @@
       "config": "metro.config.js",
       "sourceExts": ["js", "jsx", "ts", "tsx", "svg"],
       "transformer": "./transformer.js"
+    },
+    "android": {
+      "package": "com.iouu",
+      "versionCode": 1
     }
   }
 }

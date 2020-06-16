@@ -40,18 +40,18 @@ export const ProfileComponent = (props) => {
     //   title: 'Editar informações',
     //   onPress: () => navigation.navigate('ProfileEdit'),
     // },
-    {
-      title: 'Configurações',
-      onPress: () => navigation.navigate('Configurations'),
-    },
+    // {
+    //   title: 'Configurações',
+    //   onPress: () => navigation.navigate('Configurations'),
+    // },
     {
       title: 'Documentos',
       onPress: () => navigation.navigate('Documents'),
     },
-    {
-      title: 'Formalizações',
-      onPress: () => navigation.navigate('CCBsList'),
-    },
+    // {
+    //   title: 'Formalizações',
+    //   onPress: () => navigation.navigate('CCBsList'),
+    // },
     // {
     //   title: 'Suitability',
     //   onPress: () => navigation.navigate('SuitabilityWelcome'),

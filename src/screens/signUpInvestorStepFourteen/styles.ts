@@ -40,6 +40,7 @@ export const TextLineBold = styled.Text`
   margin-bottom: 15px;
   text-align: justify;
   font-weight: bold;
+  color: ${tealish};
 `;
 
 export const Title = styled.Text`

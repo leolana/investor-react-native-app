@@ -116,7 +116,7 @@ export const UrlIouuInstagram = `https://www.instagram.com/iouubrasil/`;
 export const UrlIouuTwitter = `https://twitter.com/iouubrasil`;
 export const UrlIouuLinkedin = `https://www.linkedin.com/company/iouu`;
 export const UrlIouuVimeo = `https://vimeo.com/iouubrasil`;
-export const UrlIouuAjuda = `https://ajuda.iouu.com.br/pt-br/`;
+export const UrlIouuAjuda = `https://ajuda.iouu.com.br/`;
 
 export const UrlTermosCondicoes = `https://iouu.com.br/termos-e-condicoes/`;
 export const UrlPoliticaPrivacidade = `https://iouu.com.br/politica-de-privacidade/`;

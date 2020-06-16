@@ -15,10 +15,6 @@ export const SignUpInvestorStepElevenComponent = (props) => {
       <Button onPress={() => props.navigation.navigate('SignUpInvestorStepTwelve')}>
         <ButtonText>CONFIRMAR</ButtonText>
       </Button>
-
-      <TouchableOpacity onPress={() => props.navigation.navigate('Opportunities')}>
-        <Text> CONTINUAR DEPOIS </Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { black, white } from '../../assets/colors';
+import { black, white, grey99 } from '../../assets/colors';
 
 import { Dimensions } from 'react-native';
 
@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get('screen');
 export const Backdrop = styled.View`
   width: ${width}px;
   height: ${height}px;
-  background: ${black};
+  background: ${grey99};
   opacity: 0.55;
 `;
 

@@ -10,6 +10,7 @@ import { Select } from '../../components';
 
 import { Request, UrlLocalizacaoEstadosPegar, UrlCadastroInvestidorAtualizar } from '../../services';
 import { useSelector } from 'react-redux';
+import { isBefore, parseISO } from 'date-fns';
 
 export const SignUpInvestorStepFiveComponent = (props) => {
   //states
@@ -28,7 +29,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
       value: '',
     },
   ]);
-  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   //vars
 
@@ -109,6 +110,17 @@ export const SignUpInvestorStepFiveComponent = (props) => {
   //validate functions
 
   const validateDate = () => {
+    const date = formatDate();
+
+    const newDate = parseISO(date);
+
+    const today = new Date();
+    const comparation = isBefore(newDate, today);
+
+    console.log('comparei', comparation);
+
+    if (!comparation) return setValidDate(false);
+
     let valid = false;
     const regex = new RegExp('^([0-9]{2})/([0-9]{2})/([0-9]{4})$');
     const matches = regex.exec(rgData);
@@ -118,7 +130,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
       const month = parseInt(matches[2], 10) - 1;
       const year = parseInt(matches[3], 10);
       const date = new Date(year, month, day, 0, 0, 0, 0);
-      valid = date.getFullYear() == year && date.getMonth() == month && date.getDate() == day;
+      valid = date.getFullYear() === year && date.getMonth() === month && date.getDate() === day;
     }
 
     if (valid) {
@@ -130,9 +142,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
   //effect
 
   useEffect(() => {
-    setDisabled(
-      !validDate || rgData === '' || RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '',
-    );
+    setDisabled(!validDate || rgData === '' || RgEstadoEmissor === '' || RgOrgaoEmissor === '' || RgNumero === '');
   }, [validDate, rgData, RgEstadoEmissor, RgOrgaoEmissor, RgNumero]);
 
   // render

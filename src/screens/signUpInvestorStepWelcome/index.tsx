@@ -29,7 +29,7 @@ export const SignUpInvestorStepWelcomeComponent = (props) => {
 
           <Note> Os campos com * são de preenchimento obrigatório!</Note>
 
-          <Button onPress={() => props.navigation.navigate('SignUpInvestorStepOne')}>
+          <Button onPress={() => props.navigation.navigate('SignUpInvestorStepFive')}>
             <ButtonText>CONTINUAR CADASTRO</ButtonText>
           </Button>
         </View>

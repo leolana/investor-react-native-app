@@ -39,13 +39,6 @@ export const SignUpInvestorStepTwelveComponent = (props) => {
         </Button>
       </Container>
 
-      {/* <TouchableOpacity>
-        <Text onPress={() => props.navigation.navigate('SignUpInvestorStepThirteen')}> CONTINUAR DEPOIS </Text>
-      </TouchableOpacity> */}
-
-      <TouchableOpacity>
-        <Text onPress={() => props.navigation.navigate('Opportunities', { authenticated: true })}> CONTINUAR DEPOIS </Text>
-      </TouchableOpacity>
 
       <ExpoCameraComprovante
         isVisible={isCameraVisible}

@@ -40,14 +40,6 @@ export const SignUpInvestorStepTenComponent = (props) => {
         </Button>
       </Container>
 
-      <TouchableOpacity>
-        <Text onPress={() => props.navigation.navigate('SignUpInvestorStepEleven')}> CONTINUAR DEPOIS </Text>
-      </TouchableOpacity>
-
-      {/* <TouchableOpacity>
-                <Text onPress={() => props.navigation.navigate('Opportunities')}> CONTINUAR DEPOIS </Text>
-            </TouchableOpacity> */}
-
       <Camera
         isVisible={true}
         onChangePhoto={onChangePhoto}

@@ -5,6 +5,7 @@ import { ITextInput } from '../../components';
 export const TextInput = styled(ITextInput)``;
 
 import { white, tealish, grey99 } from '../../assets/colors';
+import { StyleSheet } from 'react-native';
 
 export const SafeAreaView = styled.View`
   margin: 16px;
@@ -36,3 +37,32 @@ export const TextLine = styled.Text`
   font-weight: bold;
   margin-bottom: 15px;
 `;
+
+export const OptionsContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const Label = styled.Text`
+  color: ${grey99};
+  margin-bottom: 5px;
+  font-size: 12px;
+  align-self: stretch;
+`;
+
+const styles = StyleSheet.create({
+  input: {
+    borderColor: '#DDD',
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderRadius: 5,
+    height: 40,
+    fontSize: 16,
+    alignSelf: 'stretch',
+  },
+});
+
+export default styles;

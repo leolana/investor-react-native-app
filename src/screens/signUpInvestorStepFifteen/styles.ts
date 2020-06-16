@@ -4,7 +4,7 @@ import { IconIouu } from '../../assets/icons';
 
 import { Dimensions } from 'react-native';
 
-import { tealish } from '../../assets/colors';
+import { tealish, white } from '../../assets/colors';
 
 const { width } = Dimensions.get('screen');
 
@@ -39,15 +39,23 @@ export const Note = styled.Text`
 `;
 export const TextSuitability = styled.Text`
   font-size: 16px;
-  margin-bottom: 20px;
   text-align: center;
-  color: ${tealish};
+  color: ${white};
 `;
 
 export const TextOpportunities = styled.Text`
   font-size: 16px;
   text-align: center;
+  color: ${white};
 `;
 
-export const ScrollView = styled.ScrollView`
-`
+export const Button = styled.TouchableOpacity`
+    background: ${tealish}
+    border-radius: 5px;
+    padding: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+`;
+
+export const ScrollView = styled.ScrollView``;

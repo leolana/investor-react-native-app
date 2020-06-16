@@ -74,8 +74,6 @@ export const Login = (props) => {
       header: 'bearer',
     });
 
-    console.log('pro login', resp);
-
     if (resp.status === 200) loginSuccessful(resp.data);
     else Alert.alert(resp.data.Msg);
   };

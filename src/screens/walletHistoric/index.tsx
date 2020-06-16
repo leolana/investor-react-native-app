@@ -4,11 +4,11 @@ import { FlatList } from 'react-native-gesture-handler';
 
 import { WalletCard } from '../../components';
 
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import { Request, UrlCarteiraExtratoPaginado } from '../../services';
 
-import { ListContainer, LoadingContainer } from './styles';
+import { ListContainer, LoadingContainer, Label } from './styles';
 
 export const WalletHistoricPopup = (props) => {
   // States
@@ -17,6 +17,8 @@ export const WalletHistoricPopup = (props) => {
   const [operacoes, setOperacoes] = useState([]);
 
   const [loading, setLoading] = useState(false);
+
+  const [teste, setTeste] = useState(false);
 
   // Methods
 
@@ -32,6 +34,10 @@ export const WalletHistoricPopup = (props) => {
     setLoading(false);
 
     if (resp.status === 200) setOperacoes([...operacoes, ...resp.data.Operacoes]);
+    else {
+      console.log('deu ruim', resp.status);
+      setTeste(true);
+    }
   };
 
   const renderItem = ({ item }) => <WalletCard data={item} />;
@@ -60,6 +66,7 @@ export const WalletHistoricPopup = (props) => {
 
   return (
     <ListContainer>
+      {teste && <Label>Você ainda não possui nenhuma transação</Label>}
       <FlatList
         data={operacoes}
         renderItem={renderItem}
@@ -75,6 +82,6 @@ export const WalletHistoricPopup = (props) => {
 export const WalletHistoric = {
   screen: WalletHistoricPopup,
   navigationOptions: {
-    headerTitle: 'HISTÓRICO',
+    headerTitle: 'Histórico de Transações',
   },
 };

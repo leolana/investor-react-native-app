@@ -4,7 +4,17 @@ import { TouchableOpacity } from 'react-native';
 
 import { tealish } from '../../assets/colors';
 
-import { SafeAreaView, Title, Text, Note, TextOpportunities, TextSuitability, Logo, ScrollView } from './styles';
+import {
+  SafeAreaView,
+  Title,
+  Text,
+  Note,
+  TextOpportunities,
+  TextSuitability,
+  Logo,
+  ScrollView,
+  Button,
+} from './styles';
 
 import onInit from '../../store/actions/getAccountData';
 
@@ -22,7 +32,7 @@ export const SignUpInvestorStepFifteenComponent = (props) => {
       <SafeAreaView>
         <Logo fill={tealish} width={logoSize} height={logoSize} />
 
-        <Title>Cadastro concluído com sucesso</Title>
+        <Title>Seu cadastro de investidor foi concluído com sucesso</Title>
 
         <Text>Agora, farermos uma análise e em até 24 horas você receberá uma resposta.</Text>
 
@@ -31,13 +41,13 @@ export const SignUpInvestorStepFifteenComponent = (props) => {
           investimento e indicamos os produtos, serviços e operações mais adequadas às suas necessidades.
         </Note>
 
-        <TouchableOpacity onPress={() => props.navigation.navigate('SuitabilityWelcome')}>
+        <Button onPress={() => props.navigation.navigate('SuitabilityWelcome')}>
           <TextSuitability>PREENCHER O SUITABILITY</TextSuitability>
-        </TouchableOpacity>
+        </Button>
 
-        <TouchableOpacity onPress={avancarTelaInicial}>
+        <Button onPress={avancarTelaInicial}>
           <TextOpportunities>VER OPORTUNIDADES</TextOpportunities>
-        </TouchableOpacity>
+        </Button>
       </SafeAreaView>
     </ScrollView>
   );

@@ -23,7 +23,7 @@ export const Slider = () => {
   const informations = [
     {
       title: 'Maiores rentabilidades',
-      description: 'Total transparencia nas informações',
+      description: 'Total transparência nas informações',
       id: 0,
     },
     {

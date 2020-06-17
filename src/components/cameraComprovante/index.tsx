@@ -75,7 +75,7 @@ export const ExpoCameraComprovante = ({ isVisible, navigation, step, setOpenCame
           {capturedPhoto && (
             <Modal animationType="slide" transparent={false}>
               <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20 }}>
-                <Image style={{ width: '100%', height: 300, borderRadius: 15 }} source={{ uri: capturedPhoto }} />
+                <Image style={styles.stretch} source={{ uri: capturedPhoto }} />
                 <ContainerLine>
                   <Button onPress={() => setCapturedPhoto(null)}>
                     <ButtonText>Repetir</ButtonText>
@@ -105,5 +105,11 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 10,
     height: 50,
+  },
+  stretch: {
+    width: '100%',
+    height: '80%',
+    resizeMode: 'stretch',
+    borderRadius: 15,
   },
 });

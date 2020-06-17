@@ -48,10 +48,10 @@ export const ProfileComponent = (props) => {
       title: 'Documentos',
       onPress: () => navigation.navigate('Documents'),
     },
-    // {
-    //   title: 'Formalizações',
-    //   onPress: () => navigation.navigate('CCBsList'),
-    // },
+    {
+      title: 'CCB',
+      onPress: () => navigation.navigate('CCBsList'),
+    },
     // {
     //   title: 'Suitability',
     //   onPress: () => navigation.navigate('SuitabilityWelcome'),

@@ -12,7 +12,7 @@ import { formatDate } from '../../../../utils';
 
 import { TouchableWithoutFeedback } from 'react-native';
 
-import { parseISO, isAfter } from 'date-fns';
+import { parseISO, isAfter, isBefore, isSameDay } from 'date-fns';
 
 export const CardAddDateComponent = (props) => {
   // Props
@@ -113,23 +113,15 @@ export const CardAddDateComponent = (props) => {
   }, [index]);
 
   useEffect(() => {
-    if (new Date(date) >= new Date()) setDateisValid(true);
+    // const date = formatDate();
+    const mydate = new Date(date);
+
+    const today = new Date();
+
+    if (isSameDay(mydate, today)) return setDateisValid(true);
+    else if (isAfter(mydate, today)) return setDateisValid(true);
     else setDateisValid(false);
   }, [date]);
-
-  // useEffect(() => {
-  //   const teste = new Date(date);
-  //   console.log(teste.toDateString());
-
-  //   const parsedDate = parseISO(date);
-
-  //   const past = isAfter(parsedDate, new Date());
-
-  //   console.log('Comparar', past);
-
-  //   if (past) setDateisValid(true);
-  //   else setDateisValid(false);
-  // }, [date]);
 
   // Render
 

@@ -6,17 +6,14 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
-<<<<<<< Updated upstream
-import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
-=======
 import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
 
 import { Toast } from '../../../../components';
 
->>>>>>> Stashed changes
 import { withNavigation } from 'react-navigation';
 
 import { Alert } from 'react-native';
+import useState from 'react';
 
 export const ConfirmationStepComponent = (props) => {
   // Props
@@ -28,12 +25,10 @@ export const ConfirmationStepComponent = (props) => {
   const getBankSlipUrl = async (id) => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(id) });
 
-    console.log(resp);
+    // console.log(resp);
 
-    if (resp.status === 200) {
-      props.navigation.navigate('Opportunities');
-      return resp.data.Boleto.secure_url;
-    } else return null;
+    if (resp.status === 200) return resp.data.Boleto.secure_url;
+    else return null;
   };
 
   const invest = async () => {
@@ -55,24 +50,24 @@ export const ConfirmationStepComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log(boleto.data.LinhaDigitavel);
-    console.log(resp);
+    console.log('A resp do boleto', boleto.data.LinhaDigitavel);
 
     if (resp.status !== 200) {
       Alert.alert(resp.data.Error);
-      props.navigation.navigate('OpportunitieProfile');
     }
 
     if (data.waitingList) {
-      props.navigation.navigate('InvestWaitingListSuccessModal');
-
       props.navigation.navigate('OpportunitieProfile', { data });
+
+      props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
       const url = await getBankSlipUrl(resp.data.$__._id);
 
       props.onDataChange(url);
 
-      props.onStepChange(2);
+      props.onStepChange(3);
+
+      // props.navigation.navigate('PaymentStepComponent', { data });
     }
   };
 
@@ -81,7 +76,7 @@ export const ConfirmationStepComponent = (props) => {
   return (
     <>
       <Divisor side="up">
-        <ItemTitle>Vaor do investimento</ItemTitle>
+        <ItemTitle>Valor do investimento</ItemTitle>
         <ItemText>{formatMoney(data.value)}</ItemText>
       </Divisor>
       <Divisor side="up">

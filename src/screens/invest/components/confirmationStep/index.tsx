@@ -6,7 +6,14 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
+<<<<<<< Updated upstream
 import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
+=======
+import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
+
+import { Toast } from '../../../../components';
+
+>>>>>>> Stashed changes
 import { withNavigation } from 'react-navigation';
 
 import { Alert } from 'react-native';
@@ -41,6 +48,14 @@ export const ConfirmationStepComponent = (props) => {
       data: config,
       header: 'bearer',
     });
+
+    const boleto = await Request.POST({
+      url: UrlBoletoCriar(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
+
+    console.log(boleto.data.LinhaDigitavel);
     console.log(resp);
 
     if (resp.status !== 200) {

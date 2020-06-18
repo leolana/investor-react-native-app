@@ -119,7 +119,7 @@ export const Login = (props) => {
     <KeyboardAvoidingView behavior="padding" enabled>
       <Welcome> {greeting} </Welcome>
 
-      <Description> Acesso sua conta </Description>
+      <Description> Acesse sua conta </Description>
 
       <Container>
         <ITextInput title={'E-mail'} onChangeText={(value) => setEmail(value)} onBlur={() => validateEmail()} />

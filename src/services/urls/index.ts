@@ -6,7 +6,12 @@ const PROD = {
 };
 
 const TEST = {
+<<<<<<< HEAD
   BASE_URL_GO: 'http://192.168.0.17:9090/',
+=======
+
+  BASE_URL_GO: 'https://api-test.iouu.com.br/',
+>>>>>>> 1ac242954adf0359f594202001d2525fed38af48
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
@@ -51,11 +56,17 @@ export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`;
 
 export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
 export const UrlCarteiraPegar = `${BASE_URL_NODE}api/v1/investimentos/meus/money`;
+<<<<<<< HEAD
 export const UrlCarteiraEnviarTransferencia = `${BASE_URL_NODE}api/v1/wallet/new`;
 export const UrlCarteiraEmprestimoPegar = (investidorId, page) =>
   `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`;
 export const UrlCarteiraComprovantePegar = (investidorId) =>
   `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`;
+=======
+export const UrlCarteiraEnviarTransferencia = `${BASE_URL_GO}api/v1/wallet/agendamento/saque`;
+export const UrlCarteiraEmprestimoPegar = (investidorId, page) => `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`;
+export const UrlCarteiraComprovantePegar = (investidorId) => `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`;
+>>>>>>> 1ac242954adf0359f594202001d2525fed38af48
 
 export const UrlCarteiraExtratoPaginado = (pagina) => `${BASE_URL_GO}api/v1/wallet/extrato/pagina/${pagina}`;
 export const UrlCarteiraPegarDetalhesOperacao = (id) => `${BASE_URL_GO}api/v1/wallet/operacao/detalhe/${id}`;

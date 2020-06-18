@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Divisor, ItemTitle, ItemText, Table, TableText, TableRow, TableSpotlightText } from './styles';
 
@@ -8,12 +8,9 @@ import { formatPercent, formatMoney } from '../../../../utils';
 
 import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
 
-import { Toast } from '../../../../components';
-
 import { withNavigation } from 'react-navigation';
 
 import { Alert } from 'react-native';
-import useState from 'react';
 
 export const ConfirmationStepComponent = (props) => {
   // Props
@@ -33,6 +30,7 @@ export const ConfirmationStepComponent = (props) => {
 
   const invest = async () => {
     const config = {
+      Boleto: {},
       Valor: Number.parseFloat(data.value),
       ReInvestimento: Number.parseFloat(data.reinvestmentValue),
       listaEspera: data.waitingList,
@@ -50,8 +48,6 @@ export const ConfirmationStepComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log('A resp do boleto', boleto.data.LinhaDigitavel);
-
     if (resp.status !== 200) {
       Alert.alert(resp.data.Error);
     }
@@ -61,13 +57,20 @@ export const ConfirmationStepComponent = (props) => {
 
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
-      const url = await getBankSlipUrl(resp.data.$__._id);
+      const url = await getBankSlipUrl(resp.data._id);
 
       props.onDataChange(url);
 
-      props.onStepChange(3);
+      console.log('BOLETO', boleto.data);
 
-      // props.navigation.navigate('PaymentStepComponent', { data });
+      // if (boleto.data.LinhaDigitavel !== undefined) props.onBoletoChange(boleto.data.LinhaDigitavel);
+      // else props.navigation.navigate('OpportunitieProfile', { data });
+
+      props.onBoletoChange(boleto.data.Error);
+
+      props.onStepChange(2);
+
+      props.navigation.navigate('PaymentStepComponent', { data });
     }
   };
 

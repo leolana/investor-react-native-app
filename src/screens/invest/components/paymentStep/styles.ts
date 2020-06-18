@@ -57,7 +57,7 @@ export const TableRow = styled.View`
 `;
 
 export const TableSpotlightText = styled.Text`
-  font-family: 'OpenSans-Bold';
+  font-family: OpenSans-Bold;
   font-size: 14px;
   color: ${lightBlue};
 `;
@@ -71,7 +71,7 @@ export const InfoArea = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: 'OpenSans-Bold';
+  font-family: OpenSans-Bold;
   font-size: 14px;
   text-align: ${(props) => props.textAlign || 'center'};
 `;
@@ -98,9 +98,7 @@ export const Item = styled.View`
 `;
 
 export const Text = styled.Text`
-    font-size: 14px;
-    color: ${grey99};
-    font-family: OpenSans 
-    textDecorationLine: ${(props) => (props.underline ? 'underline' : 'none')};
-
+  font-size: 14px;
+  color: ${grey99};
+  text-decoration-line: ${(props) => (props.underline ? 'underline' : 'none')};
 `;

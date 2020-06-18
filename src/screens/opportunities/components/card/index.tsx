@@ -73,7 +73,7 @@ export const OpportunitiesCardComponent = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={() => props.navigation.navigate('OpportunitieProfile', { data })}>
       <Card background={scoreColor}>
         <Header>
           <Text> ID #{formatCode(data.IdOportunidade)} </Text>
@@ -111,7 +111,7 @@ export const OpportunitiesCardComponent = (props) => {
             </Center>
 
             <Buttom
-              // onPress={() => props.navigation.navigate('OpportunitieProfile', { data })}
+              onPress={() => props.navigation.navigate('OpportunitieProfile', { data })}
               background={getColorByStatus()}
               title={getOpportunityStatus()}
               fontSize={11}

@@ -46,7 +46,7 @@ export const PageWallet = (props) => {
             <WalletHeader walletData={walletData} />
           </Header>
 
-          {/* <WalletBody /> */}
+          <WalletBody />
         </SafeAreaHeader>
 
         <WalletFooter walletData={walletData} />

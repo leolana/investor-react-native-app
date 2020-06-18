@@ -19,15 +19,6 @@ export const ConfirmationStepComponent = (props) => {
 
   // Methods
 
-  const getBankSlipUrl = async (id) => {
-    const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(id) });
-
-    // console.log(resp);
-
-    if (resp.status === 200) return resp.data.Boleto.secure_url;
-    else return null;
-  };
-
   const invest = async () => {
     const config = {
       Boleto: {},
@@ -57,20 +48,16 @@ export const ConfirmationStepComponent = (props) => {
 
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
-      const url = await getBankSlipUrl(resp.data._id);
+      if (boleto.data.linhaDigitavel !== undefined) {
+        props.onBoletoChange(boleto.data.linhaDigitavel);
+        props.onStepChange(2);
 
-      props.onDataChange(url);
-
-      console.log('BOLETO', boleto.data);
-
-      // if (boleto.data.LinhaDigitavel !== undefined) props.onBoletoChange(boleto.data.LinhaDigitavel);
-      // else props.navigation.navigate('OpportunitieProfile', { data });
-
-      props.onBoletoChange(boleto.data.Error);
-
-      props.onStepChange(2);
-
-      props.navigation.navigate('PaymentStepComponent', { data });
+        props.navigation.navigate('PaymentStepComponent', { data });
+      } else {
+        props.onStepChange(0);
+        props.navigation.navigate('OpportunitieProfile', { data });
+      }
+      // props.onBoletoChange(boleto.data.Error);
     }
   };
 

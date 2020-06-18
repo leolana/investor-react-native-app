@@ -8,7 +8,16 @@ import { Request, UrlLogin } from '../../services';
 
 import { storeData } from '../../utils';
 
-import { KeyboardAvoidingView, Welcome, Description, Container, Buttom, Error } from './style';
+import {
+  KeyboardAvoidingView,
+  Welcome,
+  Description,
+  Container,
+  Buttom,
+  Error,
+  TextLine,
+  TouchableOpacity,
+} from './style';
 
 import onInit from '../../store/actions/getAccountData';
 
@@ -125,6 +134,8 @@ export const Login = (props) => {
         />
 
         {!isValidPassword ? <Error>Esse campo não pode ter menos de 6 digitos</Error> : undefined}
+
+        <TextLine onPress={() => navigation.navigate('recuperarSenha')}>Esqueci minha senha</TextLine>
 
         <Buttom title="Entrar" onPress={() => validateLogin()} />
       </Container>

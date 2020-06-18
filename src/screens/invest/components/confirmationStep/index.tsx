@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Divisor, ItemTitle, ItemText, Table, TableText, TableRow, TableSpotlightText } from './styles';
 
@@ -6,11 +6,11 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
-import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
-
-import { Toast } from '../../../../components';
+import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
+
+import { Alert } from 'react-native';
 
 export const ConfirmationStepComponent = (props) => {
   // Props
@@ -19,17 +19,9 @@ export const ConfirmationStepComponent = (props) => {
 
   // Methods
 
-  const getBankSlipUrl = async (id) => {
-    const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(id) });
-
-    console.log(resp);
-
-    if (resp.status === 200) return resp.data.Boleto.secure_url;
-    else return null;
-  };
-
   const invest = async () => {
     const config = {
+      Boleto: {},
       Valor: Number.parseFloat(data.value),
       ReInvestimento: Number.parseFloat(data.reinvestmentValue),
       listaEspera: data.waitingList,
@@ -41,20 +33,31 @@ export const ConfirmationStepComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log(resp);
+    const boleto = await Request.POST({
+      url: UrlBoletoCriar(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
 
-    if (resp.status !== 200) Toast.showError(resp.data.Error);
+    if (resp.status !== 200) {
+      Alert.alert(resp.data.Error);
+    }
 
     if (data.waitingList) {
       props.navigation.navigate('OpportunitieProfile', { data });
 
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
-      const url = await getBankSlipUrl(resp.data.$__._id);
+      if (boleto.data.linhaDigitavel !== undefined) {
+        props.onBoletoChange(boleto.data.linhaDigitavel);
+        props.onStepChange(2);
 
-      props.onDataChange(url);
-
-      props.onStepChange(2);
+        props.navigation.navigate('PaymentStepComponent', { data });
+      } else {
+        props.onStepChange(0);
+        props.navigation.navigate('OpportunitieProfile', { data });
+      }
+      // props.onBoletoChange(boleto.data.Error);
     }
   };
 
@@ -63,7 +66,7 @@ export const ConfirmationStepComponent = (props) => {
   return (
     <>
       <Divisor side="up">
-        <ItemTitle>Vaor do investimento</ItemTitle>
+        <ItemTitle>Valor do investimento</ItemTitle>
         <ItemText>{formatMoney(data.value)}</ItemText>
       </Divisor>
       <Divisor side="up">

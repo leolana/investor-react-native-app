@@ -3,6 +3,8 @@ import { formatMoney } from '../../utils';
 export const currency = (text, props) => {
   const value = parseFloat(String(text).replace(/\D/g, '')) / 100;
 
+  if (isNaN(value)) return 0;
+
   const newState = {
     unMasked: value,
     masked: formatMoney(value),

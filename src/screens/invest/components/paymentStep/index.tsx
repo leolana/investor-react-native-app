@@ -31,7 +31,7 @@ import { Request, UrlInvPegar } from '../../../../services';
 
 import { useSelector } from 'react-redux';
 
-import { TouchableOpacity, Dimensions } from 'react-native';
+import { TouchableOpacity, Dimensions, Clipboard, Alert } from 'react-native';
 
 const { width } = Dimensions.get('screen');
 
@@ -69,6 +69,11 @@ export const PaymentStepComponent = (props) => {
     }
   };
 
+  const copyToClipboard = () => {
+    Clipboard.setString(data.boleto);
+    Alert.alert('Código copiado!');
+  };
+
   // Effects
 
   useEffect(() => {
@@ -78,7 +83,7 @@ export const PaymentStepComponent = (props) => {
 
     fetchData();
 
-    props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
+    // props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
   }, [props.navigation]);
 
   // Render
@@ -116,7 +121,7 @@ export const PaymentStepComponent = (props) => {
         <Printer fill="none" stroke={grey99} />
 
         <ItemText>
-          Imprima o boleto e <ItemText bold={true}>pague no banco.</ItemText>
+          Código do boleto <ItemText bold={true}> {data.boleto} </ItemText>
         </ItemText>
       </Divisor>
 
@@ -124,7 +129,7 @@ export const PaymentStepComponent = (props) => {
         <Devices fill="none" stroke={grey99} />
 
         <ItemText width={250} bold={true}>
-          ou page pela internet <ItemText>utilizando o código de barras do boleto.</ItemText>
+          ou pague pela internet <ItemText>utilizando o código de barras do boleto.</ItemText>
         </ItemText>
       </Divisor>
 
@@ -136,10 +141,10 @@ export const PaymentStepComponent = (props) => {
         </ItemText>
       </Divisor>
 
-      <SpotlightTitle>Total: ${formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
+      <SpotlightTitle>Total: {formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
 
-      <Buttom>
-        <ButtomText>PAGAR BOLETO</ButtomText>
+      <Buttom onPress={() => copyToClipboard()}>
+        <ButtomText>COPIAR CÓDIGO DE BARRAS</ButtomText>
       </Buttom>
 
       <Item>

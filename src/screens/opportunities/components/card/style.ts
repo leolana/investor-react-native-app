@@ -69,7 +69,7 @@ export const Container = styled.View`
 
 export const Box = styled.View`
   border-radius: 5px;
-  width: 80px;
+  width: 24%;
   height: 60px;
   background-color: ${greyEE};
 `;

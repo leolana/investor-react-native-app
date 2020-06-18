@@ -67,7 +67,7 @@ export const CancelInvestmentComponent = (props) => {
 
     console.log(resp);
 
-    if (resp.status === 200) {
+    if (resp.status === 200 || resp.status === 502) {
       props.navigation.navigate('Opportunities');
 
       Alert.alert('O seu investimento foi cancelado.');

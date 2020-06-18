@@ -4,7 +4,7 @@ import { Container, Title, Text, Info, Buttom, ButtomText, TextInput } from './s
 
 import { useSelector } from 'react-redux';
 
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Alert } from 'react-native';
 
 import { Request, UrlCarteiraEnviarTransferencia } from '../../services';
 
@@ -28,27 +28,28 @@ export const TransferWalletBalanceConfirmationComponent = (props) => {
   const subimitTransfer = async () => {
     if (password === '' || transferData === null || password === null) return;
 
-    const { investorId, dateToTransfer, valueToTransfer, bankData } = transferData;
+    const { investorId, dateToTransfer, balanceToTransfer, bankData } = transferData;
 
     const carteira = {
       Data: new Date(dateToTransfer).toISOString(),
-      Valor: valueToTransfer,
+      Valor: balanceToTransfer,
       DadosBancarios: bankData,
       InvestidorId: investorId,
-    }
+    };
 
-    const resp = await Request.POST({
+    const resp = await Request.PUT({
       url: UrlCarteiraEnviarTransferencia,
       data: carteira,
       header: 'bearer',
     });
 
+    console.log('MINHA RESP', resp.data);
     if (resp.status !== 200) {
-      alert('Senha inválida');
+      Alert.alert(resp.data.Error);
 
       navigation.navigate('Wallet');
     } else if (resp.data.msg === 'SaldoInsuficiente') {
-      alert('Ocorreu um erro durante a transferência');
+      Alert.alert('SaldoInsuficiente');
 
       navigation.navigate('Wallet');
     } else {

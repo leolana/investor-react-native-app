@@ -6,14 +6,8 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
-<<<<<<< Updated upstream
-import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
-=======
 import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
 
-import { Toast } from '../../../../components';
-
->>>>>>> Stashed changes
 import { withNavigation } from 'react-navigation';
 
 import { Alert } from 'react-native';

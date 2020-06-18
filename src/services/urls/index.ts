@@ -1,21 +1,14 @@
 const PROD = {
-<<<<<<< Updated upstream
-  BASE_URL_GO: 'http://192.168.56.209:9090/',
-=======
   BASE_URL_GO: 'https://api.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
->>>>>>> Stashed changes
   BASE_URL_NODE: 'https://server-app.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-app.iouu.com.br/',
 };
 
 const TEST = {
-<<<<<<< Updated upstream
-  BASE_URL_GO: 'http://192.168.0.17:9090/',
-=======
+
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
->>>>>>> Stashed changes
   BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
@@ -56,7 +49,7 @@ export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`;
 
 export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
 export const UrlCarteiraPegar = `${BASE_URL_NODE}api/v1/investimentos/meus/money`;
-export const UrlCarteiraEnviarTransferencia = `${BASE_URL_NODE}api/v1/wallet/new`;
+export const UrlCarteiraEnviarTransferencia = `${BASE_URL_GO}api/v1/wallet/agendamento/saque`;
 export const UrlCarteiraEmprestimoPegar = (investidorId, page) => `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`;
 export const UrlCarteiraComprovantePegar = (investidorId) => `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`;
 

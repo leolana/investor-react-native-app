@@ -30,30 +30,31 @@ export const TransferWalletBalanceConfirmationComponent = (props) => {
 
     const { investorId, dateToTransfer, valueToTransfer, bankData } = transferData;
 
-    const config = {
+    const carteira = {
+      Data: new Date(dateToTransfer).toISOString(),
+      Valor: valueToTransfer,
+      DadosBancarios: bankData,
+      InvestidorId: investorId,
+    }
+
+    const resp = await Request.POST({
       url: UrlCarteiraEnviarTransferencia,
-      data: {
-        id: accountData.UsuarioId,
-        idInvestor: investorId,
-        password: password,
-        carteira: {
-          Data: new Date(dateToTransfer).toISOString(),
-          Valor: valueToTransfer,
-          DadosBancarios: bankData,
-        },
-      },
-    };
+      data: carteira,
+      header: 'bearer',
+    });
 
-    const resp = await Request.POST(config);
+    if (resp.status !== 200) {
+      alert('Senha inválida');
 
-    if (resp.status === 200) {
       navigation.navigate('Wallet');
-
-      navigation.navigate('TransferWalletBalanceSuccess');
-    } else {
+    } else if (resp.data.msg === 'SaldoInsuficiente') {
       alert('Ocorreu um erro durante a transferência');
 
       navigation.navigate('Wallet');
+    } else {
+      navigation.navigate('Wallet');
+
+      navigation.navigate('TransferWalletBalanceSuccess');
     }
   };
 

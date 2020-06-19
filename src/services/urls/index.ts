@@ -83,6 +83,8 @@ export const UrlSolicitacaoReservaInvCriar = (solicitacaoId) =>
   `${BASE_URL_GO}api/v1/reserva/criar/solicitacao/${solicitacaoId}`;
 
 export const UrlBoletoCriar = () => `${BASE_URL_PAY}api/v1/ABC/investidor/criar`;
+export const UrlRegistroDeposito = () => `${BASE_URL_PAY}api/v1/reserva/criar/deposito`;
+export const UrlRegistroDebito = () => `${BASE_URL_PAY}api/v1/reserva/criar/debito`;
 
 export const UrlReservationCreate = (solicitacaoId) =>
   `${BASE_URL_GO}api/v1/reserva/criar/solicitacao/${solicitacaoId}`;

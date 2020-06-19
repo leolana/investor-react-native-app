@@ -109,7 +109,7 @@ export const TextInfo = styled.Text`
 `;
 
 export const InputTitle = styled.Text`
-  font-size: 12px;
+  font-size: 14px;
   font-family: OpenSans-Bold;
   margin-top: 16px;
   text-align: center;

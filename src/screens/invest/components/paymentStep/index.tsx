@@ -118,10 +118,10 @@ export const PaymentStepComponent = (props) => {
       <Title>Forma de pagamento: BOLETO BANCÁRIO</Title>
 
       <Divisor>
-        <Printer fill="none" stroke={grey99} />
-
+        {/* <Printer fill="none" stroke={grey99} /> */}
         <ItemText>
-          Código do boleto <ItemText bold={true}> {data.boleto} </ItemText>
+          <ItemText bold={true}>Código do boleto</ItemText>
+          <ItemText> {data.boleto} </ItemText>
         </ItemText>
       </Divisor>
 
@@ -129,7 +129,7 @@ export const PaymentStepComponent = (props) => {
         <Devices fill="none" stroke={grey99} />
 
         <ItemText width={250} bold={true}>
-          ou pague pela internet <ItemText>utilizando o código de barras do boleto.</ItemText>
+          copie o código do seu boleto para efetuar o pagamento por meio digital
         </ItemText>
       </Divisor>
 

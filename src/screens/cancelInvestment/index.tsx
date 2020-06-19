@@ -65,9 +65,13 @@ export const CancelInvestmentComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log(resp);
+    console.log('essa resp', resp.satus);
 
-    if (resp.status === 200 || resp.status === 502) {
+    if (resp.status === 200) {
+      props.navigation.navigate('Opportunities');
+
+      Alert.alert('O seu investimento foi cancelado.');
+    } else {
       props.navigation.navigate('Opportunities');
 
       Alert.alert('O seu investimento foi cancelado.');

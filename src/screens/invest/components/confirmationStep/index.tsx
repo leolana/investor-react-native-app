@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Divisor, ItemTitle, ItemText, Table, TableText, TableRow, TableSpotlightText } from './styles';
 
@@ -12,14 +12,19 @@ import { withNavigation } from 'react-navigation';
 
 import { Alert } from 'react-native';
 
+import { Loading } from '../../../../components';
+
 export const ConfirmationStepComponent = (props) => {
   // Props
 
   const { data } = props;
+  const [loading, setLoading] = useState(false);
 
   // Methods
 
   const invest = async () => {
+    setLoading(true);
+
     const config = {
       Boleto: {},
       Valor: Number.parseFloat(data.value),
@@ -40,31 +45,35 @@ export const ConfirmationStepComponent = (props) => {
     });
 
     if (resp.status !== 200) {
+      setLoading(false);
       Alert.alert(resp.data.Error);
     }
 
     if (data.waitingList) {
+      setLoading(false);
       props.navigation.navigate('OpportunitieProfile', { data });
-
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
       if (boleto.data.linhaDigitavel !== undefined) {
         props.onBoletoChange(boleto.data.linhaDigitavel);
+
+        setLoading(false);
+
         props.onStepChange(2);
 
         props.navigation.navigate('PaymentStepComponent', { data });
       } else {
+        setLoading(false);
         props.onStepChange(0);
         props.navigation.navigate('OpportunitieProfile', { data });
       }
-      // props.onBoletoChange(boleto.data.Error);
     }
   };
 
   // Render
 
   return (
-    <>
+    <Loading loading={loading}>
       <Divisor side="up">
         <ItemTitle>Valor do investimento</ItemTitle>
         <ItemText>{formatMoney(data.value)}</ItemText>
@@ -94,7 +103,7 @@ export const ConfirmationStepComponent = (props) => {
       <Buttom onPress={() => invest()}>
         <ButtomText>CONFIRMAR INVESTIMENTO</ButtomText>
       </Buttom>
-    </>
+    </Loading>
   );
 };
 

@@ -83,7 +83,10 @@ export const Login = (props) => {
       header: 'bearer',
     });
 
-    if (resp.status === 200) loginSuccessful(resp.data);
+    console.log('resp', resp);
+
+    if (resp.status === 401) Alert.alert('', 'Não foi possível acessar sua conta');
+    else if (resp.status === 200) loginSuccessful(resp.data);
     else Alert.alert(resp.data.Msg);
   };
 

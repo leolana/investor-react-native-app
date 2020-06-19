@@ -44,6 +44,18 @@ export const ConfirmationStepComponent = (props) => {
       header: 'bearer',
     });
 
+    await Request.POST({
+      url: UrlBoletoCriar(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
+
+    await Request.POST({
+      url: UrlBoletoCriar(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
+
     if (resp.status !== 200) {
       setLoading(false);
       Alert.alert(resp.data.Error);
@@ -64,6 +76,7 @@ export const ConfirmationStepComponent = (props) => {
         props.navigation.navigate('PaymentStepComponent', { data });
       } else {
         setLoading(false);
+        Alert.alert('Erro ao gerar boleto');
         props.onStepChange(0);
         props.navigation.navigate('OpportunitieProfile', { data });
       }

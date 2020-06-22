@@ -127,6 +127,6 @@ export const ChangePasswordComponent = () => {
 export const ChangePassword = {
   screen: ChangePasswordComponent,
   navigationOptions: {
-    headerTitle: 'Mudar senha',
+    headerTitle: 'Alterar senha',
   },
 };

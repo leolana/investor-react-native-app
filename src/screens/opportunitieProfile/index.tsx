@@ -80,7 +80,7 @@ export const OpportunitieProfileComponent = (props) => {
     if (getRemainingTime() > 0 && isAvailableToInvest) return true;
     else if (getRemainingTime() <= 0 && hasInvestment) return true;
     else if (!isAvailableToInvest) {
-      setMessage('Seu cadastro possui uma aprovação pendente Aguarde a confirmação de nosso pessoal para o acesso.');
+      setMessage('Seu cadastro possui uma aprovação pendente. Aguarde a confirmação de nosso pessoal para o acesso.');
 
       return false;
     } else {

@@ -37,6 +37,6 @@ export const FinancialIndicatorsComponent = (props) => {
 export const FinancialIndicators = {
   screen: FinancialIndicatorsComponent,
   navigationOptions: {
-    headerTitle: 'Ìndices financeiros',
+    headerTitle: 'Índices financeiros',
   },
 };

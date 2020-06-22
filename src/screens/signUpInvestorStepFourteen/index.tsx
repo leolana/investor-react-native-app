@@ -56,7 +56,7 @@ export const SignUpInvestorStepFourteenComponent = (props) => {
             {' '}
             Política de Provacidade
           </TextLineBold>{' '}
-          , ficando desde já obriagado e sujeito aos direitos e obrigações oriundos dos instrumentos.
+          , ficando desde já obrigado e sujeito aos direitos e obrigações oriundos dos instrumentos.
         </TextLine>
 
         <ContainerLine>

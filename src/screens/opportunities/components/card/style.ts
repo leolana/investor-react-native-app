@@ -83,7 +83,7 @@ export const Center = styled.View`
 
 export const Subtitle = styled.Text`
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   font-family: OpenSans-Bold;
 `;
 

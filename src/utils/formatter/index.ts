@@ -17,7 +17,7 @@ export const formatCode = (code) => {
 };
 
 export const formatMoney = (value) => {
-  if (value === null || value === undefined) return;
+  if (value === null || value === undefined) return 'R$ 0,00';
 
   value = parseFloat(value)
     .toFixed(2)

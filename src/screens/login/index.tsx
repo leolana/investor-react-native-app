@@ -21,6 +21,8 @@ import {
 
 import onInit from '../../store/actions/getAccountData';
 
+import { Loading } from '../../components';
+
 export const Login = (props) => {
   // props
 
@@ -37,6 +39,8 @@ export const Login = (props) => {
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const [isValidPassword, setIsValidPassword] = useState(true);
+
+  const [loading, setLoading] = useState(true);
 
   // vars
 
@@ -65,6 +69,7 @@ export const Login = (props) => {
     else if (hour >= 12 && hour < 18) setGreeting('Boa tarde :)');
     else if (hour >= 18 && hour < 0) setGreeting('Boa noite :)');
 
+    setLoading(false);
     return;
   };
 
@@ -74,9 +79,12 @@ export const Login = (props) => {
     const success = await onInit();
 
     if (success) navigation.navigate('Opportunities', { authenticated: true });
+
+    setLoading(false);
   };
 
   const loginRequest = async (data) => {
+    setLoading(true);
     const resp = await Request.POST({
       url: UrlLogin,
       data,
@@ -84,10 +92,15 @@ export const Login = (props) => {
     });
 
     console.log('resp', resp);
-
-    if (resp.status === 401) Alert.alert('', 'Não foi possível acessar sua conta');
-    else if (resp.status === 200) loginSuccessful(resp.data);
-    else Alert.alert(resp.data.Msg);
+    if (resp.status === 401){
+      setLoading(false);
+      Alert.alert('', 'Não foi possível acessar sua conta');
+    } else if (resp.status === 200) {
+      loginSuccessful(resp.data);
+    } else {
+      setLoading(false);
+      Alert.alert(resp.data.Msg)
+    };
   };
 
   const validateLogin = async () => {
@@ -118,6 +131,7 @@ export const Login = (props) => {
 
   // render
 
+  if (loading) return (<Loading loading={loading} />)
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <Welcome> {greeting} </Welcome>

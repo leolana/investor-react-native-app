@@ -129,7 +129,7 @@ export const PaymentStepComponent = (props) => {
         <Devices fill="none" stroke={grey99} />
 
         <ItemText width={250} bold={true}>
-          copie o código do seu boleto para efetuar o pagamento por meio digital
+          Copie o código do seu boleto para efetuar o pagamento por meio digital
         </ItemText>
       </Divisor>
 
@@ -137,7 +137,7 @@ export const PaymentStepComponent = (props) => {
         <Calendar fill="none" stroke={grey99} />
 
         <ItemText>
-          o prazo de validade do boleto é de <ItemText bold={true}>1 dia útil</ItemText>
+          O prazo de validade do boleto é de <ItemText bold={true}>1 dia útil</ItemText>
         </ItemText>
       </Divisor>
 

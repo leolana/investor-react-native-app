@@ -30,6 +30,7 @@ import { IconInvestor } from '../../../../assets/icons';
 import { formatPercent, formatDate, formatMoney, convertScoreByColor } from '../../../../utils';
 
 import { withNavigation } from 'react-navigation';
+import { Alert } from 'react-native';
 
 export const InnitialStepComponent = (props) => {
   // props
@@ -82,14 +83,20 @@ export const InnitialStepComponent = (props) => {
       value += value;
     }
 
+    if (max < values[0].value) return false;
+
     if (max <= 0 || ChamadaListaEspera) return values.reverse();
 
     return values.reverse().filter(({ value }) => value <= max);
   };
 
   const openPicker = () => {
+    const options = generateRangeValues();
+
+    if (!options) return Alert.alert('Não é possível investir nessa oportunidade');
+
     const params = {
-      options: generateRangeValues(),
+      options: options,
       onValueChange: (value) => setValue(value.value),
       data: dateTo,
     };

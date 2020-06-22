@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { Alert } from 'react-native';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -19,6 +17,8 @@ import {
   ItemText,
 } from './styles';
 
+import { LinkList } from '../../components';
+
 import {
   convertScoreByColor,
   formatCNPJ,
@@ -29,16 +29,23 @@ import {
   formatCode,
 } from '../../utils';
 
-import { LinkList } from '../../components';
-
 import { Request, UrlSolicitacaoReservaPegar } from '../../services';
 
-export const HistoricProfileComponent = (props) => {
-  const { navigation } = props;
-  const data = navigation.getParam('data', null);
-  const [statusBoleto, setStatusBoleto] = useState('');
+import { Footer } from './components';
+import { Alert } from 'react-native';
 
-  const [reserve, setReserve] = useState('');
+export const HistoricProfileComponent = (props) => {
+  // props
+
+  const { navigation } = props;
+
+  // states
+
+  const [reserve, setReserve] = useState(null);
+
+  // vars
+
+  const data = navigation.getParam('data', null);
 
   const links = [
     {
@@ -52,6 +59,9 @@ export const HistoricProfileComponent = (props) => {
       disabled: reserve === null,
     },
   ];
+
+  // methods
+
   const getInvestmentReservation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
 
@@ -61,46 +71,23 @@ export const HistoricProfileComponent = (props) => {
     else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   };
 
-  const getStatus = () => {
-    if (data.StatusBoleto === 'paid') setStatusBoleto('Pago');
-    else if (data.StatusBoleto === 'pending') setStatusBoleto('Pendente');
-  };
-
-  console.log(data);
+  // useeffects
 
   useEffect(() => {
-    getStatus();
     async function fetchData() {
       await getInvestmentReservation();
     }
+
     fetchData();
-    //   navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` });
-  }, []);
+
+    navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` });
+  }, [data.SolicitacaoId.IdOportunidade, navigation]);
+
+  // render
 
   return (
     <SafeAreaView>
       <ScrollView>
-        <Row>
-          <Title>{data.SolicitacaoId.Empresa.NomeFantasia}</Title>
-
-          <Row>
-            <ScoreCircle background={convertScoreByColor(data.SolicitacaoId.Score)} />
-            <Score>{data.SolicitacaoId.Score}</Score>
-          </Row>
-        </Row>
-
-        <Subtitle>CNPJ: {formatCNPJ(data.SolicitacaoId.Documento)}</Subtitle>
-        <LoanType>{formatLoanType(data.SolicitacaoId.TipoEmprestimo, false)}</LoanType>
-
-        <Row>
-          <Buttom onPress={() => navigation.navigate('OpportunitieProfile', { data: data.SolicitacaoId })}>
-            <ButtomText>VER SOLICITAÇÃO</ButtomText>
-          </Buttom>
-
-          <Text bold={true}>
-            Status: <Text>{statusBoleto}</Text>
-          </Text>
-        </Row>
         <LinkList data={links} borderBottomWidth="1" />
 
         <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
@@ -140,6 +127,6 @@ export const HistoricProfileComponent = (props) => {
 export const HistoricProfile = {
   screen: HistoricProfileComponent,
   navigationOptions: {
-    headerTitle: 'UM ID',
+    headerTitle: 'ID',
   },
 };

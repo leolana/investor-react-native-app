@@ -51,8 +51,13 @@ export const FormSuitabilityFour = (props) => {
   };
 
   const avancarTelaInicial = async () => {
+    setLoading(true);
     const success = await onInit();
-    if (success) props.navigation.navigate('Opportunities', { authenticated: true });
+    if (success) {
+      props.navigation.navigate('Opportunities', { authenticated: true });
+    }
+    setLoading(false);
+
     // else alert('Ocorreu um erro. Por favor tente mais tarde.');
   };
 

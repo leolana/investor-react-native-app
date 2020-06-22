@@ -30,7 +30,6 @@ export const recuperarSenhaComponent = (props) => {
       if (resp.status === 200) {
         Alert.alert('', 'Uma solicitação foi enviada com sucesso.');
       } else Alert.alert('Ocorreu um erro.', 'Por favor, tente mais tarde.');
-      console.log('ele vai recuperar?', resp);
     }
   };
 

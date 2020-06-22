@@ -32,49 +32,51 @@ export const PageOpportunities: React.FC = (props) => {
   // methods
 
   const diffDate = (d2) => {
-    const miliSecs = (new Date(d2)) - (new Date())
+    const miliSecs = new Date(d2) - new Date();
 
-    const diffDays = ( Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1 )
+    const diffDays = Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1;
 
-    if (diffDays <= 0) return "encerrado";
+    if (diffDays <= 0) return 'encerrado';
 
-    return diffDays + " dias";
+    return diffDays + ' dias';
   };
 
   const removePublicados = (arr) => {
-    let remove = []
+    const remove = [];
     for (let index = 0; index < arr.length; index++) {
-      arr[index].StatusAnalise == 'PUBLICADO' && diffDate(arr[index].FimCaptacao) != "encerrado" ? remove.unshift(index) : ''
+      arr[index].StatusAnalise == 'PUBLICADO' && diffDate(arr[index].FimCaptacao) != 'encerrado'
+        ? remove.unshift(index)
+        : '';
     }
-    remove.forEach(element => {
-      arr.splice(element,1)
+    remove.forEach((element) => {
+      arr.splice(element, 1);
     });
-    return arr
+    return arr;
   };
   const pegaPublicados = (arr) => {
-    let publicado = []
-    for(let i=0; i < arr.length; i++) {
-      if(arr[i].StatusAnalise == 'PUBLICADO' && diffDate(arr[i].FimCaptacao) != "encerrado"){
-        let porcentagem = arr[i].ValorCaptado / arr[i].Valor * 100
-        publicado.push({ ...arr[i], porcentagem })
+    const publicado = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].StatusAnalise == 'PUBLICADO' && diffDate(arr[i].FimCaptacao) != 'encerrado') {
+        const porcentagem = (arr[i].ValorCaptado / arr[i].Valor) * 100;
+        publicado.push({ ...arr[i], porcentagem });
       }
     }
-    return publicado
+    return publicado;
   };
   const porcentagemSort = (arr) => {
     let swapped;
     do {
       swapped = false;
-      for (let i=0; i < arr.length-1; i++) {
-        if (arr[i].porcentagem > arr[i+1].porcentagem) {
-          let temp = arr[i];
-          arr[i] = arr[i+1];
-          arr[i+1] = temp;
+      for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i].porcentagem > arr[i + 1].porcentagem) {
+          const temp = arr[i];
+          arr[i] = arr[i + 1];
+          arr[i + 1] = temp;
           swapped = true;
         }
       }
     } while (swapped);
-    return arr
+    return arr;
   };
 
   const loadOpportunities = async () => {
@@ -93,12 +95,12 @@ export const PageOpportunities: React.FC = (props) => {
       setPageTotal(resp.data.Paginas);
 
       let oportunidades = resp.data.ItemListagemSolicitacoes;
-      const publicados = pegaPublicados(oportunidades)
-      oportunidades = removePublicados(oportunidades)
-      porcentagemSort(publicados)
-      oportunidades.unshift(...publicados)
+      const publicados = pegaPublicados(oportunidades);
+      oportunidades = removePublicados(oportunidades);
+      porcentagemSort(publicados);
+      oportunidades.unshift(...publicados);
 
-      console.log(oportunidades)
+      console.log(oportunidades);
       setOpportunities([...opportunities, ...oportunidades]);
 
       setPage(page + 1);

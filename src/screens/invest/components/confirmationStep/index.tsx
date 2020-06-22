@@ -76,7 +76,7 @@ export const ConfirmationStepComponent = (props) => {
         props.navigation.navigate('PaymentStepComponent', { data });
       } else {
         setLoading(false);
-        Alert.alert("Erro ao gerar boleto");
+        Alert.alert('Erro ao gerar boleto');
         props.onStepChange(0);
         props.navigation.navigate('OpportunitieProfile', { data });
       }

@@ -33,11 +33,13 @@ import { LinkList } from '../../components';
 
 import { Request, UrlSolicitacaoReservaPegar } from '../../services';
 import { Footer } from './components';
+import { Loading } from '../../components';
 
 export const HistoricProfileComponent = (props) => {
   const { navigation } = props;
   const data = navigation.getParam('data', null);
   const [statusBoleto, setStatusBoleto] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const [reserve, setReserve] = useState('');
 
@@ -47,19 +49,21 @@ export const HistoricProfileComponent = (props) => {
       onPress: () => navigation.navigate('Company', { data: reserve.SolicitacaoId }),
       disabled: reserve === null,
     },
-    {
-      title: 'Pagamentos',
-      onPress: () => navigation.navigate('HistoricPayment', { data: reserve }),
-      disabled: reserve === null,
-    },
+    // {
+    //   title: 'Pagamentos',
+    //   onPress: () => navigation.navigate('HistoricPayment', { data: reserve }),
+    //   disabled: reserve === null,
+    // },
   ];
   const getInvestmentReservation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
 
     console.log('RESPOSTA TA AQUI', resp);
 
-    if (resp.status === 200) setReserve(resp.data);
-    else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    if (resp.status === 200) {
+      setReserve(resp.data);
+      setLoading(false);
+    } else Alert.alert('Ocorreu um erro ao obter as informações.', 'Por favor volte mais tarde.');
   };
 
   const getStatus = () => {
@@ -79,60 +83,62 @@ export const HistoricProfileComponent = (props) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Row>
-          <Title>{data.SolicitacaoId.Empresa.NomeFantasia}</Title>
+        <Loading loading={loading}>
+          <Row>
+            <Title>{data.SolicitacaoId.Empresa.NomeFantasia}</Title>
+
+            <Row>
+              <ScoreCircle background={convertScoreByColor(data.SolicitacaoId.Score)} />
+              <Score>{data.SolicitacaoId.Score}</Score>
+            </Row>
+          </Row>
+
+          <Subtitle>CNPJ: {formatCNPJ(data.SolicitacaoId.Documento)}</Subtitle>
+          <LoanType>{formatLoanType(data.SolicitacaoId.TipoEmprestimo, false)}</LoanType>
 
           <Row>
-            <ScoreCircle background={convertScoreByColor(data.SolicitacaoId.Score)} />
-            <Score>{data.SolicitacaoId.Score}</Score>
+            <Buttom onPress={() => navigation.navigate('OpportunitieProfile', { data: data.SolicitacaoId })}>
+              <ButtomText>VER SOLICITAÇÃO</ButtomText>
+            </Buttom>
+
+            <Text bold={true}>
+              Status: <Text>{statusBoleto}</Text>
+            </Text>
           </Row>
-        </Row>
+          <LinkList data={links} borderBottomWidth="1" />
 
-        <Subtitle>CNPJ: {formatCNPJ(data.SolicitacaoId.Documento)}</Subtitle>
-        <LoanType>{formatLoanType(data.SolicitacaoId.TipoEmprestimo, false)}</LoanType>
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Valor investido</ItemTitle>
+            <ItemText>{formatMoney(data.Valor)}</ItemText>
+          </Item>
 
-        <Row>
-          <Buttom onPress={() => navigation.navigate('OpportunitieProfile', { data: data.SolicitacaoId })}>
-            <ButtomText>VER SOLICITAÇÃO</ButtomText>
-          </Buttom>
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Retorno bruto anual</ItemTitle>
+            <ItemText>{formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a.</ItemText>
+          </Item>
 
-          <Text bold={true}>
-            Status: <Text>{statusBoleto}</Text>
-          </Text>
-        </Row>
-        <LinkList data={links} borderBottomWidth="1" />
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Retorno bruto anual</ItemTitle>
+            <ItemText>{formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m.</ItemText>
+          </Item>
 
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Valor investido</ItemTitle>
-          <ItemText>{formatMoney(data.Valor)}</ItemText>
-        </Item>
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Retorno estimado do CDI</ItemTitle>
+            <ItemText>{formatPercent((data.SolicitacaoId.Cdi / 1000).toFixed(3))}</ItemText>
+          </Item>
 
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Retorno bruto anual</ItemTitle>
-          <ItemText>{formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a.</ItemText>
-        </Item>
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Prazo previsto</ItemTitle>
+            <ItemText>{data.SolicitacaoId.Prazo} Meses</ItemText>
+          </Item>
 
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Retorno bruto anual</ItemTitle>
-          <ItemText>{formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m.</ItemText>
-        </Item>
-
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Retorno estimado do CDI</ItemTitle>
-          <ItemText>{formatPercent((data.SolicitacaoId.Cdi / 1000).toFixed(3))}</ItemText>
-        </Item>
-
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Prazo previsto</ItemTitle>
-          <ItemText>{data.SolicitacaoId.Prazo} Meses</ItemText>
-        </Item>
-
-        <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
-          <ItemTitle>Data do investimento</ItemTitle>
-          <ItemText>{formatDate(data.Created)}</ItemText>
-        </Item>
-        {/* <Footer data={reserve} loading={reserve === null} /> */}
-      </ScrollView> 
+          <Item borderColor={convertScoreByColor(data.SolicitacaoId.Score)}>
+            <ItemTitle>Data do investimento</ItemTitle>
+            <ItemText>{formatDate(data.Created)}</ItemText>
+          </Item>
+          <Footer data={reserve} loading={reserve === null} />
+        </Loading>
+      </ScrollView>
     </SafeAreaView>
   );
 };

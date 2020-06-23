@@ -4,7 +4,7 @@ import { FlatList, Alert } from 'react-native';
 
 import { CardHistory } from './components';
 
-import { SafeAreaView, TouchableOpacity } from './styles';
+import { SafeAreaView, TouchableOpacity, Label } from './styles';
 
 import { Request, UrlInfoInvLista } from '../../services';
 
@@ -20,6 +20,8 @@ export const HistoricComponent = (props) => {
   // states
 
   const [historicList, setHistoricList] = useState(null);
+
+  const [hasItem, setHasItem] = useState(true);
 
   const [loading, setLoading] = useState(false);
 
@@ -41,6 +43,8 @@ export const HistoricComponent = (props) => {
     setLoading(true);
 
     const resp = await Request.GET({ url: UrlInfoInvLista });
+
+    if (resp.data.length === 0) setHasItem(false);
 
     if (resp.status === 200) setHistoricList(applyDefaultFilter(resp.data).reverse());
     else Alert.alert('Não foi possível acessar o histórico de investimento. Tente novamente mais tarde.');
@@ -126,6 +130,7 @@ export const HistoricComponent = (props) => {
   return (
     <Loading loading={loading}>
       <SafeAreaView>
+        {!hasItem && <Label>Você ainda não realizou investimentos</Label>}
         <FlatList data={historicList} renderItem={renderHistoryCard} key={(item) => item.id} />
       </SafeAreaView>
     </Loading>
@@ -141,7 +146,7 @@ export const Historic = {
       //     <IconFilter />
       //   </TouchableOpacity>
       // ),
-      headerTitle: 'Histórico',
+      headerTitle: 'Histórico de Investimento',
     };
   },
 };

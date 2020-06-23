@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 
 import { CardHistory } from './components';
 
@@ -43,7 +43,7 @@ export const HistoricComponent = (props) => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
     if (resp.status === 200) setHistoricList(applyDefaultFilter(resp.data).reverse());
-    else alert('Ocorreu um erro ao pegar o histórico de investimento. Tente novamente mais tarde.');
+    else Alert.alert('Não foi possível acessar o histórico de investimento. Tente novamente mais tarde.');
 
     setLoading(false);
   };
@@ -84,7 +84,7 @@ export const HistoricComponent = (props) => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
     if (resp.status === 200) setLoading(false);
-    else return alert('Ocorreu um erro ao aplicar o filtro. Tente novamente mais tarde.');
+    else return Alert.alert('Não foi possível aplicar o filtro. Tente novamente mais tarde.');
 
     let list = resp.data;
 
@@ -136,11 +136,11 @@ export const Historic = {
   screen: HistoricComponent,
   navigationOptions: ({ navigation }) => {
     return {
-      headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('HistoricFilter')}>
-          <IconFilter />
-        </TouchableOpacity>
-      ),
+      // headerRight: () => (
+      //   <TouchableOpacity onPress={() => navigation.navigate('HistoricFilter')}>
+      //     <IconFilter />
+      //   </TouchableOpacity>
+      // ),
       headerTitle: 'Histórico',
     };
   },

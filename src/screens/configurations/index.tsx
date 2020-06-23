@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAccountData } from '../../store/actions';
 
 import { Request, UrlPerfilConfigNotificacaoSalvar } from '../../services';
+import { Alert } from 'react-native';
 
 export const ConfigurationsComponent = () => {
   // states
@@ -44,7 +45,7 @@ export const ConfigurationsComponent = () => {
       accountData.NotificacoesInvestidor = config;
 
       dispatch(setAccountData(accountData));
-    } else alert('Ocorreu um erro ao tentar salvar as configurações. Tente novamente mais terde.');
+    } else Alert.alert('Não foi possível salvar as configurações. Tente novamente mais terde.');
   };
 
   const onValueChange = (key, value) => {

@@ -35,7 +35,7 @@ export const HistoricPaymentComponent = (props) => {
       const arr = resp.data.tabela.map((obj) => (obj = { ...obj, valorParcela: obj.TabelaPrice.Parcela.toFixed(2) }));
 
       setFatura(arr);
-    } else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    } else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   };
 
   const getValorParcela = (item) => {
@@ -55,7 +55,7 @@ export const HistoricPaymentComponent = (props) => {
     const resp = await Request.GET({ url: UrlTomadorFatura(data.SolicitacaoId._id) });
 
     if (resp.status === 200) getValorParcela(resp.data);
-    else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   };
 
   const handlerContent = () => {

@@ -8,7 +8,7 @@ import { Loading } from '../../components';
 
 import { Request, UrlInfoInvLista } from '../../services';
 
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 
 export const CCBsListComponent = (props) => {
   // states
@@ -48,7 +48,7 @@ export const CCBsListComponent = (props) => {
       list = sort(list);
 
       setList(list);
-    } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    } else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   };
 
   // effects

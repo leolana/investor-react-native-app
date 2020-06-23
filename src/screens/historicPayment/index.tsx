@@ -11,6 +11,7 @@ import { Item } from './components';
 import { PMT } from '../../utils';
 
 import { Loading } from '../../components';
+import { Alert } from 'react-native';
 
 export const HistoricPaymentComponent = (props) => {
   // props
@@ -34,7 +35,7 @@ export const HistoricPaymentComponent = (props) => {
       const arr = resp.data.tabela.map((obj) => (obj = { ...obj, valorParcela: obj.TabelaPrice.Parcela.toFixed(2) }));
 
       setFatura(arr);
-    } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    } else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   };
 
   const getValorParcela = (item) => {
@@ -54,13 +55,16 @@ export const HistoricPaymentComponent = (props) => {
     const resp = await Request.GET({ url: UrlTomadorFatura(data.SolicitacaoId._id) });
 
     if (resp.status === 200) getValorParcela(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   };
 
   const handlerContent = () => {
     const { GerouBoletosPagamento } = data.SolicitacaoId;
 
-    if (!GerouBoletosPagamento) return <Item data={'none'} />;
+    // const defaultData = { IndiceFatura: 0, valorParcela: null, Boleto: { due_date: null } };
+
+    // if (!GerouBoletosPagamento) return <Item data={defaultData} />;
+    if (!GerouBoletosPagamento) return Alert.alert('Essa oportunidade não possui boletos gerados');
     else if (faturas !== null)
       return faturas.map((item, index) => <Item showBorder={index !== faturas.length - 1} data={item} />);
   };

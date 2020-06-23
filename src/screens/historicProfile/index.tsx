@@ -32,6 +32,7 @@ import {
 import { LinkList } from '../../components';
 
 import { Request, UrlSolicitacaoReservaPegar } from '../../services';
+import { Footer } from './components';
 
 export const HistoricProfileComponent = (props) => {
   const { navigation } = props;
@@ -65,8 +66,6 @@ export const HistoricProfileComponent = (props) => {
     if (data.StatusBoleto === 'paid') setStatusBoleto('Pago');
     else if (data.StatusBoleto === 'pending') setStatusBoleto('Pendente');
   };
-
-  console.log(data);
 
   useEffect(() => {
     getStatus();
@@ -132,7 +131,8 @@ export const HistoricProfileComponent = (props) => {
           <ItemTitle>Data do investimento</ItemTitle>
           <ItemText>{formatDate(data.Created)}</ItemText>
         </Item>
-      </ScrollView>
+        {/* <Footer data={reserve} loading={reserve === null} /> */}
+      </ScrollView> 
     </SafeAreaView>
   );
 };
@@ -140,6 +140,6 @@ export const HistoricProfileComponent = (props) => {
 export const HistoricProfile = {
   screen: HistoricProfileComponent,
   navigationOptions: {
-    headerTitle: 'UM ID',
+    headerTitle: 'Detalhes de CCB',
   },
 };

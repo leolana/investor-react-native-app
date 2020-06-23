@@ -12,7 +12,7 @@ export const Text = styled.Text`
   padding: 2px;
   align-self: stretch;
   text-align: ${(props) => props.textAlign || 'center'};
-  width: 180px;
+  width: 70%;
   font-weight: ${(props) => props.fontWeight || 'normal'};
   font-size: ${(props) => props.fontSize || 16}px;
   color: ${white};

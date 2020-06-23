@@ -46,7 +46,7 @@ export const MenuComponent = (props) => {
             {renderIconBell()}
           </Item> */}
 
-          <Item title="Meu histórico" route="Historic">
+          <Item title="Histórico de Investimento" route="Historic">
             <IconOfficeArchive fill={white} />
           </Item>
 

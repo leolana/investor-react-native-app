@@ -42,21 +42,21 @@ export const MenuComponent = (props) => {
 
       <View colors={[dusk, twilight]}>
         <ViewList>
-          <Item title="Notificações" route="Notifications">
+          {/* <Item title="Notificações" route="Notifications">
             {renderIconBell()}
-          </Item>
+          </Item> */}
 
           <Item title="Meu histórico" route="Historic">
             <IconOfficeArchive fill={white} />
           </Item>
 
-          <Item title="Estatísticas" route="Statistics">
+          {/* <Item title="Estatísticas" route="Statistics">
             <IconPieChart fill={white} />
           </Item>
 
           <Item title="Calculadora" route="Calculator">
             <IconCalculator fill={white} />
-          </Item>
+          </Item> */}
 
           <Item title="Atendimento" route={UrlIouuAjuda}>
             <IconBubbleDialog fill={white} />

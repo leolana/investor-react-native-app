@@ -10,6 +10,8 @@ import { OpportunitiesCard } from './components';
 
 import { MessageBox } from '../../components';
 
+import { NavigationEvents } from 'react-navigation';
+
 export const PageOpportunities: React.FC = (props) => {
   // props
 
@@ -125,12 +127,14 @@ export const PageOpportunities: React.FC = (props) => {
     );
   };
 
+  const resetData = () => {
+    setPage(1);
+    setOpportunities([]);
+  }
   // effects
 
   useEffect(() => {
-    setPage(1);
-
-    setOpportunities([]);
+    resetData()
   }, [filter]);
 
   useEffect(() => {
@@ -147,6 +151,7 @@ export const PageOpportunities: React.FC = (props) => {
 
   return (
     <SafeAreaView>
+      <NavigationEvents onDidFocus={() => resetData() }/>
       <MessageBox />
 
       <FlatList

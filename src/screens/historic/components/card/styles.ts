@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { black, greyDD } from '../../../../assets/colors';
+import { black, greyDD, grey99, black55 } from '../../../../assets/colors';
 
 import { IconBack } from '../../../../assets/icons';
 
@@ -25,7 +25,6 @@ export const Card = styled.View`
 
 export const Header = styled.View`
   flex-direction: row;
-  padding: 5px;
   height: 27px;
 `;
 
@@ -45,9 +44,16 @@ export const ScoreArea = styled.View`
 `;
 
 export const Text = styled.Text`
-  color: ${(props) => props.color || black};
+  color: ${(props) => props.color || grey99};
   font-size: 14px;
-  font-family: ${(props) => props.fontFamily || 'OpenSans-Bold'};
+  font-family: ${(props) => props.fontFamily || 'OpenSans-Regular'};
+`;
+
+export const TextItem = styled.Text`
+  color: ${black};
+  font-weight: normal;
+  font-size: 14px;
+  font-family: OpenSans-Bold;
 `;
 
 export const Body = styled.View`

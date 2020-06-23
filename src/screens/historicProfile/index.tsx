@@ -32,6 +32,7 @@ import {
 import { Request, UrlSolicitacaoReservaPegar } from '../../services';
 
 import { Footer } from './components';
+import { Alert } from 'react-native';
 
 export const HistoricProfileComponent = (props) => {
   // props
@@ -41,14 +42,13 @@ export const HistoricProfileComponent = (props) => {
   // states
 
   const [reserve, setReserve] = useState(null);
-
   // vars
 
   const data = navigation.getParam('data', null);
 
   const links = [
     {
-      title: 'Ver todos os dados da empresa',
+      title: 'Dados da empresa',
       onPress: () => navigation.navigate('Company', { data: reserve.SolicitacaoId }),
       disabled: reserve === null,
     },
@@ -65,7 +65,7 @@ export const HistoricProfileComponent = (props) => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
 
     if (resp.status === 200) setReserve(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   };
 
   // useeffects
@@ -77,7 +77,7 @@ export const HistoricProfileComponent = (props) => {
 
     fetchData();
 
-    navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` });
+    // navigation.setParams({ headerTitle: `ID #${formatCode(data.SolicitacaoId.IdOportunidade)}` });
   }, [data.SolicitacaoId.IdOportunidade, navigation]);
 
   // render
@@ -147,9 +147,7 @@ export const HistoricProfileComponent = (props) => {
 
 export const HistoricProfile = {
   screen: HistoricProfileComponent,
-  navigationOptions: ({ navigation }) => {
-    return {
-      headerTitle: navigation.getParam('headerTitle', 'ID# '),
-    };
+  navigationOptions: {
+    headerTitle: '',
   },
 };

@@ -38,11 +38,11 @@ export const FooterComponent = (props) => {
       onPress: () => navigation.navigate('FinancialIndicators', { data }),
       disabled: false,
     },
-    {
-      title: 'Índices complementares',
-      onPress: () => navigation.navigate('ComplementaryIndicators', { data }),
-      disabled: !(data.Empresa.IndicesFinanceiros.length > 0),
-    },
+    // {
+    //   title: 'Índices complementares',
+    //   onPress: () => navigation.navigate('ComplementaryIndicators', { data }),
+    //   disabled: data.Empresa.IndicesFinanceiros.length <= 0,
+    // },
     {
       title: 'Informações sobre sócios',
       onPress: () => navigation.navigate('SocioInformation', { data }),

@@ -9,6 +9,8 @@ import { SignUpUser } from '../../screens/signUpUser';
 
 import { SignUpSuccess } from '../../screens/signUpSuccess';
 
+import { recuperarSenha } from '../../screens/recuperarSenha';
+
 // vars
 
 const mainConfig = {
@@ -33,6 +35,7 @@ export const PublicRoutes = createStackNavigator(
     Login,
     SignUpUser,
     SignUpSuccess,
+    recuperarSenha,
   },
   mainConfig,
 );

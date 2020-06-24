@@ -8,7 +8,7 @@ import { Alert } from 'react-native';
 const getAccountData = async () => {
   const resp = await Request.GET({ url: UrlContaPegar, header: 'bearer' });
 
-  console.log('TA AQUI Ó', resp);
+  console.log('TA AQUI Ó', resp.data);
 
   const { status, data } = resp;
 

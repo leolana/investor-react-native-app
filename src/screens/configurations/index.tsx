@@ -13,32 +13,24 @@ import { Request, UrlPerfilConfigNotificacaoSalvar } from '../../services';
 export const ConfigurationsComponent = () => {
   // states
 
-  const [config, setConfig] = useState({
-    EmailNewsletter: false,
-    EmailOportunidades: false,
-    EmailRepagamento: false,
-    SmsOportunidades: false,
-    SmsRepagamento: false,
-    WhatsOportunidates: false,
-    WhatsRepagamento: false,
-    SaqueAutomatico: false,
-  });
-
-  // vars
-
   const dispatch = useDispatch();
 
   const accountData = useSelector((store) => store.account.accountData);
 
+  const notifications = accountData.NotificacoesInvestidor;
+
+  const [config, setConfig] = useState({
+    EmailNewsletter: notifications.EmailNewsletter,
+    EmailOportunidades: notifications.EmailOportunidades,
+    EmailRepagamento: notifications.EmailRepagamento,
+    SmsOportunidades: notifications.SmsOportunidades,
+    SmsRepagamento: notifications.SmsRepagamento,
+    WhatsOportunidates: notifications.WhatsOportunidates,
+    WhatsRepagamento: notifications.WhatsRepagamento,
+    SaqueAutomatico: notifications.SaqueAutomatico,
+  });
+
   // methods
-
-  const onValueChange = (key, value) => {
-    const obj = { ...config };
-
-    obj[key] = value;
-
-    setConfig(obj);
-  };
 
   const saveConfig = async () => {
     const data = {
@@ -55,21 +47,20 @@ export const ConfigurationsComponent = () => {
     } else alert('Ocorreu um erro ao tentar salvar as configurações. Tente novamente mais terde.');
   };
 
+  const onValueChange = (key, value) => {
+    const obj = { ...config };
+
+    obj[key] = value;
+
+    setConfig(obj);
+
+    saveConfig();
+  };
+
   // effects
-
   useEffect(() => {
-    if (accountData.NotificacoesInvestidor === undefined || accountData.NotificacoesInvestidor === null) return;
-
-    setConfig(accountData.NotificacoesInvestidor);
-  }, [accountData]);
-
-  useEffect(() => {
-    async function updateData() {
-      await saveConfig();
-    }
-
-    updateData();
-  }, []);
+    saveConfig();
+  });
 
   // render
 
@@ -146,6 +137,6 @@ export const ConfigurationsComponent = () => {
 export const Configurations = {
   screen: ConfigurationsComponent,
   navigationOptions: {
-    headerTitle: 'Configureções',
+    headerTitle: 'Configurações',
   },
 };

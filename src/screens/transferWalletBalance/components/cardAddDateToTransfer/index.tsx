@@ -12,6 +12,8 @@ import { formatDate } from '../../../../utils';
 
 import { TouchableWithoutFeedback } from 'react-native';
 
+import { parseISO, isAfter, isBefore, isSameDay } from 'date-fns';
+
 export const CardAddDateComponent = (props) => {
   // Props
 
@@ -72,7 +74,7 @@ export const CardAddDateComponent = (props) => {
 
   const showDialogOnAndroid = async () => {
     const config = {
-      date: new Date(2020, 4, 25),
+      date: new Date(),
       mode: 'spinner',
     };
 
@@ -111,7 +113,13 @@ export const CardAddDateComponent = (props) => {
   }, [index]);
 
   useEffect(() => {
-    if (new Date(date) > new Date()) setDateisValid(true);
+    // const date = formatDate();
+    const mydate = new Date(date);
+
+    const today = new Date();
+
+    if (isSameDay(mydate, today)) return setDateisValid(true);
+    else if (isAfter(mydate, today)) return setDateisValid(true);
     else setDateisValid(false);
   }, [date]);
 
@@ -120,8 +128,6 @@ export const CardAddDateComponent = (props) => {
   return (
     <Animated.View style={{ opacity: opacity }}>
       <Title style={setAnimatedStyle('title')}>Transferir quando?</Title>
-      <Text style={setAnimatedStyle('text')}>Transferir hoje</Text>
-
       <Animated.View style={setAnimatedStyle('input')}>
         <TouchableWithoutFeedback onPress={() => showDialog()}>
           <TextInput>{formatDate(String(new Date(date)))}</TextInput>

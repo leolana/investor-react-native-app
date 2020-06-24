@@ -24,6 +24,8 @@ export const InvestComponent = (props) => {
 
   const [walletBalance, setWalletBalance] = useState(null);
 
+  const [boleto, setBoleto] = useState('');
+
   const [step, setStep] = useState(0);
 
   // Methods
@@ -43,6 +45,10 @@ export const InvestComponent = (props) => {
     setStep(stepIndex);
   };
 
+  const onBoletoChange = (boleto) => {
+    setBoleto(boleto);
+  };
+
   const handleStep = () => {
     const innitial = (
       <InnitialStep data={{ ...data, walletBalance }} onValueChange={onValueChange} onStepChange={onStepChange} />
@@ -53,10 +59,11 @@ export const InvestComponent = (props) => {
         data={{ ...data, value, reinvestmentValue }}
         onDataChange={() => null}
         onStepChange={onStepChange}
+        onBoletoChange={onBoletoChange}
       />
     );
 
-    const payment = <PaymentStep data={{ ...data, value, reinvestmentValue }} />;
+    const payment = <PaymentStep data={{ ...data, value, reinvestmentValue, boleto }} />;
 
     const steps = [innitial, confirmation, payment];
 

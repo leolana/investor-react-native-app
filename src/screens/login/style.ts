@@ -29,7 +29,6 @@ export const Description = styled.Text`
   color: ${grey33};
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 40px;
   color: ${tealish};
 `;
 
@@ -63,3 +62,14 @@ export const Error = styled.Text`
     margin-top: -30px;
     margin-bottom: 30px;
 `;
+
+export const TextLine = styled.Text`
+  font-size: 12px;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  text-align: justify;
+  color: ${grey99};
+`;
+
+export const TouchableOpacity = styled.TouchableOpacity`
+`

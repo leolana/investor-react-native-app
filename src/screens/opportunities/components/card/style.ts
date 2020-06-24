@@ -69,7 +69,7 @@ export const Container = styled.View`
 
 export const Box = styled.View`
   border-radius: 5px;
-  width: 80px;
+  width: 24%;
   height: 60px;
   background-color: ${greyEE};
 `;
@@ -83,7 +83,7 @@ export const Center = styled.View`
 
 export const Subtitle = styled.Text`
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   font-family: OpenSans-Bold;
 `;
 

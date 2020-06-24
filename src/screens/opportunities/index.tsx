@@ -10,6 +10,8 @@ import { OpportunitiesCard } from './components';
 
 import { MessageBox } from '../../components';
 
+import { NavigationEvents } from 'react-navigation';
+
 export const PageOpportunities: React.FC = (props) => {
   // props
 
@@ -27,9 +29,57 @@ export const PageOpportunities: React.FC = (props) => {
 
   // vars
 
-  const filter = navigation.getParam('filter', { value: 'A-B-C-D-E-HR' }).value;
+  const filter = navigation.getParam('filter', { value: 'AA-A-B-C-D-E-HR' }).value;
 
   // methods
+
+  const diffDate = (d2) => {
+    const miliSecs = new Date(d2) - new Date();
+
+    const diffDays = Number.parseInt(miliSecs / 1000 / 60 / 60 / 24) + 1;
+
+    if (diffDays <= 0) return 'encerrado';
+
+    return diffDays + ' dias';
+  };
+
+  const removePublicados = (arr) => {
+    const remove = [];
+    for (let index = 0; index < arr.length; index++) {
+      arr[index].StatusAnalise == 'PUBLICADO' && diffDate(arr[index].FimCaptacao) != 'encerrado'
+        ? remove.unshift(index)
+        : '';
+    }
+    remove.forEach((element) => {
+      arr.splice(element, 1);
+    });
+    return arr;
+  };
+  const pegaPublicados = (arr) => {
+    const publicado = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].StatusAnalise == 'PUBLICADO' && diffDate(arr[i].FimCaptacao) != 'encerrado') {
+        const porcentagem = (arr[i].ValorCaptado / arr[i].Valor) * 100;
+        publicado.push({ ...arr[i], porcentagem });
+      }
+    }
+    return publicado;
+  };
+  const porcentagemSort = (arr) => {
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i].porcentagem > arr[i + 1].porcentagem) {
+          const temp = arr[i];
+          arr[i] = arr[i + 1];
+          arr[i + 1] = temp;
+          swapped = true;
+        }
+      }
+    } while (swapped);
+    return arr;
+  };
 
   const loadOpportunities = async () => {
     if (page > pageTotal) return;
@@ -46,11 +96,18 @@ export const PageOpportunities: React.FC = (props) => {
     if (resp.status === 200) {
       setPageTotal(resp.data.Paginas);
 
-      setOpportunities([...opportunities, ...resp.data.ItemListagemSolicitacoes]);
+      let oportunidades = resp.data.ItemListagemSolicitacoes;
+      const publicados = pegaPublicados(oportunidades);
+      oportunidades = removePublicados(oportunidades);
+      porcentagemSort(publicados);
+      oportunidades.unshift(...publicados);
+
+      console.log(oportunidades);
+      setOpportunities([...opportunities, ...oportunidades]);
 
       setPage(page + 1);
     } else {
-      navigation.setParams({ filter: 'A-B-C-D-E-HR' });
+      navigation.setParams({ filter: 'AA-A-B-C-D-E-HR' });
 
       alert('Nenhuma oportunidade foi encontrada.');
     }
@@ -70,12 +127,14 @@ export const PageOpportunities: React.FC = (props) => {
     );
   };
 
+  const resetData = () => {
+    setPage(1);
+    setOpportunities([]);
+  }
   // effects
 
   useEffect(() => {
-    setPage(1);
-
-    setOpportunities([]);
+    resetData()
   }, [filter]);
 
   useEffect(() => {
@@ -92,6 +151,7 @@ export const PageOpportunities: React.FC = (props) => {
 
   return (
     <SafeAreaView>
+      <NavigationEvents onDidFocus={() => resetData() }/>
       <MessageBox />
 
       <FlatList
@@ -121,7 +181,7 @@ export const Opportunities = {
         { text: 'Todos', value: 'A-B-C-D-E-HR' },
       ],
       onValueChange: (value) => navigation.setParams({ filter: value }),
-      data: navigation.getParam('filter', 'A-B-C-D-E-HR'),
+      data: navigation.getParam('filter', 'AA-A-B-C-D-E-HR'),
     };
 
     return {

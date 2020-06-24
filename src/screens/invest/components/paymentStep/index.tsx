@@ -31,7 +31,7 @@ import { Request, UrlInvPegar } from '../../../../services';
 
 import { useSelector } from 'react-redux';
 
-import { TouchableOpacity, Dimensions } from 'react-native';
+import { TouchableOpacity, Dimensions, Clipboard, Alert } from 'react-native';
 
 const { width } = Dimensions.get('screen');
 
@@ -69,6 +69,11 @@ export const PaymentStepComponent = (props) => {
     }
   };
 
+  const copyToClipboard = () => {
+    Clipboard.setString(data.boleto);
+    Alert.alert('Código copiado!');
+  };
+
   // Effects
 
   useEffect(() => {
@@ -78,7 +83,7 @@ export const PaymentStepComponent = (props) => {
 
     fetchData();
 
-    props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
+    // props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
   }, [props.navigation]);
 
   // Render
@@ -113,10 +118,10 @@ export const PaymentStepComponent = (props) => {
       <Title>Forma de pagamento: BOLETO BANCÁRIO</Title>
 
       <Divisor>
-        <Printer fill="none" stroke={grey99} />
-
+        {/* <Printer fill="none" stroke={grey99} /> */}
         <ItemText>
-          Imprima o boleto e <ItemText bold={true}>pague no banco.</ItemText>
+          <ItemText bold={true}>Código do boleto</ItemText>
+          <ItemText> {data.boleto} </ItemText>
         </ItemText>
       </Divisor>
 
@@ -124,7 +129,7 @@ export const PaymentStepComponent = (props) => {
         <Devices fill="none" stroke={grey99} />
 
         <ItemText width={250} bold={true}>
-          ou page pela internet <ItemText>utilizando o código de barras do boleto.</ItemText>
+          Copie o código do seu boleto para efetuar o pagamento por meio digital
         </ItemText>
       </Divisor>
 
@@ -132,14 +137,14 @@ export const PaymentStepComponent = (props) => {
         <Calendar fill="none" stroke={grey99} />
 
         <ItemText>
-          o prazo de validade do boleto é de <ItemText bold={true}>1 dia útil</ItemText>
+          O prazo de validade do boleto é de <ItemText bold={true}>1 dia útil</ItemText>
         </ItemText>
       </Divisor>
 
-      <SpotlightTitle>Total: ${formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
+      <SpotlightTitle>Total: {formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
 
-      <Buttom>
-        <ButtomText>PAGAR BOLETO</ButtomText>
+      <Buttom onPress={() => copyToClipboard()}>
+        <ButtomText>COPIAR CÓDIGO DE BARRAS</ButtomText>
       </Buttom>
 
       <Item>

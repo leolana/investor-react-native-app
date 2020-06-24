@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { Divisor, ItemTitle, ItemText, Table, TableText, TableRow, TableSpotlightText } from './styles';
 
@@ -6,30 +6,27 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
-import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar } from '../../../../services';
-
-import { Toast } from '../../../../components';
+import { Request, UrlReservationCreate, UrlBoletoCriar, UrlRegistroDeposito, UrlRegistroDebito } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
+
+import { Alert } from 'react-native';
+
+import { Loading } from '../../../../components';
 
 export const ConfirmationStepComponent = (props) => {
   // Props
 
   const { data } = props;
+  const [loading, setLoading] = useState(false);
 
   // Methods
 
-  const getBankSlipUrl = async (id) => {
-    const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(id) });
-
-    console.log(resp);
-
-    if (resp.status === 200) return resp.data.Boleto.secure_url;
-    else return null;
-  };
-
   const invest = async () => {
+    setLoading(true);
+
     const config = {
+      Boleto: {},
       Valor: Number.parseFloat(data.value),
       ReInvestimento: Number.parseFloat(data.reinvestmentValue),
       listaEspera: data.waitingList,
@@ -41,29 +38,61 @@ export const ConfirmationStepComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log(resp);
+    const boleto = await Request.POST({
+      url: UrlBoletoCriar(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
 
-    if (resp.status !== 200) Toast.showError(resp.data.Error);
+    await Request.POST({
+      url: UrlRegistroDebito(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
+
+    await Request.POST({
+      url: UrlRegistroDeposito(),
+      data: { IDReserva: resp.data._id },
+      header: 'bearer',
+    });
+
+    if (resp.status !== 200) {
+      setLoading(false);
+      Alert.alert(resp.data.Error);
+    }
 
     if (data.waitingList) {
+      setLoading(false);
       props.navigation.navigate('OpportunitieProfile', { data });
-
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
-      const url = await getBankSlipUrl(resp.data.$__._id);
+      if (Number.parseFloat(data.value) === Number.parseFloat(data.reinvestmentValue)){
+        setLoading(false);
+        props.navigation.navigate('Opportunities');
+        props.navigation.navigate('OpportunitieProfile', { data });
+      } else if (boleto.data.linhaDigitavel !== undefined) {
+        props.onBoletoChange(boleto.data.linhaDigitavel);
 
-      props.onDataChange(url);
+        setLoading(false);
 
-      props.onStepChange(2);
+        props.onStepChange(2);
+
+        props.navigation.navigate('PaymentStepComponent', { data });
+      } else {
+        setLoading(false);
+        Alert.alert('Erro ao gerar boleto');
+        props.onStepChange(0);
+        props.navigation.navigate('OpportunitieProfile', { data });
+      }
     }
   };
 
   // Render
 
   return (
-    <>
+    <Loading loading={loading}>
       <Divisor side="up">
-        <ItemTitle>Vaor do investimento</ItemTitle>
+        <ItemTitle>Valor do investimento</ItemTitle>
         <ItemText>{formatMoney(data.value)}</ItemText>
       </Divisor>
       <Divisor side="up">
@@ -91,7 +120,7 @@ export const ConfirmationStepComponent = (props) => {
       <Buttom onPress={() => invest()}>
         <ButtomText>CONFIRMAR INVESTIMENTO</ButtomText>
       </Buttom>
-    </>
+    </Loading>
   );
 };
 

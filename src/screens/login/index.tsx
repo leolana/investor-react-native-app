@@ -8,9 +8,20 @@ import { Request, UrlLogin } from '../../services';
 
 import { storeData } from '../../utils';
 
-import { KeyboardAvoidingView, Welcome, Description, Container, Buttom, Error } from './style';
+import {
+  KeyboardAvoidingView,
+  Welcome,
+  Description,
+  Container,
+  Buttom,
+  Error,
+  TextLine,
+  TouchableOpacity,
+} from './style';
 
 import onInit from '../../store/actions/getAccountData';
+
+import { Loading } from '../../components';
 
 export const Login = (props) => {
   // props
@@ -28,6 +39,8 @@ export const Login = (props) => {
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const [isValidPassword, setIsValidPassword] = useState(true);
+
+  const [loading, setLoading] = useState(true);
 
   // vars
 
@@ -56,6 +69,7 @@ export const Login = (props) => {
     else if (hour >= 12 && hour < 18) setGreeting('Boa tarde :)');
     else if (hour >= 18 && hour < 0) setGreeting('Boa noite :)');
 
+    setLoading(false);
     return;
   };
 
@@ -65,17 +79,28 @@ export const Login = (props) => {
     const success = await onInit();
 
     if (success) navigation.navigate('Opportunities', { authenticated: true });
+
+    setLoading(false);
   };
 
   const loginRequest = async (data) => {
+    setLoading(true);
     const resp = await Request.POST({
       url: UrlLogin,
       data,
       header: 'bearer',
     });
 
-    if (resp.status === 200) loginSuccessful(resp.data);
-    else Alert.alert(resp.data.Msg);
+    console.log('resp', resp);
+    if (resp.status === 401){
+      setLoading(false);
+      Alert.alert('', 'Não foi possível acessar sua conta');
+    } else if (resp.status === 200) {
+      loginSuccessful(resp.data);
+    } else {
+      setLoading(false);
+      Alert.alert(resp.data.Msg)
+    };
   };
 
   const validateLogin = async () => {
@@ -106,11 +131,12 @@ export const Login = (props) => {
 
   // render
 
+  if (loading) return (<Loading loading={loading} />)
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <Welcome> {greeting} </Welcome>
 
-      <Description> Acesso sua conta </Description>
+      <Description> Acesse sua conta </Description>
 
       <Container>
         <ITextInput title={'E-mail'} onChangeText={(value) => setEmail(value)} onBlur={() => validateEmail()} />
@@ -125,6 +151,8 @@ export const Login = (props) => {
         />
 
         {!isValidPassword ? <Error>Esse campo não pode ter menos de 6 digitos</Error> : undefined}
+
+        <TextLine onPress={() => navigation.navigate('recuperarSenha')}>Esqueci minha senha</TextLine>
 
         <Buttom title="Entrar" onPress={() => validateLogin()} />
       </Container>

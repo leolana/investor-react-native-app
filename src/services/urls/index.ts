@@ -1,22 +1,25 @@
 const PROD = {
   BASE_URL_GO: 'https://api.iouu.com.br/',
+  BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: 'https://server-app.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-app.iouu.com.br/',
 };
 
 const TEST = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
+  BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
 
 const DESENV = {
   BASE_URL_GO: 'http://192.168.56.209:9090/',
+  BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: 'https://dashboard-desenv.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',
 };
 
-const { BASE_URL_GO, BASE_URL_NODE, BASE_URL_HUB } = TEST;
+const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
 
 // export const UrlContaPegar = `http://192.168.0.17:9090/api/v1/conta/informacoes`;
 export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`;
@@ -48,7 +51,7 @@ export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`;
 
 export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
 export const UrlCarteiraPegar = `${BASE_URL_NODE}api/v1/investimentos/meus/money`;
-export const UrlCarteiraEnviarTransferencia = `${BASE_URL_NODE}api/v1/wallet/new`;
+export const UrlCarteiraEnviarTransferencia = `${BASE_URL_GO}api/v1/wallet/agendamento/saque`;
 export const UrlCarteiraEmprestimoPegar = (investidorId, page) =>
   `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`;
 export const UrlCarteiraComprovantePegar = (investidorId) =>
@@ -75,9 +78,13 @@ export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_NODE}api/v1
 export const UrlSolicitacaoReservaInvPegar = (solicitacaoId) =>
   `${BASE_URL_NODE}api/v1/solicitacoes/${solicitacaoId}/reserva-investimento`;
 export const UrlSolicitacaoReservaInvCancelar = (solicitacaoId) =>
-  `${BASE_URL_NODE}api/v1/reserva-investimentos-CANCEL/${solicitacaoId}`;
+  `${BASE_URL_GO}api/v1/reserva/cancelar/${solicitacaoId}`;
 export const UrlSolicitacaoReservaInvCriar = (solicitacaoId) =>
-  `${BASE_URL_NODE}api/v1/solicitacoes/${solicitacaoId}/reserva-investimento`;
+  `${BASE_URL_GO}api/v1/reserva/criar/solicitacao/${solicitacaoId}`;
+
+export const UrlBoletoCriar = () => `${BASE_URL_PAY}api/v1/ABC/investidor/criar`;
+export const UrlRegistroDeposito = () => `${BASE_URL_PAY}api/v1/reserva/criar/deposito`;
+export const UrlRegistroDebito = () => `${BASE_URL_PAY}api/v1/reserva/criar/debito`;
 
 export const UrlReservationCreate = (solicitacaoId) =>
   `${BASE_URL_GO}api/v1/reserva/criar/solicitacao/${solicitacaoId}`;

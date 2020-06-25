@@ -6,14 +6,14 @@ const PROD = {
 };
 
 const TEST = {
-  BASE_URL_GO: 'http://192.168.15.14:9090/',
+  BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: '#',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
 
 const DESENV = {
-  BASE_URL_GO: 'http://192.168.56.209:9090/',
+  BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
   BASE_URL_NODE: 'https://dashboard-desenv.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',

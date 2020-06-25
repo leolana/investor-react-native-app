@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Bottom, BottomText, InfoText, TextInput } from './styles';
+import { Bottom, BottomText, InfoText, TextInput, SafeAreaView, ScrollView } from './styles';
 
 import { white, grey66 } from '../../../../assets/colors';
 
@@ -11,6 +11,7 @@ import { setInputError } from '../../../../store/actions';
 import { Request, UrlSenhaVerificar, UrlCCBAssinaturaAtualizar } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
+import { Alert } from 'react-native';
 
 export const ConfirmPasswordComponent = (props) => {
   // props
@@ -38,19 +39,21 @@ export const ConfirmPasswordComponent = (props) => {
 
     console.log(resp, data);
 
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       navigation.navigate('CCBsList');
 
       navigation.navigate('CCBSignSuccess');
-    } else alert('Não foi possível assinar a CCB no momneto. Tente novamente mais tarde.');
+    } else Alert.alert('Não foi possível assinar a CCB no momneto.', 'Tente novamente mais tarde.');
   };
 
   const checkPassword = async () => {
     const data = { password, id: userId };
 
-    const resp = await ({ url: UrlSenhaVerificar, data });
+    const resp = await { url: UrlSenhaVerificar, data };
 
-    if (resp.status === 200) {
+    console.log('VE SE VAI', resp);
+
+    if (resp.status == 200) {
       signCCB();
 
       notifyError('password', '');
@@ -64,28 +67,30 @@ export const ConfirmPasswordComponent = (props) => {
   }, [password]);
 
   return (
-    <>
-      <InfoText color={grey66}>
-        Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
-      </InfoText>
+    <SafeAreaView>
+      <ScrollView>
+        <InfoText color={grey66}>
+          Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
+        </InfoText>
 
-      <TextInput
-        id="password"
-        secureTextEntry={true}
-        onChangeText={(value) => setPassword(value)}
-        placeholder="Sua senha aqui"
-      />
+        <TextInput
+          id="password"
+          secureTextEntry={true}
+          onChangeText={(value) => setPassword(value)}
+          placeholder="Sua senha aqui"
+        />
 
-      <Bottom onPress={() => checkPassword()}>
-        <BottomText color={white} bold={true}>
-          ASSINAR
-        </BottomText>
-      </Bottom>
+        <Bottom onPress={() => checkPassword()}>
+          <BottomText color={white} bold={true}>
+            ASSINAR
+          </BottomText>
+        </Bottom>
 
-      <Bottom background="transparent" onPress={() => navigation.goBack()}>
-        <BottomText>Cancelar</BottomText>
-      </Bottom>
-    </>
+        <Bottom background="transparent" onPress={() => navigation.goBack()}>
+          <BottomText>Cancelar</BottomText>
+        </Bottom>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

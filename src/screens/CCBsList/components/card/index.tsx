@@ -41,7 +41,7 @@ export const CardComponents = (props) => {
         </Body>
 
         <Footer>
-          <Buttom disabled={data.AssinouCCB} onPress={() => navigation.navigate('CCBSign', { data })}>
+          <Buttom disabled={!data.AssinouCCB} onPress={() => navigation.navigate('CCBSign', { data })}>
             <ButtomText>{data.AssinouCCB ? 'ASSINADO' : 'ASSINAR'}</ButtomText>
           </Buttom>
         </Footer>

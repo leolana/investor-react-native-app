@@ -69,6 +69,8 @@ export const HistoricProfileComponent = (props) => {
   const getStatus = () => {
     if (data.StatusBoleto === 'paid') setStatusBoleto('Pago');
     else if (data.StatusBoleto === 'pending') setStatusBoleto('Pendente');
+    else if (data.StatusBoleto === 'expired') setStatusBoleto('Expirado');
+    else if (data.StatusBoleto === 'canceled') setStatusBoleto('Cancelado');
   };
 
   useEffect(() => {

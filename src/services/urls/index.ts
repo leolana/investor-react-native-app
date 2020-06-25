@@ -23,7 +23,6 @@ const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
 
 // NODE URL
 export const UrlSenhaVerificar = `${BASE_URL_NODE}api/v1/emprestimos/verifica-senha`;
-export const UrlRecuperarSenha = `${BASE_URL_NODE}api/v1/send-reset-password-email`;
 
 export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
 
@@ -35,9 +34,11 @@ export const UrlPerfilConfigNotificacaoSalvar = `${BASE_URL_NODE}api/v1/user/not
 // FIM NODE
 
 // Substituidas
+export const UrlRecuperarSenha = `${BASE_URL_GO}send-reset-password-email`;
+
 export const UrlPerfilSenhaAlterar = `${BASE_URL_GO}api/v1/usuario/atualizar/senha`;
 
-export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados/`;
+export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
 export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
 
 export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_GO}api/v1/reserva/${reservaId}`;
@@ -45,7 +46,6 @@ export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}a
 export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
 // Fim substituidas
 
-// export const UrlContaPegar = `http://192.168.0.17:9090/api/v1/conta/informacoes`;
 export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`;
 
 export const UrlLogin = `${BASE_URL_GO}sign_in`;

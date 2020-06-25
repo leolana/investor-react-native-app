@@ -69,8 +69,12 @@ export const ChangePasswordComponent = () => {
       Email: email,
     };
 
-    const resp = await Request.PUT({ url: UrlPerfilSenhaAlterar, data, header:'bearer',});
-
+    const resp = await Request.PUT({
+      url: UrlPerfilSenhaAlterar,
+      data,
+      header:'bearer',
+    });
+    console.log(resp)
     if (resp.status === 200) Alert.alert('Senha alterada com sucesso.');
     else Alert.alert(resp.data.Msg);
   };

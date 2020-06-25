@@ -33,19 +33,13 @@ export const ChangePasswordComponent = () => {
 
   const inputErrors = useSelector((inputError) => inputError);
 
-  console.log('ERRORS', inputErrors);
-
-  const userId = useSelector((store) => store.account.accountData.UsuarioId);
+  const email = useSelector((store) => store.account.accountData.Email);
 
   // methods
 
   const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
   const validatePassword = (item: string) => {
-    console.log('MEU ITEM', item);
-
-    console.log(typeof item);
-
     if (item === 'oldPassword') {
       if (oldPassword.length < 6) {
         setIsValidOldPassword(false);
@@ -68,16 +62,17 @@ export const ChangePasswordComponent = () => {
   };
 
   const changePassword = async () => {
+    console.log('entrou')
     const data = {
-      senha: newPassword,
-      senhaAtual: oldPassword,
-      id: userId,
+      Password: oldPassword,
+      NewPassword: newPassword,
+      Email: email,
     };
 
-    const resp = await Request.POST({ url: UrlPerfilSenhaAlterar, data });
+    const resp = await Request.PUT({ url: UrlPerfilSenhaAlterar, data, header:'bearer',});
 
     if (resp.status === 200) Alert.alert('Senha alterada com sucesso.');
-    else Alert.alert('Os Campos não conferem.');
+    else Alert.alert(resp.data.Msg);
   };
 
   // effects

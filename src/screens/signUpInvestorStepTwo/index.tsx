@@ -75,15 +75,19 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       header: 'bearer',
     });
 
-    console.log('passo 2', resp.data);
     if (resp.status === 200) {
       props.navigation.navigate('SignUpInvestorStepThree');
     }
   };
 
   async function getStates() {
-    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
-
+    const resp = await Request.GET({
+      url: UrlLocalizacaoEstadosPegar,
+      data: {},
+      header: 'bearer',
+    });
+    console.log(UrlLocalizacaoEstadosPegar)
+    console.log("Estados ", resp.data)
     if (resp.status === 200) setApiState(resp.data);
     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   }
@@ -91,11 +95,12 @@ export const SignUpInvestorStepTwoComponent = (props) => {
   async function getCities() {
     const resp = await Request.GET({
       url: UrlLocalizacaoCidadesPegar(Naturalidade),
+      data: {},
+      header: 'bearer',
     });
-
-    if (resp.status === 200) {
+    if (resp.status === 200 && resp.data !== null) {
       setApiCity(resp.data);
-    } else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    }
   }
 
   function mapApiCity() {

@@ -4,11 +4,11 @@ import { SafeAreaView, Row, Text, FieldInput, FieldText, Arrow, Buttom, ButtomTe
 
 import { grey99 } from '../../assets/colors';
 
-import { formatDate } from '../../utils';
-
 import { Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('screen');
+
+import DatePicker from 'react-native-datepicker';
 
 export const HistoricFilterComponent = (props) => {
   // props
@@ -45,20 +45,10 @@ export const HistoricFilterComponent = (props) => {
       { text: 'D', value: 'D' },
       { text: 'E', value: 'E' },
       { text: 'HR', value: 'HR' },
-      { text: 'Todos', value: 'A-B-C-D-E-HR' },
+      { text: 'Todos', value: 'AA-A-B-C-D-E-HR' },
     ],
     onValueChange: (value) => setScore(value),
     data: score,
-  };
-
-  const dateFromParams = {
-    onDateChanged: (value) => setDateFrom(value),
-    date: dateFrom,
-  };
-
-  const dateToParams = {
-    onDateChanged: (value) => setDateTo(value),
-    date: dateTo,
   };
 
   // methods
@@ -74,6 +64,14 @@ export const HistoricFilterComponent = (props) => {
     navigation.navigate('Historic', { filter });
   };
 
+  const changeFrom = (value) => {
+    setDateFrom(value);
+  };
+
+  const changeTo = (value) => {
+    setDateTo(value);
+  };
+
   // render
 
   return (
@@ -81,28 +79,50 @@ export const HistoricFilterComponent = (props) => {
       <Text>Tipo de investimento:</Text>
       <FieldInput onPress={() => navigation.navigate('Picker', typeParams)}>
         <FieldText>{type.text}</FieldText>
-        <Arrow stroke={grey99} width={14} height={14} />
       </FieldInput>
 
       <Text>Data do investimento:</Text>
       <Row>
-        <FieldInput onPress={() => navigation.navigate('DatePicker', dateFromParams)} width={width / 2 - 32}>
-          <FieldText>{formatDate(dateFrom)}</FieldText>
-          <Arrow stroke={grey99} width={14} height={14} />
+        <FieldInput width={width / 2 - 32}>
+          <DatePicker
+            format="DD/MM/YYYY"
+            date={dateFrom}
+            customStyles={{
+              dateInput: {
+                display: 'none',
+              },
+              dateIcon: {
+                display: 'none',
+              },
+            }}
+            onDateChange={changeFrom}
+          />
+          <FieldText>{dateFrom}</FieldText>
         </FieldInput>
 
         <Text> a </Text>
 
-        <FieldInput onPress={() => navigation.navigate('DatePicker', dateToParams)} width={width / 2 - 32}>
-          <FieldText>{formatDate(dateTo)}</FieldText>
-          <Arrow stroke={grey99} width={14} height={14} />
+        <FieldInput width={width / 2 - 32}>
+          <DatePicker
+            format="DD/MM/YYYY"
+            date={dateFrom}
+            customStyles={{
+              dateInput: {
+                display: 'none',
+              },
+              dateIcon: {
+                display: 'none',
+              },
+            }}
+            onDateChange={changeTo}
+          />
+          <FieldText width={width / 2 - 32}>{dateTo}</FieldText>
         </FieldInput>
       </Row>
 
       <Text>Score:</Text>
       <FieldInput onPress={() => navigation.navigate('Picker', scoreParams)}>
         <FieldText>{score.text}</FieldText>
-        <Arrow stroke={grey99} width={14} height={14} />
       </FieldInput>
 
       <Buttom onPress={() => applyFilter()}>

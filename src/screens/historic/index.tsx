@@ -12,6 +12,9 @@ import { Loading } from '../../components';
 
 import { IconFilter } from '../../assets/icons';
 
+import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { FORMERR } from 'dns';
+
 export const HistoricComponent = (props) => {
   // props
 
@@ -23,6 +26,8 @@ export const HistoricComponent = (props) => {
 
   const [hasItem, setHasItem] = useState(true);
 
+  const [hasResult, setHasResult] = useState(true);
+
   const [loading, setLoading] = useState(false);
 
   // vars
@@ -32,7 +37,7 @@ export const HistoricComponent = (props) => {
   // methods
 
   const applyDefaultFilter = (list) => {
-    list = list.filter(({ SolicitacaoId, Status }) => !(SolicitacaoId.StatusAnalise == 'ENCERRADO' && Status == 2));
+    list = list.filter(({ SolicitacaoId, Status }) => !(SolicitacaoId.StatusAnalise === 'ENCERRADO' && Status === 2));
 
     return list;
   };
@@ -55,29 +60,65 @@ export const HistoricComponent = (props) => {
   const applyTypeFilter = (list) => {
     const { type } = filter;
 
-    return list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo == type.value);
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo === type.value);
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyDateFromFilter = (list) => {
-    const { dateFrom } = filter;
+    let { dateFrom } = filter;
 
-    const date = dateFrom.toISOString();
+    dateFrom = new Date(dateFrom);
 
-    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+    console.log('A DATRE FORMERR', dateFrom);
+
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ Created }) => {
+      if (isSameDay(dateFrom, Created)) console.log('FOI ESSA MERDA');
+      else if (isBefore(dateFrom, Created)) console.log('FOI ESSA MERDA');
+    });
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyDateToFilter = (list) => {
-    const { dateTo } = filter;
+    let { dateTo } = filter;
 
-    const date = dateTo.toISOString();
+    dateTo = new Date(dateTo);
 
-    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ Created }) => {
+      if (isSameDay(dateTo, Created)) console.log('FOI ESSA MERDA');
+      else if (isBefore(dateTo, Created)) console.log('FOI ESSA MERDA');
+    });
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyScoreFilter = (list) => {
     const { score } = filter;
 
-    return (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score == score.value));
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score === score.value));
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyFilter = async () => {
@@ -102,7 +143,7 @@ export const HistoricComponent = (props) => {
 
     if (dateTo != null) list = applyDateToFilter(list);
 
-    if (score.value != '') list = applyScoreFilter(list);
+    if (score.value !== '') list = applyScoreFilter(list);
 
     setHistoricList(list.reverse());
   };
@@ -131,6 +172,7 @@ export const HistoricComponent = (props) => {
     <Loading loading={loading}>
       <SafeAreaView>
         {!hasItem && <Label>Você ainda não realizou investimentos</Label>}
+        {!hasResult && <Label>Não encontramos nenhum resultado na sua busca</Label>}
         <FlatList data={historicList} renderItem={renderHistoryCard} key={(item) => item.id} />
       </SafeAreaView>
     </Loading>
@@ -141,11 +183,11 @@ export const Historic = {
   screen: HistoricComponent,
   navigationOptions: ({ navigation }) => {
     return {
-      // headerRight: () => (
-      //   <TouchableOpacity onPress={() => navigation.navigate('HistoricFilter')}>
-      //     <IconFilter />
-      //   </TouchableOpacity>
-      // ),
+      headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('HistoricFilter')}>
+          <IconFilter />
+        </TouchableOpacity>
+      ),
       headerTitle: 'Histórico de Investimento',
     };
   },

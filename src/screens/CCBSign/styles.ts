@@ -55,3 +55,7 @@ export const BottomText = styled.Text`
   font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => props.color || grey66};
 `;
+
+export const ScrollView = styled.ScrollView`
+  padding: 16px;
+`;

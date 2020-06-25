@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Bottom, BottomText, InfoText, TextInput, SafeAreaView, ScrollView } from './styles';
+import { Bottom, BottomText, InfoText, TextInput } from './styles';
 
 import { white, grey66 } from '../../../../assets/colors';
 
@@ -67,30 +67,28 @@ export const ConfirmPasswordComponent = (props) => {
   }, [password]);
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <InfoText color={grey66}>
-          Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
-        </InfoText>
+    <>
+      <InfoText color={grey66}>
+        Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
+      </InfoText>
 
-        <TextInput
-          id="password"
-          secureTextEntry={true}
-          onChangeText={(value) => setPassword(value)}
-          placeholder="Sua senha aqui"
-        />
+      <TextInput
+        id="password"
+        secureTextEntry={true}
+        onChangeText={(value) => setPassword(value)}
+        placeholder="Sua senha aqui"
+      />
 
-        <Bottom onPress={() => checkPassword()}>
-          <BottomText color={white} bold={true}>
-            ASSINAR
-          </BottomText>
-        </Bottom>
+      <Bottom onPress={() => checkPassword()}>
+        <BottomText color={white} bold={true}>
+          ASSINAR
+        </BottomText>
+      </Bottom>
 
-        <Bottom background="transparent" onPress={() => navigation.goBack()}>
-          <BottomText>Cancelar</BottomText>
-        </Bottom>
-      </ScrollView>
-    </SafeAreaView>
+      <Bottom background="transparent" onPress={() => navigation.goBack()}>
+        <BottomText>Cancelar</BottomText>
+      </Bottom>
+    </>
   );
 };
 

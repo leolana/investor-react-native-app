@@ -83,8 +83,6 @@ export const InnitialStepComponent = (props) => {
       value += value;
     }
 
-    if (max < values[0].value) return false;
-
     if (max <= 0 || ChamadaListaEspera) return values.reverse();
 
     return values.reverse().filter(({ value }) => value <= max);
@@ -93,7 +91,10 @@ export const InnitialStepComponent = (props) => {
   const openPicker = () => {
     const options = generateRangeValues();
 
-    if (!options) return Alert.alert('Não é possível investir nessa oportunidade');
+    const { ChamadaListaEspera } = data;
+
+    if (ChamadaListaEspera) console.log('true');
+    else if (options.length === 0) return Alert.alert('Não é possível investir nessa oportunidade');
 
     const params = {
       options: options,

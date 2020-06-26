@@ -23,7 +23,7 @@ export const Title = styled.Text`
   font-size: 16px;
   font-family: OpenSans-Bold;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 20px;
   color: ${redTwo};
 `;
 

@@ -33,11 +33,7 @@ export const ConfirmPasswordComponent = (props) => {
   const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
   const signCCB = async () => {
-    console.log(data);
-
     const resp = await Request.GET({ url: UrlCCBAssinaturaAtualizar(data._id) });
-
-    console.log(resp, data);
 
     if (resp.status === 200) {
       navigation.navigate('CCBsList');
@@ -51,12 +47,8 @@ export const ConfirmPasswordComponent = (props) => {
 
     const resp = await Request.POST({ url: UrlSenhaVerificar, data: senha });
 
-    console.log('VE SE VAI', resp);
-
     if (resp.status == 200) {
       signCCB();
-
-      notifyError('password', '');
     } else Alert.alert('Ocorreu um erro', 'Senha inválida');
   };
 

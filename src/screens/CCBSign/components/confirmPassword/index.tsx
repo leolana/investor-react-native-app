@@ -47,9 +47,9 @@ export const ConfirmPasswordComponent = (props) => {
   };
 
   const checkPassword = async () => {
-    const data = { password, id: userId };
+    const senha = { password, id: userId };
 
-    const resp = await { url: UrlSenhaVerificar, data };
+    const resp = await Request.POST({ url: UrlSenhaVerificar, data: senha });
 
     console.log('VE SE VAI', resp);
 
@@ -57,7 +57,7 @@ export const ConfirmPasswordComponent = (props) => {
       signCCB();
 
       notifyError('password', '');
-    } else notifyError('password', 'Senha inválida');
+    } else Alert.alert('Ocorreu um erro', 'Senha inválida');
   };
 
   // effects

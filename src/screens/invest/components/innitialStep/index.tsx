@@ -83,10 +83,12 @@ export const InnitialStepComponent = (props) => {
       value += min;
     }
 
-    if (max <= 0 || ChamadaListaEspera) return values.reverse();
+    if (ChamadaListaEspera) return values.reverse();
 
     if (max < values[0].value) return false;
 
+    if (max <= 0) return values.reverse();
+ 
     return values.filter(({ value }) => value <= max);
   };
 

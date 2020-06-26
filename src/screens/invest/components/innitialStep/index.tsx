@@ -74,18 +74,20 @@ export const InnitialStepComponent = (props) => {
     const max = Valor - ValorCaptado;
 
     let value = InvestimentoMinimo;
-
+    const min = value;
     const values = [];
 
     while (value <= InvestimentoMaximo) {
       values.push({ value, text: formatMoney(value) });
 
-      value += value;
+      value += min;
     }
 
     if (max <= 0 || ChamadaListaEspera) return values.reverse();
 
-    return values.reverse().filter(({ value }) => value <= max);
+    if (max <= 0) return values.reverse();
+
+    return values.filter(({ value }) => value <= max);
   };
 
   const openPicker = () => {

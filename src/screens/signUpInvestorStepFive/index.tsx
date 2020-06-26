@@ -89,7 +89,7 @@ export const SignUpInvestorStepFiveComponent = (props) => {
   ];
 
   async function getStates() {
-    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar });
+    const resp = await Request.GET({ url: UrlLocalizacaoEstadosPegar, header: 'bearer' });
 
     if (resp.status === 200) setApiState(resp.data);
     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');

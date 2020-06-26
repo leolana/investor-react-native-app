@@ -8,7 +8,7 @@ const PROD = {
 const TEST = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: '#',
+  BASE_URL_NODE: 'https://server-test.iouu.com.br',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
 
@@ -42,7 +42,8 @@ export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
 export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
 
 export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_GO}api/v1/reserva/${reservaId}`;
-export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
+export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) =>
+  `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
 export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
 // Fim substituidas
 
@@ -50,7 +51,6 @@ export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`;
 
 export const UrlLogin = `${BASE_URL_GO}sign_in`;
 export const UrlLoginRedeSocial = (provedor, token) => `${BASE_URL_GO}oauth/${provedor}/callback/${token}`;
-
 
 export const UrlListaOportunidades = (pagina, scores) => `${BASE_URL_GO}api/v1/solicitacoes/listar/${pagina}/${scores}`;
 
@@ -72,12 +72,9 @@ export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`;
 
 export const UrlCarteiraEnviarTransferencia = `${BASE_URL_GO}api/v1/wallet/agendamento/saque`;
 
-
 export const UrlCarteiraExtratoPaginado = (pagina) => `${BASE_URL_GO}api/v1/wallet/extrato/pagina/${pagina}`;
 export const UrlCarteiraPegarDetalhesOperacao = (id) => `${BASE_URL_GO}api/v1/wallet/operacao/detalhe/${id}`;
 export const UrlCarteiraSaldo = `${BASE_URL_GO}api/v1/wallet/saldo`;
-
-
 
 export const UrlInvPegar = (email) => `${BASE_URL_GO}api/v1/investidor/email/${email}`;
 
@@ -107,7 +104,6 @@ export const UrlPerfilInvestidorAtualizar = (investidorId) => `${BASE_URL_GO}api
 
 export const UrlCCBAssinaturaAtualizar = (reservaId) =>
   `${BASE_URL_GO}api/v1/out/atualizaCCbsInvestidoresAssinatura/${reservaId}`;
-
 
 export const UrlTaxasPegar = `${BASE_URL_HUB}calculadora/taxas`;
 

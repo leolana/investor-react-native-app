@@ -58,8 +58,6 @@ export const HistoricProfileComponent = (props) => {
   const getInvestmentReservation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
 
-    console.log('RESPOSTA TA AQUI', resp);
-
     if (resp.status === 200) {
       setReserve(resp.data);
       setLoading(false);

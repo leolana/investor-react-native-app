@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Request } from '../../services';
+import { Request, UrlSuitabilityProfile, UrlGetSuitability } from '../../services';
 
 import { SafeAreaView, ScrollView, Button, ButtonText, Title, Info, Gratters, Bold, Name, Faixa } from './styles';
 
@@ -16,7 +16,7 @@ export const FormSuitabilityFour = (props) => {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   const getText = (tipo) => {
     if (tipo === 'Conservador') {
@@ -62,11 +62,14 @@ export const FormSuitabilityFour = (props) => {
   };
 
   const getInfos = async () => {
-    const resp = await Request.GET({
-      url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
+    const suitability = await Request.GET({
+      url: UrlGetSuitability(userId),
+      header: "bearer",
     });
-
-    console.log('RESP Infos', resp.data);
+    const resp = await Request.GET({
+      url: UrlSuitabilityProfile(suitability.data.id),
+      header: "bearer",
+    });
 
     setName(resp.data.Nome);
     setType(resp.data.Tipo);

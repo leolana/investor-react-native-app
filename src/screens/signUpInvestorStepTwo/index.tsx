@@ -85,8 +85,6 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       url: UrlLocalizacaoEstadosPegar,
       header: 'bearer',
     });
-    console.log(UrlLocalizacaoEstadosPegar);
-    console.log('Estados ', resp.data);
     if (resp.status === 200) setApiState(resp.data);
     else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
   }

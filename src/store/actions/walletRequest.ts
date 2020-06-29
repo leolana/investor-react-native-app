@@ -9,7 +9,7 @@ const Request = services.Request;
 export const getIdInvestidor = async (email) => {
   const url = services.UrlInvPegar(email);
 
-  const resp = await Request.GET({ url, header: 'bearer' });
+  const resp = await Request.GET({ url, data:{}, header: 'bearer' });
 
   if (typeof resp.data !== 'undefined') {
     Store.dispatch(actions.setIdInvestidor(resp.data));
@@ -19,9 +19,10 @@ export const getIdInvestidor = async (email) => {
   }
 };
 
-export const getSuitabilityId = async () => {
+export const getSuitabilityId = async (UserID) => {
   const resp = await Request.GET({
-    url: 'https://server-test.iouu.com.br/api/v1/suitability',
+    url: services.UrlGetSuitability(UserID),
+    header: "bearer"
   });
 
   if (resp.status === 200) Store.dispatch(actions.setIdSuitability(resp.data.insertedIds[0]));

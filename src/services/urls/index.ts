@@ -8,14 +8,14 @@ const PROD = {
 const TEST = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://server-test.iouu.com.br',
+  BASE_URL_NODE: '#',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
 
 const DESENV = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://dashboard-desenv.iouu.com.br/',
+  BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',
 };
 
@@ -23,8 +23,6 @@ const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
 
 // NODE URL
 export const UrlSenhaVerificar = `${BASE_URL_NODE}api/v1/emprestimos/verifica-senha`;
-
-export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
 
 export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`;
 export const UrlTomadorFatura = (id) => `${BASE_URL_NODE}api/v1/FaturaTomador/solicitacao/${id}`;
@@ -34,16 +32,20 @@ export const UrlPerfilConfigNotificacaoSalvar = `${BASE_URL_NODE}api/v1/user/not
 // FIM NODE
 
 // Substituidas
-export const UrlRecuperarSenha = `${BASE_URL_GO}send-reset-password-email`;
+export const UrlGetSuitability = (UserId) => `${BASE_URL_GO}api/v1/suitability/user/${UserId}`;
+export const UrlSaveSuitability = (UserId, tipo) => `${BASE_URL_GO}api/v1/suitability/salvar/${UserId}/${tipo}`;
+export const UrlSuitabilityProfile = (SuitabilityId) => `${BASE_URL_HUB}iouu/suitability/${SuitabilityId}`;
 
+export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_GO}api/v1/banco/${codigoBanco}`;
+
+export const UrlRecuperarSenha = `${BASE_URL_GO}send-reset-password-email`;
 export const UrlPerfilSenhaAlterar = `${BASE_URL_GO}api/v1/usuario/atualizar/senha`;
 
 export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
 export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
 
 export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_GO}api/v1/reserva/${reservaId}`;
-export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) =>
-  `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
+export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
 export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
 // Fim substituidas
 

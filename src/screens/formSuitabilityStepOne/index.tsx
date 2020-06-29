@@ -8,7 +8,7 @@ import { SafeAreaView, ScrollView, Title, Question, Options, OptionsContainer, B
 
 import { useSelector } from 'react-redux';
 
-import { Request } from '../../services';
+import { Request, UrlSaveSuitability } from '../../services';
 
 export const FormSuitabilityOne = (props) => {
   const [disabled, setDisabled] = useState(true);
@@ -18,7 +18,7 @@ export const FormSuitabilityOne = (props) => {
   const [SitucaoFinanceira, setSitucaoFinanceira] = useState('');
   const [Patrimonio, setPatrimonio] = useState('');
 
-  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   const FormularioCapacidade = {
     HorizonteInvestimento,
@@ -48,14 +48,15 @@ export const FormSuitabilityOne = (props) => {
 
   const saveSuitability = async (data) => {
     console.log('entrouu');
-    const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
+    const resp = await Request.POST({
+      url: UrlSaveSuitability(userId,"FormularioCapacidade"),
       data: data,
+      header:"bearer"
     });
+    console.log(resp.data)
   };
 
   const nextStep = () => {
-    console.log('aqui', SuitabilityOne);
     saveSuitability(SuitabilityOne);
     props.navigation.navigate('SuitabilityTwo');
   };

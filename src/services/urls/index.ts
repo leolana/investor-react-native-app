@@ -8,14 +8,14 @@ const PROD = {
 const TEST = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://server-test.iouu.com.br',
+  BASE_URL_NODE: '#',
   BASE_URL_HUB: 'https://hub-test.iouu.com.br/',
 };
 
 const DESENV = {
   BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://dashboard-desenv.iouu.com.br/',
+  BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',
 };
 
@@ -45,8 +45,7 @@ export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
 export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
 
 export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_GO}api/v1/reserva/${reservaId}`;
-export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) =>
-  `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
+export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
 export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
 // Fim substituidas
 

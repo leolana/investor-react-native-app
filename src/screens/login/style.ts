@@ -1,12 +1,22 @@
 import styled from 'styled-components/native';
 
-import { grey99, grey33, tealish, redTwo } from '../../assets/colors';
+import { grey99, grey33, tealish, redTwo, greyDD } from '../../assets/colors';
 
-import { IButtom } from '../../components';
+import { IButtom, ITextInput } from '../../components';
 
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
+
+export const TextInput = styled(ITextInput)``;
+
+export const Label = styled.Text`
+  color: ${grey99};
+  margin-bottom: 5px;
+  font-size: 12px;
+  align-self: stretch;
+  font-family: OpenSans-Regular;
+`;
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
   padding: 0 16px;
@@ -37,14 +47,6 @@ export const Container = styled.View`
   width: ${deviceWidth}px;
 `;
 
-export const ViewCheckbox = styled.View`
-  align-self: stretch;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10px;
-  margin-bottom: 24px;
-`;
-
 export const Text = styled.Text`
   color: ${grey99};
   font-size: 14px;
@@ -61,15 +63,29 @@ export const Error = styled.Text`
     align-self: stretch;
     margin-top: -30px;
     margin-bottom: 30px;
-`;
+  `;
 
 export const TextLine = styled.Text`
   font-size: 12px;
-  margin-top: -15px;
+  margin-top: 30px;
   margin-bottom: 30px;
   text-align: justify;
   color: ${grey99};
 `;
 
-export const TouchableOpacity = styled.TouchableOpacity`
-`
+const styles = StyleSheet.create({
+  input: {
+    width: '100%',
+    borderColor: greyDD,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontFamily: 'OpenSans-Regular',
+    height: 40,
+    fontSize: 16,
+    marginBottom: 30,
+  },
+});
+
+export default styles;

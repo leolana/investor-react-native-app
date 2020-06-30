@@ -145,7 +145,6 @@ export const Login = (props) => {
         <TextInput
           title={'E-mail'}
           keyboardType={'email-address'}
-          returnKeyType={'next'}
           onChangeText={(value) => setEmail(value)}
           onBlur={() => validateEmail()}
         />

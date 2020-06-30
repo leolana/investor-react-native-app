@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 
 import { Alert } from 'react-native';
 
-import { SafeAreaView, TextInput, Button, ButtonText, Error } from './styles';
+import Styles, { SafeAreaView, TextInput, Button, ButtonText, Error, Label } from './styles';
+
+import { grey99 } from '../../assets/colors';
 
 import { Request, UrlCadastroUsuario } from '../../services';
 
 import { storeData } from '../../utils';
+
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const SignUpUserComponent = (props) => {
   // props
@@ -73,15 +77,23 @@ export const SignUpUserComponent = (props) => {
     <SafeAreaView>
       <TextInput id="name" title="Nome Completo" onChangeText={(value) => setName(value)} />
 
-      <TextInput id="email" title="Email" onChangeText={(value) => setEmail(value)} onBlur={() => validateEmail()} />
+      <TextInput
+        id="email"
+        title="Email"
+        keyboardType={'email-address'}
+        onChangeText={(value) => setEmail(value)}
+        onBlur={() => validateEmail()}
+      />
 
       {!isValidEmail ? <Error>Email inválido</Error> : undefined}
 
-      <TextInput
-        id="password"
-        title="Senha"
-        secureTextEntry={true}
-        onChangeText={(value) => setPassword(value)}
+      <Label>Senha</Label>
+
+      <InputPasswordToggle
+        style={Styles.input}
+        iconColor={grey99}
+        value={password}
+        onChangeText={(password) => setPassword(password)}
         onBlur={() => validatePassword()}
       />
 

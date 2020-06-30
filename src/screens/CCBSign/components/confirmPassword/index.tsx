@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { Bottom, BottomText, InfoText, TextInput } from './styles';
+import Styles, { Bottom, BottomText, InfoText, TextInput, Label } from './styles';
 
-import { white, grey66 } from '../../../../assets/colors';
+import { white, grey66, grey99 } from '../../../../assets/colors';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,6 +11,8 @@ import { setInputError } from '../../../../store/actions';
 import { Request, UrlSenhaVerificar, UrlCCBAssinaturaAtualizar } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
+
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const ConfirmPasswordComponent = (props) => {
   // props
@@ -48,7 +50,7 @@ export const ConfirmPasswordComponent = (props) => {
   const checkPassword = async () => {
     const data = { password, id: userId };
 
-    const resp = await ({ url: UrlSenhaVerificar, data });
+    const resp = await { url: UrlSenhaVerificar, data };
 
     if (resp.status === 200) {
       signCCB();
@@ -69,11 +71,14 @@ export const ConfirmPasswordComponent = (props) => {
         Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
       </InfoText>
 
-      <TextInput
-        id="password"
-        secureTextEntry={true}
-        onChangeText={(value) => setPassword(value)}
+      {/* <Label>Senha</Label> */}
+
+      <InputPasswordToggle
         placeholder="Sua senha aqui"
+        style={Styles.input}
+        iconColor={grey99}
+        value={password}
+        onChangeText={(password) => setPassword(password)}
       />
 
       <Bottom onPress={() => checkPassword()}>

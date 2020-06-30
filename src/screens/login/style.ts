@@ -62,11 +62,11 @@ export const Error = styled.Text`
     text-align: left;
     align-self: stretch;
     margin-top: -30px;
+    margin-bottom: 30px;
   `;
 
 export const TextLine = styled.Text`
   font-size: 12px;
-  margin-top: 30px;
   margin-bottom: 30px;
   text-align: justify;
   color: ${grey99};

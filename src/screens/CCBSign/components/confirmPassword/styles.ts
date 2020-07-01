@@ -1,16 +1,19 @@
 import styled from 'styled-components/native';
 
-import { grey66, greenTwo } from '../../../../assets/colors';
+import { grey66, greenTwo, grey99, greyDD } from '../../../../assets/colors';
 
 import { ITextInput } from '../../../../components';
 
-import { Dimensions } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const { width } = Dimensions.get('screen');
 
-export const TextInput = styled(ITextInput)`
-  text-align: center;
-  width: ${width - 32}px;
+export const Label = styled.Text`
+  color: ${grey99};
+  margin-bottom: 5px;
+  font-size: 12px;
+  align-self: stretch;
+  font-family: OpenSans-Regular;
 `;
 
 export const InfoText = styled.Text`
@@ -36,3 +39,20 @@ export const BottomText = styled.Text`
   font-family: ${(props) => (props.bold ? 'OpenSans-Bold' : 'OpenSans-Regular')};
   color: ${(props) => props.color || grey66};
 `;
+
+const styles = StyleSheet.create({
+  input: {
+    width: width - 32,
+    borderColor: greyDD,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    fontFamily: 'OpenSans-Regular',
+    height: 40,
+    fontSize: 16,
+    marginBottom: 30,
+  },
+});
+
+export default styles;

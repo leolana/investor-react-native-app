@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 
 import { Alert } from 'react-native';
 
-import { ITextInput } from '../../components';
-
 import { Request, UrlLogin } from '../../services';
 
 import { storeData } from '../../utils';
 
-import {
+import Styles, {
   KeyboardAvoidingView,
   Welcome,
   Description,
@@ -16,12 +14,17 @@ import {
   Buttom,
   Error,
   TextLine,
-  TouchableOpacity,
+  Label,
+  TextInput,
 } from './style';
+
+import { grey99 } from '../../assets/colors';
 
 import onInit from '../../store/actions/getAccountData';
 
 import { Loading } from '../../components';
+
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const Login = (props) => {
   // props
@@ -92,15 +95,15 @@ export const Login = (props) => {
     });
 
     console.log('resp', resp);
-    if (resp.status === 401){
+    if (resp.status === 401) {
       setLoading(false);
       Alert.alert('', 'Não foi possível acessar sua conta');
     } else if (resp.status === 200) {
       loginSuccessful(resp.data);
     } else {
       setLoading(false);
-      Alert.alert(resp.data.Msg)
-    };
+      Alert.alert(resp.data.Msg);
+    }
   };
 
   const validateLogin = async () => {
@@ -131,7 +134,7 @@ export const Login = (props) => {
 
   // render
 
-  if (loading) return (<Loading loading={loading} />)
+  if (loading) return <Loading loading={loading} />;
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <Welcome> {greeting} </Welcome>
@@ -139,14 +142,22 @@ export const Login = (props) => {
       <Description> Acesse sua conta </Description>
 
       <Container>
-        <ITextInput title={'E-mail'} onChangeText={(value) => setEmail(value)} onBlur={() => validateEmail()} />
+        <TextInput
+          title={'E-mail'}
+          keyboardType={'email-address'}
+          onChangeText={(value) => setEmail(value)}
+          onBlur={() => validateEmail()}
+        />
 
         {!isValidEmail ? <Error>Email inválido</Error> : undefined}
 
-        <ITextInput
-          title={'Senha'}
-          secureTextEntry={true}
-          onChangeText={(value) => setPassword(value)}
+        <Label>Senha</Label>
+
+        <InputPasswordToggle
+          style={Styles.input}
+          iconColor={grey99}
+          value={password}
+          onChangeText={(password) => setPassword(password)}
           onBlur={() => validatePassword()}
         />
 

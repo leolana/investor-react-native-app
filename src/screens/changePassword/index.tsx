@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { SafeAreaView, TextInput, Buttom, ButtomText, Error } from './styles';
+import { Alert } from 'react-native';
+
+import { useSelector } from 'react-redux';
+
+import Styles, { SafeAreaView, Buttom, ButtomText, Error, Label } from './styles';
+
+import { grey99 } from '../../assets/colors';
 
 import { Request, UrlPerfilSenhaAlterar } from '../../services';
 
-import { setInputError } from '../../store/actions';
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const ChangePasswordComponent = () => {
   // props
@@ -29,15 +33,9 @@ export const ChangePasswordComponent = () => {
 
   // vars
 
-  const dispatch = useDispatch();
-
-  const inputErrors = useSelector((inputError) => inputError);
-
   const email = useSelector((store) => store.account.accountData.Email);
 
   // methods
-
-  const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
   const validatePassword = (item: string) => {
     if (item === 'oldPassword') {
@@ -62,7 +60,7 @@ export const ChangePasswordComponent = () => {
   };
 
   const changePassword = async () => {
-    console.log('entrou')
+    console.log('entrou');
     const data = {
       Password: oldPassword,
       NewPassword: newPassword,
@@ -72,9 +70,9 @@ export const ChangePasswordComponent = () => {
     const resp = await Request.PUT({
       url: UrlPerfilSenhaAlterar,
       data,
-      header:'bearer',
+      header: 'bearer',
     });
-    console.log(resp)
+    console.log(resp);
     if (resp.status === 200) Alert.alert('Senha alterada com sucesso.');
     else Alert.alert(resp.data.Msg);
   };
@@ -89,31 +87,40 @@ export const ChangePasswordComponent = () => {
 
   return (
     <SafeAreaView>
-      <TextInput
-        id="oldPassword"
-        title="Senha atual"
-        secureTextEntry={true}
+      <Label>Senha atual</Label>
+
+      <InputPasswordToggle
+        style={Styles.input}
+        iconColor={grey99}
+        value={oldPassword}
         onChangeText={(value) => setOldPassword(value)}
         onBlur={() => validatePassword('oldPassword')}
       />
+
       {!isValidOldPassword ? <Error>Esse campo não pode ser vazio ou ter menos de 6 digitos</Error> : undefined}
 
-      <TextInput
-        id="newPassword"
-        title="Nova senha"
-        secureTextEntry={true}
+      <Label>Nova senha</Label>
+
+      <InputPasswordToggle
+        style={Styles.input}
+        iconColor={grey99}
+        value={newPassword}
         onChangeText={(value) => setNewPassword(value)}
         onBlur={() => validatePassword('newPassword')}
       />
+
       {!isValidNewPassword ? <Error>Esse campo não pode ser vazio ou ter menos de 6 digitos</Error> : undefined}
 
-      <TextInput
-        id="confirmPassword"
-        title="Repetir senha"
-        secureTextEntry={true}
+      <Label>Repetir senha</Label>
+
+      <InputPasswordToggle
+        style={Styles.input}
+        iconColor={grey99}
+        value={confirmPassword}
         onChangeText={(value) => setConfirmPassword(value)}
         onBlur={() => validatePassword('confirmPassword')}
       />
+
       {!isValidConfirmPassword ? <Error>Os campos não conferem</Error> : undefined}
 
       <Buttom disabled={disabled} onPress={changePassword}>

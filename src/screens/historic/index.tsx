@@ -13,7 +13,6 @@ import { Loading } from '../../components';
 import { IconFilter } from '../../assets/icons';
 
 import { isAfter, isBefore, isSameDay } from 'date-fns';
-import { FORMERR } from 'dns';
 
 export const HistoricComponent = (props) => {
   // props
@@ -188,7 +187,7 @@ export const Historic = {
           <IconFilter />
         </TouchableOpacity>
       ),
-      headerTitle: 'Histórico de Investimento',
+      headerTitle: 'Histórico de Investimentos',
     };
   },
 };

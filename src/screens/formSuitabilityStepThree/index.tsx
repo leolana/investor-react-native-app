@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Alert } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 
-import { Request } from '../../services';
+import { Request, UrlGetSuitability } from '../../services';
 
 import { SafeAreaView, Title, Text, Box, Button, ButtonText, ContainerCheckBox } from './styles';
 
@@ -27,28 +27,7 @@ export const FormSuitabilityThree = (props) => {
     }
   };
 
-  const getInfos = async () => {
-    const resp = await Request.GET({
-      url: `https://hub-test.iouu.com.br/iouu/suitability/${idSuitability}`,
-    });
-
-    console.log('RESP Infos', resp.data);
-
-    saveSuitability(SuitabilityThree);
-  };
-
-  const saveSuitability = async (data) => {
-    const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
-      data: data,
-    });
-
-    console.log('RESP step 3', resp);
-  };
-
   const nextStep = () => {
-    console.log('teste', SuitabilityThree);
-    getInfos();
     props.navigation.navigate('SuitabilityFour');
   };
 

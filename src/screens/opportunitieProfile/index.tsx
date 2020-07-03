@@ -91,16 +91,18 @@ export const OpportunitieProfileComponent = (props) => {
   };
 
   const getSolicitation = async () => {
-    const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id) });
+    const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id), data:{}, header: 'bearer'});
     if (resp.status === 200) {
-      setSolData(resp.data);
+      setSolData(resp.data.Solicitacao);
     }
   };
 
   const getInvestmentReserve = async () => {
-    const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id) });
+    const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id), data:{}, header: 'bearer'});
     if (resp.status === 200) {
       setReverveData(resp.data);
+    }else{
+      setReverveData(null)
     }
   };
 

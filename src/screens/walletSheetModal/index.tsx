@@ -25,7 +25,7 @@ export const WalletSheetModalComponent = (props) => {
       TRANSFERENCIA: <ModalTransfer data={data} />,
       DEPOSITO: <ModalDeposit data={data} />,
       INVESTIMENTO: <ModalInvestment data={data} />,
-      EXTORNO: <ModalTransfer data={data} />,
+      ESTORNO: <ModalTransfer data={data} />,
     };
 
     return obj[Tipo];

@@ -10,7 +10,7 @@ import { CardAddBalanceToTransfer, CardAddDateToTransfer, CardConfirmTransfer, L
 
 import { Request, UrlCarteiraSaldo, UrlCarteiraBancoPegar, UrlInvPegar } from '../../services';
 
-import { formatMoney } from '../../utils';
+import { formatMoney, convertScoreByColor } from '../../utils';
 
 export const TransferWalletBalancePage = (props) => {
   // State
@@ -53,15 +53,10 @@ export const TransferWalletBalancePage = (props) => {
   };
 
   const getBankName = async () => {
-    const resp = await Request.GET({ url: UrlCarteiraBancoPegar(bankData.CodigoBanco) });
-
-    if (resp.status === 200) {
-      const code = bankData.CodigoBanco;
-
-      const name = resp.data[0].nome || `Outro - Codigo do banco: ${code}`;
-
-      setBankData({ ...bankData, formattedCodigoBanco: name });
-    }
+    const resp = await Request.GET({ url: UrlCarteiraBancoPegar(bankData.CodigoBanco), header:"bearer" });
+    const code = bankData.CodigoBanco;
+    const name = resp.data[0].nome || `Outro - Codigo do banco: ${code}`;
+    setBankData({ ...bankData, formattedCodigoBanco: name });
   };
 
   const handleCard = () => {

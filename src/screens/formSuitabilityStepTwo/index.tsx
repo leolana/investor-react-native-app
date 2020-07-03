@@ -4,7 +4,7 @@ import { View, Alert } from 'react-native';
 
 import { RadioButton } from 'react-native-paper';
 
-import { Request } from '../../services';
+import { Request, UrlSaveSuitability } from '../../services';
 
 import { useSelector } from 'react-redux';
 
@@ -38,7 +38,7 @@ export const FormSuitabilityTwo = (props) => {
   const [Expectativa, setExpectativa] = useState('');
   const [Formacao, setFormacao] = useState('');
 
-  const idSuitability = useSelector((store) => store.investor.dadosSuitability);
+  const userId = useSelector((store) => store.account.accountData.UsuarioId);
 
   const AvaliacaoRisco = {
     RendaFixa,
@@ -58,12 +58,13 @@ export const FormSuitabilityTwo = (props) => {
   };
 
   const saveSuitability = async (data) => {
-    const resp = await Request.PUT({
-      url: `https://server-test.iouu.com.br/api/v1/suitability/${idSuitability}/investidor`,
+    const resp = await Request.POST({
+      url: UrlSaveSuitability(userId,"AvaliacaoRisco"),
       data: data,
+      header:"bearer"
     });
 
-    console.log('RESP step 2', resp);
+    console.log('RESP step 2', resp.data);
   };
 
   const nextStep = () => {

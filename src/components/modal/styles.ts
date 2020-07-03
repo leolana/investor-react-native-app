@@ -21,5 +21,5 @@ export const Container = styled.View`
   height: ${(props) => props.height || 'auto'};
   border-radius: 5px;
   background: ${white};
-  padding: 10px;
+  padding: 20px;
 `;

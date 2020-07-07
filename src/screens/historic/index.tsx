@@ -12,7 +12,7 @@ import { Loading } from '../../components';
 
 import { IconFilter } from '../../assets/icons';
 
-import { isAfter, isBefore, isSameDay, parseISO, isDate, toDate } from 'date-fns';
+import { isAfter, isBefore, isSameDay, parseISO } from 'date-fns';
 
 export const HistoricComponent = (props) => {
   // props
@@ -68,11 +68,22 @@ export const HistoricComponent = (props) => {
 
     return newList;
   };
+  const formatDate = (props) => {
+    let data = props;
+    if (!data.includes('/')) return '--/--/----';
 
+    data = data.split('/');
+
+    data = `${data[2]}/${data[1]}/${data[0]}`;
+
+    data = parseISO(new Date(data).toISOString());
+
+    return data;
+  };
   const applyDateFromFilter = (list) => {
     let { dateFrom } = filter;
 
-    dateFrom = new Date(dateFrom);
+    dateFrom = formatDate(dateFrom);
 
     setHasItem(true);
     setHasResult(true);
@@ -91,14 +102,13 @@ export const HistoricComponent = (props) => {
   const applyDateToFilter = (list) => {
     let { dateTo } = filter;
 
-    dateTo = new Date(dateTo);
+    dateTo = formatDate(dateTo);
 
     setHasItem(true);
     setHasResult(true);
 
     const newList = list.filter(({ Created }) => {
       const data = parseISO(Created);
-      // console.log('BEFORE', isBefore(dateTo, data));
 
       if (isSameDay(data, dateTo)) return true;
       if (isBefore(data, dateTo)) return true;

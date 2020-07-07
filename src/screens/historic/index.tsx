@@ -12,7 +12,7 @@ import { Loading } from '../../components';
 
 import { IconFilter } from '../../assets/icons';
 
-import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { isAfter, isBefore, isSameDay, parseISO, isDate, toDate } from 'date-fns';
 
 export const HistoricComponent = (props) => {
   // props
@@ -74,14 +74,13 @@ export const HistoricComponent = (props) => {
 
     dateFrom = new Date(dateFrom);
 
-    console.log('A DATRE FORMERR', dateFrom);
-
     setHasItem(true);
     setHasResult(true);
 
     const newList = list.filter(({ Created }) => {
-      if (isSameDay(dateFrom, Created)) console.log('FOI ESSA MERDA');
-      else if (isBefore(dateFrom, Created)) console.log('FOI ESSA MERDA');
+      const data = parseISO(Created);
+      if (isSameDay(data, dateFrom)) return true;
+      else if (isAfter(data, dateFrom)) return true;
     });
 
     if (newList.length === 0) setHasResult(false);
@@ -98,8 +97,11 @@ export const HistoricComponent = (props) => {
     setHasResult(true);
 
     const newList = list.filter(({ Created }) => {
-      if (isSameDay(dateTo, Created)) console.log('FOI ESSA MERDA');
-      else if (isBefore(dateTo, Created)) console.log('FOI ESSA MERDA');
+      const data = parseISO(Created);
+      // console.log('BEFORE', isBefore(dateTo, data));
+
+      if (isSameDay(data, dateTo)) return true;
+      if (isBefore(data, dateTo)) return true;
     });
 
     if (newList.length === 0) setHasResult(false);
@@ -109,11 +111,14 @@ export const HistoricComponent = (props) => {
 
   const applyScoreFilter = (list) => {
     const { score } = filter;
+    let newList = null;
 
     setHasItem(true);
     setHasResult(true);
 
-    const newList = (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score === score.value));
+    if (score.value.length === 1)
+      newList = list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score[0] === score.value);
+    else newList = list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score === score.value);
 
     if (newList.length === 0) setHasResult(false);
 

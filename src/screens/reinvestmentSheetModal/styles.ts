@@ -4,7 +4,7 @@ import { ITextInput } from '../../components';
 
 import { Dimensions } from 'react-native';
 
-import { grey99, black, white, greenTwo } from '../../assets/colors';
+import { grey99, black, white, greenTwo, redTwo } from '../../assets/colors';
 
 const { width } = Dimensions.get('screen');
 
@@ -17,6 +17,15 @@ export const Container = styled.View`
 
 export const TextInput = styled(ITextInput)`
   text-align: center;
+`;
+
+export const Message = styled.Text`
+    font-family: OpenSans-Regular;
+    font-size: 10px;
+    color: ${redTwo}
+    text-align: left;
+    margin-top: -30px;
+    margin-bottom: 30px;
 `;
 
 export const InfoText = styled.Text`

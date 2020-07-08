@@ -14,7 +14,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^2.2.2",
+    "@react-native-community/datetimepicker": "2.2.2",
     "@react-native-community/masked-view": "^0.1.6",
     "@types/react-native-datepicker": "^1.7.0",
     "axios": "~0.19.2",

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import { SafeAreaView, Row, Text, FieldInput, FieldText, Arrow, Buttom, ButtomText } from './styles';
-
-import { grey99 } from '../../assets/colors';
+import { SafeAreaView, Row, Text, FieldInput, FieldText, Buttom, ButtomText, FieldInputDate } from './styles';
 
 import { Dimensions } from 'react-native';
 
@@ -83,7 +81,7 @@ export const HistoricFilterComponent = (props) => {
 
       <Text>Data do investimento:</Text>
       <Row>
-        <FieldInput width={width / 2 - 32}>
+        <FieldInputDate width={width / 2 - 32}>
           <DatePicker
             format="DD/MM/YYYY"
             date={dateFrom}
@@ -98,14 +96,14 @@ export const HistoricFilterComponent = (props) => {
             onDateChange={changeFrom}
           />
           <FieldText>{dateFrom}</FieldText>
-        </FieldInput>
+        </FieldInputDate>
 
         <Text> a </Text>
 
-        <FieldInput width={width / 2 - 32}>
+        <FieldInputDate width={width / 2 - 32}>
           <DatePicker
             format="DD/MM/YYYY"
-            date={dateFrom}
+            date={dateTo}
             customStyles={{
               dateInput: {
                 display: 'none',
@@ -117,15 +115,15 @@ export const HistoricFilterComponent = (props) => {
             onDateChange={changeTo}
           />
           <FieldText width={width / 2 - 32}>{dateTo}</FieldText>
-        </FieldInput>
+        </FieldInputDate>
       </Row>
 
       <Text>Score:</Text>
-      <FieldInput onPress={() => navigation.navigate('Picker', scoreParams)}>
+      <FieldInput onPress={(): void => navigation.navigate('Picker', scoreParams)}>
         <FieldText>{score.text}</FieldText>
       </FieldInput>
 
-      <Buttom onPress={() => applyFilter()}>
+      <Buttom onPress={(): void => applyFilter()}>
         <ButtomText>APLICAR FILTRO</ButtomText>
       </Buttom>
     </SafeAreaView>
@@ -135,6 +133,6 @@ export const HistoricFilterComponent = (props) => {
 export const HistoricFilter = {
   screen: HistoricFilterComponent,
   navigationOptions: {
-    headerTitle: 'Filtro',
+    headerTitle: '',
   },
 };

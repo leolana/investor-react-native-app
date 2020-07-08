@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { grey66, greyDD, greenTwo, white } from '../../assets/colors';
+import { grey66, greyDD, white, tealish } from '../../assets/colors';
 
 import { IconBack } from '../../assets/icons';
 
@@ -28,12 +28,23 @@ export const SafeAreaView = styled.SafeAreaView`
 export const FieldInput = styled.TouchableOpacity`
     border: 1px solid ${greyDD};
     height: 40px;
-    align-self: stretch;
+    justify-content: flex-start;
+    border-radius: 5px;
+    flex-direction: row;
+    padding: 10px;
+    width: ${(props): string => props.width || 'auto'}
+    margin-bottom: 16px;
+    margin-top: 5px;
+`;
+
+export const FieldInputDate = styled.TouchableOpacity`
+    border: 1px solid ${greyDD};
+    height: 40px;
     justify-content: flex-end;
     border-radius: 5px;
     flex-direction: row;
     padding: 10px;
-    width: ${(props) => props.width || 'auto'}
+    width: ${(props): string => props.width || 'auto'}
     margin-bottom: 16px;
     margin-top: 5px;
 `;
@@ -58,7 +69,7 @@ export const Text = styled.Text`
 
 export const Buttom = styled.TouchableOpacity`
   margin-top: 16px;
-  background: ${greenTwo};
+  background: ${tealish};
   align-self: stretch;
   border-radius: 5px;
   align-items: center;

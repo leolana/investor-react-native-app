@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { SafeAreaView, Field, Text, Title, Bottom, BottomText, AnimatedView } from './styles';
+import { SafeAreaView, Field, Text, Title, Bottom, BottomText, AnimatedView, ScrollView } from './styles';
 
 import { grey66, white } from '../../assets/colors';
 
@@ -52,35 +52,37 @@ export const CCBSignComponent = (props) => {
 
   return (
     <SafeAreaView>
-      <AnimatedView style={{ opacity }}>
-        <IconInfoYellow />
+      <ScrollView>
+        <AnimatedView style={{ opacity }}>
+          <IconInfoYellow />
 
-        <Title>{name}, falta assinar sua CCB</Title>
+          <Title>{name}, falta assinar sua CCB</Title>
 
-        <Field>
-          <Text>{data.CodigoBMP}</Text>
+          <Field>
+            <Text>{data.CodigoBMP}</Text>
 
-          <TouchableOpacity onPress={() => Linking.openURL(UrlLinkCCBImprimir(data.CodigoBMP))}>
-            <Text color={grey66}>Visualizar</Text>
-          </TouchableOpacity>
-        </Field>
+            <TouchableOpacity onPress={() => Linking.openURL(UrlLinkCCBImprimir(data.CodigoBMP))}>
+              <Text color={grey66}>Visualizar</Text>
+            </TouchableOpacity>
+          </Field>
 
-        {confirmPassword ? (
-          <ConfirmPassword data={data} />
-        ) : (
-          <>
-            <Bottom onPress={() => startTransition()}>
-              <BottomText color={white} bold={true}>
-                ASSINAR
-              </BottomText>
-            </Bottom>
+          {confirmPassword ? (
+            <ConfirmPassword data={data} />
+          ) : (
+            <>
+              <Bottom onPress={() => startTransition()}>
+                <BottomText color={white} bold={true}>
+                  ASSINAR
+                </BottomText>
+              </Bottom>
 
-            <Bottom background="transparent" onPress={() => navigation.goBack()}>
-              <BottomText>Cancelar</BottomText>
-            </Bottom>
-          </>
-        )}
-      </AnimatedView>
+              <Bottom background="transparent" onPress={() => navigation.goBack()}>
+                <BottomText>Cancelar</BottomText>
+              </Bottom>
+            </>
+          )}
+        </AnimatedView>
+      </ScrollView>
     </SafeAreaView>
   );
 };

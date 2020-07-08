@@ -40,6 +40,12 @@ export const BottomText = styled.Text`
   color: ${(props) => props.color || grey66};
 `;
 
+export const SafeAreaView = styled.SafeAreaView``;
+
+export const ScrollView = styled.ScrollView`
+  padding: 16px;
+`;
+
 const styles = StyleSheet.create({
   input: {
     width: width - 32,

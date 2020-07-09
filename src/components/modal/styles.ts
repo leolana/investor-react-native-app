@@ -14,13 +14,12 @@ export const Backdrop = styled.View`
 `;
 
 export const Container = styled.View`
-    position: absolute;
-    top: ${(props) => height / 2 - props.height / 2 || 'auto'};
-    left: 32px;
-    width: ${width - 64}px;
-    height: ${(props) => props.height || 'auto'};
-    border-radius: 5px;
-    background: ${white}
-    padding: 10px;
-
+  position: absolute;
+  top: ${(props) => height / 2 - props.height / 2 || 'auto'};
+  left: 20px;
+  width: ${width - 40}px;
+  height: ${(props) => props.height || 'auto'};
+  border-radius: 5px;
+  background: ${white};
+  padding: 20px;
 `;

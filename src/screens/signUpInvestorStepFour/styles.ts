@@ -25,7 +25,6 @@ export const Label = styled.Text`
   margin-bottom: 5px;
   font-size: 12px;
   align-self: stretch;
-  font-family: 'OpenSans';
 `;
 export const Error = styled.Text`
     font-size: 10px;

@@ -6,7 +6,7 @@ import { Buttom, ButtomText } from '../../styles';
 
 import { formatPercent, formatMoney } from '../../../../utils';
 
-import { Request, UrlReservationCreate, UrlSolicitacaoReservaPegar, UrlBoletoCriar } from '../../../../services';
+import { Request, UrlReservationCreate, UrlBoletoCriar, UrlRegistroDeposito, UrlRegistroDebito } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
 
@@ -45,13 +45,13 @@ export const ConfirmationStepComponent = (props) => {
     });
 
     await Request.POST({
-      url: UrlBoletoCriar(),
+      url: UrlRegistroDebito(),
       data: { IDReserva: resp.data._id },
       header: 'bearer',
     });
 
     await Request.POST({
-      url: UrlBoletoCriar(),
+      url: UrlRegistroDeposito(),
       data: { IDReserva: resp.data._id },
       header: 'bearer',
     });
@@ -66,7 +66,11 @@ export const ConfirmationStepComponent = (props) => {
       props.navigation.navigate('OpportunitieProfile', { data });
       props.navigation.navigate('InvestWaitingListSuccessModal');
     } else {
-      if (boleto.data.linhaDigitavel !== undefined) {
+      if (Number.parseFloat(data.value) === Number.parseFloat(data.reinvestmentValue)){
+        setLoading(false);
+        props.navigation.navigate('Opportunities');
+        props.navigation.navigate('OpportunitieProfile', { data });
+      } else if (boleto.data.linhaDigitavel !== undefined) {
         props.onBoletoChange(boleto.data.linhaDigitavel);
 
         setLoading(false);

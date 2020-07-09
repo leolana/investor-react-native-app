@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { SheetModal, Toast } from '../../components';
+import { SheetModal } from '../../components';
 
-import { setInputError } from '../../store/actions';
-
-import { Container, TextInput, InfoText, Text, Buttom, ButtomText } from './styles';
+import { Container, TextInput, InfoText, Text, Buttom, ButtomText, Message } from './styles';
 
 import { IconCurrencyExchange } from '../../assets/icons';
 
@@ -22,6 +20,8 @@ export const ReinvestmentSheetModal = (props) => {
   const [reinvestmentValue, setReinvestmentValue] = useState(0);
 
   const [isValid, setIsValid] = useState(false);
+
+  const [message, setMessage] = useState('');
 
   const [additionalHeight, setAdditionalHeight] = useState(0);
 
@@ -46,28 +46,20 @@ export const ReinvestmentSheetModal = (props) => {
   useEffect(() => {
     onValueChange(reinvestmentValue);
 
-    const errorData = {
-      id: 'reinvestment',
-      message: '',
-    };
-
-    if (reinvestmentValue > data.value) {
-      errorData.message = `O valor deve ser menor ou igual ao investido: ${formatMoney(data.value)}.`;
-
+    if (reinvestmentValue > data.walletBalance) {
       setIsValid(false);
-    } else if (reinvestmentValue > data.walletBalance) {
-      errorData.message = `Saldo indisponível para o reinvestimento. Valor máximo: ${formatMoney(data.walletBalance)}.`;
-
+      setMessage(`Saldo indisponível para o reinvestimento. Valor máximo: ${formatMoney(data.walletBalance)}.`);
+    } else if (reinvestmentValue > data.value) {
       setIsValid(false);
+      setMessage(`O valor deve ser menor ou igual ao investido: ${formatMoney(data.value)}.`);
     } else if (reinvestmentValue < 0) {
-      errorData.message = `Valor para o reinvestimento não pode ser negativo.`;
-
       setIsValid(false);
+
+      setMessage('Valor para o reinvestimento não pode ser negativo.');
     } else {
+      setMessage('');
       setIsValid(true);
     }
-
-    dispatch(setInputError(errorData));
   }, [data.value, data.walletBalance, onValueChange, reinvestmentValue]);
 
   // render
@@ -78,7 +70,7 @@ export const ReinvestmentSheetModal = (props) => {
         <IconCurrencyExchange fill={greenTwo} width={64} height={64} />
 
         <InfoText>
-          <Text>{name}</Text>, você possuí saldo em sua Carteira virtual. Gostaria de reinvestir como parte do
+          <Text>{name}</Text>, você possui saldo em sua Carteira virtual. Gostaria de reinvestir como parte do
           pagamento?
         </InfoText>
 
@@ -92,6 +84,8 @@ export const ReinvestmentSheetModal = (props) => {
           onValueChange={({ unMasked }) => setReinvestmentValue(unMasked)}
           keyboardType={'numeric'}
         />
+
+        <Message>{message}</Message>
 
         <Buttom disabled={!isValid} onPress={() => props.navigation.goBack()}>
           <ButtomText>REINVESTIR</ButtomText>

@@ -81,7 +81,7 @@ export const CancelInvestmentComponent = (props) => {
   // render
 
   return (
-    <Modal height={390}>
+    <Modal height={450}>
       <Container>
         <Title>Tem certeza que deseja cancelar o seu investimento?</Title>
 

@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
-import { Container, Title, Text, Info, Buttom, ButtomText, TextInput } from './styles';
+import Styles, { Container, Title, Text, Info, Buttom, ButtomText, TextInput } from './styles';
+
+import { grey99 } from '../../assets/colors';
 
 import { useSelector } from 'react-redux';
 
 import { TouchableOpacity, Alert } from 'react-native';
 
 import { Request, UrlCarteiraEnviarTransferencia } from '../../services';
+
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const TransferWalletBalanceConfirmationComponent = (props) => {
   // Props
@@ -69,7 +73,12 @@ export const TransferWalletBalanceConfirmationComponent = (props) => {
 
       <Info>Por favor insira sua senha no campo abaixo para finalizar seu pedido de transferência.</Info>
 
-      <TextInput secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
+      <InputPasswordToggle
+        style={Styles.input}
+        iconColor={grey99}
+        value={password}
+        onChangeText={(password) => setPassword(password)}
+      />
 
       <Buttom enabled={password} onPress={() => subimitTransfer()}>
         <ButtomText>ASSINAR</ButtomText>

@@ -41,7 +41,7 @@ export const FooterComponent = (props) => {
     // {
     //   title: 'Índices complementares',
     //   onPress: () => navigation.navigate('ComplementaryIndicators', { data }),
-    //   disabled: !(data.Empresa.IndicesFinanceiros.length > 0),
+    //   disabled: data.Empresa.IndicesFinanceiros.length <= 0,
     // },
     {
       title: 'Informações sobre sócios',

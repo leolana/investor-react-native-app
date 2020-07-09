@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { Bottom, BottomText, InfoText, TextInput } from './styles';
+import Styles, { Bottom, BottomText, InfoText, TextInput, Label } from './styles';
 
-import { white, grey66 } from '../../../../assets/colors';
+import { white, grey66, grey99 } from '../../../../assets/colors';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,6 +11,9 @@ import { setInputError } from '../../../../store/actions';
 import { Request, UrlSenhaVerificar, UrlCCBAssinaturaAtualizar } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
+import { Alert } from 'react-native';
+
+import InputPasswordToggle from 'react-native-toggle-password-visibility-expo';
 
 export const ConfirmPasswordComponent = (props) => {
   // props
@@ -32,29 +35,23 @@ export const ConfirmPasswordComponent = (props) => {
   const notifyError = (id, message) => dispatch(setInputError({ id, message }));
 
   const signCCB = async () => {
-    console.log(data);
-
     const resp = await Request.GET({ url: UrlCCBAssinaturaAtualizar(data._id) });
 
-    console.log(resp, data);
-
-    if (resp.status == 200) {
+    if (resp.status === 200) {
       navigation.navigate('CCBsList');
 
       navigation.navigate('CCBSignSuccess');
-    } else alert('Não foi possível assinar a CCB no momneto. Tente novamente mais tarde.');
+    } else Alert.alert('Não foi possível assinar a CCB no momneto.', 'Tente novamente mais tarde.');
   };
 
   const checkPassword = async () => {
-    const data = { password, id: userId };
+    const senha = { password, id: userId };
 
-    const resp = await ({ url: UrlSenhaVerificar, data });
+    const resp = await Request.POST({ url: UrlSenhaVerificar, data: senha });
 
-    if (resp.status === 200) {
+    if (resp.status == 200) {
       signCCB();
-
-      notifyError('password', '');
-    } else notifyError('password', 'Senha inválida');
+    } else Alert.alert('Ocorreu um erro', 'Senha inválida');
   };
 
   // effects
@@ -69,11 +66,14 @@ export const ConfirmPasswordComponent = (props) => {
         Por favor insira sua senha no campo abaixo para finalizar a assinatura de sua CCB.
       </InfoText>
 
-      <TextInput
-        id="password"
-        secureTextEntry={true}
-        onChangeText={(value) => setPassword(value)}
+      {/* <Label>Senha</Label> */}
+
+      <InputPasswordToggle
         placeholder="Sua senha aqui"
+        style={Styles.input}
+        iconColor={grey99}
+        value={password}
+        onChangeText={(password) => setPassword(password)}
       />
 
       <Bottom onPress={() => checkPassword()}>

@@ -1,7 +1,7 @@
 const PROD = {
   BASE_URL_GO: 'https://api.iouu.com.br/',
-  BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://server-app.iouu.com.br/',
+  BASE_URL_PAY: 'https://pay.iouu.com.br/',
+  BASE_URL_NODE: '#',
   BASE_URL_HUB: 'https://hub-app.iouu.com.br/',
 };
 
@@ -13,21 +13,46 @@ const TEST = {
 };
 
 const DESENV = {
-  BASE_URL_GO: 'http://192.168.56.209:9090/',
+  BASE_URL_GO: 'https://api-test.iouu.com.br/',
   BASE_URL_PAY: 'https://pay-test.iouu.com.br/',
-  BASE_URL_NODE: 'https://dashboard-desenv.iouu.com.br/',
+  BASE_URL_NODE: 'https://server-test.iouu.com.br/',
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',
 };
 
 const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
 
-// export const UrlContaPegar = `http://192.168.0.17:9090/api/v1/conta/informacoes`;
+// NODE URL
+export const UrlSenhaVerificar = `${BASE_URL_NODE}api/v1/emprestimos/verifica-senha`;
+
+export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`;
+export const UrlTomadorFatura = (id) => `${BASE_URL_NODE}api/v1/FaturaTomador/solicitacao/${id}`;
+
+export const UrlNotificacoesPegar = (usuarioId) => `${BASE_URL_NODE}api/v1/user/notifications/${usuarioId}`;
+export const UrlPerfilConfigNotificacaoSalvar = `${BASE_URL_NODE}api/v1/user/notifications`;
+// FIM NODE
+
+// Substituidas
+export const UrlGetSuitability = (UserId) => `${BASE_URL_GO}api/v1/suitability/user/${UserId}`;
+export const UrlSaveSuitability = (UserId, tipo) => `${BASE_URL_GO}api/v1/suitability/salvar/${UserId}/${tipo}`;
+export const UrlSuitabilityProfile = (SuitabilityId) => `${BASE_URL_HUB}iouu/suitability/${SuitabilityId}`;
+
+export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_GO}api/v1/banco/${codigoBanco}`;
+
+export const UrlRecuperarSenha = `${BASE_URL_GO}send-reset-password-email`;
+export const UrlPerfilSenhaAlterar = `${BASE_URL_GO}api/v1/usuario/atualizar/senha`;
+
+export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
+export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
+
+export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_NODE}api/v1/reserva/solicitacao/${reservaId}`;
+export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
+export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
+// Fim substituidas
+
 export const UrlContaPegar = `${BASE_URL_GO}api/v1/conta/informacoes`;
 
 export const UrlLogin = `${BASE_URL_GO}sign_in`;
 export const UrlLoginRedeSocial = (provedor, token) => `${BASE_URL_GO}oauth/${provedor}/callback/${token}`;
-
-export const UrlRecuperarSenha = `${BASE_URL_NODE}api/v1/send-reset-password-email`;
 
 export const UrlListaOportunidades = (pagina, scores) => `${BASE_URL_GO}api/v1/solicitacoes/listar/${pagina}/${scores}`;
 
@@ -43,27 +68,15 @@ export const UrlCadastroInvestidorAtualizar = (investidorId, passo) =>
 export const UrlCadastroInvestidorDocs = (investidorId, docTipo) =>
   `${BASE_URL_GO}api/v1/investidor/enviar/docs/b64/${investidorId}/${docTipo}`;
 
-export const UrlLocalizacaoEstadosPegar = `${BASE_URL_NODE}api/v1/estados/`;
-export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_NODE}api/v1/estados/${uf}/cidades`;
 export const UrlLocalizacaoCEPPegar = (cep) => `${BASE_URL_HUB}cep/${cep}`;
 
 export const UrlBancoListaPegar = `${BASE_URL_HUB}iouu/bancos`;
 
-export const UrlCarteiraBancoPegar = (codigoBanco) => `${BASE_URL_NODE}api/v1/wallet/bank/${codigoBanco}`;
-export const UrlCarteiraPegar = `${BASE_URL_NODE}api/v1/investimentos/meus/money`;
 export const UrlCarteiraEnviarTransferencia = `${BASE_URL_GO}api/v1/wallet/agendamento/saque`;
-export const UrlCarteiraEmprestimoPegar = (investidorId, page) =>
-  `${BASE_URL_NODE}api/v1/wallet/loans/${investidorId}/${page}`;
-export const UrlCarteiraComprovantePegar = (investidorId) =>
-  `${BASE_URL_NODE}api/v1/wallet/comprovante/${investidorId}`;
 
 export const UrlCarteiraExtratoPaginado = (pagina) => `${BASE_URL_GO}api/v1/wallet/extrato/pagina/${pagina}`;
 export const UrlCarteiraPegarDetalhesOperacao = (id) => `${BASE_URL_GO}api/v1/wallet/operacao/detalhe/${id}`;
 export const UrlCarteiraSaldo = `${BASE_URL_GO}api/v1/wallet/saldo`;
-
-export const UrlInfoInvLista = `${BASE_URL_NODE}api/v1/investimentos/meus`;
-export const UrlInfoInvSolicitacao = (solicitacaoId) =>
-  `${BASE_URL_NODE}api/v1/investimentos/meus/solicitacoes/${solicitacaoId}`;
 
 export const UrlInvPegar = (email) => `${BASE_URL_GO}api/v1/investidor/email/${email}`;
 
@@ -71,12 +84,6 @@ export const UrlUsuarioPegar = (email) => `${BASE_URL_GO}api/v1/usuario/email/${
 
 export const UrlUsuarioMudarSenha = `${BASE_URL_GO}api/v1/usuario/atualizar/senha`;
 
-export const UrlTomadorFatura = (id) => `${BASE_URL_NODE}api/v1/FaturaTomador/solicitacao/${id}`;
-
-export const UrlSolicitacaoPegar = (id) => `${BASE_URL_NODE}api/v1/solicitacoes/${id}`;
-export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_NODE}api/v1/reserva/solicitacao/${reservaId}`;
-export const UrlSolicitacaoReservaInvPegar = (solicitacaoId) =>
-  `${BASE_URL_NODE}api/v1/solicitacoes/${solicitacaoId}/reserva-investimento`;
 export const UrlSolicitacaoReservaInvCancelar = (solicitacaoId) =>
   `${BASE_URL_GO}api/v1/reserva/cancelar/${solicitacaoId}`;
 export const UrlSolicitacaoReservaInvCriar = (solicitacaoId) =>
@@ -95,20 +102,10 @@ export const UrlEstatisticasPegar = (usuarioId) => `${BASE_URL_GO}api/v1/GetEsta
 export const UrlEstatisticasPlataformaPegar = (tipo) =>
   `${BASE_URL_GO}api/v1/GetEstatisticasPlataformaInvestidores/${tipo}`;
 
-export const UrlNotificacoesPegar = (usuarioId) => `${BASE_URL_NODE}api/v1/user/notifications/${usuarioId}`;
-export const UrlNotificacoesStatusAtualizar = `${BASE_URL_NODE}api/v1/notifications/status/update`;
-
-export const UrlPerfilSenhaAlterar = `${BASE_URL_NODE}api/v1/profile/alterarSenha`;
 export const UrlPerfilInvestidorAtualizar = (investidorId) => `${BASE_URL_GO}api/v1/investidor/${investidorId}`;
-export const UrlPerfilConfigNotificacaoSalvar = `${BASE_URL_NODE}api/v1/user/notifications`;
-
-export const UrlDocumentosPegar = (tipo, id) => `${BASE_URL_NODE}api/v1/documentos/${tipo}/${id}`;
-export const UrlDocumentosSolicitacaoPegar = (id) => `${BASE_URL_NODE}api/v1/doc/solicitacao/${id}`;
 
 export const UrlCCBAssinaturaAtualizar = (reservaId) =>
   `${BASE_URL_GO}api/v1/out/atualizaCCbsInvestidoresAssinatura/${reservaId}`;
-
-export const UrlSenhaVerificar = `${BASE_URL_NODE}api/v1/emprestimos/verifica-senha`;
 
 export const UrlTaxasPegar = `${BASE_URL_HUB}calculadora/taxas`;
 

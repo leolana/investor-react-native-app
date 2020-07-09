@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { SafeAreaView } from './styles';
+import { SafeAreaView, Label } from './styles';
 
 import { Card } from './components';
 
@@ -14,6 +14,8 @@ export const CCBsListComponent = (props) => {
   // states
 
   const [list, setList] = useState(null);
+
+  const [flag, setFlag] = useState(false);
 
   // methods
 
@@ -41,8 +43,10 @@ export const CCBsListComponent = (props) => {
 
   const getCCBList = async () => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
-
     if (resp.status === 200) {
+      if (resp.data.length === 0) {
+        setFlag(true);
+      }
       let list = filterList(resp.data);
 
       list = sort(list);
@@ -66,6 +70,7 @@ export const CCBsListComponent = (props) => {
   return (
     <Loading loading={list === null}>
       <SafeAreaView>
+        {flag && <Label>No momento você não possui nehuma CCB</Label>}
         <FlatList style={{ padding: 16, paddingBottom: 0 }} data={list} renderItem={renderItem} />
       </SafeAreaView>
     </Loading>

@@ -52,9 +52,7 @@ export const CCBsListComponent = (props) => {
       list = sort(list);
 
       setList(list);
-    } else {
-      Alert.alert('Ocorreu um erro ao obter as informações.', 'Por favor volte mais tarde.');
-    }
+    } else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   };
 
   // effects

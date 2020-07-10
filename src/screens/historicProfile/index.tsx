@@ -41,19 +41,19 @@ export const HistoricProfileComponent = (props) => {
   const [statusBoleto, setStatusBoleto] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const [reserve, setReserve] = useState('');
+  const [reserve, setReserve] = useState(null);
 
   const links = [
     {
-      title: 'Ver todos os dados da empresa',
+      title: 'Dados da empresa',
       onPress: () => navigation.navigate('Company', { data: reserve.SolicitacaoId }),
       disabled: reserve === null,
     },
-    // {
-    //   title: 'Pagamentos',
-    //   onPress: () => navigation.navigate('HistoricPayment', { data: reserve }),
-    //   disabled: reserve === null,
-    // },
+    {
+      title: 'Pagamentos',
+      onPress: () => navigation.navigate('HistoricPayment', { data: reserve }),
+      disabled: reserve === null,
+    },
   ];
   const getInvestmentReservation = async () => {
     const resp = await Request.GET({ url: UrlSolicitacaoReservaPegar(data._id) });
@@ -61,7 +61,7 @@ export const HistoricProfileComponent = (props) => {
     if (resp.status === 200) {
       setReserve(resp.data);
       setLoading(false);
-    } else Alert.alert('Ocorreu um erro ao obter as informações.', 'Por favor volte mais tarde.');
+    } else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde');
   };
 
   const getStatus = () => {
@@ -146,6 +146,6 @@ export const HistoricProfileComponent = (props) => {
 export const HistoricProfile = {
   screen: HistoricProfileComponent,
   navigationOptions: {
-    headerTitle: 'Detalhes de CCB',
+    headerTitle: '',
   },
 };

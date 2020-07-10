@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, View, Alert } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
@@ -76,7 +76,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
     if (resp.data.erro) setValid(false);
 
     if (resp.status === 200 && !resp.data.erro) contentCep(resp.data);
-    else console.log('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
     console.log(resp.data);
 
     setLoading(false);

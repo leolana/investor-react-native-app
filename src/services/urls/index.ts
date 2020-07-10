@@ -44,7 +44,7 @@ export const UrlPerfilSenhaAlterar = `${BASE_URL_GO}api/v1/usuario/atualizar/sen
 export const UrlLocalizacaoEstadosPegar = `${BASE_URL_GO}api/v1/estados`;
 export const UrlLocalizacaoCidadesPegar = (uf) => `${BASE_URL_GO}api/v1/estados/${uf}/cidades`;
 
-export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_GO}api/v1/reserva/${reservaId}`;
+export const UrlSolicitacaoReservaPegar = (reservaId) => `${BASE_URL_NODE}api/v1/reserva/solicitacao/${reservaId}`;
 export const UrlSolicitacaoReservaInvPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/reserva/solicitacao/${solicitacaoID}`;
 export const UrlSolicitacaoPegar = (solicitacaoID) => `${BASE_URL_GO}api/v1/solicitacoes/${solicitacaoID}`;
 // Fim substituidas

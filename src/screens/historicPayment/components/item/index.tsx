@@ -4,7 +4,7 @@ import { Circle, TableText, TableRow, TableCircle } from '../../styles';
 
 import { greenTwo, redTwo, lightYellow, greyTwo } from '../../../../assets/colors';
 
-import { formatMoney } from '../../../../utils';
+import { formatMoney, formatDate } from '../../../../utils';
 
 export const Item = (props) => {
   // props
@@ -13,15 +13,8 @@ export const Item = (props) => {
   const data = useRef(props.data);
 
   // methods
-
-  const formatDate = (date) => {
-    date = date.split('-');
-
-    return `${date[2]}/${date[1]}/${date[0]}`;
-  };
-
   const getStatusColor = (boleto) => {
-    const stringDate = boleto.Boleto.dueDate;
+    const stringDate = formatDate(boleto.Boleto.due_date);
     const spliter = stringDate.split('-');
     const boletoDate = new Date(spliter[0], spliter[1] - 1, spliter[2], 23, 59, 59);
     const today = new Date();
@@ -33,21 +26,13 @@ export const Item = (props) => {
     else if (boletoDate < today && status !== 'paid') return redTwo;
   };
 
-  // useEffects
-
-  useEffect(() => {
-    const defaultData = { IndiceFatura: 0, valorParcela: 0, Boleto: { dueDate: null } };
-
-    if (data == undefined || data.current === 'none' || data === null) data.current = defaultData;
-  }, [data]);
-
   // render
 
   return (
     <TableRow showBorder={showBorder}>
       <TableText bold={true}>{data.current.IndiceFatura + 1}</TableText>
       <TableText flex="2">{formatMoney(data.current.valorParcela)}</TableText>
-      <TableText flex="2">{formatDate(data.current.Boleto.dueDate)}</TableText>
+      <TableText flex="2">{formatDate(data.current.Boleto.due_date)}</TableText>
       <TableCircle>
         <Circle background={getStatusColor(data.current)} />
       </TableCircle>

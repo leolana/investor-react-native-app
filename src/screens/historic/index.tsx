@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 
 import { CardHistory } from './components';
 
-import { SafeAreaView, TouchableOpacity } from './styles';
+import { SafeAreaView, TouchableOpacity, Label } from './styles';
 
 import { Request, UrlInfoInvLista } from '../../services';
 
 import { Loading } from '../../components';
 
 import { IconFilter } from '../../assets/icons';
+
+import { isAfter, isBefore, isSameDay, parseISO } from 'date-fns';
 
 export const HistoricComponent = (props) => {
   // props
@@ -21,6 +23,10 @@ export const HistoricComponent = (props) => {
 
   const [historicList, setHistoricList] = useState(null);
 
+  const [hasItem, setHasItem] = useState(true);
+
+  const [hasResult, setHasResult] = useState(true);
+
   const [loading, setLoading] = useState(false);
 
   // vars
@@ -30,7 +36,7 @@ export const HistoricComponent = (props) => {
   // methods
 
   const applyDefaultFilter = (list) => {
-    list = list.filter(({ SolicitacaoId, Status }) => !(SolicitacaoId.StatusAnalise == 'ENCERRADO' && Status == 2));
+    list = list.filter(({ SolicitacaoId, Status }) => !(SolicitacaoId.StatusAnalise === 'ENCERRADO' && Status === 2));
 
     return list;
   };
@@ -42,8 +48,10 @@ export const HistoricComponent = (props) => {
 
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
+    if (resp.data.length === 0) setHasItem(false);
+
     if (resp.status === 200) setHistoricList(applyDefaultFilter(resp.data).reverse());
-    else alert('Ocorreu um erro ao pegar o histórico de investimento. Tente novamente mais tarde.');
+    else Alert.alert('Não foi possível acessar o histórico de investimento. Tente novamente mais tarde.');
 
     setLoading(false);
   };
@@ -51,29 +59,80 @@ export const HistoricComponent = (props) => {
   const applyTypeFilter = (list) => {
     const { type } = filter;
 
-    return list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo == type.value);
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ SolicitacaoId }) => SolicitacaoId.TipoEmprestimo === type.value);
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
+  const formatDate = (props) => {
+    let data = props;
+    if (!data.includes('/')) return '--/--/----';
 
+    data = data.split('/');
+
+    data = `${data[2]}/${data[1]}/${data[0]}`;
+
+    data = parseISO(new Date(data).toISOString());
+
+    return data;
+  };
   const applyDateFromFilter = (list) => {
-    const { dateFrom } = filter;
+    let { dateFrom } = filter;
 
-    const date = dateFrom.toISOString();
+    dateFrom = formatDate(dateFrom);
 
-    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ Created }) => {
+      const data = parseISO(Created);
+      if (isSameDay(data, dateFrom)) return true;
+      else if (isAfter(data, dateFrom)) return true;
+    });
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyDateToFilter = (list) => {
-    const { dateTo } = filter;
+    let { dateTo } = filter;
 
-    const date = dateTo.toISOString();
+    dateTo = formatDate(dateTo);
 
-    return list.filter(({ Created }) => new Date(Created.split('T')[0]) >= new Date(date.split('T')[0]));
+    setHasItem(true);
+    setHasResult(true);
+
+    const newList = list.filter(({ Created }) => {
+      const data = parseISO(Created);
+
+      if (isSameDay(data, dateTo)) return true;
+      if (isBefore(data, dateTo)) return true;
+    });
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyScoreFilter = (list) => {
     const { score } = filter;
+    let newList = null;
 
-    return (list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score == score.value));
+    setHasItem(true);
+    setHasResult(true);
+
+    if (score.value.length === 1)
+      newList = list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score[0] === score.value);
+    else newList = list = list.filter(({ SolicitacaoId }) => SolicitacaoId.Score === score.value);
+
+    if (newList.length === 0) setHasResult(false);
+
+    return newList;
   };
 
   const applyFilter = async () => {
@@ -84,7 +143,7 @@ export const HistoricComponent = (props) => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
     if (resp.status === 200) setLoading(false);
-    else return alert('Ocorreu um erro ao aplicar o filtro. Tente novamente mais tarde.');
+    else return Alert.alert('Não foi possível aplicar o filtro. Tente novamente mais tarde.');
 
     let list = resp.data;
 
@@ -98,7 +157,7 @@ export const HistoricComponent = (props) => {
 
     if (dateTo != null) list = applyDateToFilter(list);
 
-    if (score.value != '') list = applyScoreFilter(list);
+    if (score.value !== '') list = applyScoreFilter(list);
 
     setHistoricList(list.reverse());
   };
@@ -126,6 +185,8 @@ export const HistoricComponent = (props) => {
   return (
     <Loading loading={loading}>
       <SafeAreaView>
+        {!hasItem && <Label>Você ainda não realizou investimentos</Label>}
+        {!hasResult && <Label>Não encontramos nenhum resultado na sua busca</Label>}
         <FlatList data={historicList} renderItem={renderHistoryCard} key={(item) => item.id} />
       </SafeAreaView>
     </Loading>
@@ -141,7 +202,7 @@ export const Historic = {
           <IconFilter />
         </TouchableOpacity>
       ),
-      headerTitle: 'Histórico',
+      headerTitle: 'Meu Histórico',
     };
   },
 };

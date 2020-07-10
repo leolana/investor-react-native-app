@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Card, Header, IconArrowRight, Title, Text, Body, Circle, HelperArea, ScoreArea } from './styles';
+import { Card, Header, IconArrowRight, Title, Text, Body, Circle, HelperArea, ScoreArea, TextItem } from './styles';
 
 import { tealish, greenTwo, greyTwo, redTwo, blueTwo } from '../../../../assets/colors';
 
@@ -36,44 +36,44 @@ export const CardHistoryComponent = (props) => {
     } = data.SolicitacaoId;
 
     if (
-      (Valor > ValorCaptado && BoletosAtrasados == undefined) ||
-      (BoletosAtrasados == 0 && StatusAnalise != 'ENCERRADO')
+      (Valor > ValorCaptado && BoletosAtrasados === undefined) ||
+      (BoletosAtrasados === 0 && StatusAnalise !== 'ENCERRADO')
     )
       return 'Captando';
     else if (
-      (Valor <= ValorCaptado && BoletosAtrasados == undefined) ||
-      (BoletosAtrasados == 0 && StatusAnalise != 'ENCERRADO')
+      (Valor <= ValorCaptado && BoletosAtrasados === undefined) ||
+      (BoletosAtrasados === 0 && StatusAnalise !== 'ENCERRADO')
     )
       return 'Captado';
-    else if (BoletosAtrasados != undefined && BoletosAtrasados != 0) return 'Em Atraso';
+    else if (BoletosAtrasados !== undefined && BoletosAtrasados !== 0) return 'Em Atraso';
     else if (
-      StatusAnalise == 'ENCERRADO' &&
+      StatusAnalise === 'ENCERRADO' &&
       !GerouBoletosPagamento &&
-      (BoletosAtrasados == undefined || BoletosAtrasados == 0) &&
-      data.AssinouCCB != true &&
-      CCBsAssinaturas != true
+      (BoletosAtrasados === undefined || BoletosAtrasados === 0) &&
+      data.AssinouCCB !== true &&
+      CCBsAssinaturas !== true
     )
       return 'Aguardando formalização';
     else if (
-      StatusAnalise == 'ENCERRADO' &&
+      StatusAnalise === 'ENCERRADO' &&
       !GerouBoletosPagamento &&
-      (BoletosAtrasados == undefined || BoletosAtrasados == 0) &&
-      data.AssinouCCB != true &&
-      CCBsAssinaturas == true
+      (BoletosAtrasados === undefined || BoletosAtrasados === 0) &&
+      data.AssinouCCB !== true &&
+      CCBsAssinaturas === true
     )
       return 'Assinar CCB';
     else if (
-      StatusAnalise == 'ENCERRADO' &&
+      StatusAnalise === 'ENCERRADO' &&
       !GerouBoletosPagamento &&
-      (BoletosAtrasados == undefined || BoletosAtrasados == 0) &&
-      data.AssinouCCB == true &&
-      CCBsAssinaturas == true
+      (BoletosAtrasados === undefined || BoletosAtrasados === 0) &&
+      data.AssinouCCB === true &&
+      CCBsAssinaturas === true
     )
       return 'Processando Desembolso';
     else if (
-      StatusAnalise == 'ENCERRADO' &&
+      StatusAnalise === 'ENCERRADO' &&
       GerouBoletosPagamento &&
-      (BoletosAtrasados == undefined || BoletosAtrasados == 0)
+      (BoletosAtrasados === undefined || BoletosAtrasados === 0)
     )
       return 'Empréstimo Ativo';
   };
@@ -112,7 +112,7 @@ export const CardHistoryComponent = (props) => {
           <Title> ID #{data.SolicitacaoId.IdOportunidade} </Title>
 
           <HelperArea>
-            <Text fontFamily={'OpenSans-SemiBold'} width="178px" color={getStatusColor(status)}>
+            <Text fontFamily={'OpenSans-Bold'} color={getStatusColor(status)}>
               {status}
             </Text>
 
@@ -125,53 +125,34 @@ export const CardHistoryComponent = (props) => {
 
         <Body>
           <Text>
-            {' '}
-            Nome da empresa: <Text fontFamily={'OpenSans-Regular'}>
-              {' '}
-              {data.SolicitacaoId.Empresa.NomeFantasia}{' '}
-            </Text>{' '}
+            Nome da empresa:
+            <TextItem> {data.SolicitacaoId.Empresa.NomeFantasia} </TextItem>
           </Text>
           <Text>
-            {' '}
-            Participação: <Text fontFamily={'OpenSans-Regular'}> {formatMoney(data.Valor)} </Text>{' '}
+            Participação: <TextItem> {formatMoney(data.Valor)} </TextItem>
           </Text>
           <Text>
-            {' '}
-            Tipo de empréstimo:{' '}
-            <Text fontFamily={'OpenSans-Regular'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </Text>{' '}
+            Tipo de empréstimo:
+            <TextItem fontFamily={'OpenSans-Regular'}> {formatLoanType(data.SolicitacaoId.TipoEmprestimo)} </TextItem>
           </Text>
           <Text>
-            {' '}
-            Taxa de juros:{' '}
-            <Text fontFamily={'OpenSans-Regular'}>
-              {' '}
-              {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m.{' '}
-            </Text>{' '}
+            Taxa de juros:
+            <TextItem> {formatPercent(data.SolicitacaoId.RetornoBrutoMensal)} a.m. </TextItem>
           </Text>
           <Text>
-            {' '}
-            Retorno:{' '}
-            <Text fontFamily={'OpenSans-Regular'}>
-              {' '}
-              {formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a.{' '}
-            </Text>{' '}
+            Retorno:
+            <TextItem> {formatPercent(data.SolicitacaoId.RetornoBrutoAnual)} a.a. </TextItem>
           </Text>
           <Text>
-            {' '}
-            Duração: <Text fontFamily={'OpenSans-Regular'}> {data.SolicitacaoId.Prazo} Meses </Text>{' '}
+            Duração: <TextItem> {data.SolicitacaoId.Prazo} Meses </TextItem>
           </Text>
         </Body>
 
         <Text>
-          {' '}
-          Data da solicitação: <Text fontFamily={'OpenSans-Regular'}>
-            {' '}
-            {formatDate(data.SolicitacaoId.Created)}{' '}
-          </Text>{' '}
+          Data da solicitação: <TextItem> {formatDate(data.SolicitacaoId.Created)} </TextItem>
         </Text>
         <Text>
-          {' '}
-          Data do investimento: <Text fontFamily={'OpenSans-Regular'}> {formatDate(data.Created)} </Text>{' '}
+          Data do investimento: <TextItem> {formatDate(data.Created)} </TextItem>
         </Text>
       </Card>
     </TouchableWithoutFeedback>

@@ -27,7 +27,7 @@ export const FooterComponent = (props) => {
 
   const companyLink = [
     {
-      title: 'Ver todos os dados da empresa',
+      title: 'Dados da empresa',
       onPress: () => navigation.navigate('Company', { data }),
     },
   ];

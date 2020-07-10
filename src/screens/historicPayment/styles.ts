@@ -13,7 +13,7 @@ export const Table = styled.View`
 
 export const Row = styled.View`
   flex-direction: row;
-  align-items: center;
+  justify-content: center;
   padding-bottom: 10px;
   border-bottom-width: 1px;
   border-bottom-color: ${greyDD};

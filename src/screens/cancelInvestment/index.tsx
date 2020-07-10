@@ -42,7 +42,7 @@ export const CancelInvestmentComponent = (props) => {
 
       return false;
     } else if (data.StatusBoleto === 'paid') {
-      notifyError('text', 'Não e possivel cancelar o investimento após o pagamento to boleto.');
+      notifyError('text', 'Não e possível cancelar o investimento após o pagamento to boleto.');
 
       return false;
     } else {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
@@ -86,7 +86,7 @@ export const SignUpInvestorStepTwoComponent = (props) => {
       header: 'bearer',
     });
     if (resp.status === 200) setApiState(resp.data);
-    else alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
   }
 
   async function getCities() {

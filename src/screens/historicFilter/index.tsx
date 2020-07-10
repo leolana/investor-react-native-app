@@ -29,6 +29,7 @@ export const HistoricFilterComponent = (props) => {
     options: [
       { text: 'Empréstimo Coletivo', value: 'emprestimo-coletivo' },
       { text: 'Empréstimo Social', value: 'emprestimo-social' },
+      { text: 'Emprestimo de Impacto', value: 'emprestimo-de-impacto2' },
     ],
     onValueChange: (value) => setType(value),
     data: type,

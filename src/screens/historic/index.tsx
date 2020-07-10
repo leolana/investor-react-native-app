@@ -202,7 +202,7 @@ export const Historic = {
           <IconFilter />
         </TouchableOpacity>
       ),
-      headerTitle: 'Histórico de Investimentos',
+      headerTitle: 'Meu Histórico',
     };
   },
 };

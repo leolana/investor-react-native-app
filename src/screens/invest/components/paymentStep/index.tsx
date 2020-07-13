@@ -31,7 +31,7 @@ import { Request, UrlInvPegar } from '../../../../services';
 
 import { useSelector } from 'react-redux';
 
-import { TouchableOpacity, Dimensions, Clipboard, Alert } from 'react-native';
+import { TouchableOpacity, Dimensions, Clipboard, Alert, Linking } from 'react-native';
 
 const { width } = Dimensions.get('screen');
 
@@ -69,9 +69,10 @@ export const PaymentStepComponent = (props) => {
     }
   };
 
-  const copyToClipboard = () => {
-    Clipboard.setString(data.boleto);
-    Alert.alert('Código copiado!');
+  const boleto = () => {
+    Linking.openURL(data.boleto);
+
+    props.navigation.navigate('Opportunities');
   };
 
   // Effects
@@ -83,7 +84,6 @@ export const PaymentStepComponent = (props) => {
 
     fetchData();
 
-    // props.navigation.setParams({ HeaderTitle: 'PAGAMENTO' });
   }, [props.navigation]);
 
   // Render
@@ -118,22 +118,6 @@ export const PaymentStepComponent = (props) => {
       <Title>Forma de pagamento: BOLETO BANCÁRIO</Title>
 
       <Divisor>
-        {/* <Printer fill="none" stroke={grey99} /> */}
-        <ItemText>
-          <ItemText bold={true}>Código do boleto</ItemText>
-          <ItemText> {data.boleto} </ItemText>
-        </ItemText>
-      </Divisor>
-
-      <Divisor>
-        <Devices fill="none" stroke={grey99} />
-
-        <ItemText width={250} bold={true}>
-          Copie o código do seu boleto para efetuar o pagamento por meio digital
-        </ItemText>
-      </Divisor>
-
-      <Divisor>
         <Calendar fill="none" stroke={grey99} />
 
         <ItemText>
@@ -143,8 +127,8 @@ export const PaymentStepComponent = (props) => {
 
       <SpotlightTitle>Total: {formatMoney(data.value - data.reinvestmentValue)}</SpotlightTitle>
 
-      <Buttom onPress={() => copyToClipboard()}>
-        <ButtomText>COPIAR CÓDIGO DE BARRAS</ButtomText>
+      <Buttom onPress={() => boleto()}>
+        <ButtomText>PAGAR BOLETO</ButtomText>
       </Buttom>
 
       <Item>

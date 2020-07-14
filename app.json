@@ -26,7 +26,25 @@
     },
     "android": {
       "package": "com.iouu",
-      "versionCode": 1
+      "versionCode": 1,
+      "googleServicesFile": "./google-services.json"
+    },
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "web": {
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyBSYO7o6ghCZJUYscOJ76rJdr15SbdtK3E",
+          "authDomain": "iouuapp.firebaseapp.com",
+          "databaseURL": "https://iouuapp.firebaseio.com",
+          "projectId": "iouuapp",
+          "storageBucket": "iouuapp.appspot.com",
+          "messagingSenderId": "561528096177",
+          "appId": "1:561528096177:web:b74d250ef338574024a990",
+          "measurementId": "G-3KT04LSTVD"
+        }
+      }
     },
     "description": ""
   }

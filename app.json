@@ -1,10 +1,12 @@
 {
-  "name": "AppIouu",
-  "displayName": "AppIouu",
+  "name": "Iouu",
+  "displayName": "Iouu",
   "expo": {
-    "name": "AppIouu",
-    "slug": "AppIouu",
+    "name": "Iouu",
+    "slug": "Iouu",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/imgs/icon.png",
     "platforms": [
       "ios",
       "android",

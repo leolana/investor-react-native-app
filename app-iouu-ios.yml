@@ -58,9 +58,7 @@ steps:
     packageApp: true
     exportPath: 'output/package'
     archivePath: 'output/archive'
-    signingoption: 'manual'
-    signingidentity: '$(apple_certificate_signing_identity)'
-    useXcpretty: false    
+    signingoption: 'auto' 
 
 - task: PublishBuildArtifacts@1
   displayName: "Publish Build Artifact"

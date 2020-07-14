@@ -60,7 +60,6 @@ steps:
     archivePath: 'output/archive'
     signingoption: 'manual'
     signingidentity: '$(apple_certificate_signing_identity)'
-    provisioningprofileuuid: '$(apple_prov_profile_uuid)'
     useXcpretty: false    
 
 - task: PublishBuildArtifacts@1

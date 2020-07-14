@@ -11,6 +11,8 @@ import {
   UrlReservationCreate,
   UrlSolicitacaoReservaPegar,
   UrlReservationCreateBankSlip,
+  UrlRegistroDeposito,
+  UrlRegistroDebito,
 } from '../../../../services';
 
 import { withNavigation } from 'react-navigation';
@@ -81,6 +83,18 @@ export const ConfirmationStepComponent = (props) => {
     });
 
     const respconfirm = await Request.GET({ url: UrlSolicitacaoReservaPegar(reservaId) });
+
+    await Request.POST({
+      url: UrlRegistroDebito(),
+      data: { IDReserva: reservaId },
+      header: 'bearer',
+    });
+
+    await Request.POST({
+      url: UrlRegistroDeposito(),
+      data: { IDReserva: reservaId },
+      header: 'bearer',
+    });
 
     if (data.waitingList) {
       setLoading(false);

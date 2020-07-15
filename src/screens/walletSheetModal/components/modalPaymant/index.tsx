@@ -71,10 +71,10 @@ export const ModalPaymantComponent = (props) => {
         <Text>{formatMoney(data.Valor)}</Text>
       </Area>
 
-      <Button onPress={() => props.navigation.navigate('WalletReceipt', { id: data.id })}>
+      {/* <Button onPress={() => props.navigation.navigate('WalletReceipt', { id: data.id })}>
         <IconPrinterStyled width={24} height={24} stroke={black} fill={'none'} />
         <Text>Visualizar detalhes</Text>
-      </Button>
+      </Button> */}
     </>
   );
 };

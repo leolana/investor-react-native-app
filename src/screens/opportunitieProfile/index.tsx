@@ -77,8 +77,10 @@ export const OpportunitieProfileComponent = (props) => {
 
     const isAvailableToInvest = status === 'APROVADO';
 
-    if (getRemainingTime() > 0 && isAvailableToInvest) return true;
-    else if (getRemainingTime() <= 0 && hasInvestment) return true;
+    const remainingTime = getRemainingTime();
+
+    if (remainingTime >= 0 && isAvailableToInvest) return true;
+    else if (remainingTime < 0 && hasInvestment) return true;
     else if (!isAvailableToInvest) {
       setMessage('Seu cadastro possui uma aprovação pendente. Aguarde a confirmação de nosso pessoal para o acesso.');
 
@@ -91,18 +93,18 @@ export const OpportunitieProfileComponent = (props) => {
   };
 
   const getSolicitation = async () => {
-    const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id), data:{}, header: 'bearer'});
+    const resp = await Request.GET({ url: UrlSolicitacaoPegar(data._id), data: {}, header: 'bearer' });
     if (resp.status === 200) {
       setSolData(resp.data.Solicitacao);
     }
   };
 
   const getInvestmentReserve = async () => {
-    const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id), data:{}, header: 'bearer'});
+    const resp = await Request.GET({ url: UrlSolicitacaoReservaInvPegar(data._id), data: {}, header: 'bearer' });
     if (resp.status === 200) {
       setReverveData(resp.data);
-    }else{
-      setReverveData(null)
+    } else {
+      setReverveData(null);
     }
   };
 

@@ -21,7 +21,7 @@ export const diffDaysForOpportunitie = (date) => {
 
   if (diffDays <= 0) return 'encerrado';
 
-  if (diffDays == 0) return 'hoje';
+  if (diffDays == 1) return 'hoje';
 
   return `${diffDays} dias`;
 };

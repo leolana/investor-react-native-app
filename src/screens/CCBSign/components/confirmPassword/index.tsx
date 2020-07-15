@@ -41,7 +41,7 @@ export const ConfirmPasswordComponent = (props) => {
       navigation.navigate('CCBsList');
 
       navigation.navigate('CCBSignSuccess');
-    } else Alert.alert('Não foi possível assinar a CCB no momneto.', 'Tente novamente mais tarde.');
+    } else Alert.alert('Não foi possível assinar a CCB no momento.', 'Tente novamente mais tarde.');
   };
 
   const checkPassword = async () => {

@@ -9,6 +9,7 @@ import { Loading } from '../../components';
 import { Request, UrlInfoInvLista } from '../../services';
 
 import { FlatList, Alert } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 
 export const CCBsListComponent = (props) => {
   // states
@@ -65,10 +66,21 @@ export const CCBsListComponent = (props) => {
     fetchData();
   }, []);
 
+  const resetData = () => {
+    setList(null);
+    getCCBList();
+  };
+  // effects
+
+  useEffect(() => {
+    resetData();
+  }, []);
+
   // render
 
   return (
     <Loading loading={list === null}>
+      <NavigationEvents onDidFocus={() => resetData()} />
       <SafeAreaView>
         {flag && <Label>No momento você não possui nehuma CCB</Label>}
         <FlatList style={{ padding: 16, paddingBottom: 0 }} data={list} renderItem={renderItem} />

@@ -32,7 +32,10 @@ export const OpportunitieProfileComponent = (props) => {
   const itsFinished = () => {
     const { FimCaptacao, StatusAnalise } = data;
 
-    return StatusAnalise === 'ENCERRADO' || diffDaysForOpportunitie(FimCaptacao) === 'encerrado';
+    const dataAuxiliar = new Date(FimCaptacao);
+    dataAuxiliar.setDate(dataAuxiliar.getDate() + 1);
+
+    return StatusAnalise === 'ENCERRADO' || diffDaysForOpportunitie(dataAuxiliar.toISOString()) === 'encerrado';
   };
 
   const getRemainingTime = () => {
@@ -79,8 +82,8 @@ export const OpportunitieProfileComponent = (props) => {
 
     const remainingTime = getRemainingTime();
 
-    if (remainingTime >= 0 && isAvailableToInvest) return true;
-    else if (remainingTime < 0 && hasInvestment) return true;
+    if (remainingTime > 0 && isAvailableToInvest) return true;
+    else if (remainingTime <= 0 && hasInvestment) return true;
     else if (!isAvailableToInvest) {
       setMessage('Seu cadastro possui uma aprovação pendente. Aguarde a confirmação de nosso pessoal para o acesso.');
 

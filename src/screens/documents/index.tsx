@@ -35,7 +35,7 @@ export const DocumentsComponent = (props) => {
     if (resp.status === 200) {
       setIdentityDocument([...resp.data.ArquivosIdentidade]);
       setResidenceDocument([...resp.data.ArquivosComprovanteResidencia]);
-    } else Alert.alert('Error');
+    } else Alert.alert('Encontramos um problema.');
   };
 
   const showPhoto = (foto) => {
@@ -102,7 +102,7 @@ export const DocumentsComponent = (props) => {
           <Image
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20, borderRadius: 15 }}
             source={{
-              uri: `https://hub-test.iouu.com.br/file/${photo}`,
+              uri: `https://hub-app.iouu.com.br/file/${photo}`,
             }}
           />
         </Modal>

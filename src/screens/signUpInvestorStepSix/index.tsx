@@ -76,7 +76,7 @@ export const SignUpInvestorStepSixComponent = (props) => {
     if (resp.data.erro) setValid(false);
 
     if (resp.status === 200 && !resp.data.erro) contentCep(resp.data);
-    else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Não foi possível obter as informações.', 'Por favor volte mais tarde.');
     console.log(resp.data);
 
     setLoading(false);

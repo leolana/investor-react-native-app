@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dimensions } from 'react-native';
+import { Dimensions, Alert } from 'react-native';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -17,7 +17,7 @@ export const VideoViewerComponent = (props) => {
   const onError = () => {
     navigation.goBack();
 
-    alert('Não foi possível carregar o vídeo no momento. Tente novamente mais tarde.');
+    Alert.alert('Não foi possível carregar o vídeo no momento.', 'Tente novamente mais tarde.');
   };
 
   // render

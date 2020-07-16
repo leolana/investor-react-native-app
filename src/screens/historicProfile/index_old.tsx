@@ -68,7 +68,7 @@ export const HistoricProfileComponent = (props) => {
     console.log('RESPOSTA TA AQUI', resp);
 
     if (resp.status === 200) setReserve(resp.data);
-    else Alert.alert('Ocorreu um erro ao obter as informações. Por favor volte mais tarde.');
+    else Alert.alert('Ocorreu um erro ao obter as informações.', 'Por favor volte mais tarde.');
   };
 
   // useeffects

@@ -51,7 +51,7 @@ export const HistoricComponent = (props) => {
     if (resp.data.length === 0) setHasItem(false);
 
     if (resp.status === 200) setHistoricList(applyDefaultFilter(resp.data).reverse());
-    else Alert.alert('Não foi possível acessar o histórico de investimento. Tente novamente mais tarde.');
+    else Alert.alert('Não foi possível acessar o histórico de investimento.', 'Tente novamente mais tarde.');
 
     setLoading(false);
   };
@@ -143,7 +143,7 @@ export const HistoricComponent = (props) => {
     const resp = await Request.GET({ url: UrlInfoInvLista });
 
     if (resp.status === 200) setLoading(false);
-    else return Alert.alert('Não foi possível aplicar o filtro. Tente novamente mais tarde.');
+    else return Alert.alert('Não foi possível aplicar o filtro.', 'Tente novamente mais tarde.');
 
     let list = resp.data;
 

@@ -45,7 +45,7 @@ export const ConfigurationsComponent = () => {
       accountData.NotificacoesInvestidor = config;
 
       dispatch(setAccountData(accountData));
-    } else Alert.alert('Não foi possível salvar as configurações. Tente novamente mais terde.');
+    } else Alert.alert('Não foi possível salvar as configurações.', 'Tente novamente mais tarde.');
   };
 
   const onValueChange = (key, value) => {

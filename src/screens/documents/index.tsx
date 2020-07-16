@@ -8,7 +8,13 @@ import { IconPdf, IconJpg } from '../../assets/icons';
 
 import { Linking, FlatList, Image, Alert, Modal, TouchableOpacity, Text } from 'react-native';
 
-import { UrlTermosCondicoes, UrlPoliticaPrivacidade, UrlInvPegar, Request } from '../../services';
+import {
+  UrlTermosCondicoes,
+  UrlPoliticaPrivacidade,
+  UrlInvPegar,
+  UrlPegarFotoDocumento,
+  Request,
+} from '../../services';
 
 import PhotoViewer from './../photoViewer';
 
@@ -41,7 +47,6 @@ export const DocumentsComponent = (props) => {
   const showPhoto = (foto) => {
     setPhoto(foto);
     setOpen(true);
-    console.log(open);
   };
 
   useEffect(() => {
@@ -102,7 +107,7 @@ export const DocumentsComponent = (props) => {
           <Image
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 20, borderRadius: 15 }}
             source={{
-              uri: `https://hub-app.iouu.com.br/file/${photo}`,
+              uri: UrlPegarFotoDocumento(photo),
             }}
           />
         </Modal>

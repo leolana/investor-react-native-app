@@ -21,6 +21,8 @@ const DESENV = {
 
 const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
 
+export const UrlPegarFotoDocumento = (foto) => `${BASE_URL_HUB}file/${foto}`;
+
 // NODE URL
 export const UrlSenhaVerificar = `${BASE_URL_NODE}api/v1/emprestimos/verifica-senha`;
 

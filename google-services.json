@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "561528096177",
+    "firebase_url": "https://iouuapp.firebaseio.com",
+    "project_id": "iouuapp",
+    "storage_bucket": "iouuapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561528096177:android:99d1bcae1a6a362524a990",
+        "android_client_info": {
+          "package_name": "br.com.iouu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561528096177-c4okuehb5s09l88pm98mdvgmd3eua9mk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.iouu",
+            "certificate_hash": "bda128391e5afb482a542a19e1222a48c89658d6"
+          }
+        },
+        {
+          "client_id": "561528096177-mn3iu2i8618rkj5shealbkpa2idkgm78.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBFoKVgP3tGVRVDwIJYl2Mek3r3mQCZA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561528096177-mn3iu2i8618rkj5shealbkpa2idkgm78.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "561528096177-ra38d983l01h4qppo4hlh043ssn3thkv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.iouu.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

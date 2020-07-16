@@ -16,19 +16,19 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* AppIouuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AppIouuTests.m */; };
-		40F841B7715A489AB57B9CA4 /* HelveticaNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A639B0F2AF4FDD83CACFB8 /* HelveticaNeue-Regular.ttf */; };
+		40F841B7715A489AB57B9CA4 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A639B0F2AF4FDD83CACFB8 /* OpenSans-Regular.ttf */; };
 		4D0B3B1F2396DC04006DD106 /* Images-3.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D0B3B1E2396DC04006DD106 /* Images-3.xcassets */; };
 		4D33E02523954B9700FDCB09 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D33E02423954B9700FDCB09 /* Images-2.xcassets */; };
 		70214BF1136385B3432F5983 /* libPods-AppIouu-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 616D7FA421B88E34E45E5879 /* libPods-AppIouu-tvOSTests.a */; };
 		77A9B3C8E95E42FAA26844F3 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */; };
 		84036AAAA09A4739812BAD4F /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */; };
 		98CAE5BF25824E5380AECC5E /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */; };
-		9A6FD79D2DE845C5BA5A9683 /* HelveticaNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79AE1C5136844E26A328744A /* HelveticaNeue-Bold.ttf */; };
-		9B237ED8F0F542F99E09E708 /* HelveticaNeue-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD48DE8DCEEB4CAABDE62449 /* HelveticaNeue-ExtraBold.ttf */; };
-		A4258B6A1F064EF08A5F45E1 /* HelveticaNeue-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 487CF0280B384E40A6BE2130 /* HelveticaNeue-Light.woff */; };
+		9A6FD79D2DE845C5BA5A9683 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79AE1C5136844E26A328744A /* OpenSans-Bold.ttf */; };
+		9B237ED8F0F542F99E09E708 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD48DE8DCEEB4CAABDE62449 /* OpenSans-ExtraBold.ttf */; };
+		A4258B6A1F064EF08A5F45E1 /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 487CF0280B384E40A6BE2130 /* OpenSans-Light.woff */; };
 		C780107E364FCCF57557844A /* libPods-AppIouuTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D255FAA4FF590D5FC923E40 /* libPods-AppIouuTests.a */; };
 		C97D43532D6D7D94491435A0 /* libPods-AppIouu-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5982B48545EBEBEC95AA22D6 /* libPods-AppIouu-tvOS.a */; };
-		F703F406492F4574A8B2D36C /* HelveticaNeue-Medium.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5FEF1DA165314E9D9F100D76 /* HelveticaNeue-Medium.woff */; };
+		F703F406492F4574A8B2D36C /* OpenSans-SemiBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 5FEF1DA165314E9D9F100D76 /* OpenSans-SemiBold.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,38 +61,37 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AppIouu/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AppIouu/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AppIouu/main.m; sourceTree = "<group>"; };
-		15D9D5FC03CF43BEB9BD60B4 /* HelveticaNeue.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeue.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeue.ttf; sourceTree = "<group>"; };
 		1D255FAA4FF590D5FC923E40 /* libPods-AppIouuTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouuTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C603650B13325707ACAA494 /* Pods-AppIouuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouuTests.debug.xcconfig"; path = "Target Support Files/Pods-AppIouuTests/Pods-AppIouuTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* AppIouu-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppIouu-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* AppIouu-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppIouu-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		320AE5374BA66FDDAB19E35F /* Pods-AppIouu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu.release.xcconfig"; path = "Target Support Files/Pods-AppIouu/Pods-AppIouu.release.xcconfig"; sourceTree = "<group>"; };
-		3B9AF0423A454213B403D0C0 /* HelveticaNeueRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueRegular.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueRegular.ttf; sourceTree = "<group>"; };
+		3B9AF0423A454213B403D0C0 /* OpenSansRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansRegular.ttf; path = ../src/assets/fonts/open-sans/OpenSansRegular.ttf; sourceTree = "<group>"; };
 		45F7F2ABE3FAF653BC724C6F /* Pods-AppIouu-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOSTests/Pods-AppIouu-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		487CF0280B384E40A6BE2130 /* HelveticaNeue-Light.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Light.woff"; path = "../src/assets/fonts/helvetica_neue/HelveticaNeue-Light.woff"; sourceTree = "<group>"; };
+		487CF0280B384E40A6BE2130 /* OpenSans-Light.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.woff"; path = "../src/assets/fonts/open-sans/OpenSans-Light.woff"; sourceTree = "<group>"; };
 		4D0B3B1E2396DC04006DD106 /* Images-3.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-3.xcassets"; path = "AppIouu/Images-3.xcassets"; sourceTree = "<group>"; };
 		4D33E02423954B9700FDCB09 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-2.xcassets"; path = "AppIouu/Images-2.xcassets"; sourceTree = "<group>"; };
 		5982B48545EBEBEC95AA22D6 /* libPods-AppIouu-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-Light.ttf"; sourceTree = "<group>"; };
-		5E508EF871BE42589A3496AC /* HelveticaNeueLight.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueLight.woff; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueLight.woff; sourceTree = "<group>"; };
-		5FEF1DA165314E9D9F100D76 /* HelveticaNeue-Medium.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Medium.woff"; path = "../src/assets/fonts/helvetica_neue/HelveticaNeue-Medium.woff"; sourceTree = "<group>"; };
+		5E508EF871BE42589A3496AC /* OpenSansLight.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansLight.woff; path = ../src/assets/fonts/open-sans/OpenSansLight.woff; sourceTree = "<group>"; };
+		5FEF1DA165314E9D9F100D76 /* OpenSans-SemiBold.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.woff"; path = "../src/assets/fonts/open-sans/OpenSans-SemiBold.woff"; sourceTree = "<group>"; };
 		616D7FA421B88E34E45E5879 /* libPods-AppIouu-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B540113572BAB94CC8DE84E /* Pods-AppIouu-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOS.release.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOS/Pods-AppIouu-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		79AE1C5136844E26A328744A /* HelveticaNeue-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Bold.ttf"; path = "../src/assets/fonts/helvetica_neue/HelveticaNeue-Bold.ttf"; sourceTree = "<group>"; };
-		7DF3532F236249CEA570DBBB /* HelveticaNeueMedium.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueMedium.woff; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueMedium.woff; sourceTree = "<group>"; };
+		79AE1C5136844E26A328744A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../src/assets/fonts/open-sans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		7DF3532F236249CEA570DBBB /* OpenSansMedium.woff */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansMedium.woff; path = ../src/assets/fonts/open-sans/OpenSansMedium.woff; sourceTree = "<group>"; };
 		881C679BDBF39043615BD676 /* Pods-AppIouu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu.debug.xcconfig"; path = "Target Support Files/Pods-AppIouu/Pods-AppIouu.debug.xcconfig"; sourceTree = "<group>"; };
 		8D09FF48F499DA129B689425 /* libPods-AppIouu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppIouu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		957ABD814585445CA42F8298 /* HelveticaNeueBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueBold.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueBold.ttf; sourceTree = "<group>"; };
+		957ABD814585445CA42F8298 /* OpenSansBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansBold.ttf; path = ../src/assets/fonts/open-sans/OpenSansBold.ttf; sourceTree = "<group>"; };
 		B3B513DBA3D135D1BA8F61DD /* Pods-AppIouu-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOSTests/Pods-AppIouu-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../src/assets/fonts/montserrat/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		E620E033DAE988EEC1E7E94C /* Pods-AppIouu-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouu-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-AppIouu-tvOS/Pods-AppIouu-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F38FFCFFBFA74946BFAE71CE /* HelveticaNeueExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = HelveticaNeueExtraBold.ttf; path = ../src/assets/fonts/helvetica_neue/HelveticaNeueExtraBold.ttf; sourceTree = "<group>"; };
-		F4A639B0F2AF4FDD83CACFB8 /* HelveticaNeue-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Regular.ttf"; path = "../src/assets/fonts/helvetica_neue/HelveticaNeue-Regular.ttf"; sourceTree = "<group>"; };
+		F38FFCFFBFA74946BFAE71CE /* OpenSansExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OpenSansExtraBold.ttf; path = ../src/assets/fonts/open-sans/OpenSansExtraBold.ttf; sourceTree = "<group>"; };
+		F4A639B0F2AF4FDD83CACFB8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../src/assets/fonts/open-sans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FCA874C2E3F2F5917D5E5FDA /* Pods-AppIouuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppIouuTests.release.xcconfig"; path = "Target Support Files/Pods-AppIouuTests/Pods-AppIouuTests.release.xcconfig"; sourceTree = "<group>"; };
-		FD48DE8DCEEB4CAABDE62449 /* HelveticaNeue-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-ExtraBold.ttf"; path = "../src/assets/fonts/helvetica_neue/HelveticaNeue-ExtraBold.ttf"; sourceTree = "<group>"; };
+		FD48DE8DCEEB4CAABDE62449 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../src/assets/fonts/open-sans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,21 +228,20 @@
 		D2E5C09CF122424888F7E5DC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				957ABD814585445CA42F8298 /* HelveticaNeueBold.ttf */,
-				F38FFCFFBFA74946BFAE71CE /* HelveticaNeueExtraBold.ttf */,
-				5E508EF871BE42589A3496AC /* HelveticaNeueLight.woff */,
-				7DF3532F236249CEA570DBBB /* HelveticaNeueMedium.woff */,
+				957ABD814585445CA42F8298 /* OpenSansBold.ttf */,
+				F38FFCFFBFA74946BFAE71CE /* OpenSansExtraBold.ttf */,
+				5E508EF871BE42589A3496AC /* OpenSansLight.woff */,
+				7DF3532F236249CEA570DBBB /* OpenSansMedium.woff */,
 				088D1F58597D4606A3AE4FB7 /* Montserrat-Bold.ttf */,
 				E02CAD768EA04445ADC74228 /* Montserrat-ExtraBold.ttf */,
 				5B08EC2C0BE4481F83265C35 /* Montserrat-Light.ttf */,
 				47C45DC934E147BFB69EC9F5 /* Montserrat-Regular.ttf */,
-				79AE1C5136844E26A328744A /* HelveticaNeue-Bold.ttf */,
-				FD48DE8DCEEB4CAABDE62449 /* HelveticaNeue-ExtraBold.ttf */,
-				487CF0280B384E40A6BE2130 /* HelveticaNeue-Light.woff */,
-				5FEF1DA165314E9D9F100D76 /* HelveticaNeue-Medium.woff */,
-				F4A639B0F2AF4FDD83CACFB8 /* HelveticaNeue-Regular.ttf */,
-				3B9AF0423A454213B403D0C0 /* HelveticaNeueRegular.ttf */,
-				15D9D5FC03CF43BEB9BD60B4 /* HelveticaNeue.ttf */,
+				79AE1C5136844E26A328744A /* OpenSans-Bold.ttf */,
+				FD48DE8DCEEB4CAABDE62449 /* OpenSans-ExtraBold.ttf */,
+				487CF0280B384E40A6BE2130 /* OpenSans-Light.woff */,
+				5FEF1DA165314E9D9F100D76 /* OpenSans-SemiBold.woff */,
+				F4A639B0F2AF4FDD83CACFB8 /* OpenSans-Regular.ttf */,
+				3B9AF0423A454213B403D0C0 /* OpenSansRegular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -396,11 +394,11 @@
 				77A9B3C8E95E42FAA26844F3 /* Montserrat-ExtraBold.ttf in Resources */,
 				84036AAAA09A4739812BAD4F /* Montserrat-Light.ttf in Resources */,
 				98CAE5BF25824E5380AECC5E /* Montserrat-Regular.ttf in Resources */,
-				9A6FD79D2DE845C5BA5A9683 /* HelveticaNeue-Bold.ttf in Resources */,
-				9B237ED8F0F542F99E09E708 /* HelveticaNeue-ExtraBold.ttf in Resources */,
-				A4258B6A1F064EF08A5F45E1 /* HelveticaNeue-Light.woff in Resources */,
-				F703F406492F4574A8B2D36C /* HelveticaNeue-Medium.woff in Resources */,
-				40F841B7715A489AB57B9CA4 /* HelveticaNeue-Regular.ttf in Resources */,
+				9A6FD79D2DE845C5BA5A9683 /* OpenSans-Bold.ttf in Resources */,
+				9B237ED8F0F542F99E09E708 /* OpenSans-ExtraBold.ttf in Resources */,
+				A4258B6A1F064EF08A5F45E1 /* OpenSans-Light.woff in Resources */,
+				F703F406492F4574A8B2D36C /* OpenSans-SemiBold.woff in Resources */,
+				40F841B7715A489AB57B9CA4 /* OpenSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

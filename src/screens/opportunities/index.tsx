@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Request, UrlListaOportunidades } from '../../services';
 
-import { ActivityIndicator, TouchableOpacity, FlatList } from 'react-native';
+import { ActivityIndicator, TouchableOpacity, FlatList, Alert } from 'react-native';
 
 import { LoadingContainer, SafeAreaView, Filter } from './styles';
 
@@ -109,7 +109,7 @@ export const PageOpportunities: React.FC = (props) => {
     } else {
       navigation.setParams({ filter: 'AA-A-B-C-D-E-HR' });
 
-      alert('Nenhuma oportunidade foi encontrada.');
+      Alert.alert('', 'Nenhuma oportunidade foi encontrada.');
     }
 
     setLoading(false);

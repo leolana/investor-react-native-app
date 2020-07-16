@@ -24,7 +24,7 @@ export const Touchable = styled.TouchableOpacity`
 
 export const Text = styled(Animated.Text)`
   font-family: OpenSans-Bold;
-  font-size: 12px;
+  font-size: 10px;
   margin-top: 5px;
 
   ${(props) => {

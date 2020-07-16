@@ -53,7 +53,7 @@ export const TransferWalletBalanceConfirmationComponent = (props) => {
 
       navigation.navigate('Wallet');
     } else if (resp.data.msg === 'SaldoInsuficiente') {
-      Alert.alert('SaldoInsuficiente');
+      Alert.alert('Saldo Insuficiente');
 
       navigation.navigate('Wallet');
     } else {

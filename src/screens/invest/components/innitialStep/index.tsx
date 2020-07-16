@@ -96,7 +96,7 @@ export const InnitialStepComponent = (props) => {
     const { ChamadaListaEspera } = data;
 
     if (ChamadaListaEspera) console.log('true');
-    else if (options.length === 0) return Alert.alert('Não é possível investir nessa oportunidade');
+    else if (options.length === 0) return Alert.alert('', 'Não é possível investir nessa oportunidade');
 
     const params = {
       options: options,

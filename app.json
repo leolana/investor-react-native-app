@@ -27,7 +27,7 @@
       "transformer": "./transformer.js"
     },
     "android": {
-      "package": "com.iouu",
+      "package": "br.com.iouu",
       "versionCode": 1,
       "googleServicesFile": "./google-services.json"
     },

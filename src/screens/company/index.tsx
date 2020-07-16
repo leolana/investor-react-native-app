@@ -18,6 +18,7 @@ import { formatCNPJ, formatDate } from '../../utils';
 import { IconFacebook, IconInstagram, IconLinkedin, IconTwitter, IconVimeo } from '../../assets/icons';
 
 import { Linking } from 'react-native';
+import { tealish } from '../../assets/colors';
 
 export const CompanyComponent = (props) => {
   // props
@@ -77,23 +78,23 @@ export const CompanyComponent = (props) => {
 
           <SocialMedia>
             <Touchable onPress={() => Linking.openURL(data.Empresa.Facebook)} disabled={!data.Empresa.Facebook}>
-              <IconFacebook />
+              <IconFacebook fill={tealish} />
             </Touchable>
 
             <Touchable onPress={() => Linking.openURL(data.Empresa.Instagram)} disabled={!data.Empresa.Instagram}>
-              <IconInstagram />
+              <IconInstagram fill={tealish} />
             </Touchable>
 
             <Touchable onPress={() => Linking.openURL(data.Empresa.Twitter)} disabled={!data.Empresa.Twitter}>
-              <IconTwitter />
+              <IconTwitter fill={tealish} />
             </Touchable>
 
             <Touchable onPress={() => Linking.openURL(data.Empresa.Linkedin)} disabled={!data.Empresa.Linkedin}>
-              <IconLinkedin />
+              <IconLinkedin fill={tealish} />
             </Touchable>
 
             <Touchable onPress={() => Linking.openURL(data.Empresa.Vimeo)} disabled={!data.Empresa.Vimeo}>
-              <IconVimeo />
+              <IconVimeo fill={tealish} />
             </Touchable>
           </SocialMedia>
         </ContentArea>

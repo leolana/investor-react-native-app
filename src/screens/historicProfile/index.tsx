@@ -61,7 +61,7 @@ export const HistoricProfileComponent = (props) => {
     if (resp.status === 200) {
       setReserve(resp.data);
       setLoading(false);
-    } else Alert.alert('Não foi possível obter as informações. Por favor volte mais tarde');
+    } else Alert.alert('Não foi possível obter as informações.', 'Por favor volte mais tarde');
   };
 
   const getStatus = () => {

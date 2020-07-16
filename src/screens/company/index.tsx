@@ -29,8 +29,6 @@ export const CompanyComponent = (props) => {
 
   const data = navigation.getParam('data', null);
 
-  console.log('MATIAS OLHA ISSO AQUI', data);
-
   // methods
 
   const formatAddress = (address) => {

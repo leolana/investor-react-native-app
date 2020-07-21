@@ -10,9 +10,10 @@ import { Request, UrlInfoInvLista } from '../../services';
 
 import { Loading } from '../../components';
 
-import { IconFilter } from '../../assets/icons';
+import { IconNewFilter } from '../../assets/icons';
 
 import { isAfter, isBefore, isSameDay, parseISO } from 'date-fns';
+import { white } from '../../assets/colors';
 
 export const HistoricComponent = (props) => {
   // props
@@ -199,7 +200,7 @@ export const Historic = {
     return {
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('HistoricFilter')}>
-          <IconFilter />
+          <IconNewFilter fill={white} />
         </TouchableOpacity>
       ),
       headerTitle: 'Meu Histórico',

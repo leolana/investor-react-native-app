@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { formatDate, formatMoney } from '../../utils';
 
-import { blue, red } from '../../assets/colors';
+import { green, red } from '../../assets/colors';
 
 import { withNavigation } from 'react-navigation';
 
@@ -23,7 +23,7 @@ const CardComponent = (props) => {
 
   // Methods
 
-  const getValueColor = () => (value >= 0 ? blue : red);
+  const getValueColor = () => (value >= 0 ? green : red);
 
   const formatTitle = () => {
     const { Tipo, Detalhes } = data;

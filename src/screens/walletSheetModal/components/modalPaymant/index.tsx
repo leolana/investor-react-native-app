@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { black } from '../../../../assets/colors';
+import { View } from 'react-native';
 
-import { formatCNPJ, formatMoney, formatPercent } from '../../../../utils';
+import { formatCNPJ } from '../../../../utils';
 
-import { Title, Text, Item, Area, Button, IconPrinterStyled } from '../../styles';
+import { Item, ItemContainer, Company, ItemTitle, ItemText, Button, Text, Header } from '../../styles';
 
 import { withNavigation } from 'react-navigation';
+
+import { black } from '../../../../assets/colors';
+
+import { AntDesign } from '@expo/vector-icons';
 
 export const ModalPaymantComponent = (props) => {
   // Props
@@ -15,66 +19,35 @@ export const ModalPaymantComponent = (props) => {
 
   const { Pagamento } = data.Detalhes;
 
-  console.log(data);
-
   // Render
 
   return (
     <>
-      <Title>Informações</Title>
-      <Text marginBottom={2}>
-        {Pagamento.NomeEmpresa} - {formatCNPJ(Pagamento.DocumentoEmpresa)}
-      </Text>
-      <Text marginBottom={10}>
-        Parcela {Pagamento.IndiceParcela}/{Pagamento.Prazo}
-      </Text>
+      <Header>
+        <Item>Informações</Item>
+        <AntDesign name="close" size={24} color={black} onPress={() => props.navigation.goBack()} />
+      </Header>
 
-      <Text marginBottom={10}>
-        <Item>ID da fatura: </Item>
-        <Text>{Pagamento.FaturaId}</Text>
-      </Text>
+      <ItemContainer>
+        <Company>
+          {Pagamento.NomeEmpresa} - {formatCNPJ(Pagamento.DocumentoEmpresa)}
+        </Company>
+      </ItemContainer>
 
-      <Text marginBottom={10}>
-        <Item>ID da transação: </Item>
-        <Text>{data.id}</Text>
-      </Text>
+      <ItemContainer>
+        <View>
+          <ItemTitle>ID Oportunidade </ItemTitle>
+          <ItemText>{Pagamento.IdOportunidade}</ItemText>
+        </View>
 
-      <Item marginBottom={5}>Detalhes de Recebimento</Item>
+        <ItemTitle>
+          Parcela {Pagamento.IndiceParcela}/{Pagamento.Prazo}
+        </ItemTitle>
+      </ItemContainer>
 
-      <Area marginBottom={2}>
-        <Item>Principal: </Item>
-        <Text>{formatMoney(Pagamento.ValorBruto - Pagamento.Ipmt)}</Text>
-      </Area>
-
-      <Area marginBottom={2}>
-        <Item>Juros: </Item>
-        <Text>+ {formatMoney(Pagamento.Ipmt)}</Text>
-      </Area>
-
-      <Area marginBottom={2}>
-        <Item>Multa por Atraso: </Item>
-        <Text>+ {formatMoney(Pagamento.Multa || 0)}</Text>
-      </Area>
-
-      <Area marginBottom={2}>
-        <Item>Valor Bruto (Principal + Juros + Multa): </Item>
-        <Text>{formatMoney(Pagamento.ValorBruto)}</Text>
-      </Area>
-
-      <Area marginBottom={2}>
-        <Item>Ir {formatPercent(Pagamento.AliqIr)}: </Item>
-        <Text>- {formatMoney(Pagamento.Ir)}</Text>
-      </Area>
-
-      <Area isLast={true} marginBottom={2}>
-        <Item>Liquido (Valor Bruto - Ir): </Item>
-        <Text>{formatMoney(data.Valor)}</Text>
-      </Area>
-
-      {/* <Button onPress={() => props.navigation.navigate('WalletReceipt', { id: data.id })}>
-        <IconPrinterStyled width={24} height={24} stroke={black} fill={'none'} />
+      <Button onPress={() => props.navigation.navigate('WalletReceipt', { id: data.id })}>
         <Text>Visualizar detalhes</Text>
-      </Button> */}
+      </Button>
     </>
   );
 };

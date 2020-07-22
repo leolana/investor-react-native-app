@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { Dimensions, Animated, Platform } from 'react-native';
+import { Dimensions, Animated } from 'react-native';
 
 import { receiptColor, receiptBorderColor, receiptTextColor } from '../../assets/colors';
 
@@ -10,17 +10,13 @@ const { width } = Dimensions.get('screen');
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-
-  ${Platform.select({
-    android: `margin-bottom: 16px;`,
-  })}
 `;
 
 export const Background = styled(LinearGradient)`
   position: absolute;
   width: ${width}px;
   align-self: stretch;
-  height: 540px;
+  height: 100%;
 `;
 
 export const ReceiptArea = styled(Animated.View)`
@@ -40,6 +36,7 @@ export const ReceiptBody = styled.View`
 export const Content = styled.View`
   width: ${width - 64}px;
   height: auto;
+  padding-horizontal: 10px;
   padding-bottom: 16px;
 `;
 
@@ -51,9 +48,8 @@ export const ReceiptBorder = styled.Image`
   ${(props) => {
     if (props.side === 'up') {
       return `
-                    transform: scale(-1);
-                
-                `;
+        transform: scale(-1);
+      `;
     }
   }}
 `;
@@ -79,8 +75,8 @@ export const Line = styled.View`
   ${(props) => {
     if (props.withoutBorder) {
       return `
-                    border-bottom-width: 0px;
-                `;
+        border-bottom-width: 0px;
+      `;
     }
   }}
 `;

@@ -1,29 +1,51 @@
 import React from 'react';
 
-import { formatMoney } from '../../../../utils';
+import { formatMoney, formatCNPJ } from '../../../../utils';
 
-import { Text, Item, Area } from '../../styles';
+import { Header, Item, ItemContainer, ItemTitle, ItemText, Company } from '../../styles';
+
+import { black } from '../../../../assets/colors';
+
+import { AntDesign } from '@expo/vector-icons';
 
 export const ModalInvestment = (props) => {
   // Props
 
   const { data } = props;
 
+  const { Investimento } = data.Detalhes;
+
   // Render
 
   return (
     <>
-      <Text marginBottom={10}>
-        <Item>ID da transação: </Item>
-        <Text>{data.id}</Text>
-      </Text>
+      <Header>
+        <Item>Informações</Item>
+        <AntDesign name="close" size={24} color={black} onPress={() => props.navigation.goBack()} />
+      </Header>
 
-      <Item marginBottom={5}>Detalhes de Recebimento</Item>
+      <ItemContainer>
+        <Company>
+          {Investimento.NomeEmpresa} - {formatCNPJ(Investimento.Documento)}
+        </Company>
+      </ItemContainer>
 
-      <Area marginBottom={2}>
-        <Item>Valor: </Item>
-        <Text>{formatMoney(data.Valor)}</Text>
-      </Area>
+      <ItemContainer>
+        <ItemTitle>ID Oportunidade: </ItemTitle>
+        <ItemText>{Investimento.IdOportunidade}</ItemText>
+      </ItemContainer>
+
+      <Item>Detalhes de Investimento</Item>
+
+      <ItemContainer>
+        <ItemTitle>Valor: </ItemTitle>
+        <ItemText>{formatMoney(data.Valor)}</ItemText>
+      </ItemContainer>
+
+      <ItemContainer>
+        <ItemTitle>ID da transação: </ItemTitle>
+        <ItemText>{data.id}</ItemText>
+      </ItemContainer>
     </>
   );
 };

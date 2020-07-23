@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { KeyboardAvoidingView, Platform, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, View, Alert } from 'react-native';
 
 import { TextInputMask } from 'react-native-masked-text';
 
-import  { SafeAreaView, Button, ButtonText, Label, Error, ScrollView } from './styles';
+import { SafeAreaView, Button, ButtonText, Label, Error, ScrollView } from './styles';
 
 import { Select } from '../../components';
 import { useSelector } from 'react-redux';
 
-import Styles from './styles'
+import Styles from './styles';
 
-import { Request, UrlCadastroInvestidorAtualizar } from '../../services'
+import { Request, UrlCadastroInvestidorAtualizar, UrlPegarCpfInvestidor } from '../../services';
 
 export const SignUpInvestorStepFourComponent = (props) => {
   //states
@@ -24,7 +24,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
   const [TelefoneFixo, setTelefoneFixo] = useState('');
   const [Celular, setCelular] = useState('');
   const [EstadoCivil, setEstadoCivil] = useState('');
-  const idInvestidor = useSelector(store => store.investor.dadosInvestidor._id);
+  const idInvestidor = useSelector((store) => store.investor.dadosInvestidor._id);
 
   //vars
 
@@ -35,19 +35,27 @@ export const SignUpInvestorStepFourComponent = (props) => {
     EstadoCivil,
   };
 
-  const atualizarDadosInvestidor = async () => {
-    const resp = await Request.PUT({
-      url: UrlCadastroInvestidorAtualizar(idInvestidor, 3),
-      data: Investidor,
+  const atualizarDadosInvestidor = async (): Promise<void> => {
+    const resp2 = await Request.GET({
+      url: UrlPegarCpfInvestidor(Cpf.replace(/[^\d]+/g, '')),
+      data: {},
       header: 'bearer',
     });
 
-    if (resp.status === 200) {
-      console.log('passo 4', resp.data);
-      props.navigation.navigate('SignUpInvestorStepFive');
+    if (!resp2.data.Cpf) {
+      Alert.alert('CPF já cadastrado');
+    } else {
+      const resp = await Request.PUT({
+        url: UrlCadastroInvestidorAtualizar(idInvestidor, 3),
+        data: Investidor,
+        header: 'bearer',
+      });
+
+      if (resp.status === 200) {
+        props.navigation.navigate('SignUpInvestorStepFive');
+      }
     }
   };
-  
 
   const optionsMaritalStatus = [
     { text: 'Solteiro (a)', value: 1 },

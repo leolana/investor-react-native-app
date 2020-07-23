@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import { grey99, white, greyDD } from '../../../../assets/colors';
+import { white, greyDD, tealish } from '../../../../assets/colors';
 
 export const TitleDivisor = styled.Text`
   font-family: OpenSans-Bold;
@@ -12,7 +12,7 @@ export const View = styled.View``;
 
 export const Button = styled.TouchableOpacity`
   flex-direction: row;
-  background: ${grey99};
+  background: ${tealish};
   align-self: stretch;
   height: 38px;
   border-radius: 5px;

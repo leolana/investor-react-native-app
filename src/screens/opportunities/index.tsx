@@ -130,11 +130,11 @@ export const PageOpportunities: React.FC = (props) => {
   const resetData = () => {
     setPage(1);
     setOpportunities([]);
-  }
+  };
   // effects
 
   useEffect(() => {
-    resetData()
+    resetData();
   }, [filter]);
 
   useEffect(() => {
@@ -151,7 +151,7 @@ export const PageOpportunities: React.FC = (props) => {
 
   return (
     <SafeAreaView>
-      <NavigationEvents onDidFocus={() => resetData() }/>
+      <NavigationEvents onDidFocus={() => resetData()} />
       <MessageBox />
 
       <FlatList
@@ -188,7 +188,7 @@ export const Opportunities = {
       headerTitle: 'Oportunidades',
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate('Picker', params)}>
-          <Filter />
+          <Filter fill="#fff" />
         </TouchableOpacity>
       ),
     };

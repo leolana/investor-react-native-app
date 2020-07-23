@@ -2,9 +2,9 @@ import styled from 'styled-components/native';
 
 import { white } from '../../assets/colors';
 
-import { IconFilter } from '../../assets/icons';
+import { IconNewFilter } from '../../assets/icons';
 
-export const Filter = styled(IconFilter)`
+export const Filter = styled(IconNewFilter)`
   margin-right: 12px;
 `;
 

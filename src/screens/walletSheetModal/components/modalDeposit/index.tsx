@@ -2,8 +2,11 @@ import React from 'react';
 
 import { formatMoney } from '../../../../utils';
 
-import { Text, Item, Area, Button, IconPrinterStyled } from '../../styles';
+import { Header, Item, ItemContainer, ItemTitle, ItemText } from '../../styles';
+
 import { black } from '../../../../assets/colors';
+
+import { AntDesign } from '@expo/vector-icons';
 
 export const ModalDeposit = (props) => {
   // Props
@@ -14,22 +17,20 @@ export const ModalDeposit = (props) => {
 
   return (
     <>
-      <Text marginBottom={10}>
-        <Item>ID da transação: </Item>
-        <Text>{data.id}</Text>
-      </Text>
+      <Header>
+        <Item>Detalhes de Recebimento</Item>
+        <AntDesign name="close" size={24} color={black} onPress={() => props.navigation.goBack()} />
+      </Header>
 
-      <Item marginBottom={5}>Detalhes de Recebimento</Item>
+      <ItemContainer>
+        <ItemTitle>Valor: </ItemTitle>
+        <ItemText>{formatMoney(data.Valor)}</ItemText>
+      </ItemContainer>
 
-      <Area>
-        <Item>Valor: </Item>
-        <Text>{formatMoney(data.Valor)}</Text>
-      </Area>
-
-      <Button>
-        <IconPrinterStyled width={24} height={24} stroke={black} fill={'none'} />
-        <Text>Visualizar detalhes</Text>
-      </Button>
+      <ItemContainer>
+        <ItemTitle>ID da transação: </ItemTitle>
+        <ItemText>{data.id}</ItemText>
+      </ItemContainer>
     </>
   );
 };

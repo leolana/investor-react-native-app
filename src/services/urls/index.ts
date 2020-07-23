@@ -71,6 +71,7 @@ export const UrlCadastroInvestidorAtualizar = (investidorId, passo) =>
   `${BASE_URL_GO}api/v1/investidor/atualizar/${investidorId}/${passo}`;
 export const UrlCadastroInvestidorDocs = (investidorId, docTipo) =>
   `${BASE_URL_GO}api/v1/investidor/enviar/docs/b64/${investidorId}/${docTipo}`;
+export const UrlPegarCpfInvestidor = (cpf) => `${BASE_URL_GO}/api/v1/investidor/cpf/${cpf}`;
 
 export const UrlLocalizacaoCEPPegar = (cep) => `${BASE_URL_HUB}cep/${cep}`;
 

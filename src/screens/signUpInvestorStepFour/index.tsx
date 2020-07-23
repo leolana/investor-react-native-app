@@ -42,7 +42,7 @@ export const SignUpInvestorStepFourComponent = (props) => {
       header: 'bearer',
     });
 
-    if (resp2.data.Cpf !== undefined) {
+    if (!resp2.data.Cpf) {
       Alert.alert('CPF já cadastrado');
     } else {
       const resp = await Request.PUT({

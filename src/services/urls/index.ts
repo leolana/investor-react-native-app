@@ -1,8 +1,8 @@
 const PROD = {
-  BASE_URL_GO: 'https://api.iouu.com.br/',
-  BASE_URL_PAY: 'https://pay.iouu.com.br/',
-  BASE_URL_NODE: '#',
-  BASE_URL_HUB: 'https://hub-app.iouu.com.br/',
+  BASE_URL_GO: 'https://apim-investor-app-prod.azure-api.net/wallet/',
+  BASE_URL_PAY: 'https://apim-investor-app-prod.azure-api.net/pay/',
+  BASE_URL_NODE: 'https://apim-investor-app-prod.azure-api.net/server/',
+  BASE_URL_HUB: 'https://apim-investor-app-prod.azure-api.net/hub/',
 };
 
 const TEST = {
@@ -19,7 +19,7 @@ const DESENV = {
   BASE_URL_HUB: 'https://hub-desenv.iouu.com.br/',
 };
 
-const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = TEST;
+const { BASE_URL_GO, BASE_URL_PAY, BASE_URL_NODE, BASE_URL_HUB } = PROD;
 
 export const UrlPegarFotoDocumento = (foto) => `${BASE_URL_HUB}file/${foto}`;
 
